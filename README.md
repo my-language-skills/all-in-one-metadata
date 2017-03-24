@@ -32,6 +32,10 @@ This plugin requires:
 ### Version A
 * Initial version.
   
+* **Custom Chapter Metadata:** new custom metaboxes for the custom page chapter
+  * _Questions And Answers:_ this field allows teachers to insert a custom link. 
+  * _Class Learning Time (minutes):_ how long the students will need for the topic.
+  
 * **General Education Information:**
   * _Target Language:_ European languages
   * _Level:_ A1, A2, B1, B2, C1, C2
