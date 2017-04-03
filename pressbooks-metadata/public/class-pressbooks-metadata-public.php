@@ -3,8 +3,8 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       www.books4languages.com
- * @since      1.0.0
+ * @link       http://on-lingua.com
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/public
@@ -14,18 +14,18 @@
  * The public-facing functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
+ * enqueue the dashboard-specific stylesheet and JavaScript.
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/public
- * @author     Antonio Devís <colomet@hotmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
  */
 class Pressbooks_Metadata_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -34,7 +34,7 @@ class Pressbooks_Metadata_Public {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -43,7 +43,7 @@ class Pressbooks_Metadata_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -57,7 +57,7 @@ class Pressbooks_Metadata_Public {
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public function enqueue_styles() {
 
@@ -78,9 +78,9 @@ class Pressbooks_Metadata_Public {
 	}
 
 	/**
-	 * Register the JavaScript for the public-facing side of the site.
+	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public function enqueue_scripts() {
 

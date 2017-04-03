@@ -2,31 +2,31 @@
 	'use strict';
 
 	/**
-	 * All of the code for your admin-facing JavaScript source
+	 * All of the code for your Dashboard-specific JavaScript source
 	 * should reside in this file.
 	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
+	 * Note that this assume you're going to use jQuery, so it prepares
+	 * the $ function reference to be used within the scope of this
+	 * function.
 	 *
-	 * This enables you to define handlers, for when the DOM is ready:
+	 * From here, you're able to define handlers for when the DOM is
+	 * ready:
 	 *
 	 * $(function() {
 	 *
 	 * });
 	 *
-	 * When the window is loaded:
+	 * Or when the window is loaded:
 	 *
 	 * $( window ).load(function() {
 	 *
 	 * });
 	 *
-	 * ...and/or other possibilities.
+	 * ...and so on.
 	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
+	 * Remember that ideally, we should not attach any more than a single DOM-ready or window-load handler
+	 * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
+	 * be doing this, we should try to minimize doing that in our own work.
 	 */
 
 })( jQuery );

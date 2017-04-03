@@ -3,8 +3,8 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       www.books4languages.com
- * @since      1.0.0
+ * @link       http://on-lingua.com
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
@@ -15,10 +15,10 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      0.1
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     Antonio Devís <colomet@hotmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
  */
 class Pressbooks_Metadata_Deactivator {
 
@@ -27,7 +27,7 @@ class Pressbooks_Metadata_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public static function deactivate() {
 

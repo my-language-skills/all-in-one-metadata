@@ -4,10 +4,10 @@
  * The file that defines the core plugin class
  *
  * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
+ * public-facing side of the site and the dashboard.
  *
- * @link       www.books4languages.com
- * @since      1.0.0
+ * @link       http://on-lingua.com
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
@@ -16,16 +16,16 @@
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, admin-specific hooks, and
+ * This is used to define internationalization, dashboard-specific hooks, and
  * public-facing site hooks.
  *
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      0.1
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     Antonio Devís <colomet@hotmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
  */
 class Pressbooks_Metadata {
 
@@ -33,7 +33,7 @@ class Pressbooks_Metadata {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   protected
 	 * @var      Pressbooks_Metadata_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
@@ -42,7 +42,7 @@ class Pressbooks_Metadata {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   protected
 	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
@@ -51,7 +51,7 @@ class Pressbooks_Metadata {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   protected
 	 * @var      string    $version    The current version of the plugin.
 	 */
@@ -61,19 +61,21 @@ class Pressbooks_Metadata {
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
+	 * Load the dependencies, define the locale, and set the hooks for the Dashboard and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public function __construct() {
 
 		$this->plugin_name = 'pressbooks-metadata';
-		$this->version = '1.0.0';
+		$this->version = '0.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->set_themes();
 		$this->define_admin_hooks();
+		$this->define_metadata_changes();
 		$this->define_public_hooks();
 
 	}
@@ -85,13 +87,13 @@ class Pressbooks_Metadata {
 	 *
 	 * - Pressbooks_Metadata_Loader. Orchestrates the hooks of the plugin.
 	 * - Pressbooks_Metadata_i18n. Defines internationalization functionality.
-	 * - Pressbooks_Metadata_Admin. Defines all hooks for the admin area.
+	 * - Pressbooks_Metadata_Admin. Defines all hooks for the dashboard.
 	 * - Pressbooks_Metadata_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 */
 	private function load_dependencies() {
@@ -109,7 +111,12 @@ class Pressbooks_Metadata {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-pressbooks-metadata-i18n.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the admin area.
+		 * The class responsible for registering and setting all the themes used by the plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-pressbooks-metadata-themes.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-pressbooks-metadata-admin.php';
 
@@ -118,6 +125,12 @@ class Pressbooks_Metadata {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-pressbooks-metadata-public.php';
+
+		/**
+		 * Includes all the existing concrete metadata actually used/provided
+		 * by this plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/metadata/actual-metadata/include-concrete-plugin-metadata.php';
 
 		$this->loader = new Pressbooks_Metadata_Loader();
 
@@ -129,22 +142,42 @@ class Pressbooks_Metadata {
 	 * Uses the Pressbooks_Metadata_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 */
 	private function set_locale() {
 
 		$plugin_i18n = new Pressbooks_Metadata_i18n();
+		$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Set the plugin's specific themes and removes useless ones.
+	 *
+	 * @since    0.1
+	 * @access   private
+	 */
+	private function set_themes() {
+
+		$plugin_themes = new Pressbooks_Metadata_Themes( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'init', $plugin_themes, 'register_directory' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_themes, 'enqueue_custom_themes' );
+		$this->loader->add_filter( 'allowed_themes', $plugin_themes, 'add_themes_to_filter', 11 );
+
+		// Export fix
+		$this->loader->add_filter( 'pb_epub_css_override', $plugin_themes, 'add_epub_export_styles' );
+
+	}
+
+	/**
+	 * Register all of the hooks related to the dashboard functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
@@ -153,6 +186,42 @@ class Pressbooks_Metadata {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'pressbooks_new_blog', $plugin_admin, 'new_book' );
+		
+		$this->loader->add_action( 'wp_head', $plugin_admin, 'header_function' );
+
+	}
+
+	/**
+	 * Register all of the metadata customization.
+	 *
+	 * @since    0.1
+	 * @access   private
+	 */
+	private function define_metadata_changes() {
+
+		//$plugin_metadata = new Pressbooks_Metadata_Metadata( $this->get_plugin_name(), $this->get_version() );
+		$plugin_book_metadata = Pressbooks_Metadata_Book_Metadata::get_instance();
+		$plugin_chapter_metadata = Pressbooks_Metadata_Chapter_Metadata::get_instance();
+		$plugin_related_books_metadata = Pressbooks_Metadata_Related_Books_Metadata::get_instance();
+		$plugin_educational_information_metadata = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
+
+		$this->loader->add_action(
+			'custom_metadata_manager_init_metadata',
+			$plugin_book_metadata, 'add_to_current_post_metadata',
+			31 );
+		$this->loader->add_action(
+			'custom_metadata_manager_init_metadata',
+			$plugin_chapter_metadata,
+			'add_to_current_post_metadata', 31 );
+		$this->loader->add_action(
+			'custom_metadata_manager_init_metadata',
+			$plugin_related_books_metadata,
+			'add_to_current_post_metadata', 31 );
+		$this->loader->add_action(
+			'custom_metadata_manager_init_metadata',
+			$plugin_educational_information_metadata,
+			'add_to_current_post_metadata', 31 );
 
 	}
 
@@ -160,7 +229,7 @@ class Pressbooks_Metadata {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 */
 	private function define_public_hooks() {
@@ -175,7 +244,7 @@ class Pressbooks_Metadata {
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public function run() {
 		$this->loader->run();
@@ -185,7 +254,7 @@ class Pressbooks_Metadata {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
+	 * @since     0.1
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -195,7 +264,7 @@ class Pressbooks_Metadata {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     0.1
 	 * @return    Pressbooks_Metadata_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
@@ -205,7 +274,7 @@ class Pressbooks_Metadata {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     0.1
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {

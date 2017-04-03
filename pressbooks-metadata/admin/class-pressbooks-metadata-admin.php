@@ -1,31 +1,31 @@
 <?php
 
 /**
- * The admin-specific functionality of the plugin.
+ * The dashboard-specific functionality of the plugin.
  *
- * @link       www.books4languages.com
- * @since      1.0.0
+ * @link       http://on-lingua.com
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
  */
 
 /**
- * The admin-specific functionality of the plugin.
+ * The dashboard-specific functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
+ * enqueue the dashboard-specific stylesheet and JavaScript.
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
- * @author     Antonio Devís <colomet@hotmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
  */
 class Pressbooks_Metadata_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -34,7 +34,7 @@ class Pressbooks_Metadata_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -43,7 +43,7 @@ class Pressbooks_Metadata_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -55,9 +55,9 @@ class Pressbooks_Metadata_Admin {
 	}
 
 	/**
-	 * Register the stylesheets for the admin area.
+	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public function enqueue_styles() {
 
@@ -78,9 +78,9 @@ class Pressbooks_Metadata_Admin {
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1
 	 */
 	public function enqueue_scripts() {
 
@@ -99,5 +99,46 @@ class Pressbooks_Metadata_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/pressbooks-metadata-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+	/**
+	 * Called when a book is created in PressBooks.
+	 *
+	 * @since    0.1
+	 */
+	public function new_book() {
+
+		switch_theme( 'pressbooks-metadata-generic' );
+
+	}
+
+
+
+	/**
+	 * Used in the header of our site
+	 *
+	 * @since    0.2
+	 */
+	public function header_function() {
+		if ( is_front_page() ) {?>
+			<div itemscope itemtype="http://schema.org/Course">
+			<?php
+			$pm_BM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
+			$pm_BM->print_microdata_meta_tags();
+			$pm_BM->print_educationalAlignment_microdata_meta_tags();
+		}
+		else{?>
+			<div itemscope itemtype="http://schema.org/Chapter" >
+			<?php
+			//global $wpdb;
+			//$findID = $wpdb->get_results("SELECT ID FROM pbo_wp_17_posts WHERE post_name = 'chapter-1'");
+			//echo $findID[0]->ID;
+			$pm_CM = Pressbooks_Metadata_Chapter_Metadata::get_instance();
+			$pm_CM->print_microdata_meta_tags();
+		}
+		?>
+		</div>
+		<?php
+	}
+
 
 }
