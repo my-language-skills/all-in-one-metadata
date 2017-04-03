@@ -73,7 +73,10 @@ This plugin requires:
 </div>
 ```
 
-### Screenshot
+### Screenshots
+
+![screen shot 2017-04-03 at 17 24 13](https://cloud.githubusercontent.com/assets/23406636/24616907/b5672c1e-1892-11e7-8a4d-f9b8f4ea2b55.png)
+
 ![screen shot 2017-04-03 at 14 10 25](https://cloud.githubusercontent.com/assets/23406636/24608799/6089c658-1878-11e7-95f5-a8cafb245c15.png)
 
   
