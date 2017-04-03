@@ -2,7 +2,15 @@
 
 /* ------------------------------------------------------------------------ *
  * Google Webfonts
+ *
  * ------------------------------------------------------------------------ */
+
+
+
+
+//-------------- All the content related to the theme is not used and will be removed from the plugin in the next release --------------------//
+
+
 
 function fitzgerald_enqueue_styles() {
 	wp_enqueue_style( 'fitzgerald-fonts', 'http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700|Roboto+Condensed:400,300,300italic,400italic' );

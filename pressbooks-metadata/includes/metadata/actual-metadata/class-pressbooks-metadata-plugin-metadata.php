@@ -21,7 +21,7 @@ require_once plugin_dir_path( __FILE__ )
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata
- * @author     julienCXX <software@chmodplusx.eu>
+ * @author     julienCXX <software@chmodplusx.eu>, Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 abstract class Pressbooks_Metadata_Plugin_Metadata {
 

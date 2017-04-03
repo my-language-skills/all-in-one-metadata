@@ -126,8 +126,14 @@ class Pressbooks_Metadata_Admin {
 			$pm_BM->print_microdata_meta_tags();
 			$pm_BM->print_educationalAlignment_microdata_meta_tags();
 		}
-		else{?>
+		else{
+			global $post;
+		?>
 			<div itemscope itemtype="http://schema.org/Chapter" >
+			<meta itemprop='name' content='<?php echo $post->post_title; ?>' id='name'>
+			<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' id='name'>
+			<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>
+			<meta itemprop='author' content='<?php echo get_the_author(); ?>' id='name'>
 			<?php
 			//global $wpdb;
 			//$findID = $wpdb->get_results("SELECT ID FROM pbo_wp_17_posts WHERE post_name = 'chapter-1'");

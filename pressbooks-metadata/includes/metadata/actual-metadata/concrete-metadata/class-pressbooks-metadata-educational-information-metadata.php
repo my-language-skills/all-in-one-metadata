@@ -53,11 +53,11 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Educational Level', '', 'level', '', '', '', false, '',
-			' ' ) );
+			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Educational Framework', '', 'framework', '', '', '', false, '',
-			' ' ) );
+			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Small Description', '', 'description', '', '', '', false, '',
