@@ -38,8 +38,8 @@ This plugin requires:
   
 * **Educational Information:**
   * _Subject:_ Subject name
-  * _Educational Level:_ Level of the course
-  * _Educational Framework:_ Framework the Educational Level belongs to
+  *   _Educational Level:_ Level of the course
+  *   _Educational Framework:_ Framework the Educational Level belongs to
   * _Small Description:_ Small Description of the Subject
   * _Provider:_ Provider of the Subject
   * _Learning Reasource Type:_ Course, Examination, Exercise, Descriptor
