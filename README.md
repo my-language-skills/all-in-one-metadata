@@ -67,7 +67,7 @@ This plugin requires:
 	</span>
 	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
 		<meta itemprop="alignmentType" content="educationalLevel" />
-		<meta itemprop="educationalFramework" content='CERF'/>
+		<meta itemprop="educationalFramework" content='CEFR'/>
 		<meta itemprop="targetName" content='A1' />
 	</span>
 </div>
