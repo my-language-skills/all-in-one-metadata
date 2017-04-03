@@ -32,11 +32,11 @@ This plugin requires:
 ## Version A
 #### Initial version.
   
-#### Custom Chapter Metadata: new custom metaboxes for the custom page chapter
+### Custom Chapter Metadata: new custom metaboxes for the custom page chapter
   * _Questions And Answers:_ this field allows teachers to insert a custom link. 
   * _Class Learning Time (minutes):_ how long the students will need for the topic.
   
-#### Educational Information:
+### Educational Information:
 * **_Subject:_** Subject name
   * **_Educational Level:_** Level of the course
   * **_Educational Framework:_** Framework the Educational Level belongs to
@@ -49,7 +49,7 @@ This plugin requires:
 * **_License URL:_** custom link to a licence
 * **_Bibliography URL:_** custom link to a bibliography
  
-#### Course Microdata:
+### Course Microdata:
 ```html
 <div itemscope itemtype="http://schema.org/Course">
 	<meta itemprop='name' content='English' id='name'>
@@ -71,4 +71,10 @@ This plugin requires:
 		<meta itemprop="targetName" content='A1' />
 	</span>
 </div>
-  ```
+```
+
+### Screenshot
+![screen shot 2017-04-03 at 14 10 25](https://cloud.githubusercontent.com/assets/23406636/24608799/6089c658-1878-11e7-95f5-a8cafb245c15.png)
+
+  
+
