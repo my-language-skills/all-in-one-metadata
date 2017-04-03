@@ -29,7 +29,7 @@ This plugin requires:
 * Extend the plugin to add metadata to the root, so that they will be used in every book
 * Add metadata to the page-level so that every page will be indipendent
 
-### Version A
+## Version A
 #### Initial version.
   
 #### Custom Chapter Metadata: new custom metaboxes for the custom page chapter
