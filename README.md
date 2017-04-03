@@ -24,7 +24,7 @@ This plugin requires:
 
 ## TODO
 
-* Fix Target Language and Level field
+* Make some fields required
 * Add more fields
 * Extend the plugin to add metadata to the root, so that they will be used in every book
 * Add metadata to the page-level so that every page will be indipendent
@@ -36,9 +36,12 @@ This plugin requires:
   * _Questions And Answers:_ this field allows teachers to insert a custom link. 
   * _Class Learning Time (minutes):_ how long the students will need for the topic.
   
-* **General Education Information:**
-  * _Target Language:_ European languages
-  * _Level:_ A1, A2, B1, B2, C1, C2
+* **Educational Information:**
+  * _Subject:_ Subject name
+  * _Educational Level:_ Level of the course
+  * _Educational Framework:_ Framework the Educational Level belongs to
+  * _Small Description:_ Small Description of the Subject
+  * _Provider:_ Provider of the Subject
   * _Learning Reasource Type:_ Course, Examination, Exercise, Descriptor
   * _Interactivity Type:_ Active, Expositive, Mixed
   * _Age range:_ 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
