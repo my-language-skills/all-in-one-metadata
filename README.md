@@ -48,3 +48,29 @@ This plugin requires:
   * _Class Learning Time:_ how long the students will need for the book
   * _License URL:_ custom link to a licence
   * _Bibliography URL:_ custom link to a bibliography
+  
+  ```
+  <div itemscope itemtype="http://schema.org/Course">
+			<meta itemprop='name' content='English' id='name'>
+<meta itemprop=' ' content='A1' id=' '>
+<meta itemprop=' ' content='CERF' id=' '>
+<meta itemprop='description' content='English Subject A1 level' id='description'>
+<meta itemprop='provider' content='My Language Skills' id='provider'>
+<meta itemprop='learningResourceType' content='Course' id='learningResourceType'>
+<meta itemprop='interactivityType' content='Active' id='interactivityType'>
+<meta itemprop='typicalAgeRange' content='Adults' id='typicalAgeRange'>
+<meta itemprop='timeRequired' content='4' id='timeRequired'>
+<meta itemprop='license' content='License URL' id='license'>
+<meta itemprop='isBasedOnUrl' content='Bibliography URL' id='isBasedOnUrl'>
+		<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
+			<meta itemprop="alignmentType" content="educationalSubject" />
+			<meta itemprop="targetName" content='English' />
+		</span>
+				<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+			<meta itemprop="alignmentType" content="educationalLevel" />
+			<meta itemprop="educationalFramework" content='CERF'/>
+			<meta itemprop="targetName" content='A1' />
+		</span>
+</div>
+  ```
+  123
