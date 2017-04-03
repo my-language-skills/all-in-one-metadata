@@ -37,17 +37,17 @@ This plugin requires:
   * _Class Learning Time (minutes):_ how long the students will need for the topic.
   
 #### Educational Information:
-* _Subject:_ Subject name
-  * _Educational Level:_ Level of the course
-  * _Educational Framework:_ Framework the Educational Level belongs to
-* _Small Description:_ Small Description of the Subject
-* _Provider:_ Provider of the Subject
-* _Learning Reasource Type:_ Course, Examination, Exercise, Descriptor
-* _Interactivity Type:_ Active, Expositive, Mixed
-* _Age range:_ 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
-* _Class Learning Time:_ how long the students will need for the book
-* _License URL:_ custom link to a licence
-* _Bibliography URL:_ custom link to a bibliography
+* **_Subject:_** Subject name
+  * **_Educational Level:_** Level of the course
+  * **_Educational Framework:_** Framework the Educational Level belongs to
+* **_Small Description:_** Small Description of the Subject
+* **_Provider:_** Provider of the Subject
+* **_Learning Reasource Type:_** Course, Examination, Exercise, Descriptor
+* **_Interactivity Type:_** Active, Expositive, Mixed
+* **_Age range:_** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
+* **_Class Learning Time:_** how long the students will need for the book
+* **_License URL:_** custom link to a licence
+* **_Bibliography URL:_** custom link to a bibliography
  
 #### Course Microdata:
 ```html
