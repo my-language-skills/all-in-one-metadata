@@ -17,7 +17,7 @@ require_once plugin_dir_path( __FILE__ )
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
- * @author     julienCXX <software@chmodplusx.eu>
+ * @author     julienCXX <software@chmodplusx.eu>, Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Metadata {
 
@@ -70,7 +70,7 @@ class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Me
 	 * Returns the class instance.
 	 *
 	 * @since  0.1
-	 * @return Pressbooks_Metadata_Book_Metadata The class instance.
+	 * @return Pressbooks_Metadata_Chapter_Metadata The class instance.
 	 */
 	public static function get_instance() {
 

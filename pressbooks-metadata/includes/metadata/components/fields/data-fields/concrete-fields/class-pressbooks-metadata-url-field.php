@@ -62,7 +62,7 @@ class Pressbooks_Metadata_Url_Field extends Pressbooks_Metadata_Placeholder_Fiel
 	public function __toString() {
 
 		$value = $this->get_value();
-		return '<a href="' . $value . '">' . $value . '</a>';
+		return $value;
 
 	}
 

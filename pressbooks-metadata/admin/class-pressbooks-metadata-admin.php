@@ -18,7 +18,7 @@
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
- * @author     julienCXX <software@chmodplusx.eu>
+ * @author     julienCXX <software@chmodplusx.eu>, Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Admin {
 

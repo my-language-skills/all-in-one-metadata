@@ -133,7 +133,7 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 	 * Returns the class instance.
 	 *
 	 * @since  0.2
-	 * @return Pressbooks_Metadata_Book_Metadata The class instance.
+	 * @return Pressbooks_Metadata_Educational_Information_Metadata The class instance.
 	 */
 	public static function get_instance() {
 

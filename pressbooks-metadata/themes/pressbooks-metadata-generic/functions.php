@@ -91,16 +91,7 @@ function pbt_get_microdata_meta_elements() {
 	    //'typicalAgeRange' => '17-',
 	    'targetName' => 'A2'
 	);
-	/*
-    $html .= "<span itemprop='" . "educationalAlignment" . "' itemscope itemtype='" . " http://schema.org/AlignmentObject" . "' id='" . "educationalAlignment1" . "'>\n";
-    $html .= "<meta itemprop='" . "alignmentType" . "' content='" . "educationLevel" . "' id='" . "alignmentType" . "'>\n";
-    $html .= "<meta itemprop='" . "educationalFramework" . "' content='" . "CEFR" . "' id='" . "educationalFramework" . "'>\n";
-    $html .= "<meta itemprop='" . "targetName" . "' content='" . "A2" . "' id='" . "targetName" . "'></span>\n";
-
-    $html .= "<span itemprop='" . "educationalAlignment" . "' itemscope itemtype='" . " http://schema.org/AlignmentObject" . "' id='" . "educationalAlignment2" . "'>\n";
-    $html .= "<meta itemprop='" . "alignmentType" . "' content='" . "educationalSubject" . "' id='" . "alignmentType" . "'>\n";
-    $html .= "<meta itemprop='" . "educationalFramework" . "' content='" . "CEFR" . "' id='" . "educationalFramework" . "'>\n";
-    $html .= "<meta itemprop='" . "targetName" . "' content='" . "A2" . "' id='" . "targetName" . "'></span>\n";*/
+	
 
 	foreach ( $lrmi_meta as $itemprop => $content ) {
 		// @todo parse educationalAlignment items into alignmentOjects
@@ -280,8 +271,8 @@ function print_page_information_fields() {
  */
 function print_book_information_fields() {
 
-	$pm_BM = Pressbooks_Metadata_Book_Metadata::get_instance();
-	$pm_BM->print_book_metadata_fields();
+	//$pm_BM = Pressbooks_Metadata_Book_Metadata::get_instance();
+	//$pm_BM->print_book_metadata_fields();
 
 }
 
@@ -290,9 +281,9 @@ function print_book_information_fields() {
  */
 function print_book_microdata_meta_tags() {
 
-	$pm_BM = Pressbooks_Metadata_Book_Metadata::get_instance();
-	$pm_BM->print_microdata_meta_tags();
-	$pm_BM->print_educationalAlignment_microdata_meta_tags();
+	//$pm_BM = Pressbooks_Metadata_Book_Metadata::get_instance();
+	//$pm_BM->print_microdata_meta_tags();
+	//$pm_BM->print_educationalAlignment_microdata_meta_tags();
 }
 
 /**
