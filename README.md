@@ -53,8 +53,6 @@ This plugin requires:
 ```html
 <div itemscope itemtype="http://schema.org/Course">
 	<meta itemprop='name' content='English' id='name'>
-	<meta itemprop=' ' content='A1' id=' '>
-	<meta itemprop=' ' content='CERF' id=' '>
 	<meta itemprop='description' content='English Subject A1 level' id='description'>
 	<meta itemprop='provider' content='My Language Skills' id='provider'>
 	<meta itemprop='learningResourceType' content='Course' id='learningResourceType'>
