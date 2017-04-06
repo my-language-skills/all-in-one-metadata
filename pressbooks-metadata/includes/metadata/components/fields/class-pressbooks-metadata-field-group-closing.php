@@ -1,13 +1,6 @@
 <?php
 
-/**
- * A field used to close a group of fields.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components/fields
- */
+
 
 require_once plugin_dir_path( __FILE__ ) . 'class-pressbooks-metadata-field.php';
 

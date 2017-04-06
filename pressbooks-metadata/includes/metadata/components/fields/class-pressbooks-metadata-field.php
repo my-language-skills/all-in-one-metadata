@@ -1,13 +1,5 @@
 <?php
 
-/**
- * A metadata field (that can be added to the dashboard).
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components/fields
- */
 
 require_once plugin_dir_path( __FILE__ )
 . '../class-pressbooks-metadata-abstract-metadata.php';
@@ -16,6 +8,8 @@ require_once plugin_dir_path( __FILE__ )
  * A metadata field (that can be added to the dashboard).
  *
  * Defines the properties of a field, addable to the dashboard.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/components/fields

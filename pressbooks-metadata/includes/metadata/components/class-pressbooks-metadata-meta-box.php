@@ -1,14 +1,5 @@
 <?php
 
-/**
- * A meta box (box that contains the fields).
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components
- */
-
 require_once plugin_dir_path( __FILE__ )
 . 'class-pressbooks-metadata-abstract-metadata.php';
 
@@ -16,6 +7,8 @@ require_once plugin_dir_path( __FILE__ )
  * A meta box (box that contains the fields).
  *
  * Defines the properties of a meta box, addable to the dashboard.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/components

@@ -1,19 +1,13 @@
 <?php
 
-/**
- * The related books (book and chapter level)  metadata included by this plugin.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
- */
 
 require_once plugin_dir_path( __FILE__ )
 . '../class-pressbooks-metadata-plugin-metadata.php';
 
 /**
  * The related books (book and chapter level)  metadata included by this plugin.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
@@ -127,7 +121,7 @@ class Pressbooks_Metadata_Related_Books_Metadata extends Pressbooks_Metadata_Plu
 	 * Returns the class instance.
 	 *
 	 * @since  0.1
-	 * @return Pressbooks_Metadata_Book_Metadata The class instance.
+	 * @return Pressbooks_Metadata_Related_Books_Metadata The class instance.
 	 */
 	public static function get_instance() {
 
@@ -176,48 +170,7 @@ class Pressbooks_Metadata_Related_Books_Metadata extends Pressbooks_Metadata_Plu
 
 	}
 
-	/**
-	 * Prints the links (HTML code) to related books for the public part of
-	 * the book.
-	 *
-	 * @since 0.1
-	 */
-	public function print_related_books_fields() {
-
-		$meta = $this->get_current_metadata();
-		if ( ! array_key_exists( 'related-books-slugs', $meta ) ) {
-			return;
-		}
-		$slugs = &$meta['related-books-slugs'];
-
-		?><ul><?php
-		foreach ( $slugs->get_fields() as $key => $val ) {
-			if ( $val->is_group_of_fields() ) {
-				// we are in a group
-				?><li><?php
-				echo $val->get_name();
-				?><ul><?php
-				foreach ( $val->get_fields()
-					as $field_key => $field_val ) {
-					?><a href="<?php
-					echo $this->other_book_url(
-					$field_val->get_value() ); ?>">
-					<?php
-					echo $field_val->get_name(); ?></a><?php
-				}
-				?></ul></li><?php
-			}
-			else {
-				// field without group
-				?><li><a href="<?php
-					echo $this->other_book_url(
-						$val->get_value() ); ?>">
-				<?php echo $val->get_name(); ?></a></li><?php
-			}
-		}
-		?></ul><?php
-
-	}
+	
 
 }
 

@@ -1,19 +1,13 @@
 <?php
 
-/**
- * Most of the chapter metadata included/used by this plugin.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
- */
 
 require_once plugin_dir_path( __FILE__ )
 . '../class-pressbooks-metadata-plugin-metadata.php';
 
 /**
  * Most of the chapter metadata included/used by this plugin.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
@@ -82,27 +76,7 @@ class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Me
 
 	}
 
-	/**
-	 * Prints the HTML code of chapter metadata for the public part of
-	 * the book.
-	 *
-	 * @since 0.1
-	 */
-	public function print_chapter_metadata_fields() {
-
-		$meta = $this->get_current_metadata_flat();
-		if ( empty( $meta ) ) {
-			return;
-		}
-
-		?><table><?php
-		foreach ( $meta as $elt ) {
-			?><tr><td><?php echo $elt->get_name(); ?></td><?php
-			?><td><?php echo $elt; ?></td></tr><?php
-		}
-		?></table><?php
-
-	}
+	
 
 }
 

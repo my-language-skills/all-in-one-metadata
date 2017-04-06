@@ -1,13 +1,5 @@
 <?php
 
-/**
- * The metadata included/used by this plugin.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata
- */
 
 require_once plugin_dir_path( __FILE__ )
 	. '../class-pressbooks-metadata-metadata-fetcher.php';
@@ -19,9 +11,12 @@ require_once plugin_dir_path( __FILE__ )
 /**
  * The metadata included/used by this plugin.
  *
+ * @since      0.1
+ *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata
- * @author     julienCXX <software@chmodplusx.eu>, Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
+ * @author 	   Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 abstract class Pressbooks_Metadata_Plugin_Metadata {
 
@@ -198,6 +193,54 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 	}
 
+
+	/**
+	 * Returns the ISCED level code according to what is
+	 * chosen in the field with $slug = 'isced_level'
+	 *
+	 * @since  0.4
+	 * @return string 
+	 */
+	public function get_isced_level_code() {
+
+		$meta = $this->get_current_metadata_flat();
+
+		if ($meta['isced_level']->toMicrodataString() == 'Early Childhood Education'){
+			$level_code = '0';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Primary education') {
+			$level_code = '1';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Lower secondary education') {
+			$level_code = '2';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Upper secondary education') {
+			$level_code = '3';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Post-secondary non-tertiary education') {
+			$level_code = '4';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Short-cycle tertiary education') {
+			$level_code = '5';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Bachelor’s or equivalent level') {
+			$level_code = '6';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Master’s or equivalent level') {
+			$level_code = '7';
+		}
+		elseif ($meta['isced_level']->toMicrodataString() == 'Doctoral or equivalent level') {
+			$level_code = '8';
+		}
+		else{
+			$level_code = '9';
+		}
+
+		return $level_code;
+
+	}
+
+
 	/**
 	 * Prints the HTML meta tags containing microdata information of
 	 * metadata contained in this object, for the public part of the book.
@@ -223,65 +266,69 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 * Prints the HTML educationalAlignment meta tags containing microdata information of
 	 * metadata contained in this object, for the public part of the book.
 	 *
-	 * Works only for our first two fields. If we want more fields to use educationalAlignment microdata
-	 * we need to add it after them, and add a new variable $third, that will work the same way as the others.
-	 *
 	 * @since 0.2
 	 */
 	public function print_educationalAlignment_microdata_meta_tags() {
 
 		$meta = $this->get_current_metadata_flat();
-		if ( isset( $meta['subject'] ) ) {
-		?>
-		<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
-			<meta itemprop="alignmentType" content="educationalSubject" />
-			<meta itemprop="targetName" content='<?php echo $meta['subject']->toMicrodataString(); ?>' />
-		</span>
+		$level = $this->get_isced_level_code();
 
-		<?php
+		if ( isset( $meta['subject'] ) ) {
+?>
+<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
+	<meta itemprop="alignmentType" content="educationalSubject" />
+	<meta itemprop="targetName" content='<?php echo $meta['subject']->toMicrodataString(); ?>' />
+</span>
+
+<?php
+		}
+
+		if ( isset( $meta['isced_field'] ) ) {
+?>
+<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+	<meta itemprop="alignmentType" content="educationalSubject" />
+	<meta itemprop="educationalFramework" content='ISCED-2013'/>
+	<meta itemprop="targetName" content='<?php echo $meta['isced_field']->toMicrodataString(); ?>' />
+</span>
+
+<?php
+		}
+
+		if ( isset( $meta['isced_level'] ) ) {
+?>
+<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+	<meta itemprop="alignmentType" content="educationalLevel" />
+	<meta itemprop="educationalFramework" content='ISCED-2011'/>
+	<meta itemprop="targetName" content='<?php echo $meta['isced_level']->toMicrodataString(); ?>' />
+	<meta itemprop="alternateName" content='ISCED 2011, Level <?php echo $level; ?>' />
+</span>
+
+<?php
 		}
 
 		if ( isset( $meta['level'] ) && isset( $meta['framework'] )) {
-		?>
-		<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-			<meta itemprop="alignmentType" content="educationalLevel" />
-			<meta itemprop="educationalFramework" content='<?php echo $meta['framework']->toMicrodataString(); ?>'/>
-			<meta itemprop="targetName" content='<?php echo $meta['level']->toMicrodataString(); ?>' />
-		</span>
-		<?php
-		}
+?>
+<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+	<meta itemprop="alignmentType" content="educationalLevel" />
+	<meta itemprop="educationalFramework" content='<?php echo $meta['framework']->toMicrodataString(); ?>'/>
+	<meta itemprop="targetName" content='<?php echo $meta['level']->toMicrodataString(); ?>' />
+</span>
 
-		if ( isset( $meta['level'] ) && !isset( $meta['framework'] )) {
-		?>
-		<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-			<meta itemprop="alignmentType" content="educationalLevel" />
-			<meta itemprop="targetName" content='<?php echo $meta['level']->toMicrodataString(); ?>' />
-		</span>
-		<?php
+<?php
+		} elseif ( isset( $meta['level'] ) && !isset( $meta['framework'] )) {
+?>
+<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+	<meta itemprop="alignmentType" content="educationalLevel" />
+	<meta itemprop="targetName" content='<?php echo $meta['level']->toMicrodataString(); ?>' />
+</span>
+
+<?php
 		}
 		
 
 	}
 
-	/**
-	 * Prints the microdata itemprop names (as a list) of metadata contained
-	 * in this object, for the public part of the book.
-	 *
-	 * @since 0.1
-	 */
-	public function print_microdata_itemprops_list() {
 
-		$meta = $this->get_current_metadata_flat();
-
-		foreach ( $meta as $elt ) {
-			$it = $elt->get_itemprop();
-			if( ! empty( $it ) ) {
-				echo ' ';
-				echo $it;
-			}
-		}
-
-	}
 
 
 }

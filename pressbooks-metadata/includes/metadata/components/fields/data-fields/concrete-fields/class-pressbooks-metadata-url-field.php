@@ -1,13 +1,5 @@
 <?php
 
-/**
- * A URL field.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components/fields/data-fields/concrete-fields
- */
 
 require_once plugin_dir_path( __FILE__ ) . '../class-pressbooks-metadata-placeholder-field.php';
 
@@ -15,6 +7,8 @@ require_once plugin_dir_path( __FILE__ ) . '../class-pressbooks-metadata-placeho
  * A URL field.
  *
  * Rendered as a link in the public facing part of the website.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/components/fields/data-fields/concrete-fields

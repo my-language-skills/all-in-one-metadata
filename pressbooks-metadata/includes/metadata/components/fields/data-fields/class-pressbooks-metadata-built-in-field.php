@@ -1,15 +1,5 @@
 <?php
 
-/**
- * A field corresponding to an actual book metadata.
- * Does not have user input (data is provided by other means, e.g. Wordpress
- * internal functions)
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components/fields/data-fields
- */
 
 require_once plugin_dir_path( __FILE__ ) . 'class-pressbooks-metadata-data-field.php';
 
@@ -17,6 +7,8 @@ require_once plugin_dir_path( __FILE__ ) . 'class-pressbooks-metadata-data-field
  * A field corresponding to an actual book metadata.
  * Does not have user input (data is provided by other means, e.g. Wordpress
  * internal functions).
+ *
+ * @since      0.1
  *
  * Defines the properties of a built-in field.
  *

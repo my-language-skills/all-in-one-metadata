@@ -1,14 +1,5 @@
 <?php
 
-/**
- * A group of fields to be added to the dashboard. This is a smaller division
- * than meta boxes.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components/fields
- */
 
 require_once plugin_dir_path( __FILE__ ) . 'class-pressbooks-metadata-field.php';
 require_once plugin_dir_path( __FILE__ )
@@ -17,6 +8,8 @@ require_once plugin_dir_path( __FILE__ )
 /**
  * A group of fields to be added to the dashboard. This is a smaller division
  * than meta boxes.
+ *
+ * @since      0.1
  *
  * Defines the properties of a group of fields.
  *

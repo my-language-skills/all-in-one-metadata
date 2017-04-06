@@ -1,19 +1,13 @@
 <?php
 
-/**
- * The educational information (book and chapter level)  metadata included by this plugin.
- *
- * @since      0.2
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
- */
 
 require_once plugin_dir_path( __FILE__ )
 . '../class-pressbooks-metadata-plugin-metadata.php';
 
 /**
  * The educational information (book and chapter level)  metadata included by this plugin.
+ *
+ * @since      0.2
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
@@ -48,45 +42,50 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Subject', '', 'subject', '', '', '', false, '',
+			'Subject Name', '* The Subject Name is required', 'subject', '', '', '', false, '',
 			'name' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Level', '', 'level', '', '', '', false, '',
-			'' ) );
-
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Framework', '', 'framework', '', '', '', false, '',
-			'' ) );
-
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Small Description', '', 'description', '', '', '', false, '',
+			'Small Description', 'A short description about this subject', 'description', '', '', '', false, '',
 			'description' ) );
 
+		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
+			'Broad field of education according to ISCED-F 2013'. '<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf">Click Here for more information</a>',
+			'isced_field', '', '', '18',
+			array(
+				'00' => 'Generic programmes and qualifications',
+				'01' => 'Education',
+				'02' => 'Arts and humanities',
+				'03' => 'Social sciences, journalism and information',
+				'04' => 'Business, administration and law',
+				'05' => 'Natural sciences, mathematics and statistics',
+				'06' => 'Information and Communication Technologies',
+				'07' => 'Engineering, manufacturing and construction',
+				'08' => 'Agriculture, forestry, fisheries and veterinary',
+				'09' => 'Health and welfare',
+				'10' => 'Services',
+			), '' ) );
+
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Provider', '', 'provider', '', '', '', false, '',
+			'Provider', 'The Organization, University or Person who provides this subject', 'provider', '', '', '', false, '',
 			'provider' ) );
 
 
-		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
-			'Learning Resource Type',
-			'The kind of resource this book represents',
-			'learning_resource_type', '', '', 'course',
+		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED level of education',
+			'Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
+			'isced_level', '', '', '18',
 			array(
-				'course' => 'Course',
-				'exam' => 'Examination',
-				'exercise' => 'Exercise'
-			), 'learningResourceType' ) );
-
-		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
-			'Interactivity Type',
-			'The interactivity type of this book',
-			'interactivity_type', '', '', 'expositive',
-			array(
-				'active' => 'Active',
-				'expositive' => 'Expositive',
-				'mixed' => 'Mixed'
-			), 'interactivityType' ) );
+				'0' => 'Early Childhood Education',
+				'1' => 'Primary education',
+				'2' => 'Lower secondary education',
+				'3' => 'Upper secondary education',
+				'4' => 'Post-secondary non-tertiary education',
+				'5' => 'Short-cycle tertiary education',
+				'6' => 'Bachelor’s or equivalent level',
+				'7' => 'Master’s or equivalent level',
+				'8' => 'Doctoral or equivalent level',
+				'9' => 'Not elsewhere classified',
+			), '' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'Age Range',
 			'The target age of this book',
@@ -107,6 +106,35 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 				'6' => '6-7 years',
 				'5' => '5-3 years'
 			), 'typicalAgeRange' ) );
+
+		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
+			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course', 'level', '', '', '', false, '',
+			'' ) );
+
+		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
+			'Educational Framework', 'The Framework that the educational level belongs to', 'framework', '', '', '', false, '',
+			'' ) );
+
+
+		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
+			'Learning Resource Type',
+			'The kind of resource this book represents',
+			'learning_resource_type', '', '', 'course',
+			array(
+				'course' => 'Course',
+				'exam' => 'Examination',
+				'exercise' => 'Exercise'
+			), 'learningResourceType' ) );
+
+		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
+			'Interactivity Type',
+			'The interactivity type of this book',
+			'interactivity_type', '', '', 'mixed',
+			array(
+				'active' => 'Active',
+				'expositive' => 'Expositive',
+				'mixed' => 'Mixed'
+			), 'interactivityType' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Number_Field(
 			'Class Learning Time (hours)', '',
@@ -145,26 +173,6 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 
 	}
 
-	
-	/**
-	 * Prints the links (HTML code) to related books for the public part of
-	 * the book.
-	 *
-	 * @since 0.2
-	 */
-	public function print_educational_information_fields() {
-
-		$meta = $this->get_current_metadata_flat();
-		if ( empty( $meta ) ) {
-			return;
-		}
-
-		foreach ( $meta as $elt ) {
-			?><tr><td><?php echo $elt->get_name(); ?>:</td><?php
-			?><td><?php echo $elt; ?></td></tr><?php
-		}
-
-	}
 
 }
 

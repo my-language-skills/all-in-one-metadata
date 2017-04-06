@@ -3,16 +3,6 @@
 /**
  * A metadata querying and fetching.
  *
- * @link       http://on-lingua.com
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata
- */
-
-/**
- * A metadata querying and fetching.
- *
  * Fetches any useful metadata (installation, book, chapter, …).
  *
  * @package    Pressbooks_Metadata

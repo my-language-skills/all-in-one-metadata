@@ -1,15 +1,5 @@
 <?php
 
-/**
- * The book's related books information.
- *
- * @link       http://on-lingua.com
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata
- */
-
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'metadata/class-pressbooks-metadata-metadata-fetcher.php';
 
 /**

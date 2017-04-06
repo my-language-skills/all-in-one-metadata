@@ -26,6 +26,7 @@
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
  * @author     julienCXX <software@chmodplusx.eu>
+ * @author 	   Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata {
 
@@ -186,8 +187,6 @@ class Pressbooks_Metadata {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'pressbooks_new_blog', $plugin_admin, 'new_book' );
-		
 		$this->loader->add_action( 'wp_head', $plugin_admin, 'header_function' );
 
 	}
@@ -200,10 +199,9 @@ class Pressbooks_Metadata {
 	 */
 	private function define_metadata_changes() {
 
-		//$plugin_metadata = new Pressbooks_Metadata_Metadata( $this->get_plugin_name(), $this->get_version() );
+		$plugin_educational_information_metadata = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
 		$plugin_chapter_metadata = Pressbooks_Metadata_Chapter_Metadata::get_instance();
 		$plugin_related_books_metadata = Pressbooks_Metadata_Related_Books_Metadata::get_instance();
-		$plugin_educational_information_metadata = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
 
 
 		$this->loader->add_action(

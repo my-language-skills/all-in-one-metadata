@@ -3,15 +3,6 @@
 /**
  * The class handling a duration.
  *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes
- */
-
-/**
- * The class handling a duration.
- *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
  * @author     julienCXX <software@chmodplusx.eu>

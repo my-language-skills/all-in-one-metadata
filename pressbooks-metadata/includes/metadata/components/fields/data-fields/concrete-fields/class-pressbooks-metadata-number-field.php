@@ -1,18 +1,12 @@
 <?php
 
-/**
- * A number field.
- *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components/fields/data-fields/concrete-fields
- */
 
 require_once plugin_dir_path( __FILE__ ) . '../class-pressbooks-metadata-placeholder-field.php';
 
 /**
  * A number field.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/components/fields/data-fields/concrete-fields

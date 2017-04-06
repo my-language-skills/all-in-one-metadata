@@ -3,17 +3,10 @@
 /**
  * A metadata (anything that can be added to the dashboard).
  *
- * @since      0.1
- *
- * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes/metadata/components
- */
-
-/**
- * A metadata (anything that can be added to the dashboard).
- *
  * Defines the common properties of any metadata that can be added to the
  * dashboard.
+ *
+ * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/components

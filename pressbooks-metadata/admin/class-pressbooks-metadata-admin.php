@@ -18,7 +18,8 @@
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
- * @author     julienCXX <software@chmodplusx.eu>, Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
+ * @author 	   Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Admin {
 
@@ -44,8 +45,8 @@ class Pressbooks_Metadata_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    0.1
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param    string    $plugin_name       The name of this plugin.
+	 * @param    string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -100,18 +101,6 @@ class Pressbooks_Metadata_Admin {
 
 	}
 
-	/**
-	 * Called when a book is created in PressBooks.
-	 *
-	 * @since    0.1
-	 */
-	public function new_book() {
-
-		switch_theme( 'pressbooks-metadata-generic' );
-
-	}
-
-
 
 	/**
 	 * Used in the header of our site
@@ -129,7 +118,7 @@ class Pressbooks_Metadata_Admin {
 		else{
 			global $post;
 		?>
-			<div itemscope itemtype="http://schema.org/Chapter" >
+			<div itemscope itemtype="http://schema.org/ScholarlyArticle" >
 			<meta itemprop='name' content='<?php echo $post->post_title; ?>' id='name'>
 			<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' id='name'>
 			<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>
