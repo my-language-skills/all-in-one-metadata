@@ -205,31 +205,31 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 		$meta = $this->get_current_metadata_flat();
 
-		if ($meta['isced_level']->toMicrodataString() == 'Early Childhood Education'){
+		if ($meta['isced_level'] == 'Early Childhood Education'){
 			$level_code = '0';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Primary education') {
+		elseif ($meta['isced_level'] == 'Primary education') {
 			$level_code = '1';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Lower secondary education') {
+		elseif ($meta['isced_level'] == 'Lower secondary education') {
 			$level_code = '2';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Upper secondary education') {
+		elseif ($meta['isced_level'] == 'Upper secondary education') {
 			$level_code = '3';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Post-secondary non-tertiary education') {
+		elseif ($meta['isced_level'] == 'Post-secondary non-tertiary education') {
 			$level_code = '4';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Short-cycle tertiary education') {
+		elseif ($meta['isced_level'] == 'Short-cycle tertiary education') {
 			$level_code = '5';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Bachelor’s or equivalent level') {
+		elseif ($meta['isced_level'] == 'Bachelor’s or equivalent level') {
 			$level_code = '6';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Master’s or equivalent level') {
+		elseif ($meta['isced_level'] == 'Master’s or equivalent level') {
 			$level_code = '7';
 		}
-		elseif ($meta['isced_level']->toMicrodataString() == 'Doctoral or equivalent level') {
+		elseif ($meta['isced_level'] == 'Doctoral or equivalent level') {
 			$level_code = '8';
 		}
 		else{
