@@ -51,7 +51,7 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
 			'Broad field of education according to ISCED-F 2013'. '<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf">Click Here for more information</a>',
-			'isced_field', '', '', '18',
+			'isced_field', '', '', '00',
 			array(
 				'00' => 'Generic programmes and qualifications',
 				'01' => 'Education',
@@ -73,7 +73,7 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED level of education',
 			'Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
-			'isced_level', '', '', '18',
+			'isced_level', '', '', '0',
 			array(
 				'0' => 'Early Childhood Education',
 				'1' => 'Primary education',

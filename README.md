@@ -24,7 +24,6 @@ This plugin requires:
 
 ## TODO
 
-* Make some fields required
 * Add more fields
 * Extend the plugin to add metadata to the root, so that they will be used in every book
 * Add metadata to the page-level so that every page will be indipendent
@@ -37,14 +36,16 @@ This plugin requires:
   * _Class Learning Time (minutes):_ how long the students will need for the topic.
   
 ### Educational Information:
-* **_Subject:_** Subject name
-  * **_Educational Level:_** Level of the course
-  * **_Educational Framework:_** Framework the Educational Level belongs to
+* **_Subject Name:_** Subject name
 * **_Small Description:_** Small Description of the Subject
+* **_ISCED field of education:_** Broad field of education according to ISCED-F 2013
 * **_Provider:_** Provider of the Subject
+* **_ISCED level of education:_** Level of education according to ISCED-P 2011
+* **_Age range:_** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
+* **_Educational Level:_** Level of the course
+* **_Educational Framework:_** Framework the Educational Level belongs to
 * **_Learning Reasource Type:_** Course, Examination, Exercise, Descriptor
 * **_Interactivity Type:_** Active, Expositive, Mixed
-* **_Age range:_** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
 * **_Class Learning Time:_** how long the students will need for the book
 * **_License URL:_** custom link to a licence
 * **_Bibliography URL:_** custom link to a bibliography
@@ -61,10 +62,25 @@ This plugin requires:
 	<meta itemprop='timeRequired' content='4' id='timeRequired'>
 	<meta itemprop='license' content='License URL' id='license'>
 	<meta itemprop='isBasedOnUrl' content='Bibliography URL' id='isBasedOnUrl'>
+
 	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
 		<meta itemprop="alignmentType" content="educationalSubject" />
 		<meta itemprop="targetName" content='English' />
 	</span>
+
+    <span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+        <meta itemprop="alignmentType" content="educationalSubject" />
+        <meta itemprop="educationalFramework" content='ISCED-2013'/>
+        <meta itemprop="targetName" content='Education' />
+    </span>
+
+    <span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
+        <meta itemprop="alignmentType" content="educationalLevel" />
+        <meta itemprop="educationalFramework" content='ISCED-2011'/>
+        <meta itemprop="targetName" content='Post-secondary non-tertiary education' />
+        <meta itemprop="alternateName" content='ISCED 2011, Level 4' />
+    </span>
+
 	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
 		<meta itemprop="alignmentType" content="educationalLevel" />
 		<meta itemprop="educationalFramework" content='CEFR'/>
@@ -75,9 +91,10 @@ This plugin requires:
 
 ### Screenshots
 
-![screen shot 2017-04-03 at 17 24 13](https://cloud.githubusercontent.com/assets/23406636/24616907/b5672c1e-1892-11e7-8a4d-f9b8f4ea2b55.png)
+![screen shot 2017-04-10 at 19 09 28](https://cloud.githubusercontent.com/assets/23406636/24873510/598ed8bc-1e21-11e7-9dd0-a9fc9fbd41ee.png)
 
-![screen shot 2017-04-03 at 14 10 25](https://cloud.githubusercontent.com/assets/23406636/24608799/6089c658-1878-11e7-95f5-a8cafb245c15.png)
+![screen shot 2017-04-10 at 19 11 53](https://cloud.githubusercontent.com/assets/23406636/24873576/a7995c94-1e21-11e7-893a-f00cb4525c43.png)
+
 
   
 

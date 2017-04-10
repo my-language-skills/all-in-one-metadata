@@ -196,7 +196,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 	/**
 	 * Returns the ISCED level code according to what is
-	 * chosen in the field with $slug = 'isced_level'
+	 * chosen in the 'isced_level' field.
 	 *
 	 * @since  0.4
 	 * @return string 
@@ -244,6 +244,8 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	/**
 	 * Prints the HTML meta tags containing microdata information of
 	 * metadata contained in this object, for the public part of the book.
+	 * 
+	 * Produces the microdata code for the fields that have the $itemprop argument filled.
 	 *
 	 * @since 0.1
 	 */
@@ -266,6 +268,11 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 * Prints the HTML educationalAlignment meta tags containing microdata information of
 	 * metadata contained in this object, for the public part of the book.
 	 *
+	 * The educationalAlignment properties are not just one line of code but they are more complicated
+	 * than the normal ones. So the print_microdata_meta_tags() functions will not work.
+	 * Here, if some specific fields are set (subject, isced_field, isced_level...), the code is 
+	 * being produced.
+	 * 
 	 * @since 0.2
 	 */
 	public function print_educationalAlignment_microdata_meta_tags() {

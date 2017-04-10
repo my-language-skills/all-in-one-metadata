@@ -104,11 +104,23 @@ class Pressbooks_Metadata_Admin {
 
 	/**
 	 * Used in the header of our site
-	 *
+	 * 
+	 * We can create a new Structured Data Type by adding a new type here. Check the link for an example
+	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.2
 	 */
 	public function header_function() {
-		if ( is_front_page() ) {?>
+		if ( is_home() ) { global $post;?>
+		<!--
+			<div itemscope itemtype="http://schema.org/Website">
+			<meta itemprop='name' content='website' id='webname'>
+			<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' >
+			<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>-->
+		<?php
+		}
+		elseif ( is_front_page() ) { ?>
+
+			<!-- Course type -->
 			<div itemscope itemtype="http://schema.org/Course">
 			<?php
 			$pm_BM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
@@ -118,7 +130,10 @@ class Pressbooks_Metadata_Admin {
 		else{
 			global $post;
 		?>
-			<div itemscope itemtype="http://schema.org/ScholarlyArticle" >
+			<!-- Scholarly Article type -->
+			<div itemscope itemtype="http://schema.org/Chapter" >
+
+			<!-- Here we take data from the default fields of wordpress -->
 			<meta itemprop='name' content='<?php echo $post->post_title; ?>' id='name'>
 			<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' id='name'>
 			<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>
