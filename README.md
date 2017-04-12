@@ -29,9 +29,9 @@ taking advantage of the LRMI schema markup.
 
 ## Frequently Asked Questions
 
-If I don't need to use all the fields of the plugin, can I leave them empty?
+1. If I don't need to use all the fields of the plugin, can I leave them empty?
 
-Yes, if one field is empty the SEO information about it will not be generated
+Yes, if one field is empty the SEO information about it will not be generated.
 
 ## Screenshots
 
@@ -46,8 +46,8 @@ Yes, if one field is empty the SEO information about it will not be generated
 ### UNRELEASED
 
 * ENHANCED: Change labels and description of existing metafields
-* FIXED: Main page became blank
-* FIXED: Pressbooks schema information is being produced twice
+* FIXED: Bug Fixes: Main page became blank
+* FIXED: Bug Fixes: Pressbooks schema information is being produced twice
 * ENHANCED: Extend pressbooks WebPage schema
 
 ### 0.2
@@ -69,6 +69,10 @@ Yes, if one field is empty the SEO information about it will not be generated
 	* **Bibliography URL:** custom link to a bibliography
 
 * FIXED: Make all the fields produce the expected schema information
+* ENHANCED: Functions: New function header_function() that produces the microdata code
+* ENHANCED: New Actions: wp_head() action for the function header_function() to be placed in the header
+* ENHANCED: Functions: New function print_educationalAlignment_microdata_meta_tags() that produces the code for the educational alignment properties
+
 
 ### 0.1
 
