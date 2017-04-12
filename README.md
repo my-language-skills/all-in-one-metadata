@@ -1,6 +1,6 @@
 # pressbooks-metadata
 
-Contributors: colomet, masaka222
+Contributors: @colomet, @masaka222
 
 Tags: pressbooks, metadata, lrmi
 
@@ -40,6 +40,27 @@ Yes, if one field is empty the SEO information about it will not be generated.
 
 1. An example on how Googles Structured Data Testing Tool displays our metadata
 ![screen shot 2017-04-10 at 19 11 53](https://cloud.githubusercontent.com/assets/23406636/24873576/a7995c94-1e21-11e7-893a-f00cb4525c43.png)
+
+## Roadmap
+### 0.4
+Review the Site metadata
+
+### 0.5
+Review the cutom post metadata
+
+### 0.6
+Reviw the Site/root metadata
+
+### 0.7
+To create documentation and accesibility in frond end
+
+### 0.8
+To create a settings page (site and network)
+
+### 0.9
+Working with administration page
+
+### 0.XX
 
 ## Changelog
 
@@ -90,6 +111,16 @@ Yes, if one field is empty the SEO information about it will not be generated.
   * **Questions And Answers:** this field allows teachers to insert a custom link. 
   * **Class Learning Time (minutes):** how long the students will need for the topic.
   
+## Upgrade Notice
+
+### 0.3
+To adapt the plugin to PressBooks.
+
+### 0.2 
+To make works the current old plugin.
+
+### 0.1
+To use an old version as the start point.
 
 
 ### Course Microdata:
