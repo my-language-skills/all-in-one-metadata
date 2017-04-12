@@ -85,19 +85,22 @@ Working with administration page
 
 ### 0.3
 
-* ENHANCED: Change labels and description of existing metafields
-* FIXED: Bug Fixes: Main page became blank
-* FIXED: Bug Fixes: Pressbooks schema information is being produced twice
-* ENHANCED: Add ISCED field of Education field
+* **ENHANCED:** Change labels and description of existing metafields
+* **ENHANCED:** Add ISCED field of Education field (#12)
 	* **ISCED field of education:** Broad field of education according to ISCED-F 2013
-* ENHANCED: Add ISCED level of Education field
+* **ENHANCED:** Add ISCED level of Education field (#14)
 	* **ISCED level of education:** Level of education according to ISCED-P 2011
-* FIXED: Correct the order of the fields
+* **ENHANCED:** Make the plugin activation available only in the Network level (#28)
+* **ENHANCED:** Organize the plugin for an easy extension of types (#10)
+* **ENHANCED:** Review the code of the plugin, comment and organization (#11)
+* **FIXED:** Correct the order of the fields
+* **FIXED:** Bug Fixes: Main page became blank
+* **FIXED:** Bug Fixes: Pressbooks schema information is being produced twice (#27)
 
 ### 0.2
 
-* REMOVED: The fields we added in the General Book Information metabox and move them to a new metabox
-* FEATURE: Accessibility: New Educational Information metabox with the fields:
+* **REMOVED:** The fields we added in the General Book Information metabox and move them to a new metabox
+* **FEATURE:** Accessibility: New Educational Information metabox with the fields:
 	* **Subject Name:** Subject name
 	* **Small Description:** Small Description of the Subject
 	* **ISCED field of education:** Broad field of education according to ISCED-F 2013
@@ -111,16 +114,16 @@ Working with administration page
 	* **Class Learning Time:** how long the students will need for the book
 	* **License URL:** custom link to a licence
 	* **Bibliography URL:** custom link to a bibliography
-
-* FIXED: Make all the fields produce the expected schema information
-* ENHANCED: Functions: New function header_function() that produces the microdata code
-* ENHANCED: New Actions: wp_head() action for the function header_function() to be placed in the header
-* ENHANCED: Functions: New function print_educationalAlignment_microdata_meta_tags() that produces the code for the educational alignment properties
+	
+* **ENHANCED:** Functions: New function header_function() that produces the microdata code
+* **ENHANCED:** New Actions: wp_head() action for the function header_function() to be placed in the header
+* **ENHANCED:** Functions: New function print_educationalAlignment_microdata_meta_tags() that produces the code for the educational alignment properties
+* **FIXED:** Make all the fields produce the expected schema information
 
 
 ### 0.1
 
-* FEATURE: Accessibility: General Book Information: new custom metafields
+* **FEATURE:** Accessibility: General Book Information: new custom metafields
   * **Target language:** Level of education according to ISCED-P 2011
   * **Level:** Level of the course
   * **Learning Reasource Type:** Course, Examination, Exercise, Descriptor
@@ -130,7 +133,7 @@ Working with administration page
   * **License URL:** custom link to a licence
   * **Bibliography URL:** custom link to a bibliography
  
-* FEATURE: Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter
+* **FEATURE:** Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter
   * **Questions And Answers:** this field allows teachers to insert a custom link. 
   * **Class Learning Time (minutes):** how long the students will need for the topic.
   
