@@ -1,3 +1,5 @@
+
+
 # pressbooks-metadata
 
 Contributors: @colomet, @masaka222
@@ -8,7 +10,9 @@ Requires: Pressbooks Plugin
 
 Tested up to: 4.3
 
-License: GPLv2 or later
+Stable tag: [![Current Release](https://img.shields.io/github/release/colomet/wordpress-assets.svg)](https://github.com/colomet/wordpress-assets/releases/latest/)
+
+License: [License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Books4Languages/pressbooks-metadata/blob/master/license.txt)
 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +36,17 @@ taking advantage of the LRMI schema markup.
 1. If I don't need to use all the fields of the plugin, can I leave them empty?
 
 Yes, if one field is empty the SEO information about it will not be generated.
+
+## Requirements
+
+Plugin/Template Name works with:
+
+ * PHP 5.6.X
+ * PressBooks 3.9.8.X Lower versions are not supported.
+
+## Disclaimers
+
+The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
@@ -161,3 +176,16 @@ To use an old version as the start point.
 	</span>
 </div>
 ```
+
+## Credits
+
+Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
+
+Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") 
+
+Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
+
+and one to [Markdown's Syntax Documentation][markdown syntax].
+
+[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
+            "Markdown is what the parser uses to process much of the readme file"
