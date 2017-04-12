@@ -56,6 +56,8 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 1. An example on how Googles Structured Data Testing Tool displays our metadata
 ![screen shot 2017-04-10 at 19 11 53](https://cloud.githubusercontent.com/assets/23406636/24873576/a7995c94-1e21-11e7-893a-f00cb4525c43.png)
 
+[more screenshots](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
+
 ## Roadmap
 ### 0.4
 Review the Site metadata
