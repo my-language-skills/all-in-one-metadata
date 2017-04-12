@@ -10,9 +10,9 @@ Requires: Pressbooks Plugin
 
 Tested up to: 4.3
 
-Stable tag: [![Current Release](https://img.shields.io/github/release/colomet/wordpress-assets.svg)](https://github.com/colomet/wordpress-assets/releases/latest/)
+Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
-License: [License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Books4Languages/pressbooks-metadata/blob/master/license.txt)
+License:  [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Books4Languages/pressbooks-metadata/blob/master/license.txt)
 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
