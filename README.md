@@ -2,7 +2,7 @@
 
 # pressbooks-metadata
 
-Contributors: @colomet, @masaka222 
+Contributors: @colomet, @julienCXX, @masaka222 
 
 Tags: pressbooks, metadata, lrmi
 
