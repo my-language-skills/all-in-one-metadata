@@ -83,10 +83,16 @@ Working with administration page
 
 ### UNRELEASED
 
+### 0.3
+
 * ENHANCED: Change labels and description of existing metafields
 * FIXED: Bug Fixes: Main page became blank
 * FIXED: Bug Fixes: Pressbooks schema information is being produced twice
-* ENHANCED: Extend pressbooks WebPage schema
+* ENHANCED: Add ISCED field of Education field
+	* **ISCED field of education:** Broad field of education according to ISCED-F 2013
+* ENHANCED: Add ISCED level of Education field
+	* **ISCED level of education:** Level of education according to ISCED-P 2011
+* FIXED: Correct the order of the fields
 
 ### 0.2
 
