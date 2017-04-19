@@ -203,6 +203,8 @@ Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")
 
 Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
 
+Here's a link to [Dillinger](http://dillinger.io/ "Text Editor for markdown")
+
 and one to [Markdown's Syntax Documentation][markdown syntax].
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
