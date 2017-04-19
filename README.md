@@ -83,6 +83,13 @@ Working with administration page
 
 ### UNRELEASED
 
+* **ENHANCED:** Add Illustrator and Book edition fields in the General Book Information metabox (#7)
+	* **Illustrator:** The illustrator of the book.
+	* **Book Edition:** The edition of the book.
+* **ENHANCED:** Extend and finish the Course Property (#30)
+	* **Course Code:** The identifier for the Course (e.g. CS101 or 6.001).
+	* **Course Prerequisites:** Requirements for taking the Course.
+	
 ### 0.3
 
 * **ENHANCED:** Change labels and description of existing metafields
@@ -90,12 +97,12 @@ Working with administration page
 	* **ISCED field of education:** Broad field of education according to ISCED-F 2013
 * **ENHANCED:** Add ISCED level of Education field (#14)
 	* **ISCED level of education:** Level of education according to ISCED-P 2011
-* **ENHANCED:** Make the plugin activation available only in the Network level (#28)
-* **ENHANCED:** Organize the plugin for an easy extension of types (#10)
-* **ENHANCED:** Review the code of the plugin, comment and organization (#11)
-* **FIXED:** Correct the order of the fields
-* **FIXED:** Bug Fixes: Main page became blank
-* **FIXED:** Bug Fixes: Pressbooks schema information is being produced twice (#27)
+* **ENHANCED:** Make the plugin activation available only in the Network level. (#28)
+* **ENHANCED:** Organize the plugin for an easy extension of types. (#10)
+* **ENHANCED:** Review the code of the plugin, comment and organization. (#11)
+* **FIXED:** Correct the order of the fields.
+* **FIXED:** Bug Fixes: Main page became blank.
+* **FIXED:** Bug Fixes: Pressbooks schema information is being produced twice .(#27)
 
 ### 0.2
 
