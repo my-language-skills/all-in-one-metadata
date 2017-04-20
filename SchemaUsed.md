@@ -2,13 +2,20 @@
 
 We use different types in every of these 3 levels
 - **Network level**
-  - WebSite
+  - [WebSite](#website)
 - **Site level**
-  - Book
-  - Course
+  - [Book](#book)
+  - [Course](#course)
 - **Post level**
-  - WebPage
-  - Chapter
+  - [WebPage](#webpage)
+  - [Chapter](#chapter)
+  
+------------------------
+# Network level
+## Website
+
+Not available yet
+
 ------------------------
 # Site level
 ## Book
