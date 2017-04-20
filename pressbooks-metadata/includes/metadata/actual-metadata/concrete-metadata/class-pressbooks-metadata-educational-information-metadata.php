@@ -42,15 +42,19 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Subject Name', '* The Subject Name is required', 'subject', '', '', '', false, '',
+			'Subject Name', '* The Subject Name is required.', 'subject', '', '', '', false, '',
 			'name' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Small Description', 'A short description about this subject', 'description', '', '', '', false, '',
+			'Small Description', 'A short description about this subject.', 'description', '', '', '', false, '',
 			'description' ) );
 
+		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Course Code',
+			'The identifier for the Course (e.g. CS101 or 6.001).', 'course_code', '', '', '', false, '',
+			'courseCode' ) );
+
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
-			'Broad field of education according to ISCED-F 2013'. '<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf">Click Here for more information</a>',
+			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf">Click Here for more information</a>',
 			'isced_field', '', '', '00',
 			array(
 				'00' => 'Generic programmes and qualifications',
@@ -67,7 +71,7 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 			), '' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Provider', 'The Organization, University or Person who provides this subject', 'provider', '', '', '', false, '',
+			'Provider', 'The Organization, University or Person who provides this subject.', 'provider', '', '', '', false, '',
 			'provider' ) );
 
 
@@ -108,11 +112,15 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 			), 'typicalAgeRange' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course', 'level', '', '', '', false, '',
+			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course.', 'level', '', '', '', false, '',
 			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Framework', 'The Framework that the educational level belongs to', 'framework', '', '', '', false, '',
+			'Course Prerequisites', 'Requirements for taking the Course. ', 'course_prerequisites', '', '', '', false, '',
+			'' ) );
+
+		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
+			'Educational Framework', 'The Framework that the educational level belongs to.', 'framework', '', '', '', false, '',
 			'' ) );
 
 
@@ -135,7 +143,15 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 				'expositive' => 'Expositive',
 				'mixed' => 'Mixed'
 			), 'interactivityType' ) );
+/*
+		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Course Mode',
+			'The medium or means of delivery of the course. (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time")', 'course_mode', '', '', '', false, '',
+			'' ) );
 
+		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Instructor',
+			'A person assigned to instruct or provide instructional assistance for the course.', 'instructor', '', '', '', false, '',
+			'' ) );
+*/
 		$edu_info->add_field( new Pressbooks_Metadata_Number_Field(
 			'Class Learning Time (hours)', '',
 			'time_required', '', '', 0, false, 0, '', '', 'timeRequired' ) );
@@ -150,6 +166,7 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 			'bibliography_url',
 			'', '', '', false, 'http://site.com/',
 			'isBasedOnUrl' ) );
+
 
 		$this->add_component( $edu_info );
 

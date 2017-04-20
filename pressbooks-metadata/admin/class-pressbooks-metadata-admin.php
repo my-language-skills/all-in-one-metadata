@@ -109,8 +109,11 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.2
 	 */
-	public function header_function() {
-		if ( is_home() ) { global $post;?>
+	public function footer_function() {
+
+		global $post;
+
+		if ( is_home() ) {?>
 		<!--
 			<div itemscope itemtype="http://schema.org/Website">
 			<meta itemprop='name' content='website' id='webname'>
@@ -126,9 +129,18 @@ class Pressbooks_Metadata_Admin {
 			$pm_BM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
 			$pm_BM->print_microdata_meta_tags();
 			$pm_BM->print_educationalAlignment_microdata_meta_tags();
+			?>
+			</div>
+			<!-- Book type -->
+			<div itemscope itemtype="http://schema.org/Book">
+			<?php
+			$pm_BB = Pressbooks_Metadata_Book_Metadata::get_instance();
+			$pm_BB->print_microdata_meta_tags();
+			?>
+			</div>
+			<?php
 		}
 		else{
-			global $post;
 		?>
 			<!-- Scholarly Article type -->
 			<div itemscope itemtype="http://schema.org/Chapter" >
@@ -144,9 +156,13 @@ class Pressbooks_Metadata_Admin {
 			//echo $findID[0]->ID;
 			$pm_CM = Pressbooks_Metadata_Chapter_Metadata::get_instance();
 			$pm_CM->print_microdata_meta_tags();
+			?>
+			</div>
+			<?php
 		}
 		?>
-		</div>
+
+<!--		</div>	-->
 		<?php
 	}
 

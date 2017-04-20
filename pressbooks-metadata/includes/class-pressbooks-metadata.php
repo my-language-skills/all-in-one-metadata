@@ -187,7 +187,7 @@ class Pressbooks_Metadata {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_footer', $plugin_admin, 'header_function' );
+		$this->loader->add_action( 'wp_footer', $plugin_admin, 'footer_function' );
 
 	}
 
@@ -204,6 +204,7 @@ class Pressbooks_Metadata {
 		$plugin_educational_information_metadata = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
 		$plugin_chapter_metadata = Pressbooks_Metadata_Chapter_Metadata::get_instance();
 		$plugin_related_books_metadata = Pressbooks_Metadata_Related_Books_Metadata::get_instance();
+		$plugin_book_metadata = Pressbooks_Metadata_Book_Metadata::get_instance();
 
 
 		$this->loader->add_action(
@@ -217,6 +218,10 @@ class Pressbooks_Metadata {
 		$this->loader->add_action(
 			'custom_metadata_manager_init_metadata',
 			$plugin_related_books_metadata,
+			'add_to_current_post_metadata', 31 );
+		$this->loader->add_action(
+			'custom_metadata_manager_init_metadata',
+			$plugin_book_metadata,
 			'add_to_current_post_metadata', 31 );
 		
 	}

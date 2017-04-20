@@ -198,7 +198,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 * Returns the ISCED level code according to what is
 	 * chosen in the 'isced_level' field.
 	 *
-	 * @since  0.4
+	 * @since  0.3
 	 * @return string 
 	 */
 	public function get_isced_level_code() {
@@ -331,6 +331,53 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 <?php
 		}
+
+		if ( isset( $meta['course_prerequisites'] ) && isset( $meta['framework'] )) {
+?>
+<span itemprop="coursePrerequisites" itemscope itemtype="http://schema.org/AlignmentObject">
+	<meta itemprop="alignmentType" content="educationalLevel" />
+	<meta itemprop="educationalFramework" content='<?php echo $meta['framework']->toMicrodataString(); ?>'/>
+	<meta itemprop="targetName" content='<?php echo $meta['course_prerequisites']->toMicrodataString(); ?>' />
+</span>
+
+<?php
+		} elseif ( isset( $meta['course_prerequisites'] ) && !isset( $meta['framework'] )) {
+?>
+<span itemprop="coursePrerequisites" itemscope itemtype="http://schema.org/AlignmentObject">
+	<meta itemprop="alignmentType" content="educationalLevel" />
+	<meta itemprop="targetName" content='<?php echo $meta['course_prerequisites']->toMicrodataString(); ?>' />
+</span>
+
+<?php
+		}
+
+
+		// The hasCourseInstance metatags
+
+/*
+		if ( isset( $meta['course_mode'] ) && isset( $meta['instructor'] )) {
+?>
+<span itemprop="hasCourseInstance" itemscope itemtype="http://schema.org/CourseInstance">
+	<meta itemprop="courseMode" content='<?php echo $meta['course_mode']->toMicrodataString(); ?>'/>
+	<meta itemprop="instructor" content='<?php echo $meta['instructor']->toMicrodataString(); ?>' />
+</span>
+
+<?php
+		} elseif ( isset( $meta['course_mode'] ) && !isset( $meta['instructor'] )) {
+?>
+<span itemprop="hasCourseInstance" itemscope itemtype="http://schema.org/CourseInstance">
+	<meta itemprop="courseMode" content='<?php echo $meta['course_mode']->toMicrodataString(); ?>'/>
+</span>
+
+<?php
+		} elseif ( isset( $meta['instructor'] ) && !isset( $meta['course_mode'] )) {
+?>
+<span itemprop="hasCourseInstance" itemscope itemtype="http://schema.org/CourseInstance">
+	<meta itemprop="instructor" content='<?php echo $meta['instructor']->toMicrodataString(); ?>' />
+</span>
+
+<?php
+		}*/
 		
 
 	}
