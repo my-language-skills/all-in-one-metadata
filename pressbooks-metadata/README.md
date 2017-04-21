@@ -61,8 +61,6 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 [more screenshots](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
 
 ## Roadmap
-### 0.4
-Review the Site metadata
 
 ### 0.5
 Review the cutom post metadata
@@ -83,8 +81,9 @@ Working with administration page
 
 ## Changelog
 
-### UNRELEASED
+### 0.4
 
+* **FEATURE:** New detailed SchemaUsed.md file, with all the information about the Structured Data that is being produced.
 * **ENHANCED:** Add Illustrator and Book edition fields in the General Book Information metabox (#7)
 	* **Illustrator:** The illustrator of the book.
 	* **Book Edition:** The edition of the book.
@@ -147,6 +146,9 @@ Working with administration page
   * **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
+
+### 0.4
+Review the Site metadata
 
 ### 0.3
 To adapt the plugin to PressBooks.
