@@ -63,7 +63,7 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 ## Roadmap
 
 ### 0.5
-Review the cutom post metadata
+Review the custom post metadata
 
 ### 0.6
 Reviw the Site/root metadata
@@ -80,6 +80,31 @@ Working with administration page
 ### 0.XX
 
 ## Changelog
+
+### UNRELEASED
+
+* **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
+* **ENHANCED:** Extend the ScholarlyArticle type with the following properties (#9)
+	* headline
+	* image
+	* wordCount
+	* author
+	* alternativeHeadline
+	* audience
+	* citation
+	* copyrightHolder
+	* copyrightYear
+	* datePublished
+	* dateModified
+	* discussionUrl
+	* editor
+	* inLanguage
+	* license
+	* locationCreated
+	* publisher
+	* timeRequired
+	* translator
+	* typicalAgeRange
 
 ### 0.4
 
