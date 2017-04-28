@@ -99,6 +99,8 @@ Working with administration page
 	* timeRequired
 	* translator
 	* typicalAgeRange
+	
+* **ENHANCED:** Code changes to make it the pressbooks-way (#38)
 
 ### 0.4
 
