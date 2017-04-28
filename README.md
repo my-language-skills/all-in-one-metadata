@@ -219,6 +219,8 @@ To use an old version as the start point.
 	</span>
 </div>
 ```
+### Breaking Changes:
+- Everytime you change the $slug of the fields, the data will be gone and you need to fill it again. The previous data still remains saved in the database.
 
 ## Credits
 
