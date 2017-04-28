@@ -52,13 +52,7 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
-1. The new metabox you are getting with this plugin
-![screen shot 2017-04-10 at 19 09 28](https://cloud.githubusercontent.com/assets/23406636/24873510/598ed8bc-1e21-11e7-9dd0-a9fc9fbd41ee.png)
-
-1. An example on how Googles Structured Data Testing Tool displays our metadata
-![screen shot 2017-04-10 at 19 11 53](https://cloud.githubusercontent.com/assets/23406636/24873576/a7995c94-1e21-11e7-893a-f00cb4525c43.png)
-
-[more screenshots](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
+You can see all of the screenshots of the plugin [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
 
 ## Roadmap
 
@@ -84,7 +78,7 @@ Working with administration page
 ### UNRELEASED
 
 * **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
-* **ENHANCED:** Extend the ScholarlyArticle type with the following properties (#9)
+* **ENHANCED:** Extend the ScholarlyArticle type with the following properties. You can see the full list of the ScolarlyArticle type that we use [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) (#9) 
 	* headline
 	* image
 	* wordCount
