@@ -220,7 +220,7 @@ To use an old version as the start point.
 </div>
 ```
 ### Breaking Changes:
-- Everytime you change the $slug of the fields, the data will be gone and you need to fill it again. The previous data still remains saved in the database.
+- Everytime you change the $slug of the fields, the data will be gone and you need to fill it again. The previous data still remains saved in the database.So we need to change the names once and for all, and then keep them that way to avoid deleting people's information
 
 ## Credits
 
