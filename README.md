@@ -6,7 +6,7 @@ Contributors: @colomet, @julienCXX, @masaka222
 
 Tags: pressbooks, metadata, lrmi
 
-Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://github.com/pressbooks/pressbooks/releases)
+Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
 Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
 
