@@ -236,3 +236,7 @@ and one to [Markdown's Syntax Documentation][markdown syntax].
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
             "Markdown is what the parser uses to process much of the readme file"
+	    
+	    
+	    
+[AllMyChanges](https://allmychanges.com/p/new/) will track release notes for you and will send you a digest with information about new updates.
