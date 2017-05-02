@@ -78,6 +78,7 @@ Working with administration page
 ### UNRELEASED
 
 * **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
+* **FIXED:** Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 * **ENHANCED:** Extend the ScholarlyArticle type with the following properties. You can see the full list of the ScolarlyArticle type that we use [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) (#9) 
 	* headline
 	* image
@@ -101,6 +102,8 @@ Working with administration page
 	* typicalAgeRange
 	
 * **ENHANCED:** Code changes to make it the pressbooks-way (#38)
+* **ENHANCED:** Code changes to use one common prefix to our fields (#39)
+	* **Breaking Change:** Everytime you change the $slug of the fields, the data will be gone and you need to fill it again.  The previous data still remains saved in the database. So we need to change the names once and for all, and then keep them that way to avoid deleting people's information
 
 ### 0.4
 
@@ -180,47 +183,6 @@ To make works the current old plugin.
 ### 0.1
 To use an old version as the start point.
 
-
-### Course Microdata:
-```html
-<div itemscope itemtype="http://schema.org/Course">
-	<meta itemprop='name' content='English' id='name'>
-	<meta itemprop='description' content='English Subject A1 level' id='description'>
-	<meta itemprop='provider' content='My Language Skills' id='provider'>
-	<meta itemprop='learningResourceType' content='Course' id='learningResourceType'>
-	<meta itemprop='interactivityType' content='Active' id='interactivityType'>
-	<meta itemprop='typicalAgeRange' content='Adults' id='typicalAgeRange'>
-	<meta itemprop='timeRequired' content='4' id='timeRequired'>
-	<meta itemprop='license' content='License URL' id='license'>
-	<meta itemprop='isBasedOnUrl' content='Bibliography URL' id='isBasedOnUrl'>
-
-	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
-		<meta itemprop="alignmentType" content="educationalSubject" />
-		<meta itemprop="targetName" content='English' />
-	</span>
-
-    <span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-        <meta itemprop="alignmentType" content="educationalSubject" />
-        <meta itemprop="educationalFramework" content='ISCED-2013'/>
-        <meta itemprop="targetName" content='Education' />
-    </span>
-
-    <span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-        <meta itemprop="alignmentType" content="educationalLevel" />
-        <meta itemprop="educationalFramework" content='ISCED-2011'/>
-        <meta itemprop="targetName" content='Post-secondary non-tertiary education' />
-        <meta itemprop="alternateName" content='ISCED 2011, Level 4' />
-    </span>
-
-	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-		<meta itemprop="alignmentType" content="educationalLevel" />
-		<meta itemprop="educationalFramework" content='CEFR'/>
-		<meta itemprop="targetName" content='A1' />
-	</span>
-</div>
-```
-### Breaking Changes:
-- Everytime you change the $slug of the fields, the data will be gone and you need to fill it again. The previous data still remains saved in the database.So we need to change the names once and for all, and then keep them that way to avoid deleting people's information
 
 ## Credits
 
