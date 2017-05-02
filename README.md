@@ -77,8 +77,6 @@ Working with administration page
 
 ### UNRELEASED
 
-* **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
-* **FIXED:** Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 * **ENHANCED:** Extend the ScholarlyArticle type with the following properties. You can see the full list of the ScolarlyArticle type that we use [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) (#9) 
 	* headline
 	* image
@@ -104,6 +102,8 @@ Working with administration page
 * **ENHANCED:** Code changes to make it the pressbooks-way (#38)
 * **ENHANCED:** Code changes to use one common prefix to our fields (#39)
 	* **Breaking Change:** Everytime you change the $slug of the fields, the data will be gone and you need to fill it again.  The previous data still remains saved in the database. So we need to change the names once and for all, and then keep them that way to avoid deleting people's information
+* **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
+* **FIXED:** Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 
 ### 0.4
 
