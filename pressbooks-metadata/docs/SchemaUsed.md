@@ -22,7 +22,8 @@ Not available yet
 Properties from: [Book](https://schema.org/Book  "https://schema.org/Book")
 All the properties from the type.
 
-| **Used By** | **Property** | **Type** | **Description** | ShemaPlace Code
+| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/SchemaPlace.md)
+)
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Metadata | [bookEdition](http://schema.org/bookEdition) | [Text](https://schema.org/Text)|The edition of the book.| GBI-15
 |PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. |
