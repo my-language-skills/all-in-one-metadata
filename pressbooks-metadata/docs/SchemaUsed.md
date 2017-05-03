@@ -66,7 +66,7 @@ All the properties from the type.
 | **Used By** | **Property** | **Type** | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Metadata | [courseCode](https://schema.org/courseCode "(https://schema.org/courseCode") | [Text ](https://schema.org/Text ) | The identifier for the Course used by the course provider (e.g. CS101 or 6.001). | EI-03
-| PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites) | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li></ul> | Requirements for taking the Course. |
+| PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites) |  [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li></ul> | Requirements for taking the Course. | EI-09
 | Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites) | [CourseInstance ](http://schema.org/CourseInstance) | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. |
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
