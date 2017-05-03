@@ -27,8 +27,8 @@ All the properties from the type.
 | PB - Metadata | [bookEdition](http://schema.org/bookEdition) | [Text](https://schema.org/Text)|The edition of the book.| GBI-15
 |PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. |
 |PB - Metadata | [illustrator](http://schema.org/illustrator) | [Person](http://schema.org/Person)| The illustrator of the book. | GBI-14
-| Not Used | [isbn](http://schema.org/isbn)|[Text](https://schema.org/Text) | The ISBN of the book.|
-| Not Used | [numberOfPages](http://schema.org/numberOfPages) | [ Integer ](http://schema.org/Integer) | The number of pages in the book. |
+| Not Used | [isbn](http://schema.org/isbn)|[Text](https://schema.org/Text) | The ISBN of the book.| ---
+| Not Used | [numberOfPages](http://schema.org/numberOfPages) | [ Integer ](http://schema.org/Integer) | The number of pages in the book. | ---
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
@@ -66,7 +66,7 @@ All the properties from the type.
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Metadata | [courseCode](https://schema.org/courseCode "(https://schema.org/courseCode") | [Text ](https://schema.org/Text ) | The identifier for the Course used by the course provider (e.g. CS101 or 6.001). | EI-03
 | PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites) |  [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li></ul> | Requirements for taking the Course. | EI-09
-| Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites) | [CourseInstance ](http://schema.org/CourseInstance) | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. |
+| Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites) | [CourseInstance ](http://schema.org/CourseInstance) | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. | ---
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
