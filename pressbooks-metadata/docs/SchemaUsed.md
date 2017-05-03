@@ -43,10 +43,10 @@ The related propertires from the type that matters to the project.
 | PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. |
 | PB - Core | [datePublished](http://schema.org/datePublished "http://schema.org/datePublished")| [Date](http://bib.schema.org/Date "http://bib.schema.org/Date") | Date of first broadcast/publication. |
 | PB - Core | [editor](http://schema.org/editor "http://schema.org/editor") | [Person](http://schema.org/Person "http://schema.org/Person") | Specifies the Person who edited the book.
-| PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the book.| GBI-13 
+| PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the book.| GBI-13
 | PB - Core | [keywords](http://schema.org/keywords "http://schema.org/keywords") | [Text](https://schema.org/Text "https://schema.org/Text") | Keywords or tags used to describe this content. |
 | PB - Core | [offers](http://schema.org/offers "http://schema.org/offers") | [Offer](http://schema.org/Offer "http://schema.org/Offer") | An offer to provide this item. |
-| PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. |
+| PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. | GBI-07
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
@@ -63,7 +63,7 @@ The related propertires from the type that matters to the project.
 Properties from: [Course](https://schema.org/Course  "https://schema.org/Course")
 All the properties from the type.
 
-| **Used By** | **Property** | **Type** | **Description** | hemaPlace Code
+| **Used By** | **Property** | **Type** | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Metadata | [courseCode](https://schema.org/courseCode "(https://schema.org/courseCode") | [Text ](https://schema.org/Text ) | The identifier for the Course used by the course provider (e.g. CS101 or 6.001). |
 | PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites) | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li></ul> | Requirements for taking the Course. |
@@ -99,13 +99,13 @@ The related propertires from the type that matters to the project.
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | hemaPlace Code
+| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.|
 | PB - Core | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. |
 | PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. |
 | PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the Post.| GBI-13 
-| PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. |
+| PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. | GBI-07
 
 ## ScholarlyArticle
 
@@ -114,7 +114,7 @@ All the properties from the type.
 
 | **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
-| PB - Metadata |[wordCount](http://bib.schema.org/wordCount "http://bib.schema.org/wordCount") | [Integer](https://schema.org/Integer "https://schema.org/Integer") | The number of words in the text of the Article. |
+| PB - Metadata |[wordCount](http://bib.schema.org/wordCount "http://bib.schema.org/wordCount") | [Integer](https://schema.org/Integer "https://schema.org/Integer") | The number of words in the text of the Article. | WP Post Word count
 
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
@@ -136,7 +136,7 @@ The related propertires from the type that matters to the project.
 | PB - Metadata | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the Post.| GBI-13 
 | PB - Metadata | [license](http://schema.org/license "http://schema.org/license") | [URL](http://bib.schema.org/URL "http://bib.schema.org/URL") | The license URL.|
 | PB - Metadata |[locationCreated](http://bib.schema.org/locationCreated "http://bib.schema.org/locationCreated") | [Place](https://schema.org/Place "https://schema.org/Place") | The Publisher City of the book. |
-| PB - Metadata |[publisher](http://bib.schema.org/publisher "http://bib.schema.org/publisher") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The publisher of the book from Book Info. |
+| PB - Metadata |[publisher](http://bib.schema.org/publisher "http://bib.schema.org/publisher") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The publisher of the book. |GBI-07
 | PB - Metadata | [timeRequired](http://bib.schema.org/timeRequired "http://bib.schema.org/timeRequired") | [Duration](http://bib.schema.org/Duration "http://bib.schema.org/Duration") | The class learning time in minutes. |
 | PB - Metadata |[translator](http://bib.schema.org/translator "http://bib.schema.org/translator") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The translator of the book from Book Info. |
 | PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") |The target age of this book. |
