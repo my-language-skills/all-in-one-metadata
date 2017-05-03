@@ -1,65 +1,37 @@
-# Book Information
-## General Book Information
-Number | Field Name | Description | Number
+# Schema Properties Used
+## Book Information Page
+### General Book Information (Metabox)
+
+Code | Field Name | PB Description | Description | Options
 --- | --- | --- | ---
-Title | NO INFO |
+1 | Title | NO INFO | |
 
-Short Title
+1 | Short Title | In case of long titles that might be truncated in running heads in the PDF export. | |
 
-Subtitle
+1 | Subtitle | | |
 
-Author
+1 | Author | | |
 
-Author, file as
+1 | Author, file as | This ensures that your ebook will sort properly in ebook stores, by the author's last name. | |
 
-Contributing Autors
+1 | Contributing Autors | This may be used when more than one person shares the responsibility for the intellectual content of a book. | |
 
-Publisher
+1 | Publisher | This text appears on the title page of your book. | |
 
-Publisher City
+1 | Publisher City | This text appears on the title page of your book. | |
 
-Publication Date
+1 | Publication Date | This is added to the metadata in your ebook. | |
 
-On-Sale Date
+1 | On-Sale Date | This is added to the metadata in your ebook. | |
 
-Ebook ISBN
+1 | Ebook ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in some online ebook stores. This is added to the metadata in your ebook.| |
 
-Print ISBN
+1 | Print ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in online and physical book stores. | |
 
-Language
+1 | Language | This sets metadata in your ebook, making it easier to find in some stores. It also changes some system generated content for supported languages, such as the "Contents" header. | |
 
-Illustrator
+1 | Illustrator | The illustrator of the book. | |
 
-Book Edition
+1 | Book Edition | The edition of the book.| |
 
 ## Educational Information
-Subject Name
-
-Small description
-
-Course Code
-
-ISCED field of education
-
-Provider
-
-ISCED level of education
-
-Age Range
-
-Educational Level
-
-Course Prerequisites
-
-Educational Framework
-
-Learning Resource Type
-
-Interactivity Type
-
-Class Learning Time (hours)
-
-License URL
-
-Bibliography URL
-
