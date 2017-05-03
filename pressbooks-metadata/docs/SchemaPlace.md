@@ -16,7 +16,7 @@ GBI-10 | On-Sale Date | This is added to the metadata in your ebook. |
 GBI-11 | Ebook ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in some online ebook stores. This is added to the metadata in your ebook.| 
 GBI-12 | Print ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in online and physical book stores. | 
 GBI-13 | Language | This sets metadata in your ebook, making it easier to find in some stores. It also changes some system generated content for supported languages, such as the "Contents" header. | 
-GBI-14 | Illustrator | The illustrator of the book. | 
+GBI-14 | Illustrator | The illustrator of the book. | The illustrator of the book.
 GBI-15 | Book Edition | The edition of the book.| The edition of the book.
 
 ## Educational Information
