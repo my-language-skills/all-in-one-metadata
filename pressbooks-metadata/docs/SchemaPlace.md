@@ -1,6 +1,6 @@
 Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
 
-# Schema Properties Used
+# Schema Properties Placed
 ## Book Information Page
 ### General Book Information (Metabox)
 Code | Field Name | PB Description | Description 
