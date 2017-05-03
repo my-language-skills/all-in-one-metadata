@@ -11,7 +11,7 @@ GBI-05 | Author, file as | This ensures that your ebook will sort properly in eb
 GBI-06 | Contributing Autors | This may be used when more than one person shares the responsibility for the intellectual content of a book. | 
 GBI-07 | Publisher | This text appears on the title page of your book. | The publisher of the book.
 GBI-08 | Publisher City | This text appears on the title page of your book. | The Publisher City of the book.
-GBI-09 | Publication Date | This is added to the metadata in your ebook. | 
+GBI-09 | Publication Date | This is added to the metadata in your ebook. | Date of first publication. 
 GBI-10 | On-Sale Date | This is added to the metadata in your ebook. | 
 GBI-11 | Ebook ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in some online ebook stores. This is added to the metadata in your ebook.| 
 GBI-12 | Print ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in online and physical book stores. | 
