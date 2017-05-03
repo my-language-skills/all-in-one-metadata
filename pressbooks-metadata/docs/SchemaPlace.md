@@ -3,7 +3,7 @@
 ### General Book Information (Metabox)
 
 Code | Field Name | PB Description | Description | Options
---- | --- | --- | ---
+--- | --- | --- | --- | ---
 1 | Title | NO INFO | |
 
 1 | Short Title | In case of long titles that might be truncated in running heads in the PDF export. | |
