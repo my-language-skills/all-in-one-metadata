@@ -79,7 +79,7 @@ The related propertires from the type that matters to the project.
 | PB - Metadata | [learningResourceType](https://schema.org/learningResourceType "https://schema.org/learningResourceType") | [Text ](https://schema.org/Text "https://schema.org/Text") | The kind of resource this book represents. |
 | PB - Metadata |  [license](https://schema.org/license "https://schema.org/license") | [URL](https://schema.org/URL "https://schema.org/URL")  | A license document that applies to this content, typically indicated by URL. | EI-14
 | PB - Metadata | [provider](https://schema.org/provider "https://schema.org/provider") |  [Thing](https://schema.org/Thing "https://schema.org/Thing") | The Organization, University or Person who provides this subject. |
-| PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") |The target age of this book. |
+| PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") |The target age of this book. | EI-07
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
@@ -138,7 +138,7 @@ The related propertires from the type that matters to the project.
 | PB - Metadata |[publisher](http://bib.schema.org/publisher "http://bib.schema.org/publisher") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The publisher of the book. |GBI-07 ******
 | PB - Metadata | [timeRequired](http://bib.schema.org/timeRequired "http://bib.schema.org/timeRequired") | [Duration](http://bib.schema.org/Duration "http://bib.schema.org/Duration") | The class learning time in minutes. |
 | PB - Metadata |[translator](http://bib.schema.org/translator "http://bib.schema.org/translator") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The translator of the book. |ACI-04 
-| PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") |The target age of this book. |
+| PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") | The target age of this book. | EI-07
 
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")

@@ -28,7 +28,7 @@ EI-03 | Course Code | The identifier for the Course. |  The identifier for the C
 EI-04 | ISCED field of education | Broad field of education according to ISCED-F 2013. |  
 EI-05 | Provider | The Organization, University or Person who provides this subject. |  
 EI-06 | ISCED level of education | Level of education according to ISCED-P 2011 | Level of education according to ISCED-P 2011 | The target age of this book |  
-EI-07 | Age Range | The target age of this book | 
+EI-07 | Age Range | The target age of this book | The target age of this book.
 EI-08 | Educational Level | The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course. |  
 EI-09 | Course Prerequisites | Requirements for taking the Course. | Requirements for taking the Course.
 EI-10 | Educational Framework | The Framework that the educational level belongs to. |  
