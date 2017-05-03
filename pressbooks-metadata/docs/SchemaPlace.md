@@ -65,7 +65,7 @@ ACI-01 | Series Title | Add if your book is part of a series. This is not used b
 ACI-02 | Series Number | Add if your book is part of a series. This is not used by Pressbooks. |  
 ACI-03 | Editor | This is not used by Pressbooks. |  Specifies the Person who edited the book.
 ACI-04 | Translator | This is not used by Pressbooks. |  
-ACI-05 | Keywords | These are added to your webbook cover page, and in your ebook metadata. Keywords are used by online book stores and search engines. |  
+ACI-05 | Keywords | These are added to your webbook cover page, and in your ebook metadata. Keywords are used by online book stores and search engines. |   Keywords or tags used to describe this content.
 ACI-06 | Hashtag | These are added to your webbook cover page. For those of you who like Twitter. |  
 ACI-07 | List Price (Print) | This is not used by Pressbooks. |  
 ACI-08 | List Price (PDF) | This is not used by Pressbooks. |  
