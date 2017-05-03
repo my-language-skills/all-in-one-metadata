@@ -1,3 +1,5 @@
+Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
+
 # Schema Properties Used
 ## Book Information Page
 ### General Book Information (Metabox)
@@ -76,6 +78,8 @@ ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book st
 ACI-13 | BISAC Regional Theme |  |  
 ACI-14 | BISAC Regional Theme |  |  
 
+Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
+
 
 ## Post Page
 
@@ -103,6 +107,7 @@ ACI-14 | BISAC Regional Theme |  |
 
 
 
+Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
 
 
 
