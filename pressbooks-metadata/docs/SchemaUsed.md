@@ -53,7 +53,7 @@ The related propertires from the type that matters to the project.
 | **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Core | [description](http://schema.org/description "http://schema.org/description") | [Text](https://schema.org/Text "https://schema.org/Text") | A short paragraph about your book. |
-| PB - Core | [image](http://schema.org/image "http://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. | 
+| PB - Core | [image](http://schema.org/image "http://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. | CI-01
 
 
 
@@ -146,7 +146,7 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
-| PB - Metadata | [image](https://schema.org/image "https://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. |
+| PB - Metadata | [image](https://schema.org/image "https://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. | CI-01
 
 
 
