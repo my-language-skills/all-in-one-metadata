@@ -46,7 +46,7 @@ CI-01 | Cover Image | This cover will be included in your ebook files but not yo
 ## Copyright
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-CR-01 | Copyright Year | Year that the book is/was published.|  
+CR-01 | Copyright Year | Year that the book is/was published.| Year that the book is/was published.
 CR-02 | Copyright Holder | Name of the copyright holder. |  
 CR-03 | Copyright License | You can select various licenses including Creative Commons. |  
 CR-04 | Copyright Notice | Enter a custom copyright notice, with whatever infomation you like. This will override the auto-generated copyright notice, and be inserted after the title page. |  

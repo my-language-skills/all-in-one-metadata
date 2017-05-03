@@ -102,7 +102,7 @@ The related propertires from the type that matters to the project.
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.|
 | PB - Core | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. |
-| PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. |
+| PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01
 | PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the Post.| GBI-13 
 | PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. | GBI-07
 
@@ -126,7 +126,7 @@ The related propertires from the type that matters to the project.
 | PB - Metadata |[author](http://bib.schema.org/author "http://bib.schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author's id name. |
 | PB - Metadata |[citation](http://bib.schema.org/citation "http://bib.schema.org/citation") | [URL](http://bib.schema.org/URL "http://bib.schema.org/URL") | The Bibliography URL. |
 | PB - Metadata | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. |
-| PB - Metadata | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. |
+| PB - Metadata | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01 *****
 | PB - Metadata | [dateModified](http://bib.schema.org/dateModified "http://bib.schema.org/dateModified") | [Date](http://bib.schema.org/Date "http://bib.schema.org/Date") | The date on which the Chapter was most recently modified. | WP Post Updating Time
 | PB - Metadata | [datePublished](http://schema.org/datePublished "http://schema.org/datePublished") | [Date](http://bib.schema.org/Date "http://bib.schema.org/Date") | Date of first broadcast/publication. | WP Post Publishing Time
 | PB - Metadata | [discussionUrl](http://bib.schema.org/discussionUrl "http://bib.schema.org/discussionUrl") | [URL](http://bib.schema.org/URL "http://bib.schema.org/URL") | The URL of a forum/discussion about this page. |
