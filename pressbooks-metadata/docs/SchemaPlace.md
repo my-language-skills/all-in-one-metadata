@@ -35,8 +35,8 @@ EI-10 | Educational Framework | The Framework that the educational level belongs
 EI-11 | Learning Resource Type | The kind of resource this book represents |  
 EI-12 | Interactivity Type | The interactivity type of this book |  
 EI-13 | Class Learning Time (hours) |  |  
-EI-14 | License URL |  |  
-EI-15 | Bibliography URL | The URL of a website/book this book is inspirated of |  
+EI-14 | License URL | |  The license URL.
+EI-15 | Bibliography URL | The URL of a website/book this book is inspirated of | The URL of a website/book this book is inspirated of.
 
 ## Cover Image
 Code | Field Name | PB Description | Description 
