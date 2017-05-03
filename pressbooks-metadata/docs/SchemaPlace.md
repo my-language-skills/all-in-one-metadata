@@ -17,7 +17,7 @@ GBI-11 | Ebook ISBN | ISBN is the International Standard Book Number, and you'll
 GBI-12 | Print ISBN | ISBN is the International Standard Book Number, and you'll need one if you want to sell your book in online and physical book stores. | 
 GBI-13 | Language | This sets metadata in your ebook, making it easier to find in some stores. It also changes some system generated content for supported languages, such as the "Contents" header. | 
 GBI-14 | Illustrator | The illustrator of the book. | 
-GBI-15 | Book Edition | The edition of the book.| 
+GBI-15 | Book Edition | The edition of the book.| The edition of the book.
 
 ## Educational Information
 Code | Field Name | PB Description | Description 
@@ -54,27 +54,27 @@ CR-04 | Copyright Notice | Enter a custom copyright notice, with whatever infoma
 ## About the Book
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-CR-01 | Book Tagline | A very short description of your book. It should fit in a Twitter post, and encapsulate your book in the briefest sentence. |  
-CR-02 | Short Description | A short paragraph about your book, for catalogs, reviewers etc. to quote. |  
-CR-03 | Long Description | The full description of your book. |  
+AB-01 | Book Tagline | A very short description of your book. It should fit in a Twitter post, and encapsulate your book in the briefest sentence. |  
+AB-02 | Short Description | A short paragraph about your book, for catalogs, reviewers etc. to quote. |  
+AB-03 | Long Description | The full description of your book. |  
 
 ## Aditional Catalog Information
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-CR-01 | Series Title | Add if your book is part of a series. This is not used by Pressbooks. |  
-CR-02 | Series Number | Add if your book is part of a series. This is not used by Pressbooks. |  
-CR-03 | Editor | This is not used by Pressbooks. |  
-CR-04 | Translator | This is not used by Pressbooks. |  
-CR-05 | Keywords | These are added to your webbook cover page, and in your ebook metadata. Keywords are used by online book stores and search engines. |  
-CR-06 | Hashtag | These are added to your webbook cover page. For those of you who like Twitter. |  
-CR-07 | List Price (Print) | This is not used by Pressbooks. |  
-CR-08 | List Price (PDF) | This is not used by Pressbooks. |  
-CR-09 | List Price (PDF) | This is not used by Pressbooks. |  
-CR-10 | List Price (PDF) | This is not used by Pressbooks. |  
-CR-11 | Audience | The target audience for your book. |  
-CR-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book stores properly classify your book. |  
-CR-13 | BISAC Regional Theme |  |  
-CR-14 | BISAC Regional Theme |  |  
+ACI-01 | Series Title | Add if your book is part of a series. This is not used by Pressbooks. |  
+ACI-02 | Series Number | Add if your book is part of a series. This is not used by Pressbooks. |  
+ACI-03 | Editor | This is not used by Pressbooks. |  
+ACI-04 | Translator | This is not used by Pressbooks. |  
+ACI-05 | Keywords | These are added to your webbook cover page, and in your ebook metadata. Keywords are used by online book stores and search engines. |  
+ACI-06 | Hashtag | These are added to your webbook cover page. For those of you who like Twitter. |  
+ACI-07 | List Price (Print) | This is not used by Pressbooks. |  
+ACI-08 | List Price (PDF) | This is not used by Pressbooks. |  
+ACI-09 | List Price (PDF) | This is not used by Pressbooks. |  
+ACI-10 | List Price (PDF) | This is not used by Pressbooks. |  
+ACI-11 | Audience | The target audience for your book. |  
+ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book stores properly classify your book. |  
+ACI-13 | BISAC Regional Theme |  |  
+ACI-14 | BISAC Regional Theme |  |  
 
 
 

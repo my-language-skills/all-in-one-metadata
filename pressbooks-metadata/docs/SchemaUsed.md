@@ -26,7 +26,7 @@ All the properties from the type.
 | **Used By** | **Property** | **Type** | **Description** |
 | ----------- | ------------ | -------- | --------------- |
 | PB - Metadata | [bookEdition](http://schema.org/bookEdition) | [Text](https://schema.org/Text)|The edition of the book.|
-|PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. |
+|PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| GBI-15 |
 |PB - Metadata | [illustrator](http://schema.org/illustrator) | [Person](http://schema.org/Person)| The illustrator of the book. |
 | Not Used | [isbn](http://schema.org/isbn)|[Text](https://schema.org/Text) | The ISBN of the book.|
 | Not Used | [numberOfPages](http://schema.org/numberOfPages) | [ Integer ](http://schema.org/Integer) | The number of pages in the book. |
