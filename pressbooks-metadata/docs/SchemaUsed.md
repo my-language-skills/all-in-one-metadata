@@ -22,8 +22,8 @@ Not available yet
 Properties from: [Book](https://schema.org/Book  "https://schema.org/Book")
 All the properties from the type.
 
-| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/SchemaPlace.md) |
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [bookEdition](http://schema.org/bookEdition) | [Text](https://schema.org/Text)|The edition of the book.| GBI-15
 |PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. |
 |PB - Metadata | [illustrator](http://schema.org/illustrator) | [Person](http://schema.org/Person)| The illustrator of the book. | GBI-14
@@ -33,8 +33,8 @@ All the properties from the type.
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.|
 | PB - Core | [alternativeHeadline](http://schema.org/alternativeHeadline "http://schema.org/alternativeHeadline") |  [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the book. |
 | PB - Core | [author](http://schema.org/author "http://schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author of the book. |
@@ -50,8 +50,8 @@ The related propertires from the type that matters to the project.
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Core | [description](http://schema.org/description "http://schema.org/description") | [Text](https://schema.org/Text "https://schema.org/Text") | A short paragraph about your book. |
 | PB - Core | [image](http://schema.org/image "http://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. | CI-01
 
@@ -62,8 +62,8 @@ The related propertires from the type that matters to the project.
 Properties from: [Course](https://schema.org/Course  "https://schema.org/Course")
 All the properties from the type.
 
-| **Used By** | **Property** | **Type** | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [courseCode](https://schema.org/courseCode "(https://schema.org/courseCode") | [Text ](https://schema.org/Text ) | The identifier for the Course used by the course provider (e.g. CS101 or 6.001). | EI-03
 | PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites) |  [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li></ul> | Requirements for taking the Course. | EI-09
 | Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites) | [CourseInstance ](http://schema.org/CourseInstance) | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. | ---
@@ -71,8 +71,8 @@ All the properties from the type.
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [educationalAlignment](https://schema.org/educationalAlignment "https://schema.org/educationalAlignment") | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li><li>[alternateName](http://schema.org/alternateName)</li></ul> | The educational level according to ISCED or/and to another framework of our choice. Also the Subject name and the subject type according to ISCED. | EI-10
 | PB - Metadata | [interactivityType](https://schema.org/interactivityType "https://schema.org/interactivityType") | [Text](https://schema.org/Text "https://schema.org/Text") | The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. | EI-12
 | PB - Metadata | [isBasedOnUrl](https://schema.org/isBasedOnUrl "https://schema.org/isBasedOnUrl") | [URL](https://schema.org/URL "https://schema.org/URL") | The URL of a website/book this book is inspirated of. | EI-15
@@ -84,8 +84,8 @@ The related propertires from the type that matters to the project.
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [description](https://schema.org/description "https://schema.org/description") | [Text ](https://schema.org/Text "https://schema.org/Text") | A short description about this subject. |
 | PB - Metadata | [name](https://schema.org/name "https://schema.org/name") | [Text ](https://schema.org/Text "https://schema.org/Text")|The name of the subject. |
 
@@ -98,8 +98,8 @@ The related propertires from the type that matters to the project.
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.|
 | PB - Core | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. | CR-02 
 | PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01
@@ -111,16 +111,16 @@ The related propertires from the type that matters to the project.
 Properties from: [Scholarly Article](https://schema.org/ScholarlyArticle "https://schema.org/ScholarlyArticle")
 All the properties from the type.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata |[wordCount](http://bib.schema.org/wordCount "http://bib.schema.org/wordCount") | [Integer](https://schema.org/Integer "https://schema.org/Integer") | The number of words in the text of the Article. | WP Post Word count
 
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata |[alternativeHeadline](http://bib.schema.org/alternativeHeadline "http://bib.schema.org/alternativeHeadline") | [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the chapter. |
 | PB - Metadata |[audience](http://bib.schema.org/audience "http://bib.schema.org/audience") | [Audience](https://schema.org/Audience "https://schema.org/Audience") | The audience from Book Info. |
 | PB - Metadata |[author](http://bib.schema.org/author "http://bib.schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author's id name. |
@@ -144,8 +144,8 @@ The related propertires from the type that matters to the project.
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
 
-| **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
-| ----------- | ------------ | -------- | --------------- | ---------------
+| **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [image](https://schema.org/image "https://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. | CI-01
 
 
