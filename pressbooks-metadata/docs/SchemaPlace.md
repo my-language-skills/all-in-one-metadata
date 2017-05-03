@@ -24,7 +24,7 @@ Code | Field Name | PB Description | Description
 --- | --- | --- | --- 
 EI-01 | Subject Name | * The Subject Name is required. |  
 EI-02 | Small Description | A short description about this subject. |  
-EI-03 | Course Code | The identifier for the Course. |  
+EI-03 | Course Code | The identifier for the Course. |  The identifier for the Course used by the course provider 
 EI-04 | ISCED field of education | Broad field of education according to ISCED-F 2013. |  
 EI-05 | Provider | The Organization, University or Person who provides this subject. |  
 EI-06 | ISCED level of education | Level of education according to ISCED-P 2011 | Level of education according to ISCED-P 2011 | The target age of this book |  
