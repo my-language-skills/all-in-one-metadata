@@ -1,5 +1,4 @@
 # Schema Properties Used
-
 We use different types in every of these 3 levels
 - **Network level**
   - [WebSite](#website)
@@ -75,7 +74,7 @@ The related propertires from the type that matters to the project.
 | **Used By** | **Property**| **Type**  | **Description** | ShemaPlace Code
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Metadata | [educationalAlignment](https://schema.org/educationalAlignment "https://schema.org/educationalAlignment") | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li><li>[alternateName](http://schema.org/alternateName)</li></ul> | The educational level according to ISCED or/and to another framework of our choice. Also the Subject name and the subject type according to ISCED. |
-| PB - Metadata | [interactivityType](https://schema.org/interactivityType "https://schema.org/interactivityType") | [Text](https://schema.org/Text "https://schema.org/Text") | The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. |
+| PB - Metadata | [interactivityType](https://schema.org/interactivityType "https://schema.org/interactivityType") | [Text](https://schema.org/Text "https://schema.org/Text") | The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. | EI-12
 | PB - Metadata | [isBasedOnUrl](https://schema.org/isBasedOnUrl "https://schema.org/isBasedOnUrl") | [URL](https://schema.org/URL "https://schema.org/URL") | The URL of a website/book this book is inspirated of. | EI-15
 | PB - Metadata | [learningResourceType](https://schema.org/learningResourceType "https://schema.org/learningResourceType") | [Text ](https://schema.org/Text "https://schema.org/Text") | The kind of resource this book represents. |
 | PB - Metadata |  [license](https://schema.org/license "https://schema.org/license") | [URL](https://schema.org/URL "https://schema.org/URL")  | A license document that applies to this content, typically indicated by URL. |
@@ -149,4 +148,11 @@ The related propertires from the type that matters to the project.
 | ----------- | ------------ | -------- | --------------- | ---------------
 | PB - Metadata | [image](https://schema.org/image "https://schema.org/image") | [URL](https://schema.org/URL "https://schema.org/URL") | The cover of the book. |
 
+
+
+
+
+
+
+(Descriptions here are full descriptions)
 
