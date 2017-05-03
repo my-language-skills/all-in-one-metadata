@@ -56,9 +56,6 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 
 ## Roadmap
 
-### 0.5
-Review the custom post metadata
-
 ### 0.6
 Reviw the Site/root metadata
 
@@ -75,7 +72,7 @@ Working with administration page
 
 ## Changelog
 
-### UNRELEASED
+### 0.5
 
 * **ENHANCED:** Extend the ScholarlyArticle type with the following properties. You can see the full list of the ScolarlyArticle type that we use [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) (#9) 
 	* headline
@@ -170,6 +167,9 @@ Working with administration page
   * **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
+
+### 0.5
+Review the custom post metadata
 
 ### 0.4
 Review the Site metadata
