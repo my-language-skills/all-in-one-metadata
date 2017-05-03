@@ -21,6 +21,7 @@ Not available yet
 ## Book
 
 Properties from: [Book](https://schema.org/Book  "https://schema.org/Book")
+All the properties from the type.
 
 | **Used By** | **Property** | **Type** | **Description** |
 | ----------- | ------------ | -------- | --------------- |
@@ -31,6 +32,7 @@ Properties from: [Book](https://schema.org/Book  "https://schema.org/Book")
 | Not Used | [numberOfPages](http://schema.org/numberOfPages) | [ Integer ](http://schema.org/Integer) | The number of pages in the book. |
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -47,6 +49,7 @@ Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema
 | PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. |
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -58,6 +61,7 @@ Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 ## Course
 
 Properties from: [Course](https://schema.org/Course  "https://schema.org/Course")
+All the properties from the type.
 
 | **Used By** | **Property** | **Type** | **Description** |
 | ----------- | ------------ | -------- | --------------- |
@@ -66,6 +70,7 @@ Properties from: [Course](https://schema.org/Course  "https://schema.org/Course"
 | Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites) | [CourseInstance ](http://schema.org/CourseInstance) | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. |
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -78,6 +83,7 @@ Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema
 | PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") |The target age of this book. |
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -91,6 +97,7 @@ Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 ## WebPage
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -103,6 +110,7 @@ Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema
 ## ScholarlyArticle
 
 Properties from: [Scholarly Article](https://schema.org/ScholarlyArticle "https://schema.org/ScholarlyArticle")
+All the properties from the type.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -110,6 +118,7 @@ Properties from: [Scholarly Article](https://schema.org/ScholarlyArticle "https:
 
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
@@ -134,6 +143,7 @@ Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema
 
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
+The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** |
 | ----------- | ----------- | --------- | --------------- |
