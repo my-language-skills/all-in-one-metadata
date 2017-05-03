@@ -41,7 +41,7 @@ EI-15 | Bibliography URL | The URL of a website/book this book is inspirated of 
 ## Cover Image
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-CI-01 | Cover Image | This cover will be included in your ebook files but not your PDF export.|  
+CI-01 | Cover Image | This cover will be included in your ebook files but not your PDF export.| The cover of the book.
 
 ## Copyright
 Code | Field Name | PB Description | Description 
