@@ -123,41 +123,44 @@ class Pressbooks_Metadata_Admin {
 		}
 		elseif ( is_front_page() ) { ?>
 
-			<!-- Course type -->
-			<div itemscope itemtype="http://schema.org/Course">
+<!-- Course type -->
+<div itemscope itemtype = 'http://schema.org/Course'>
 			<?php
 			$pm_BM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
 			$pm_BM->print_microdata_meta_tags();
 			$pm_BM->print_educationalAlignment_microdata_meta_tags();
 			?>
-			</div>
-			<!-- Book type -->
-			<div itemscope itemtype="http://schema.org/Book">
+</div>
+<!-- Book type -->
+<div itemscope itemtype = 'http://schema.org/Book'>
 			<?php
 			$pm_BB = Pressbooks_Metadata_Book_Metadata::get_instance();
 			$pm_BB->print_microdata_meta_tags();
 			?>
-			</div>
+</div>
 			<?php
 		}
 		else{
 		?>
-			<!-- Scholarly Article type -->
-			<div itemscope itemtype="http://schema.org/Chapter" >
+<!-- Scholarly Article type -->
+<div itemscope itemtype = 'http://schema.org/ScholarlyArticle' >
 
-			<!-- Here we take data from the default fields of wordpress -->
-			<meta itemprop='name' content='<?php echo $post->post_title; ?>' id='name'>
-			<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' id='name'>
-			<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>
-			<meta itemprop='author' content='<?php echo get_the_author(); ?>' id='name'>
+<!-- Here we take data from the default fields of wordpress -->
+	<meta itemprop = 'headline' content='<?php echo $post->post_title; ?>' />
+	<meta itemprop = 'datePublished' content='<?php echo $post->post_date; ?>' />
+	<meta itemprop = 'dateModified' content='<?php echo $post->post_modified; ?>' />
+
+<!-- Here from the fields in the Chapter level and the ones in General Book Information metabox -->
 			<?php
-			//global $wpdb;
-			//$findID = $wpdb->get_results("SELECT ID FROM pbo_wp_17_posts WHERE post_name = 'chapter-1'");
-			//echo $findID[0]->ID;
 			$pm_CM = Pressbooks_Metadata_Chapter_Metadata::get_instance();
 			$pm_CM->print_microdata_meta_tags();
+			$pm_CM->print_ScolarlyArticle_meta_tags();
+
+			/*-- And here from the fields we need to use from the Educational Information metabox --*/
+			$pm_CM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
+			$pm_CM->print_ScolarlyArticle_meta_tags_from_Edu_Info();
 			?>
-			</div>
+</div>
 			<?php
 		}
 		?>

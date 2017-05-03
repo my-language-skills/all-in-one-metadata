@@ -6,9 +6,9 @@ Contributors: @colomet, @julienCXX, @masaka222
 
 Tags: pressbooks, metadata, lrmi
 
-Requires: Pressbooks Plugin
+Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
-Tested up to: 4.3
+Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
@@ -52,13 +52,7 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
-1. The new metabox you are getting with this plugin
-![screen shot 2017-04-10 at 19 09 28](https://cloud.githubusercontent.com/assets/23406636/24873510/598ed8bc-1e21-11e7-9dd0-a9fc9fbd41ee.png)
-
-1. An example on how Googles Structured Data Testing Tool displays our metadata
-![screen shot 2017-04-10 at 19 11 53](https://cloud.githubusercontent.com/assets/23406636/24873576/a7995c94-1e21-11e7-893a-f00cb4525c43.png)
-
-[more screenshots](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
+You can see all of the screenshots of the plugin [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
 
 ## Roadmap
 
@@ -83,8 +77,7 @@ Working with administration page
 
 ### UNRELEASED
 
-* **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
-* **ENHANCED:** Extend the ScholarlyArticle type with the following properties (#9)
+* **ENHANCED:** Extend the ScholarlyArticle type with the following properties. You can see the full list of the ScolarlyArticle type that we use [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) (#9) 
 	* headline
 	* image
 	* wordCount
@@ -105,6 +98,12 @@ Working with administration page
 	* timeRequired
 	* translator
 	* typicalAgeRange
+	
+* **ENHANCED:** Code changes to make it the pressbooks-way (#38)
+* **ENHANCED:** Code changes to use one common prefix to our fields (#39)
+	* **Breaking Change:** Everytime you change the $slug of the fields, the data will be gone and you need to fill it again.  The previous data still remains saved in the database. So we need to change the names once and for all, and then keep them that way to avoid deleting people's information
+* **FIXED:** Change the Schema type of Chapter to ScholarlyArticle
+* **FIXED:** Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 
 ### 0.4
 
@@ -185,45 +184,6 @@ To make works the current old plugin.
 To use an old version as the start point.
 
 
-### Course Microdata:
-```html
-<div itemscope itemtype="http://schema.org/Course">
-	<meta itemprop='name' content='English' id='name'>
-	<meta itemprop='description' content='English Subject A1 level' id='description'>
-	<meta itemprop='provider' content='My Language Skills' id='provider'>
-	<meta itemprop='learningResourceType' content='Course' id='learningResourceType'>
-	<meta itemprop='interactivityType' content='Active' id='interactivityType'>
-	<meta itemprop='typicalAgeRange' content='Adults' id='typicalAgeRange'>
-	<meta itemprop='timeRequired' content='4' id='timeRequired'>
-	<meta itemprop='license' content='License URL' id='license'>
-	<meta itemprop='isBasedOnUrl' content='Bibliography URL' id='isBasedOnUrl'>
-
-	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
-		<meta itemprop="alignmentType" content="educationalSubject" />
-		<meta itemprop="targetName" content='English' />
-	</span>
-
-    <span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-        <meta itemprop="alignmentType" content="educationalSubject" />
-        <meta itemprop="educationalFramework" content='ISCED-2013'/>
-        <meta itemprop="targetName" content='Education' />
-    </span>
-
-    <span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-        <meta itemprop="alignmentType" content="educationalLevel" />
-        <meta itemprop="educationalFramework" content='ISCED-2011'/>
-        <meta itemprop="targetName" content='Post-secondary non-tertiary education' />
-        <meta itemprop="alternateName" content='ISCED 2011, Level 4' />
-    </span>
-
-	<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-		<meta itemprop="alignmentType" content="educationalLevel" />
-		<meta itemprop="educationalFramework" content='CEFR'/>
-		<meta itemprop="targetName" content='A1' />
-	</span>
-</div>
-```
-
 ## Credits
 
 Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
@@ -238,3 +198,7 @@ and one to [Markdown's Syntax Documentation][markdown syntax].
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
             "Markdown is what the parser uses to process much of the readme file"
+	    
+	    
+	    
+[AllMyChanges](https://allmychanges.com/p/new/) will track release notes for you and will send you a digest with information about new updates.

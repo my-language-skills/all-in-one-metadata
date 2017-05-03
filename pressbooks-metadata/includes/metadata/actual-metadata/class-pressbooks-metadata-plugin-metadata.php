@@ -193,54 +193,6 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 	}
 
-
-	/**
-	 * Returns the ISCED level code according to what is
-	 * chosen in the 'isced_level' field.
-	 *
-	 * @since  0.3
-	 * @return string 
-	 */
-	public function get_isced_level_code() {
-
-		$meta = $this->get_current_metadata_flat();
-
-		if ($meta['isced_level'] == 'Early Childhood Education'){
-			$level_code = '0';
-		}
-		elseif ($meta['isced_level'] == 'Primary education') {
-			$level_code = '1';
-		}
-		elseif ($meta['isced_level'] == 'Lower secondary education') {
-			$level_code = '2';
-		}
-		elseif ($meta['isced_level'] == 'Upper secondary education') {
-			$level_code = '3';
-		}
-		elseif ($meta['isced_level'] == 'Post-secondary non-tertiary education') {
-			$level_code = '4';
-		}
-		elseif ($meta['isced_level'] == 'Short-cycle tertiary education') {
-			$level_code = '5';
-		}
-		elseif ($meta['isced_level'] == 'Bachelor’s or equivalent level') {
-			$level_code = '6';
-		}
-		elseif ($meta['isced_level'] == 'Master’s or equivalent level') {
-			$level_code = '7';
-		}
-		elseif ($meta['isced_level'] == 'Doctoral or equivalent level') {
-			$level_code = '8';
-		}
-		else{
-			$level_code = '9';
-		}
-
-		return $level_code;
-
-	}
-
-
 	/**
 	 * Prints the HTML meta tags containing microdata information of
 	 * metadata contained in this object, for the public part of the book.
@@ -257,10 +209,56 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 			$it = $elt->get_itemprop();
 			if( ! empty( $it ) ) {
 ?>
-<meta itemprop='<?php echo $it; ?>' content='<?php echo $elt->toMicrodataString(); ?>' id='<?php echo $it; ?>'>
+	<meta itemprop = '<?php echo $it; ?>' content='<?php echo $elt->toMicrodataString(); ?>' id='<?php echo $it; ?>' />
 <?php
 			}
 		}
+
+	}
+
+/**
+	 * Returns the ISCED level code according to what is
+	 * chosen in the 's_md_isced_level' field.
+	 *
+	 * @since  0.3
+	 * @return string 
+	 */
+	public function get_isced_level_code() {
+
+		$meta = $this->get_current_metadata_flat();
+
+		if ($meta['s_md_isced_level'] == 'Early Childhood Education'){
+			$level_code = '0';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Primary education') {
+			$level_code = '1';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Lower secondary education') {
+			$level_code = '2';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Upper secondary education') {
+			$level_code = '3';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Post-secondary non-tertiary education') {
+			$level_code = '4';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Short-cycle tertiary education') {
+			$level_code = '5';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Bachelor’s or equivalent level') {
+			$level_code = '6';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Master’s or equivalent level') {
+			$level_code = '7';
+		}
+		elseif ($meta['s_md_isced_level'] == 'Doctoral or equivalent level') {
+			$level_code = '8';
+		}
+		else{
+			$level_code = '9';
+		}
+
+		return $level_code;
 
 	}
 
@@ -280,110 +278,156 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 		$meta = $this->get_current_metadata_flat();
 		$level = $this->get_isced_level_code();
 
-		if ( isset( $meta['subject'] ) ) {
+		if ( isset( $meta['s_md_subject_name'] ) ) {
 ?>
-<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">	
-	<meta itemprop="alignmentType" content="educationalSubject" />
-	<meta itemprop="targetName" content='<?php echo $meta['subject']->toMicrodataString(); ?>' />
-</span>
+
+	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>	
+		<meta itemprop = 'alignmentType' content = 'educationalSubject' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_subject_name']->toMicrodataString(); ?>' />
+	</span>
 
 <?php
 		}
 
-		if ( isset( $meta['isced_field'] ) ) {
+		if ( isset( $meta['s_md_isced_field'] ) ) {
 ?>
-<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-	<meta itemprop="alignmentType" content="educationalSubject" />
-	<meta itemprop="educationalFramework" content='ISCED-2013'/>
-	<meta itemprop="targetName" content='<?php echo $meta['isced_field']->toMicrodataString(); ?>' />
-</span>
+	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
+		<meta itemprop = 'alignmentType' content = 'educationalSubject' />
+		<meta itemprop = 'educationalFramework' content = 'ISCED-2013'/>
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_isced_field']->toMicrodataString(); ?>' />
+	</span>
 
 <?php
 		}
 
-		if ( isset( $meta['isced_level'] ) ) {
+		if ( isset( $meta['s_md_isced_level'] ) ) {
 ?>
-<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-	<meta itemprop="alignmentType" content="educationalLevel" />
-	<meta itemprop="educationalFramework" content='ISCED-2011'/>
-	<meta itemprop="targetName" content='<?php echo $meta['isced_level']->toMicrodataString(); ?>' />
-	<meta itemprop="alternateName" content='ISCED 2011, Level <?php echo $level; ?>' />
-</span>
+	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
+		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
+		<meta itemprop = 'educationalFramework' content = 'ISCED-2011'/>
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_isced_level']->toMicrodataString(); ?>' />
+		<meta itemprop = 'alternateName' content = 'ISCED 2011, Level <?php echo $level; ?>' />
+	</span>
 
 <?php
 		}
 
-		if ( isset( $meta['level'] ) && isset( $meta['framework'] )) {
+		if ( isset( $meta['s_md_edu_level'] ) && isset( $meta['s_md_edu_framework'] )) {
 ?>
-<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-	<meta itemprop="alignmentType" content="educationalLevel" />
-	<meta itemprop="educationalFramework" content='<?php echo $meta['framework']->toMicrodataString(); ?>'/>
-	<meta itemprop="targetName" content='<?php echo $meta['level']->toMicrodataString(); ?>' />
-</span>
+	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
+		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
+		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['s_md_edu_framework']->toMicrodataString(); ?>'/>
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_edu_level']->toMicrodataString(); ?>' />
+	</span>
 
 <?php
-		} elseif ( isset( $meta['level'] ) && !isset( $meta['framework'] )) {
+		} elseif ( isset( $meta['s_md_edu_level'] ) && !isset( $meta['s_md_edu_framework'] )) {
 ?>
-<span itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject">
-	<meta itemprop="alignmentType" content="educationalLevel" />
-	<meta itemprop="targetName" content='<?php echo $meta['level']->toMicrodataString(); ?>' />
-</span>
-
-<?php
-		}
-
-		if ( isset( $meta['course_prerequisites'] ) && isset( $meta['framework'] )) {
-?>
-<span itemprop="coursePrerequisites" itemscope itemtype="http://schema.org/AlignmentObject">
-	<meta itemprop="alignmentType" content="educationalLevel" />
-	<meta itemprop="educationalFramework" content='<?php echo $meta['framework']->toMicrodataString(); ?>'/>
-	<meta itemprop="targetName" content='<?php echo $meta['course_prerequisites']->toMicrodataString(); ?>' />
-</span>
-
-<?php
-		} elseif ( isset( $meta['course_prerequisites'] ) && !isset( $meta['framework'] )) {
-?>
-<span itemprop="coursePrerequisites" itemscope itemtype="http://schema.org/AlignmentObject">
-	<meta itemprop="alignmentType" content="educationalLevel" />
-	<meta itemprop="targetName" content='<?php echo $meta['course_prerequisites']->toMicrodataString(); ?>' />
-</span>
+	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
+		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_edu_level']->toMicrodataString(); ?>' />
+	</span>
 
 <?php
 		}
 
-
-		// The hasCourseInstance metatags
-
-/*
-		if ( isset( $meta['course_mode'] ) && isset( $meta['instructor'] )) {
+		if ( isset( $meta['s_md_course_prerequisites'] ) && isset( $meta['s_md_edu_framework'] )) {
 ?>
-<span itemprop="hasCourseInstance" itemscope itemtype="http://schema.org/CourseInstance">
-	<meta itemprop="courseMode" content='<?php echo $meta['course_mode']->toMicrodataString(); ?>'/>
-	<meta itemprop="instructor" content='<?php echo $meta['instructor']->toMicrodataString(); ?>' />
-</span>
+	<span itemprop = 'coursePrerequisites' itemscope itemtype = 'http://schema.org/AlignmentObject'>
+		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
+		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['s_md_edu_framework']->toMicrodataString(); ?>'/>
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_course_prerequisites']->toMicrodataString(); ?>' />
+	</span>
 
 <?php
-		} elseif ( isset( $meta['course_mode'] ) && !isset( $meta['instructor'] )) {
+		} elseif ( isset( $meta['s_md_course_prerequisites'] ) && !isset( $meta['s_md_edu_framework'] )) {
 ?>
-<span itemprop="hasCourseInstance" itemscope itemtype="http://schema.org/CourseInstance">
-	<meta itemprop="courseMode" content='<?php echo $meta['course_mode']->toMicrodataString(); ?>'/>
-</span>
+	<span itemprop = 'coursePrerequisites' itemscope itemtype = 'http://schema.org/AlignmentObject'>
+		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_course_prerequisites']->toMicrodataString(); ?>' />
+	</span>
 
 <?php
-		} elseif ( isset( $meta['instructor'] ) && !isset( $meta['course_mode'] )) {
-?>
-<span itemprop="hasCourseInstance" itemscope itemtype="http://schema.org/CourseInstance">
-	<meta itemprop="instructor" content='<?php echo $meta['instructor']->toMicrodataString(); ?>' />
-</span>
-
-<?php
-		}*/
+		}
 		
 
 	}
 
+	/**
+	 * A function to retrieve the data we need from the custom fields of PressBooks
+	 * for ScholarlyArticle plus the wordCount
+	 *
+	 * @since 0.5
+	 */
+	public function print_ScolarlyArticle_meta_tags(){
+
+		//array of the items that we need from the General Book Information metabox
+		$book_info_data = array(
+			'image' 				=>	'pb_cover_image',
+			'author' 				=>	'pb_author',
+			'audience' 				=>	'pb_audience',
+			'editor'				=>	'pb_editor',
+			'inLanguage' 			=>	'pb_language',
+			'translator'			=>	'pb_translator',
+		  //'contributor' 			=>	'pb_contributing_authors',		//To review for multiple contributors
+			'copyrightHolder'		=>	'pb_copyright_holder',
+			'copyrightYear'			=> 	'pb_copyright_year',
+			'translator'			=>	'pb_translator',
+			'alternativeHeadline'	=>	'pb_subtitle',
+			'publisher'				=>	'pb_publisher',
+			'locationCreated'		=>	'pb_publisher_city',
+			'citation'				=> 	's_md_bibliography_url'
+		);
+
+		//For the fields of General Book Information Metabox
+		$metadata = \Pressbooks\Book::getBookInformation();
+
+		foreach ($book_info_data as $itemprop => $content){
+			if ( isset( $metadata[$content] ) ) {
+?>
+	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $metadata[$content] ?>' />
+<?php
+			}
+		}
+
+		//To retrieve the word count number
+		global $post;
+    
+    	$char_list = '';
+   		$wordCount = str_word_count(strip_tags($post->post_content), 0, $char_list);
+?>
+	<meta itemprop = 'wordCount' content='<?php echo $wordCount?>' />
+<?php
 
 
+	}
+
+
+	/**
+	 * A function to retrieve the data we need to add to the
+	 * ScholarlyArticle from the fields of Educational Information metabox
+	 *
+	 * @since 0.5
+	 */
+	public function print_ScolarlyArticle_meta_tags_from_Edu_Info(){
+		
+	//array of the items that we need from the Educational Information metabox
+		$book_info_data = array(
+			'citation'			=> 	's_md_bibliography_url',
+			'license'			=>	's_md_license_url',
+			'typicalAgeRange'	=>	's_md_age_range'
+		);
+
+		$metadata = $this->get_current_metadata_flat();
+
+		foreach ($book_info_data as $itemprop => $content){
+			if ( isset( $metadata[$content] ) ) {
+?>
+	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $metadata[$content] ?>' />
+<?php
+			}
+		}
+	}
 
 }
 

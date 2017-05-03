@@ -73,7 +73,7 @@ class Pressbooks_Metadata_Metadata_Page_Information {
 	 */
 	private function add_page_information() {
 
-		$this->page_metadata['discussion_url'] = array(
+		$this->page_metadata['s_md_questions_and_answers'] = array(
 			'group' => 'chapter-metadata',
 			'field_type' => 'text',
 			'label' => 'Questions and Answers',
@@ -81,7 +81,7 @@ class Pressbooks_Metadata_Metadata_Page_Information {
 			'placeholder' => 'http://site.com/'
 		);
 
-		$this->page_metadata['time_required'] = array(
+		$this->page_metadata['s_md_class_learning_time'] = array(
 			'group' => 'chapter-metadata',
 			'field_type' => 'number',
 			'min' => '0',
@@ -111,15 +111,15 @@ class Pressbooks_Metadata_Metadata_Page_Information {
 	public function print_page_metadata_for_public() {
 
 		$raw_meta = Pressbooks_Metadata_Metadata_Fetcher::fetch_chapter_metadata();
-		if ( isset( $raw_meta[$this->slug_prefix . 'discussion_url'] ) ) {
+		if ( isset( $raw_meta[$this->slug_prefix . 's_md_questions_and_answers'] ) ) {
 			?><div><a href="<?php
-			echo $raw_meta[$this->slug_prefix . 'discussion_url'];
+			echo $raw_meta[$this->slug_prefix . 's_md_questions_and_answers'];
 			?>">Questions and Answers</a></div><?php
 		}
 		?><table><?php
-		if ( isset( $raw_meta[$this->slug_prefix . 'time_required'] ) ) {
+		if ( isset( $raw_meta[$this->slug_prefix . 's_md_class_learning_time'] ) ) {
 			?><tr><td>Learning Time</td><td><?php
-			echo new Pressbooks_Metadata_Duration( $raw_meta[$this->slug_prefix . 'time_required'] );
+			echo new Pressbooks_Metadata_Duration( $raw_meta[$this->slug_prefix . 's_md_class_learning_time'] );
 			?></td></tr><?php
 		}
 		?><tr><td>Created on</td><td><?php

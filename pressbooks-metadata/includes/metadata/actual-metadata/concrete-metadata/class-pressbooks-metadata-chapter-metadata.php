@@ -11,7 +11,8 @@ require_once plugin_dir_path( __FILE__ )
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
- * @author     julienCXX <software@chmodplusx.eu>, Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     julienCXX <software@chmodplusx.eu>
+ * @author 	   Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Metadata {
 
@@ -42,12 +43,12 @@ class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Me
 		$chap_meta->add_field( new Pressbooks_Metadata_Url_Field(
 			'Questions and answers',
 			'The URL of a forum/discussion about this page.',
-			'discussion_url', '', '', '', false,
-			'http://site.com/','URL' ) );
+			's_md_questions_and_answers', '', '', '', false,
+			'http://site.com/','discussionUrl' ) );
 
 		$chap_meta->add_field( new Pressbooks_Metadata_Number_Field(
 			'Class Learning Time (minutes)',
-			'', 'time_required', '', '', 0, false, 0, '', '', 'timeRequired') );
+			'', 's_md_class_learning_time', '', '', 0, false, 0, '', '', 'timeRequired') );
 
 		// Built-in fields (from WordPress)
 		$chap_meta->add_field( new Pressbooks_Metadata_Creation_Date_Field(

@@ -41,13 +41,13 @@ class Pressbooks_Metadata_Book_Metadata extends Pressbooks_Metadata_Plugin_Metad
 
 
 		$g_b_info->add_field( new Pressbooks_Metadata_Text_Field( 'Illustrator',
-			'The illustrator of the book.', 'illustrator', '', '', '', false, '',
+			'The illustrator of the book.', 's_md_illustrator', '', '', '', false, '',
 			'illustrator' ) );
 
 		$g_b_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Book Edition',
 			'The edition of the book.',
-			'edition',
+			's_md_edition',
 			'', '', '', false, '',
 			'bookEdition' ) );
 
