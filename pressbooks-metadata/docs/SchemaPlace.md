@@ -24,19 +24,19 @@ GBI-15 | Book Edition | The edition of the book.| The edition of the book.
 ## Educational Information
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-EI-01 | Subject Name | * The Subject Name is required. |  
-EI-02 | Small Description | A short description about this subject. |  
+EI-01 | Subject Name | * The Subject Name is required. | The name of the subject.
+EI-02 | Small Description | A short description about this subject. | A short description about this subject. 
 EI-03 | Course Code | The identifier for the Course. |  The identifier for the Course used by the course provider 
 EI-04 | ISCED field of education | Broad field of education according to ISCED-F 2013. |  
-EI-05 | Provider | The Organization, University or Person who provides this subject. |  
+EI-05 | Provider | The Organization, University or Person who provides this subject. |  The Organization, University or Person who provides this subject.
 EI-06 | ISCED level of education | Level of education according to ISCED-P 2011 | Level of education according to ISCED-P 2011 | The target age of this book |  
 EI-07 | Age Range | The target age of this book | The target age of this book.
 EI-08 | Educational Level | The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course. |  
 EI-09 | Course Prerequisites | Requirements for taking the Course. | Requirements for taking the Course.
 EI-10 | Educational Framework | The Framework that the educational level belongs to. |  
-EI-11 | Learning Resource Type | The kind of resource this book represents |  
+EI-11 | Learning Resource Type | The kind of resource this book represents | The kind of resource this book represents.
 EI-12 | Interactivity Type | The interactivity type of this book | The predominant mode of learning supported by the learning resource. 
-EI-13 | Class Learning Time (hours) |  |  
+EI-13 | Class Learning Time | The time required for this book (Hours). | The time required for this book.
 EI-14 | License URL | |  The license URL.
 EI-15 | Bibliography URL | The URL of a website/book this book is inspirated of | The URL of a website/book this book is inspirated of.
 
