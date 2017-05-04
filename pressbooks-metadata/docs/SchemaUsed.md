@@ -73,12 +73,13 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata | [educationalAlignment](https://schema.org/educationalAlignment "https://schema.org/educationalAlignment") | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li><li>[alternateName](http://schema.org/alternateName)</li></ul> | The educational level according to ISCED or/and to another framework of our choice. Also the Subject name and the subject type according to ISCED. | EI-10, EI-04, EI-06
+| PB - Metadata | [educationalAlignment](https://schema.org/educationalAlignment "https://schema.org/educationalAlignment") | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li><li>[alternateName](http://schema.org/alternateName)</li></ul> | The educational level according to ISCED or/and to another framework of our choice. Also the Subject name and the subject type according to ISCED. | EI-10, EI-04, EI-06, EI-08, 
 | PB - Metadata | [interactivityType](https://schema.org/interactivityType "https://schema.org/interactivityType") | [Text](https://schema.org/Text "https://schema.org/Text") | The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. | EI-12
 | PB - Metadata | [isBasedOnUrl](https://schema.org/isBasedOnUrl "https://schema.org/isBasedOnUrl") | [URL](https://schema.org/URL "https://schema.org/URL") | The URL of a website/book this book is inspirated of. | EI-15
-| PB - Metadata | [learningResourceType](https://schema.org/learningResourceType "https://schema.org/learningResourceType") | [Text ](https://schema.org/Text "https://schema.org/Text") | The kind of resource this book represents. |
+| PB - Metadata | [learningResourceType](https://schema.org/learningResourceType "https://schema.org/learningResourceType") | [Text ](https://schema.org/Text "https://schema.org/Text") | The kind of resource this book represents. | EI-11
 | PB - Metadata |  [license](https://schema.org/license "https://schema.org/license") | [URL](https://schema.org/URL "https://schema.org/URL")  | A license document that applies to this content, typically indicated by URL. | EI-14
-| PB - Metadata | [provider](https://schema.org/provider "https://schema.org/provider") |  [Thing](https://schema.org/Thing "https://schema.org/Thing") | The Organization, University or Person who provides this subject. |
+| PB - Metadata | [provider](https://schema.org/provider "https://schema.org/provider") |  [Thing](https://schema.org/Thing "https://schema.org/Thing") | The Organization, University or Person who provides this subject. | EI-05
+| PB - Metadata | [timeRequired](https://schema.org/timeRequired "https://schema.org/timeRequired") | [Text](https://schema.org/Text "https://schema.org/Text") | The time required for this book. | EI-13
 | PB - Metadata | [typicalAgeRange](https://schema.org/typicalAgeRange "https://schema.org/typicalAgeRange") | [Text](https://schema.org/Text "https://schema.org/Text") |The target age of this book. | EI-07
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
@@ -86,7 +87,7 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata | [description](https://schema.org/description "https://schema.org/description") | [Text ](https://schema.org/Text "https://schema.org/Text") | A short description about this subject. |
+| PB - Metadata | [description](https://schema.org/description "https://schema.org/description") | [Text ](https://schema.org/Text "https://schema.org/Text") | A short description about this subject. | EI-02 
 | PB - Metadata | [name](https://schema.org/name "https://schema.org/name") | [Text ](https://schema.org/Text "https://schema.org/Text")|The name of the subject. | EI-01
 
 -----
