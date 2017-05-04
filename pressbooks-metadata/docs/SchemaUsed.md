@@ -25,7 +25,7 @@ All the properties from the type.
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [bookEdition](http://schema.org/bookEdition) | [Text](https://schema.org/Text)|The edition of the book.| GBI-15
-|PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. |
+|PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. | PB Fixed EBook
 |PB - Metadata | [illustrator](http://schema.org/illustrator) | [Person](http://schema.org/Person)| The illustrator of the book. | GBI-14
 | Not Used | [isbn](http://schema.org/isbn)|[Text](https://schema.org/Text) | The ISBN of the book.| ---
 | Not Used | [numberOfPages](http://schema.org/numberOfPages) | [ Integer ](http://schema.org/Integer) | The number of pages in the book. | ---
@@ -35,16 +35,16 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.|
-| PB - Core | [alternativeHeadline](http://schema.org/alternativeHeadline "http://schema.org/alternativeHeadline") |  [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the book. |
-| PB - Core | [author](http://schema.org/author "http://schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author of the book. |
+| PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.| ACI-12
+| PB - Core | [alternativeHeadline](http://schema.org/alternativeHeadline "http://schema.org/alternativeHeadline") |  [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the book. | GBI-03
+| PB - Core | [author](http://schema.org/author "http://schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author of the book. | GBI-04
 | PB - Core | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. | CR-02 
 | PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01
 | PB - Core | [datePublished](http://schema.org/datePublished "http://schema.org/datePublished")| [Date](http://bib.schema.org/Date "http://bib.schema.org/Date") | Date of first publication. | GBI-09
 | PB - Core | [editor](http://schema.org/editor "http://schema.org/editor") | [Person](http://schema.org/Person "http://schema.org/Person") | Specifies the Person who edited the book. | ACI-03
 | PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the book.| GBI-13
 | PB - Core | [keywords](http://schema.org/keywords "http://schema.org/keywords") | [Text](https://schema.org/Text "https://schema.org/Text") | Keywords or tags used to describe this content. | ACI-05
-| PB - Core | [offers](http://schema.org/offers "http://schema.org/offers") | [Offer](http://schema.org/Offer "http://schema.org/Offer") | An offer to provide this item. |
+| PB - Core | [offers](http://schema.org/offers "http://schema.org/offers") | [Offer](http://schema.org/Offer "http://schema.org/Offer") | An offer to provide this item. | PB FIXED $0.00
 | PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. | GBI-07
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
@@ -101,7 +101,7 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.|
+| PB - Core | [about](http://schema.org/about "http://schema.org/about") | [Thing](http://schema.org/Thing "http://schema.org/Thing")| The subject matter of the content.| ACI-12
 | PB - Core | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. | CR-02 
 | PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01
 | PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the Post.| GBI-13 
@@ -122,9 +122,9 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata |[alternativeHeadline](http://bib.schema.org/alternativeHeadline "http://bib.schema.org/alternativeHeadline") | [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the chapter. |
-| PB - Metadata |[audience](http://bib.schema.org/audience "http://bib.schema.org/audience") | [Audience](https://schema.org/Audience "https://schema.org/Audience") | The audience from Book Info. |
-| PB - Metadata |[author](http://bib.schema.org/author "http://bib.schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author's id name. |
+| PB - Metadata |[alternativeHeadline](http://bib.schema.org/alternativeHeadline "http://bib.schema.org/alternativeHeadline") | [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the chapter. | PB Post Chapter Subtitle
+| PB - Metadata |[audience](http://bib.schema.org/audience "http://bib.schema.org/audience") | [Audience](https://schema.org/Audience "https://schema.org/Audience") | The audience from Book Info. | EI-07
+| PB - Metadata |[author](http://bib.schema.org/author "http://bib.schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author's id name. | PB Post Chapter Author
 | PB - Metadata |[citation](http://bib.schema.org/citation "http://bib.schema.org/citation") | [URL](http://bib.schema.org/URL "http://bib.schema.org/URL") | The Bibliography URL. |
 | PB - Metadata | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. | CR-02 *****
 | PB - Metadata | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01 *****
