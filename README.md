@@ -105,7 +105,8 @@ Working with administration page
 		*  New property: typicalAgeRange
 * **ENHANCEMENTS**
 	* Code changes to make it the pressbooks-way (#38)
-	* Code changes to use one common prefix $slug to our fields (#39) **Breaking Change:** The data will disapear.  The previous data still remains saved in the database with the old $slug.
+	* Code changes to use one common prefix $slug to our fields (#39) 
+		* **Breaking Change:** The data will disapear.  The previous data still remains saved in the database with the old $slug.
 * **BUGFIXES:** 
 	* Change the Schema type of Chapter to ScholarlyArticle
 	* Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
@@ -118,13 +119,13 @@ Working with administration page
 		* New property: **Book Edition:** The edition of the book.
 	* Course Type (#30)
 		* New property: **Course Code:** identifier for the Course (e.g. CS101 or 6.001).
-		* New property: **Course Prerequisites:** requirements for taking the Course.
+		* New property: **coursePrerequisites**: Course Prerequisites.
 	
 ### 0.3
 * **ADDITIONS**
 	* Course Type
-		* New property: **educationalAlignment** (#12) ISCED field of education: Broad field of education according to ISCED-F 2013.
-		* New property: **educationalAlignment** (#14) ISCED level of education: Level of education according to ISCED-P 2011.
+		* **educationalAlignment** (#12) ISCED field of education: Broad field of education according to ISCED-F 2013.
+		* **educationalAlignment** (#14) ISCED level of education: Level of education according to ISCED-P 2011.
 	* Make the plugin activation available only in the Network level. (#28)
 * **ENHANCEMENTS**
 	* Change labels and description of existing metafields
@@ -138,19 +139,19 @@ Working with administration page
 ### 0.2
 * **ADDITIONS**
 	* Accessibility: New Educational Information metabox with the fields:
-		* **Subject Name:** Subject name
-		* **Small Description:** Small Description of the Subject
-		* **ISCED field of education:** Broad field of education according to ISCED-F 2013
-		* **Provider:** Provider of the Subject
-		* **ISCED level of education:** Level of education according to ISCED-P 2011
-		* **Age range:** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
-		* **Educational Level:** Level of the course
-		* **Educational Framework:** Framework the Educational Level belongs to
-		* **Learning Reasource Type:** Course, Examination, Exercise, Descriptor
-		* **Interactivity Type:** Active, Expositive, Mixed
-		* **Class Learning Time:** how long the students will need for the book
-		* **License URL:** custom link to a licence
-		* **Bibliography URL:** custom link to a bibliography
+		* New property: **name**: Subject name.
+		* New property: **description**: Small Description of the Subject.
+		* New property: **educationalAlignment**: ISCED field of education.
+		* New property: **Provider:** Provider.
+		* New property: **educationalAlignment**: ISCED level of education.
+		* New property: **typicalAgeRange**: Age range (3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults).
+		* New property: **educationalAlignment**: Educational Level.
+		* New property: **coursePrerequisites**: Educational Framework.
+		* New property: **learningResourceType:** Learning Reasource Type (Course, Examination, Exercise, Descriptor).
+		* New property: **interactivityType**: Interactivity Type (Active, Expositive, Mixed).
+		* New property: **timeRequired:** Class Learning Time.
+		* New property: **license**:  License URL.
+		* New property: **isBasedOnUrl**: Bibliography URL.
 	* Functions: New function header_function() that produces the microdata code
 	* New Actions: wp_head() action for the function header_function() to be placed in the header
 	* Functions: New function print_educationalAlignment_microdata_meta_tags() that produces the code for the educational alignment properties
@@ -160,19 +161,9 @@ Working with administration page
 	* The fields we added in the General Book Information metabox and move them to a new metabox
 
 ### 0.1
-* **ENHANCEMENTS**
-	* Accessibility: General Book Information: new custom metafields
-		* **Target language:** Level of education according to ISCED-P 2011
-		* **Level:** Level of the course
-		* **Learning Reasource Type:** Course, Examination, Exercise, Descriptor
-		* **Interactivity Type:** Active, Expositive, Mixed
-		* **Age range:** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults
-		* **Class Learning Time:** how long the students will need for the book
-		* **License URL:** custom link to a licence
-		* **Bibliography URL:** custom link to a bibliography
-	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter
-	  	* **Questions And Answers:** this field allows teachers to insert a custom link. 
-  		* **Class Learning Time (minutes):** how long the students will need for the topic.
+* **DRAFT VERSION - OLD CODE**
+	* Accessibility: General Book Information: new custom metafields: **Target language:** Level of education according to ISCED-P 2011; **Level:** Level of the course; **Learning Reasource Type:** Course, Examination, Exercise, Descriptor; **Interactivity Type:** Active, Expositive, Mixed; **Age range:** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults; **Class Learning Time:** how long the students will need for the book; **License URL:** custom link to a licence; **Bibliography URL:** custom link to a bibliography
+	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
 
