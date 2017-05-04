@@ -64,9 +64,19 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 ### 0.6
 Reviw the Site/root metadata and Documentation
 * Additions
+	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
+		* New property: **description**
+		* New property: **name**
+		* New property: **url**
 	* Meet minimum requeriments (PB and PB Version)
 * Enhancements
 	* To finisht the documentation
+* **REMOVED:**
+	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#35) 
+		* Delete property: **copyrightYear**
+		* Delete property: **inLanguage**
+		* Delete property: **copyrightHolder**
+		* Delete property: **publisher**
 
 * List of Files revisded
  	* class-pressbooks-metadata-admin.php
