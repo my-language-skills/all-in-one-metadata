@@ -77,6 +77,8 @@ Reviw the Site/root metadata and Documentation
 		* Delete property: **inLanguage**
 		* Delete property: **copyrightHolder**
 		* Delete property: **publisher**
+* **BUGFIXES:** 
+	* Change the name of the plugin (from draf name to default name)
 
 * List of Files revisded
  	* class-pressbooks-metadata-admin.php
