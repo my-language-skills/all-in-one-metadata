@@ -8,7 +8,7 @@ Tags: pressbooks, metadata, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
-Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
+Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%203.9.8.2-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
@@ -46,8 +46,10 @@ by running [Google structured data testing tool](https://search.google.com/struc
 
 Plugin/Template Name works with:
 
- * PHP 5.6.X
- * PressBooks 3.9.8.X Lower versions are not supported.
+ * ![PHP](https://img.shields.io/badge/PHP-5.6.X-blue.svg)
+ * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%203.9.8.2-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
+ 
+ Lower versions are not supported.
 
 ## Disclaimers
 
