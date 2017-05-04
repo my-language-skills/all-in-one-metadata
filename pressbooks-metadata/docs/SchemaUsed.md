@@ -13,7 +13,32 @@ We use different types in every of these 3 levels
 # Network level
 ## Website
 
-Not available yet
+Properties from: [WebSite](https://schema.org/WebSite "https://schema.org/WebSite")
+The related propertires from the type that matters to the project.
+
+| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
+| NA | NA | NA | NA | NA
+
+## Creative Work
+
+Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
+The related propertires from the type that matters to the project.
+
+| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
+| NA | NA | NA | NA | NA
+
+## Thing
+
+Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
+The related propertires from the type that matters to the project.
+
+| **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
+| ----------- | ------------ | -------- | --------------- | --------------------------------------
+| PB - Metadata | [description](http://schema.org/description "http://schema.org/description") | [Text](https://schema.org/Text "https://schema.org/Text")|The description of the Site.| WP
+| PB - Metadata| [name](http://schema.org/name "http://schema.org/name") | ---| No comment | 
+| PB - Metadata | [url](http://schema.org/url "http://schema.org/url") | [URL](https://schema.org/URL "https://schema.org/URL")| The URL of the site. | 
 
 ------------------------
 # Site level
@@ -24,11 +49,11 @@ All the properties from the type.
 
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata | [bookEdition](http://schema.org/bookEdition) | [Text](https://schema.org/Text)|The edition of the book.| GBI-15
-|PB - Core| [bookFormat](http://schema.org/bookFormat) | [BookFormatType](http://schema.org/BookFormatType)| The format of the book. | PB Fixed EBook
-|PB - Metadata | [illustrator](http://schema.org/illustrator) | [Person](http://schema.org/Person)| The illustrator of the book. | GBI-14
-| Not Used | [isbn](http://schema.org/isbn)|[Text](https://schema.org/Text) | The ISBN of the book.| ---
-| Not Used | [numberOfPages](http://schema.org/numberOfPages) | [ Integer ](http://schema.org/Integer) | The number of pages in the book. | ---
+| PB - Metadata | [bookEdition](http://schema.org/bookEdition "http://schema.org/bookEdition") | [Text](https://schema.org/Text "https://schema.org/Text")|The edition of the book.| GBI-15
+|PB - Core| [bookFormat](http://schema.org/bookFormat "http://schema.org/bookFormat") | [BookFormatType](http://schema.org/BookFormatType "http://schema.org/BookFormatType")| The format of the book. | PB Fixed EBook
+|PB - Metadata | [illustrator](http://schema.org/illustrator "http://schema.org/illustrator") | [Person](http://schema.org/Person "http://schema.org/Person")| The illustrator of the book. | GBI-14
+| Not Used | [isbn](http://schema.org/isbn "http://schema.org/isbn")|[Text](https://schema.org/Text "https://schema.org/Text") | The ISBN of the book.| ---
+| Not Used | [numberOfPages](http://schema.org/numberOfPages "http://schema.org/numberOfPages") | [ Integer ](http://schema.org/Integer "http://schema.org/Integer") | The number of pages in the book. | ---
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
@@ -64,16 +89,16 @@ All the properties from the type.
 
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata | [courseCode](https://schema.org/courseCode "(https://schema.org/courseCode") | [Text ](https://schema.org/Text ) | The identifier for the Course used by the course provider (e.g. CS101 or 6.001). | EI-03
-| PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites) |  [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li></ul> | Requirements for taking the Course. | EI-09
-| Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites) | [CourseInstance ](http://schema.org/CourseInstance) | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. | ---
+| PB - Metadata | [courseCode](https://schema.org/courseCode "(https://schema.org/courseCode") | [Text ](https://schema.org/Text "https://schema.org/Text" ) | The identifier for the Course used by the course provider (e.g. CS101 or 6.001). | EI-03
+| PB - Metadata | [coursePrerequisites](https://schema.org/coursePrerequisites "https://schema.org/coursePrerequisites") |  [AlignmentObject](https://schema.org/AlignmentObject "https://schema.org/AlignmentObject")<ul><li>[alignmentType](http://schema.org/alignmentType "http://schema.org/alignmentType")</li><li>[educationalFramework](http://schema.org/educationalFramework "http://schema.org/educationalFramework")</li><li>[targetName](http://schema.org/targetName "http://schema.org/targetName")</li></ul> | Requirements for taking the Course. | EI-09
+| Not Used | [hasCourseInstance](https://schema.org/coursePrerequisites "https://schema.org/coursePrerequisites") | [CourseInstance ](http://schema.org/CourseInstance "http://schema.org/CourseInstance") | An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. | ---
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata | [educationalAlignment](https://schema.org/educationalAlignment "https://schema.org/educationalAlignment") | [AlignmentObject](https://schema.org/AlignmentObject)<ul><li>[alignmentType](http://schema.org/alignmentType)</li><li>[educationalFramework](http://schema.org/educationalFramework)</li><li>[targetName](http://schema.org/targetName)</li><li>[alternateName](http://schema.org/alternateName)</li></ul> | The educational level according to ISCED or/and to another framework of our choice. Also the Subject name and the subject type according to ISCED. | EI-10, EI-04, EI-06, EI-08, 
+| PB - Metadata | [educationalAlignment](https://schema.org/educationalAlignment "https://schema.org/educationalAlignment") | [AlignmentObject](https://schema.org/AlignmentObject "https://schema.org/AlignmentObject")<ul><li>[alignmentType](http://schema.org/alignmentType "http://schema.org/alignmentType")</li><li>[educationalFramework](http://schema.org/educationalFramework "http://schema.org/educationalFramework")</li><li>[targetName](http://schema.org/targetName "http://schema.org/targetName")</li><li>[alternateName](http://schema.org/alternateName "http://schema.org/alternateName")</li></ul> | The educational level according to ISCED or/and to another framework of our choice. Also the Subject name and the subject type according to ISCED. | EI-10, EI-04, EI-06, EI-08, 
 | PB - Metadata | [interactivityType](https://schema.org/interactivityType "https://schema.org/interactivityType") | [Text](https://schema.org/Text "https://schema.org/Text") | The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. | EI-12
 | PB - Metadata | [isBasedOnUrl](https://schema.org/isBasedOnUrl "https://schema.org/isBasedOnUrl") | [URL](https://schema.org/URL "https://schema.org/URL") | The URL of a website/book this book is inspirated of. | EI-15
 | PB - Metadata | [learningResourceType](https://schema.org/learningResourceType "https://schema.org/learningResourceType") | [Text ](https://schema.org/Text "https://schema.org/Text") | The kind of resource this book represents. | EI-11
