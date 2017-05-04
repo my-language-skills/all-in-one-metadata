@@ -60,15 +60,17 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 ## Roadmap
 
 ### 0.6
-Reviw the Site/root metadata
+Reviw the Site/root metadata and Documentation
 * Additions
 	* Meet minimum requeriments (PB and PB Version)
+	* To create documentation
 * List of Files revisded
  	* class-pressbooks-metadata-admin.php
-	 * class-pressbooks-metadata.php
+	* class-pressbooks-metadata.php
+	 
 
 ### 0.7
-To create documentation and accesibility in frond end
+To create google schoolar. To extend metadata for an integration of the content
 
 ### 0.8
 To create a settings page (site and network)
@@ -83,26 +85,26 @@ Working with administration page
 ### 0.5
 * **ADDITIONS**
 	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9) 
-		* New property: headline
-		*  New property: image
-		*  New property: wordCount
-		*  New property: author
-		*  New property: alternativeHeadline
-		*  New property: audience
-		*  New property: citation
-		*  New property: copyrightHolder
-		*  New property: copyrightYear
-		*  New property: datePublished
-		*  New property: dateModified
-		*  New property: discussionUrl
-		*  New property: editor
-		*  New property: inLanguage
-		*  New property: license
-		*  New property: locationCreated
-		*  New property: publisher
-		*  New property: timeRequired
-		*  New property: translator
-		*  New property: typicalAgeRange
+		* New property: **headline**
+		* New property: **image**
+		* New property: **wordCount**
+		* New property: **author**
+		* New property: **alternativeHeadline**
+		* New property: **audience**
+		* New property: **citation**
+		* New property: **copyrightHolder**
+		* New property: **copyrightYear**
+		* New property: **datePublished**
+		* New property: **dateModified**
+		* New property: **discussionUrl**
+		* New property: **editor**
+		* New property: **inLanguage**
+		* New property: **license**
+		* New property: **locationCreated**
+		* New property: **publisher**
+		* New property: **timeRequired**
+		* New property: **translator**
+		* New property: **typicalAgeRange**
 * **ENHANCEMENTS**
 	* Code changes to make it the pressbooks-way (#38)
 	* Code changes to use one common prefix $slug to our fields (#39) 
