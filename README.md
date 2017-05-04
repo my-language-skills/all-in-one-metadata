@@ -63,7 +63,9 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 Reviw the Site/root metadata and Documentation
 * Additions
 	* Meet minimum requeriments (PB and PB Version)
-	* To create documentation
+* Enhancements
+	* To finisht the documentation
+
 * List of Files revisded
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata.php
@@ -109,6 +111,7 @@ Working with administration page
 	* Code changes to make it the pressbooks-way (#38)
 	* Code changes to use one common prefix $slug to our fields (#39) 
 		* **Breaking Change:** The data will disapear.  The previous data still remains saved in the database with the old $slug.
+	* Documentation
 * **BUGFIXES:** 
 	* Change the Schema type of Chapter to ScholarlyArticle
 	* Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
