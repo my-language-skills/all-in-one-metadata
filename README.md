@@ -81,28 +81,29 @@ Working with administration page
 ## Changelog
 
 ### 0.5
+* **ADDITIONS**
+	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9) 
+		* New property: headline
+		*  New property: image
+		*  New property: wordCount
+		*  New property: author
+		*  New property: alternativeHeadline
+		*  New property: audience
+		*  New property: citation
+		*  New property: copyrightHolder
+		*  New property: copyrightYear
+		*  New property: datePublished
+		*  New property: dateModified
+		*  New property: discussionUrl
+		*  New property: editor
+		*  New property: inLanguage
+		*  New property: license
+		*  New property: locationCreated
+		*  New property: publisher
+		*  New property: timeRequired
+		*  New property: translator
+		*  New property: typicalAgeRange
 * **ENHANCEMENTS**
-	* **Extend ScholarlyArticle type** with the following **properties**. Full list of the [ScolarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) (#9) 
-		* headline
-		* image
-		* wordCount
-		* author
-		* alternativeHeadline
-		* audience
-		* citation
-		* copyrightHolder
-		* copyrightYear
-		* datePublished
-		* dateModified
-		* discussionUrl
-		* editor
-		* inLanguage
-		* license
-		* locationCreated
-		* publisher
-		* timeRequired
-		* translator
-		* typicalAgeRange
 	* Code changes to make it the pressbooks-way (#38)
 	* Code changes to use one common prefix $slug to our fields (#39) **Breaking Change:** The data will disapear.  The previous data still remains saved in the database with the old $slug.
 * **BUGFIXES:** 
@@ -110,33 +111,32 @@ Working with administration page
 	* Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 
 ### 0.4
-
-* **ENHANCEMENTS**
+* **ADDITIONS**
 	* New detailed SchemaUsed.md file, with all the information about the Structured Data that is being produced.
-	* Add Illustrator and Book edition fields in the General Book Information metabox (#7)
-		* **Illustrator:** The illustrator of the book.
-		* **Book Edition:** The edition of the book.
-	* Extend and finish the Course Property (#30)
-		* **Course Code:** The identifier for the Course (e.g. CS101 or 6.001).
-		* **Course Prerequisites:** Requirements for taking the Course.
+	* Book Type (#7)
+		* New property: **Illustrator:** The illustrator of the book.
+		* New property: **Book Edition:** The edition of the book.
+	* Course Type (#30)
+		* New property: **Course Code:** identifier for the Course (e.g. CS101 or 6.001).
+		* New property: **Course Prerequisites:** requirements for taking the Course.
 	
 ### 0.3
+* **ADDITIONS**
+	* Course Type
+		* New property: **educationalAlignment** (#12) ISCED field of education: Broad field of education according to ISCED-F 2013.
+		* New property: **educationalAlignment** (#14) ISCED level of education: Level of education according to ISCED-P 2011.
+	* Make the plugin activation available only in the Network level. (#28)
 * **ENHANCEMENTS**
 	* Change labels and description of existing metafields
-	* Add ISCED field of Education field (#12)
-		* **ISCED field of education:** Broad field of education according to ISCED-F 2013
-	* Add ISCED level of Education field (#14)
-		* **ISCED level of education:** Level of education according to ISCED-P 2011
-	* Make the plugin activation available only in the Network level. (#28)
 	* Organize the plugin for an easy extension of types. (#10)
 	* Review the code of the plugin, comment and organization. (#11)
-* **BUGFIXES:** 
 	* Correct the order of the fields.
+* **BUGFIXES:** 
 	* Bug Fixes: Main page became blank.
 	* Bug Fixes: Pressbooks schema information is being produced twice .(#27)
 
 ### 0.2
-* **ENHANCEMENTS**
+* **ADDITIONS**
 	* Accessibility: New Educational Information metabox with the fields:
 		* **Subject Name:** Subject name
 		* **Small Description:** Small Description of the Subject
