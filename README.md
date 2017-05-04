@@ -38,6 +38,9 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 1. If I don't need to use all the fields of the plugin, can I leave them empty?
 
 Yes, if one field is empty the SEO information about it will not be generated.
+1. How can I check if the metadata is update?
+by running [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/) in each one of the places (Main page of the Root theme, Main page of the Single Site and post page of a Site)
+
 
 ## Requirements
 
