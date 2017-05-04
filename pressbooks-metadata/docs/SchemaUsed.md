@@ -87,7 +87,7 @@ The related propertires from the type that matters to the project.
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/pressbooks-metadata/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
 | PB - Metadata | [description](https://schema.org/description "https://schema.org/description") | [Text ](https://schema.org/Text "https://schema.org/Text") | A short description about this subject. |
-| PB - Metadata | [name](https://schema.org/name "https://schema.org/name") | [Text ](https://schema.org/Text "https://schema.org/Text")|The name of the subject. |
+| PB - Metadata | [name](https://schema.org/name "https://schema.org/name") | [Text ](https://schema.org/Text "https://schema.org/Text")|The name of the subject. | EI-01
 
 -----
 
