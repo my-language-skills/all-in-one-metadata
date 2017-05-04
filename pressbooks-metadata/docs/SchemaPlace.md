@@ -7,8 +7,8 @@ Code | Field Name | PB Description | Description
 --- | --- | --- | --- 
 GBI-01 | Title | NO INFO | 
 GBI-02 | Short Title | In case of long titles that might be truncated in running heads in the PDF export. | 
-GBI-03 | Subtitle | | 
-GBI-04 | Author | | 
+GBI-03 | Subtitle | | The subtitle of the book.
+GBI-04 | Author | | The author of the book. 
 GBI-05 | Author, file as | This ensures that your ebook will sort properly in ebook stores, by the author's last name. | 
 GBI-06 | Contributing Autors | This may be used when more than one person shares the responsibility for the intellectual content of a book. | 
 GBI-07 | Publisher | This text appears on the title page of your book. | The publisher of the book.
@@ -74,16 +74,19 @@ ACI-08 | List Price (PDF) | This is not used by Pressbooks. |
 ACI-09 | List Price (PDF) | This is not used by Pressbooks. |  
 ACI-10 | List Price (PDF) | This is not used by Pressbooks. |  
 ACI-11 | Audience | The target audience for your book. |  
-ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book stores properly classify your book. |  
+ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book stores properly classify your book. | The subject matter of the content.
 ACI-13 | BISAC Regional Theme |  |  
 ACI-14 | BISAC Regional Theme |  |  
 
 Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
 
 
-## Post Page
-
-
+## Custom Chapter Metadata
+Code | Field Name | PB Description | Description 
+--- | --- | --- | --- 
+CCM-01 | ABC | ABC | ABC
+CCM-02 | ABC | ABC | ABC
+CCM-03 | ABC | ABC | ABC
 
 
 
