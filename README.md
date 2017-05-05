@@ -79,6 +79,7 @@ Reviw the Site/root metadata and Documentation
 		* Delete property: **publisher**
 * **BUGFIXES:** 
 	* Change the name of the plugin (from draf name to default name)
+	* Author and Alternative headline from PB Chapter level instead of Site level
 
 * List of Files revisded
  	* class-pressbooks-metadata-admin.php
