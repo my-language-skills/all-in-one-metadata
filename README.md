@@ -81,6 +81,7 @@ Reviw the Site/root metadata and Documentation
 * **BUGFIXES:** 
 	* Change the name of the plugin (from draft name to default name)
 	* Author and Alternative headline from PB Chapter level instead of Site level
+	* ScholarlyArticle Bug #58
 
 * List of Files revisded
  	* class-pressbooks-metadata-admin.php
