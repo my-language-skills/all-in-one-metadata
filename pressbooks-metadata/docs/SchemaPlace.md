@@ -50,15 +50,15 @@ Code | Field Name | PB Description | Description
 --- | --- | --- | --- 
 CR-01 | Copyright Year | Year that the book is/was published.| Year that the book is/was published.
 CR-02 | Copyright Holder | Name of the copyright holder. | Name of the copyright holder.
-CR-03 | Copyright License | You can select various licenses including Creative Commons. |  
-CR-04 | Copyright Notice | Enter a custom copyright notice, with whatever infomation you like. This will override the auto-generated copyright notice, and be inserted after the title page. |  
+CR-03 | Copyright License | You can select various licenses including Creative Commons. | Various options of licenses including CC.
+CR-04 | Copyright Notice | Enter a custom copyright notice, with whatever infomation you like. This will override the auto-generated copyright notice, and be inserted after the title page. | Custom copyright notice
 
 ## About the Book
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-AB-01 | Book Tagline | A very short description of your book. It should fit in a Twitter post, and encapsulate your book in the briefest sentence. |  
-AB-02 | Short Description | A short paragraph about your book, for catalogs, reviewers etc. to quote. |  
-AB-03 | Long Description | The full description of your book. |  
+AB-01 | Book Tagline | A very short description of your book. It should fit in a Twitter post, and encapsulate your book in the briefest sentence. | A very short description of the book.
+AB-02 | Short Description | A short paragraph about your book, for catalogs, reviewers etc. to quote. | A short paragraph about the book.
+AB-03 | Long Description | The full description of your book. | The full description of the book.
 
 ## Aditional Catalog Information
 Code | Field Name | PB Description | Description 
@@ -75,8 +75,8 @@ ACI-09 | List Price (PDF) | This is not used by Pressbooks. |
 ACI-10 | List Price (PDF) | This is not used by Pressbooks. |  
 ACI-11 | Audience | The target audience for your book. |  
 ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book stores properly classify your book. | The subject matter of the content.
-ACI-13 | BISAC Regional Theme |  |  
-ACI-14 | BISAC Regional Theme |  |  
+ACI-13 | BISAC Regional Theme |  | Optional code.
+ACI-14 | BISAC Regional Theme |  | Optional code.
 
 Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
 
