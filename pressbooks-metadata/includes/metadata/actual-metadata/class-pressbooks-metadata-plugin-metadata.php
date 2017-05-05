@@ -364,19 +364,15 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 		//array of the items that we need from the General Book Information metabox
 		$book_info_data = array(
 			'image' 				=>	'pb_cover_image',
-			'author' 				=>	'pb_author',
+		//	'author' 				=>	'pb_section_author',
 			'audience' 				=>	'pb_audience',
 			'editor'				=>	'pb_editor',
-			'inLanguage' 			=>	'pb_language',
 			'translator'			=>	'pb_translator',
-		  //'contributor' 			=>	'pb_contributing_authors',		//To review for multiple contributors
-			'copyrightHolder'		=>	'pb_copyright_holder',
-			'copyrightYear'			=> 	'pb_copyright_year',
+		//	'contributor' 			=>	'pb_contributing_authors',		//To review for multiple contributors
 			'translator'			=>	'pb_translator',
-			'alternativeHeadline'	=>	'pb_subtitle',
-			'publisher'				=>	'pb_publisher',
+		//	'alternativeHeadline'	=>	'pb_subtitle',
 			'locationCreated'		=>	'pb_publisher_city',
-			'citation'				=> 	's_md_bibliography_url'
+			'license'				=>	'pb_section_license'
 		);
 
 		//For the fields of General Book Information Metabox
@@ -424,6 +420,35 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 			if ( isset( $metadata[$content] ) ) {
 ?>
 	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $metadata[$content] ?>' />
+<?php
+			}
+		}
+	}
+
+
+	/**
+	 * A function to retrieve the data we need to add to the
+	 * ScholarlyArticle from the fields of Chapter Metadata metabox
+	 *
+	 * @since 0.6
+	 */
+	public function print_Chapter_Metadata_meta_tags(){
+
+		global $post;
+
+		$id = $post->ID; 
+		$post_meta = get_post_meta( $id );
+
+	//array of the items that we need from the Chapter Metadata metabox
+		$chapter_info_data = array(
+			'author'					=> 	'pb_section_author',
+			'alternativeHeadline'		=>	'pb_subtitle'
+		);
+
+		foreach ($chapter_info_data as $itemprop => $content){
+			if ( isset( $post_meta[$content] ) ) {
+?>
+	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $post_meta[$content][0] ?>' />
 <?php
 			}
 		}

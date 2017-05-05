@@ -8,15 +8,15 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://on-lingua.com
+ * @link              http://books4languages.com
  * @since             0.1
  * @package           Pressbooks_Metadata
  *
  * @wordpress-plugin
- * Plugin Name:       Pressbooks Old Metadata
- * Plugin URI:        http://on-lingua.com/
- * Description:       Extended features for Pressbooks (Metadata and Theme)
- * Version:           0.1
+ * Plugin Name:       Pressbooks Metadata
+ * Plugin URI:        http://books4languages.com
+ * Description:       Extended metadata features for Pressbooks
+ * Version:           0.5
  * Author:            My Language Skills
  * Author URI:        http://on-lingua.com/
  * License:           GPL-2.0+

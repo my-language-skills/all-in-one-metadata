@@ -101,9 +101,54 @@ class Pressbooks_Metadata_Admin {
 
 	}
 
+	/**
+	 * A function to echo an error if the latest version of pressbooks is not installed, and
+	 * if there is no Pressbooks installation.
+	 * 
+	 * @since    0.6
+	 */
+	function s_md_init() {
+		// Must meet miniumum requirements
+		if ( ! @include_once( WP_PLUGIN_DIR . '/pressbooks/compatibility.php' ) ) {
+			add_action( 'admin_notices', function () {
+				echo '<div id="message" class="error fade"><p>' . __( 'PB metadata cannot find a Pressbooks install.', 'pressbooks-metadata' ) . '</p></div>';
+			} );
+			return;
+		} elseif( ! version_compare( PB_PLUGIN_VERSION, '3.9.8.2', '>=' ) ) {
+			add_action( 'admin_notices', function () {
+				echo '<div id="message" class="error fade"><p>' . __( 'PB metadata requires Pressbooks 3.9.8.2 or greater.', 'pressbooks-metadata' ) . '</p></div>';
+			} );
+			return;
+		}
+	}
 
 	/**
 	 * Used in the header of our site
+	 * 
+	 * We can create a new Structured Data Type by adding a new type here. Check the link for an example
+	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
+	 * @since    0.6
+	 */
+	public function header_function() {
+
+		global $post;
+
+		if ( is_home() ) {?>
+<div itemscope itemtype="http://schema.org/Website">
+	<meta itemprop = 'name' content = '<?php echo get_bloginfo( 'name' ); ?>'>
+	<meta itemprop = 'description' content = '<?php echo get_bloginfo( 'description' ); ?>'>
+	<meta itemprop = 'url' content = '<?php echo get_bloginfo( 'url' ); ?>'>
+	<meta itemprop = 'inLanguage' content = '<?php echo get_bloginfo( 'language' ); ?>'>
+	<!--<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' >
+	<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>-->
+</div>
+		<?php
+		}
+
+	}
+
+	/**
+	 * Used in the footer of our site
 	 * 
 	 * We can create a new Structured Data Type by adding a new type here. Check the link for an example
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
@@ -114,11 +159,7 @@ class Pressbooks_Metadata_Admin {
 		global $post;
 
 		if ( is_home() ) {?>
-		<!--
-			<div itemscope itemtype="http://schema.org/Website">
-			<meta itemprop='name' content='website' id='webname'>
-			<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' >
-			<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>-->
+
 		<?php
 		}
 		elseif ( is_front_page() ) { ?>
@@ -150,11 +191,12 @@ class Pressbooks_Metadata_Admin {
 	<meta itemprop = 'datePublished' content='<?php echo $post->post_date; ?>' />
 	<meta itemprop = 'dateModified' content='<?php echo $post->post_modified; ?>' />
 
-<!-- Here from the fields in the Chapter level and the ones in General Book Information metabox -->
+<!-- Here from the pressbooks fields in the Post level -->
 			<?php
 			$pm_CM = Pressbooks_Metadata_Chapter_Metadata::get_instance();
 			$pm_CM->print_microdata_meta_tags();
 			$pm_CM->print_ScolarlyArticle_meta_tags();
+			$pm_CM->print_Chapter_Metadata_meta_tags();
 
 			/*-- And here from the fields we need to use from the Educational Information metabox --*/
 			$pm_CM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
@@ -165,7 +207,6 @@ class Pressbooks_Metadata_Admin {
 		}
 		?>
 
-<!--		</div>	-->
 		<?php
 	}
 

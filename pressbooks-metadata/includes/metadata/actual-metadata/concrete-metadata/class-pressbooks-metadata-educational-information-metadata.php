@@ -153,11 +153,11 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 			'' ) );
 */
 		$edu_info->add_field( new Pressbooks_Metadata_Number_Field(
-			'Class Learning Time (hours)', '',
+			'Class Learning Time (hours)', 'The study time required for the book',
 			's_md_time_required', '', '', 0, false, 0, '', '', 'timeRequired' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field( 'License URL',
-			'', 's_md_license_url', '', '', '', false, 'http://site.com/',
+			'The url of the website with the license of this book', 's_md_license_url', '', '', '', false, 'http://site.com/',
 			'license' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field(

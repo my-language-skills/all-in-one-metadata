@@ -47,8 +47,8 @@ class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Me
 			'http://site.com/','discussionUrl' ) );
 
 		$chap_meta->add_field( new Pressbooks_Metadata_Number_Field(
-			'Class Learning Time (minutes)',
-			'', 's_md_class_learning_time', '', '', 0, false, 0, '', '', 'timeRequired') );
+			'Topic Learning Time (minutes)',
+			'The study time required for the topic', 's_md_class_learning_time', '', '', 0, false, 0, '', '', 'timeRequired') );
 
 		// Built-in fields (from WordPress)
 		$chap_meta->add_field( new Pressbooks_Metadata_Creation_Date_Field(

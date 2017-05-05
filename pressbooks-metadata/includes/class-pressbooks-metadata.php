@@ -188,6 +188,9 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_footer', $plugin_admin, 'footer_function' );
+		$this->loader->add_action( 'wp_head', $plugin_admin, 'header_function' );
+		$this->loader->add_action( 'init', $plugin_admin, 's_md_init' ); // Meet miniumum requirements
+
 
 	}
 
