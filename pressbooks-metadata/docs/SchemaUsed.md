@@ -131,14 +131,14 @@ The related propertires from the type that matters to the project.
 | PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01
 | PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the Post.| GBI-13 
 | PB - Core | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [Person](http://schema.org/Person "http://schema.org/Person") | The publisher of the book. | GBI-07
-| Not Used | [breadcrumb](http://schema.org/breadcrumb "http://schema.org/breadcrumb") | [Text](https://schema.org/Text "https://schema.org/Text") | |
-| Not Used | [lastReviewed](http://schema.org/lastReviewed "http://schema.org/lastReviewed") |  [Date](http://bib.schema.org/Date "http://bib.schema.org/Date") |  |
-| Not Used | [mainContentOfPage](http://schema.org/mainContentOfPage "http://schema.org/mainContentOfPage") | [WebPageElement](http://schema.org/WebPageElement "http://schema.org/WebPageElement") |  |
-| Not Used | [primaryImageOfPage](http://schema.org/primaryImageOfPage "http://schema.org/primaryImageOfPage") | [ImageObject](http://schema.org/ImageObject "http://schema.org/ImageObject") |  |
-| Not Used | [relatedLink](http://schema.org/relatedLink "http://schema.org/relatedLink") | [URL](https://schema.org/URL "https://schema.org/URL") |  |
-| Not Used | [reviewedBy](http://schema.org/reviewedBy "http://schema.org/reviewedBy") |  [Person](http://schema.org/Person "http://schema.org/Person") |  |
-| Not Used | [significantLink](http://schema.org/significantLink "http://schema.org/significantLink") | [URL](https://schema.org/URL "https://schema.org/URL") |  |
-| Not Used | [specialty](http://schema.org/specialty "http://schema.org/specialty") | [Specialty](http://schema.org/Specialty"http://schema.org/Specialty")  |  |
+| Not Used | [breadcrumb](http://schema.org/breadcrumb "http://schema.org/breadcrumb") | [Text](https://schema.org/Text "https://schema.org/Text") | --- | ---
+| Not Used | [lastReviewed](http://schema.org/lastReviewed "http://schema.org/lastReviewed") |  [Date](http://bib.schema.org/Date "http://bib.schema.org/Date") | --- | ---
+| Not Used | [mainContentOfPage](http://schema.org/mainContentOfPage "http://schema.org/mainContentOfPage") | [WebPageElement](http://schema.org/WebPageElement "http://schema.org/WebPageElement") | --- | ---
+| Not Used | [primaryImageOfPage](http://schema.org/primaryImageOfPage "http://schema.org/primaryImageOfPage") | [ImageObject](http://schema.org/ImageObject "http://schema.org/ImageObject") | --- | ---
+| Not Used | [relatedLink](http://schema.org/relatedLink "http://schema.org/relatedLink") | [URL](https://schema.org/URL "https://schema.org/URL") | --- | ---
+| Not Used | [reviewedBy](http://schema.org/reviewedBy "http://schema.org/reviewedBy") |  [Person](http://schema.org/Person "http://schema.org/Person") | --- | ---
+| Not Used | [significantLink](http://schema.org/significantLink "http://schema.org/significantLink") | [URL](https://schema.org/URL "https://schema.org/URL") | --- | ---
+| Not Used | [specialty](http://schema.org/specialty "http://schema.org/specialty") | [Specialty](http://schema.org/Specialty"http://schema.org/Specialty")  | --- | ---
 
 ## ScholarlyArticle
 
