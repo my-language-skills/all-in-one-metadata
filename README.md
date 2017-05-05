@@ -70,7 +70,8 @@ Reviw the Site/root metadata and Documentation
 		* New property: **url**
 	* Meet minimum requeriments (PB and PB Version)
 * Enhancements
-	* To finisht the documentation
+	* To finish the documentation
+	* function prefixing #47
 * **REMOVED:**
 	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#35) 
 		* Delete property: **copyrightYear**
@@ -78,7 +79,7 @@ Reviw the Site/root metadata and Documentation
 		* Delete property: **copyrightHolder**
 		* Delete property: **publisher**
 * **BUGFIXES:** 
-	* Change the name of the plugin (from draf name to default name)
+	* Change the name of the plugin (from draft name to default name)
 	* Author and Alternative headline from PB Chapter level instead of Site level
 
 * List of Files revisded
