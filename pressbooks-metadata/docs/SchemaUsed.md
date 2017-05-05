@@ -11,7 +11,7 @@ We use different types in every of these 3 levels
   
 ------------------------
 # Network level
-## Website                        __[up](#schema-properties-used)
+## Website
 
 Properties from: [WebSite](https://schema.org/WebSite "https://schema.org/WebSite")
 The related propertires from the type that matters to the project.
@@ -186,7 +186,7 @@ The related propertires from the type that matters to the project.
 
 
 
-
+[up](#schema-properties-used)
 
 (Descriptions here are full descriptions)
 
