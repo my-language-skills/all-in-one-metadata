@@ -167,7 +167,7 @@ class Pressbooks_Metadata_Admin {
 <!-- Course type -->
 <div itemscope itemtype = 'http://schema.org/Course'>
 			<?php
-			$pm_BM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
+			$pm_BM = Pressbooks_Metadata_Educational_Information::get_instance();
 			$pm_BM->print_microdata_meta_tags();
 			$pm_BM->print_educationalAlignment_microdata_meta_tags();
 			?>
@@ -175,7 +175,7 @@ class Pressbooks_Metadata_Admin {
 <!-- Book type -->
 <div itemscope itemtype = 'http://schema.org/Book'>
 			<?php
-			$pm_BB = Pressbooks_Metadata_Book_Metadata::get_instance();
+			$pm_BB = Pressbooks_Metadata_General_Book_Information::get_instance();
 			$pm_BB->print_microdata_meta_tags();
 			?>
 </div>
@@ -199,7 +199,7 @@ class Pressbooks_Metadata_Admin {
 			$pm_CM->print_Chapter_Metadata_meta_tags();
 
 			/*-- And here from the fields we need to use from the Educational Information metabox --*/
-			$pm_CM = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
+			$pm_CM = Pressbooks_Metadata_Educational_Information::get_instance();
 			$pm_CM->print_ScolarlyArticle_meta_tags_from_Edu_Info();
 			?>
 </div>

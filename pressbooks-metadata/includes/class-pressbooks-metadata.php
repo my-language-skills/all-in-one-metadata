@@ -204,15 +204,15 @@ class Pressbooks_Metadata {
 	 */
 	private function define_metadata_changes() {
 
-		$plugin_educational_information_metadata = Pressbooks_Metadata_Educational_Information_Metadata::get_instance();
+		$plugin_educational_information = Pressbooks_Metadata_Educational_Information::get_instance();
 		$plugin_chapter_metadata = Pressbooks_Metadata_Chapter_Metadata::get_instance();
-		$plugin_related_books_metadata = Pressbooks_Metadata_Related_Books_Metadata::get_instance();
-		$plugin_book_metadata = Pressbooks_Metadata_Book_Metadata::get_instance();
+		$plugin_related_books = Pressbooks_Metadata_Related_Books::get_instance();
+		$plugin_general_book_information = Pressbooks_Metadata_General_Book_Information::get_instance();
 
 
 		$this->loader->add_action(
 			'custom_metadata_manager_init_metadata',
-			$plugin_educational_information_metadata,
+			$plugin_educational_information,
 			'add_to_current_post_metadata', 31 );
 		$this->loader->add_action(
 			'custom_metadata_manager_init_metadata',
@@ -220,11 +220,11 @@ class Pressbooks_Metadata {
 			'add_to_current_post_metadata', 31 );
 		$this->loader->add_action(
 			'custom_metadata_manager_init_metadata',
-			$plugin_related_books_metadata,
+			$plugin_related_books,
 			'add_to_current_post_metadata', 31 );
 		$this->loader->add_action(
 			'custom_metadata_manager_init_metadata',
-			$plugin_book_metadata,
+			$plugin_general_book_information,
 			'add_to_current_post_metadata', 31 );
 		
 	}

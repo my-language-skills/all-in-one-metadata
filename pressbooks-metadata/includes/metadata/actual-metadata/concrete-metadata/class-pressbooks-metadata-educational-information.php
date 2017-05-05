@@ -13,7 +13,7 @@ require_once plugin_dir_path( __FILE__ )
  * @subpackage Pressbooks_Metadata/includes/metadata/actual-metadata/concrete-metadata
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
-class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Metadata_Plugin_Metadata {
+class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Plugin_Metadata {
 
 	/**
 	 * The class instance.
@@ -178,15 +178,15 @@ class Pressbooks_Metadata_Educational_Information_Metadata extends Pressbooks_Me
 	 * Returns the class instance.
 	 *
 	 * @since  0.2
-	 * @return Pressbooks_Metadata_Educational_Information_Metadata The class instance.
+	 * @return Pressbooks_Metadata_Educational_Information The class instance.
 	 */
 	public static function get_instance() {
 
-		if ( NULL == Pressbooks_Metadata_Educational_Information_Metadata::$instance ) {
-			Pressbooks_Metadata_Educational_Information_Metadata::$instance
-				= new Pressbooks_Metadata_Educational_Information_Metadata();
+		if ( NULL == Pressbooks_Metadata_Educational_Information::$instance ) {
+			Pressbooks_Metadata_Educational_Information::$instance
+				= new Pressbooks_Metadata_Educational_Information();
 		}
-		return Pressbooks_Metadata_Educational_Information_Metadata::$instance;
+		return Pressbooks_Metadata_Educational_Information::$instance;
 
 	}
 
