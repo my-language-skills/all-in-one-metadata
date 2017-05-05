@@ -369,7 +369,6 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 			'editor'				=>	'pb_editor',
 			'translator'			=>	'pb_translator',
 		//	'contributor' 			=>	'pb_contributing_authors',		//To review for multiple contributors
-			'translator'			=>	'pb_translator',
 		//	'alternativeHeadline'	=>	'pb_subtitle',
 			'locationCreated'		=>	'pb_publisher_city',
 			'license'				=>	'pb_section_license'
