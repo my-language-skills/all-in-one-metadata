@@ -129,7 +129,7 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.6
 	 */
-	public function header_function() {
+	public function s_md_header_function() {
 
 		global $post;
 
@@ -154,7 +154,7 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.2
 	 */
-	public function footer_function() {
+	public function s_md_footer_function() {
 
 		global $post;
 
