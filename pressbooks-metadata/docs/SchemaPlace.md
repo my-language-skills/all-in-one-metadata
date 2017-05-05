@@ -1,4 +1,4 @@
-Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
+Back to [Shema Used](/pressbooks-metadata/docs/SchemaUsed.md)
 
 # Schema Properties Placed
 ## Book Information Page
