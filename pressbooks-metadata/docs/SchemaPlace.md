@@ -63,17 +63,17 @@ AB-03 | Long Description | The full description of your book. | The full descrip
 ## Aditional Catalog Information
 Code | Field Name | PB Description | Description 
 --- | --- | --- | --- 
-ACI-01 | Series Title | Add if your book is part of a series. This is not used by Pressbooks. |  
-ACI-02 | Series Number | Add if your book is part of a series. This is not used by Pressbooks. |  
-ACI-03 | Editor | This is not used by Pressbooks. |  Specifies the Person who edited the book.
-ACI-04 | Translator | This is not used by Pressbooks. |  The translator of the book.
+ACI-01 | Series Title | Add if your book is part of a series. This is not used by Pressbooks. | The series title.
+ACI-02 | Series Number | Add if your book is part of a series. This is not used by Pressbooks. | The series number from the series.
+ACI-03 | Editor | This is not used by Pressbooks. | Specifies the Person who edited the book.
+ACI-04 | Translator | This is not used by Pressbooks. | The translator of the book.
 ACI-05 | Keywords | These are added to your webbook cover page, and in your ebook metadata. Keywords are used by online book stores and search engines. |   Keywords or tags used to describe this content.
 ACI-06 | Hashtag | These are added to your webbook cover page. For those of you who like Twitter. |  
-ACI-07 | List Price (Print) | This is not used by Pressbooks. |  
-ACI-08 | List Price (PDF) | This is not used by Pressbooks. |  
-ACI-09 | List Price (PDF) | This is not used by Pressbooks. |  
-ACI-10 | List Price (PDF) | This is not used by Pressbooks. |  
-ACI-11 | Audience | The target audience for your book. |  
+ACI-07 | List Price (Print) | This is not used by Pressbooks. | The price of the print version of the book.
+ACI-08 | List Price (PDF) | This is not used by Pressbooks. | The prince of the pdf version of the book.
+ACI-09 | List Price (ebook) | This is not used by Pressbooks. | The price of the ebook version of the book.
+ACI-10 | List Price (web) | This is not used by Pressbooks. | The price of the web version of the book.
+ACI-11 | Audience | The target audience for your book. | The target audience of the book
 ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book stores properly classify your book. | The subject matter of the content.
 ACI-13 | BISAC Regional Theme |  | Optional code.
 ACI-14 | BISAC Regional Theme |  | Optional code.
