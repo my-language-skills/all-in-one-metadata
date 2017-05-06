@@ -63,13 +63,13 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 
 ### 0.6
 Reviw the Site/root metadata and Documentation
-* **Additions**
+* **ADDITIONS**
 	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
 		* New property: **description**
 		* New property: **name**
 		* New property: **url**
 	* Meet minimum requeriments (PB and PB Version)
-* **Enhancements**
+* **ENHANCEMENTS**
 	* To finish the documentation
 	* function prefixing #47
 * **REMOVED:**
