@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://on-lingua.com
+ * @link       http://books4languages.com
  * @since      0.1
  *
  * @package    Pressbooks_Metadata

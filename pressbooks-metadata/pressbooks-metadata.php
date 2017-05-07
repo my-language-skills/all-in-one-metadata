@@ -18,7 +18,7 @@
  * Description:       Extended metadata features for Pressbooks
  * Version:           0.5
  * Author:            My Language Skills
- * Author URI:        http://on-lingua.com/
+ * Author URI:        http://books4languages.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       pressbooks-metadata

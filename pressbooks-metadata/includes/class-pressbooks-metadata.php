@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the dashboard.
  *
- * @link       http://on-lingua.com
+ * @link       http://books4languages.com
  * @since      0.1
  *
  * @package    Pressbooks_Metadata
