@@ -144,7 +144,10 @@ class Pressbooks_Metadata_Admin {
 </div>
 		<?php
 		}
-
+		elseif ( is_front_page() ) {
+			$pm_GS = Pressbooks_Metadata_General_Book_Information::get_instance();
+			$pm_GS->print_Google_Scolar_meta_tags();
+		}
 	}
 
 	/**

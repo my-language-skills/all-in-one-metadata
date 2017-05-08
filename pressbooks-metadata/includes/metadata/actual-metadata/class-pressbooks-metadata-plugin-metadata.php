@@ -400,7 +400,6 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	<meta itemprop = 'wordCount' content='<?php echo $wordCount?>' />
 <?php
 
-
 	}
 
 
@@ -457,6 +456,39 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 <?php
 			}
 		}
+	}
+
+	/**
+	 * A function to retrieve the data we need from the custom fields of PressBooks
+	 * for Google Scholar use
+	 *
+	 * @since 0.7
+	 */
+	public function print_Google_Scolar_meta_tags(){
+
+		//array of the items that we need from the General Book Information metabox
+		$book_info_data = array(
+			'citation_journal_title'	=>	'pb_title',
+			'citation_author' 			=>	'pb_author',
+			'citation_isbn' 			=>	'pb_ebook_isbn',
+			'citation_publisher'		=>	'pb_publisher',
+			'citation_publication_date'	=>	'pb_publication_date'
+		);
+
+		//For the fields of General Book Information Metabox
+		$metadata = \Pressbooks\Book::getBookInformation();
+
+		foreach ($book_info_data as $name => $content){
+			if ( isset( $metadata[$content] ) ) {
+				if ( 'pb_publication_date' == $content ) {
+					$metadata[$content] = date( 'Y/m/d', (int) $metadata[ $content ] );
+				}
+?>
+	<meta name = '<?php echo $name ?>' content = '<?php echo $metadata[$content] ?>' />
+<?php
+			}
+		}
+
 	}
 
 }
