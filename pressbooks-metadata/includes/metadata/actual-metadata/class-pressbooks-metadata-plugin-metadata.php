@@ -208,9 +208,15 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 		foreach ( $meta as $elt ) {
 			$it = $elt->get_itemprop();
 			if( ! empty( $it ) ) {
+				//if the schema is timeRequired, we are using a specific format to display it, like the example here: https://schema.org/timeRequired
+				if ( 'timeRequired' == $it ) { ?>
+	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo 'PT'. $elt->toMicrodataString() . ($elt->get_slug() == 's_md_class_learning_time'? 'M' : 'H'); ?>' />
+				<?php
+				}else{
 ?>
-	<meta itemprop = '<?php echo $it; ?>' content='<?php echo $elt->toMicrodataString(); ?>' id='<?php echo $it; ?>' />
+	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo $elt->toMicrodataString(); ?>' id='<?php echo $it; ?>' />
 <?php
+				}
 			}
 		}
 

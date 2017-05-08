@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       http://books4languages.com
+ * @link       http://on-lingua.com
  * @since      0.1
  *
  * @package    Pressbooks_Metadata

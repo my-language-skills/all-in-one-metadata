@@ -40,22 +40,19 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'educational-information' );
 		$edu_info->add_post_type( 'metadata' );
 
-		// NameOfTheType: Property
+
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Subject Name', '* The Subject Name is required.', 's_md_subject_name', '', '', '', false, '',
 			'name' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Small Description', 'A short description about this subject.', 's_md_small_description', '', '', '', false, '',
 			'description' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Course Code',
 			'The identifier for the Course (e.g. CS101 or 6.001).', 's_md_course_code', '', '', '', false, '',
 			'courseCode' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
 			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf">Click Here for more information</a>',
 			's_md_isced_field', '', '', '00',
@@ -73,12 +70,11 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 				'10' => 'Services',
 			), '' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Provider', 'The Organization, University or Person who provides this subject.', 's_md_provider', '', '', '', false, '',
 			'provider' ) );
 
-		// NameOfTheType: Property
+
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED level of education',
 			'Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
 			's_md_isced_level', '', '', '0',
@@ -95,7 +91,6 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 				'9' => 'Not elsewhere classified',
 			), '' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'Age Range',
 			'The target age of this book',
 			's_md_age_range', '', '', '18',
@@ -116,22 +111,19 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 				'5' => '5-3 years'
 			), 'typicalAgeRange' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course.', 's_md_edu_level', '', '', '', false, '',
 			'' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Course Prerequisites', 'Requirements for taking the Course. ', 's_md_course_prerequisites', '', '', '', false, '',
 			'' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Educational Framework', 'The Framework that the educational level belongs to.', 's_md_edu_framework', '', '', '', false, '',
 			'' ) );
 
-		// NameOfTheType: Property
+
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
 			'Learning Resource Type',
 			'The kind of resource this book represents',
@@ -142,7 +134,6 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 				'exercise' => 'Exercise'
 			), 'learningResourceType' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
 			'Interactivity Type',
 			'The interactivity type of this book',
@@ -161,17 +152,14 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'A person assigned to instruct or provide instructional assistance for the course.', 'instructor', '', '', '', false, '',
 			'' ) );
 */
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Number_Field(
 			'Class Learning Time (hours)', 'The study time required for the book',
 			's_md_time_required', '', '', 0, false, 0, '', '', 'timeRequired' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field( 'License URL',
 			'The url of the website with the license of this book', 's_md_license_url', '', '', '', false, 'http://site.com/',
 			'license' ) );
 
-		// NameOfTheType: Property
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field(
 			'Bibliography URL',
 			'The URL of a website/book this book is inspirated of',

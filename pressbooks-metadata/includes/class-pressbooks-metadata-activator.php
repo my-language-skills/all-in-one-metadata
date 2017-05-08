@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://books4languages.com
+ * @link       http://on-lingua.com
  * @since      0.1
  *
  * @package    Pressbooks_Metadata

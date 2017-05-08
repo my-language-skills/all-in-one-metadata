@@ -3,7 +3,7 @@
 /**
  * The class handling theme-related setting and enforcing of plugin's themes.
  *
- * @link       http://books4languages.com
+ * @link       http://on-lingua.com
  * @since      0.1
  *
  * @package    Pressbooks_Metadata

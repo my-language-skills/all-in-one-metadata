@@ -13,6 +13,7 @@ require_once plugin_dir_path( __FILE__ ) . '../class-pressbooks-metadata-field.p
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes/metadata/components/fields/data-fields
  * @author     julienCXX <software@chmodplusx.eu>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 abstract class Pressbooks_Metadata_Data_Field extends Pressbooks_Metadata_Field {
 
@@ -54,6 +55,15 @@ abstract class Pressbooks_Metadata_Data_Field extends Pressbooks_Metadata_Field 
 	private $value;
 
 	/**
+	 * The field's Microdata slug attribute
+	 *
+	 * @since  0.6
+	 * @access private
+	 * @var    string  $slug A Microdata itemprop attibute.
+	 */
+	private $slug;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since  0.1
@@ -84,6 +94,7 @@ abstract class Pressbooks_Metadata_Data_Field extends Pressbooks_Metadata_Field 
 		$this->read_only = $read_only;
 		$this->value = NULL;
 		$this->itemprop = $itemprop;
+		$this->slug = $slug;
 
 	}
 
@@ -192,6 +203,18 @@ abstract class Pressbooks_Metadata_Data_Field extends Pressbooks_Metadata_Field 
 	public function toMicrodataString() {
 
 		return $this->__toString();
+
+	}
+
+	/**
+	 * Returns the field's Microdata itemprop attribute.
+	 *
+	 * @since  0.6
+	 * @return string The field's Microdata itemprop attribute.
+	 */
+	public function get_slug() {
+
+		return $this->slug;
 
 	}
 
