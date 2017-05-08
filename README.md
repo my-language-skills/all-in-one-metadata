@@ -60,9 +60,21 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 You can see all of the screenshots of the plugin [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
 
 ## Roadmap
+	 
+### 0.7
+To create google schoolar. To extend metadata for an integration of the content
+
+### 0.8
+To create a settings page (site and network)
+
+### 0.9
+Working with administration page
+
+### 0.XX
+
+## Changelog
 
 ### 0.6
-Reviw the Site/root metadata and Documentation
 * **ADDITIONS**
 	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
 		* New property: **description**
@@ -87,21 +99,9 @@ Reviw the Site/root metadata and Documentation
 * **List of Files revisded**
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata.php
-	 
-
-### 0.7
-To create google schoolar. To extend metadata for an integration of the content
-
-### 0.8
-To create a settings page (site and network)
-
-### 0.9
-Working with administration page
-
-### 0.XX
-
-## Changelog
-
+	* class-pressbooks-metadata-plugin-metadata.php
+	* class-pressbooks-metadata-data-field.php
+	
 ### 0.5
 * **ADDITIONS**
 	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9) 
@@ -189,6 +189,9 @@ Working with administration page
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
+
+### 0.6
+Reviw the Site/root metadata and Documentation
 
 ### 0.5
 Review the custom post metadata
