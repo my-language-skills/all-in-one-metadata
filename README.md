@@ -72,6 +72,7 @@ Reviw the Site/root metadata and Documentation
 * **ENHANCEMENTS**
 	* To finish the documentation
 	* function prefixing #47
+	* timeRequired formating for Site and Chapter #55
 * **REMOVED:**
 	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#35) 
 		* Delete property: **copyrightYear**
