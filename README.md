@@ -64,6 +64,18 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 ### 0.7
 To create google schoolar. To extend metadata for an integration of the content
 
+* **ADDITIONS**
+	* **Google Scholar microtags**
+		* New property: **citation_journal_title**
+		* New property: **citation_author**
+		* New property: **citation_isbn**
+		* New property: **citation_publisher**
+		* New property: **citation_publication_date**
+		
+* **List of Files revised**
+ 	* class-pressbooks-metadata-admin.php
+	* class-pressbooks-metadata-plugin-metadata.php
+
 ### 0.8
 To create a settings page (site and network)
 
@@ -96,7 +108,7 @@ Working with administration page
 	* Author and Alternative headline from PB Chapter level instead of Site level
 	* ScholarlyArticle Bug #58
 
-* **List of Files revisded**
+* **List of Files revised**
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata.php
 	* class-pressbooks-metadata-plugin-metadata.php
