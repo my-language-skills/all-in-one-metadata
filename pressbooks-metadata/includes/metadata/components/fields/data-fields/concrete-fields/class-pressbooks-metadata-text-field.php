@@ -45,4 +45,17 @@ class Pressbooks_Metadata_Text_Field extends Pressbooks_Metadata_Placeholder_Fie
 
 	}
 
+	/**
+	 * Creates a string representation of the element.
+	 *
+	 * @since 0.1
+	 * @return string A string representation of the element.
+	 */
+	public function __toString() {
+
+		$value = $this->get_value();
+		return $value;
+
+	}
+
 }

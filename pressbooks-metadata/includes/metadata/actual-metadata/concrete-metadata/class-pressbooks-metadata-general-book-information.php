@@ -46,7 +46,7 @@ class Pressbooks_Metadata_General_Book_Information extends Pressbooks_Metadata_P
 
 		$g_b_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Book Edition',
-			'The edition of the book.',
+			'The edition of the book. Example: First Edition or 1 or 1.0.0.0',
 			's_md_edition',
 			'', '', '', false, '',
 			'bookEdition' ) );
