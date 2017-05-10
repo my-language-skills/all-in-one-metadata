@@ -81,6 +81,8 @@ To create google schoolar. To extend metadata for an integration of the content
 * **BUGFIXES:** 	
 	* ISCED field and level of education default values #67
 	* Course Prerequisites Info Update #68
+	* Book Edition #66
+	
 * **List of Files revised**
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata-plugin-metadata.php
