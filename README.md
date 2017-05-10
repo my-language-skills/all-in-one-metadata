@@ -26,7 +26,7 @@ The problem comes if your book is for educational purposes.
 Pressbooks-metadata, extends the functionality of Pressbooks and gives you the flexibility to add more metadata in your books, 
 taking advantage of the LRMI schema markup.
 
-You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/docs/SchemaUsed.md)
+You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
 
 ## Installation
 

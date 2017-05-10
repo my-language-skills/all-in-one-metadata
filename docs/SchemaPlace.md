@@ -1,4 +1,4 @@
-Back to [Shema Used](/pressbooks-metadata/docs/SchemaUsed.md)
+Back to [Shema Used](/docs/SchemaUsed.md)
 
 # Schema Properties Placed
 ## Book Information Page
@@ -78,7 +78,7 @@ ACI-12 | BISAC Subject(s) | BISAC Subject Headings help libraries and (e)book st
 ACI-13 | BISAC Regional Theme |  | Optional code.
 ACI-14 | Catalog Order |  | 
 
-Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
+Back to [Shema Used](pressbooks-metadata/docs/SchemaUsed.md)
 
 
 ## Custom Chapter Metadata
@@ -110,4 +110,4 @@ CCM-03 | ABC | ABC | ABC
 
 
 
-Back to [Shema Used](pressbooks-metadata/pressbooks-metadata/docs/SchemaUsed.md)
+Back to [Shema Used](pressbooks-metadata/docs/SchemaUsed.md)
