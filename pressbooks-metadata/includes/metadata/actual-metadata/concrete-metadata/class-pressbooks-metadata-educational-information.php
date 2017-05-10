@@ -57,6 +57,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
 			's_md_isced_field', '', '', '00',
 			array(
+				'000'=>	'ISCED field of education',
 				'00' => 'Generic programmes and qualifications',
 				'01' => 'Education',
 				'02' => 'Arts and humanities',
@@ -79,6 +80,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
 			's_md_isced_level', '', '', '0',
 			array(
+				'00'=> 'ISCED level of education',
 				'0' => 'Early Childhood Education',
 				'1' => 'Primary education',
 				'2' => 'Lower secondary education',

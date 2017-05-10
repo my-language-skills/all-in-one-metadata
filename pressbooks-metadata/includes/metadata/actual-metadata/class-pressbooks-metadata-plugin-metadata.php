@@ -295,7 +295,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 <?php
 		}
 
-		if ( isset( $meta['s_md_isced_field'] ) ) {
+		if ( $meta['s_md_isced_field'] != 'ISCED field of education' ) {
 ?>
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalSubject' />
@@ -306,7 +306,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 <?php
 		}
 
-		if ( isset( $meta['s_md_isced_level'] ) ) {
+		if ( $meta['s_md_isced_level'] != 'ISCED level of education' ) {
 ?>
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
