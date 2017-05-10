@@ -72,6 +72,8 @@ To create google schoolar. To extend metadata for an integration of the content
 		* New property: **citation_publisher**
 		* New property: **citation_publication_date**
 		
+* **ENHANCEMENTS**
+	* Educational Framework info Update #69
 * **List of Files revised**
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata-plugin-metadata.php
