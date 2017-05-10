@@ -1,22 +1,19 @@
 Index of pages:
 ---------------
 
-* [Summary](/README.md)
-* [Introduction](/README.md)
-* [Explicit Versioning](/VERSIONING.md)
+* [Summary](/VERSIONING.md#Summary)
+* [Introduction](/VERSIONING.md#Introduction)
+* [Explicit Versioning](/VERSIONING-EXTENDED.md)
 * [Why Explicit Versioning](/WHY.md)
 * [FAQ](/FAQ.md)
 * [ABOUT](/ABOUT.md)
-* [Who is using Explicit Versioning?](/USERS.md)
+
 
 # About
 
-The Explicit Versioning is created by [Antonio Devís](https://github.com/colomet) with [Sapioit](https://medium.com/sapioit/why-having-3-numbers-in-the-version-name-is-bad-92fc1f6bc73c) & [exadra37](https://github.com/exadra37-versioning/semantic-versioning).
+The Explicit Book Editioning is created by [Antonio Devís](https://github.com/colomet).
 
-The Explicit Versioning is a fork of [Semantic Versioning](http://semver.org/) specification, authored by [TomPreston-Werner](http://tom.preston-werner.com), inventor of Gravatars and cofounder of GitHub.
-
-If you'd like to leave feedback, please [open an issue on GitHub](https://github.com/Software-Development-Guidelines/Explicit-Versioning/issues).
-
+The Explicit Book Editioning is a fork of [Explicit Versioning](https://software-development-guidelines.github.io/Explicit-Versioning/) specification.
 
 # License
 
@@ -25,8 +22,9 @@ If you'd like to leave feedback, please [open an issue on GitHub](https://github
 
 # Support or Contact
 
-Having trouble with Explicit Versioning? Check out our [issues](https://github.com/Software-Development-Guidelines/Explicit-Versioning/issues)pages or [contact me](https://www.linkedin.com/in/antonio-devis-lopez/) and we’ll help you sort it out.
+**Having trouble with Explicit Book Editioning?** 
 
+[contact me](https://www.linkedin.com/in/antonio-devis-lopez/) and we’ll help you sort it out.
 
 
 ---

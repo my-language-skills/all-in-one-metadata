@@ -1,13 +1,12 @@
 Index of pages:
 ---------------
 
-* [Summary](/README.md)
-* [Introduction](/README.md)
-* [CMS Versioning (CMSver)](/VERSIONING.md)
+* [Summary](/VERSIONING.md#Summary)
+* [Introduction](/VERSIONING.md#Introduction)
+* [Explicit Versioning](/VERSIONING-EXTENDED.md)
 * [Why Explicit Versioning](/WHY.md)
 * [FAQ](/FAQ.md)
 * [ABOUT](/ABOUT.md)
-* [Who is using CMS Versioning?](/USERS.md)
 
 
 # FAQ

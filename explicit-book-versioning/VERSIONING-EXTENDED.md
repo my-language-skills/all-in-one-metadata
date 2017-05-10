@@ -1,13 +1,13 @@
 Index of pages:
 ---------------
 
-* [Summary](/README.md)
-* [Introduction](/README.md)
-* [Explicit Versioning](/VERSIONING.md)
+* [Summary](/VERSIONING.md#Summary)
+* [Introduction](/VERSIONING.md#Introduction)
+* [Explicit Versioning](/VERSIONING-EXTENDED.md)
 * [Why Explicit Versioning](/WHY.md)
 * [FAQ](/FAQ.md)
 * [ABOUT](/ABOUT.md)
-* [Who is using Explicit Versioning?](/USERS.md)
+
 
 
 # Explicit Versioning
