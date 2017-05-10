@@ -41,6 +41,9 @@ Yes, if one field is empty the SEO information about it will not be generated.
 1. How can I check if the metadata is update?
 by running [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/) in each one of the places (Main page of the Root theme, Main page of the Single Site and post page of a Site)
 
+1. How can I know wich is the version I should give to my book?
+We use [Explicit Books Versioning](explicit-book-versioning/VERSIONING.md)
+
 
 ## Requirements
 
