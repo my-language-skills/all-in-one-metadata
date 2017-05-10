@@ -118,7 +118,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Course Prerequisites', 'Requirements for taking the Course. ', 's_md_course_prerequisites', '', '', '', false, '',
+			'Course Prerequisites', 'Requirements for taking the Course. If applicable ', 's_md_course_prerequisites', '', '', '', false, '',
 			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
