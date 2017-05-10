@@ -470,6 +470,9 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 		$book_info_data = array(
 			'citation_journal_title'	=>	'pb_title',
 			'citation_author' 			=>	'pb_author',
+			'citation_language'         => 	'pb_language',
+			'citation_keywords'         =>	'pb_keywords_tags',
+	//		'citation_pdf_url'          => 	s_md_get_citation_pdf_url(),
 			'citation_isbn' 			=>	'pb_ebook_isbn',
 			'citation_publisher'		=>	'pb_publisher',
 			'citation_publication_date'	=>	'pb_publication_date'
@@ -487,8 +490,41 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	<meta name = '<?php echo $name ?>' content = '<?php echo $metadata[$content] ?>' />
 <?php
 			}
+			elseif ('citation_pdf_url' == $name) {
+?>
+<!--	<meta name = '<?php echo $name ?>' content = 'omorfonios' /> -->
+<?php
+			}
 		}
 
+	}
+
+	/**
+	 * A function that returns the url of the pdf downloadable file
+	 *
+	 * @since 0.7
+	 */
+	function s_md_get_citation_pdf_url() {
+		$url    = '';
+		$domain = site_url();
+
+		if ( method_exists( '\Pressbooks\Utility', 'latest_exports' ) ) {
+			$files = \Pressbooks\Utility\latest_exports();
+
+			$options = get_option( 'pbt_redistribute_settings' );
+			if ( ! empty( $files ) && ( true == $options['latest_files_public'] ) ) {
+
+				foreach ( $files as $filetype => $filename ) {
+					if ( 'pdf' == $filetype || 'mpdf' == $filetype ) {
+						$filename = preg_replace( '/(-\d{10})(.*)/ui', "$1", $filename );
+						// rewrite rule
+						$url = $domain . "/open/download?filename={$filename}&type={$filetype}";
+					}
+				}
+			}
+		}
+
+		return $url;
 	}
 
 }

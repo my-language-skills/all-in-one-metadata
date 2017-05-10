@@ -54,7 +54,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'courseCode' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
-			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf">Click Here for more information</a>',
+			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
 			's_md_isced_field', '', '', '00',
 			array(
 				'00' => 'Generic programmes and qualifications',
@@ -120,7 +120,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Framework', 'The Framework that the educational level belongs to.', 's_md_edu_framework', '', '', '', false, '',
+			'Educational Framework', 'The Framework that the educational level belongs to. Example: CEFR, Common Core, European Baccalaureate', 's_md_edu_framework', '', '', '', false, '',
 			'' ) );
 
 
