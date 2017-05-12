@@ -20,16 +20,12 @@ The related propertires from the type that matters to the project.
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
 | NA | NA | NA | NA | NA
 
-## Creative Work
-
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related propertires from the type that matters to the project.
 
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
 | NA | NA | NA | NA | NA
-
-## Thing
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
