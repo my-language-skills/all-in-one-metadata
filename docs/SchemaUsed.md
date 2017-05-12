@@ -26,6 +26,8 @@ The related propertires from the type that matters to the project.
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
 | NA | NA | NA | NA | NA
+| Pending | [locationCreated](http://schema.org/locationCreated "http://schema.org/locationCreated") | [Place](https://schema.org/Place "https://schema.org/Place") | --- | ---
+| Pending | [publisher](http://schema.org/publisher "http://schema.org/publisher") | [publisher](http://schema.org/publisher "http://schema.org/publisher") | |
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related propertires from the type that matters to the project.
