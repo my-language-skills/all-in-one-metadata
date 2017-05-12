@@ -87,8 +87,8 @@ The related propertires from the type that matters to the project.
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
 | Pending | [additionalName]("") | []("") |  | ---
-| Pending | [address](http://schema.org/address "http://schema.org/address") | [[PostalAddress](http://schema.org/PostalAddress "http://schema.org/PostalAddress") | Author Address | ---
-| Pending | [affiliation](http://schema.org/affiliation "http://schema.org/affiliation") | Organization](http://schema.org/Organization "http://schema.org/Organization") | An University that this person is affiliated with. | ---
+| Pending | [address](http://schema.org/address "http://schema.org/address") | [PostalAddress](http://schema.org/PostalAddress "http://schema.org/PostalAddress") | Author Address | ---
+| Pending | [affiliation](http://schema.org/affiliation "http://schema.org/affiliation") | [Organization](http://schema.org/Organization "http://schema.org/Organization") | An University that this person is affiliated with. | ---
 | Pending | [email](http://schema.org/email "http://schema.org/email") | [Text](https://schema.org/Text "https://schema.org/Text") | Email address. | ---
 | Pending | [familyName](http://schema.org/familyName "http://schema.org/familyName") | [Text](https://schema.org/Text "https://schema.org/Text") | Family name. The last name of an Person. | ---
 | Pending | [hasOfferCatalog](http://schema.org/hasOfferCatalog "http://schema.org/hasOfferCatalog") | [OfferCatalog](http://schema.org/OfferCatalog "http://schema.org/OfferCatalog") | --- Maybe in the book cover page???--- | ---
