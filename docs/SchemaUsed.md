@@ -239,9 +239,9 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| PB - Metadata |[alternativeHeadline](http://bib.schema.org/alternativeHeadline "http://bib.schema.org/alternativeHeadline") | [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the chapter. | CCM-02
+| PB - Metadata |[alternativeHeadline](http://bib.schema.org/alternativeHeadline "http://bib.schema.org/alternativeHeadline") | [Text](https://schema.org/Text "https://schema.org/Text") | The subtitle of the chapter. | CM-02
 | PB - Metadata |[audience](http://bib.schema.org/audience "http://bib.schema.org/audience") | [Audience](https://schema.org/Audience "https://schema.org/Audience") | The audience from Book Info. | EI-07
-| PB - Metadata |[author](http://bib.schema.org/author "http://bib.schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author's id name. | CCM-03
+| PB - Metadata |[author](http://bib.schema.org/author "http://bib.schema.org/author") | [Person](http://schema.org/Person "http://schema.org/Person") | The author's id name. | CM-03
 | PB - Metadata |[citation](http://bib.schema.org/citation "http://bib.schema.org/citation") | [URL](http://bib.schema.org/URL "http://bib.schema.org/URL") | The Bibliography URL. |
 | by PB - Core | [copyrightHolder](http://schema.org/copyrightHolder "http://schema.org/copyrightHolder") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | Name of the copyright holder. | CR-02
 | by PB - Core | [copyrightYear](http://schema.org/copyrightYear "http://schema.org/copyrightYear") | [Number](http://schema.org/Number "http://schema.org/Number") | Year that the book is/was published. | CR-01
@@ -253,7 +253,7 @@ The related propertires from the type that matters to the project.
 | by PB - Core | [inLanguage](http://schema.org/inLanguage "http://schema.org/inLanguage") | [Language](http://schema.org/Language "http://schema.org/Language") | The language of the Post.| GBI-13 
 | PB - Metadata | [license](http://schema.org/license "http://schema.org/license") | [URL](http://bib.schema.org/URL "http://bib.schema.org/URL") | A license document that applies to this content, typically indicated by URL.| EI-14
 | PB - Metadata |[locationCreated](http://bib.schema.org/locationCreated "http://bib.schema.org/locationCreated") | [Place](https://schema.org/Place "https://schema.org/Place") | The Publisher City of the book. | GBI-08
-| **___Pending___** | [position](http://schema.org/position "http://schema.org/position") | [Integer](http://schema.org/Integer "http://schema.org/Integer") | The number of "page" of the post. | PB - Core
+| **X__Pending__X** | [position](http://schema.org/position "http://schema.org/position") | [Integer](http://schema.org/Integer "http://schema.org/Integer") | The number of "page" of the post. | PB - Core
 | by PB - Core |[publisher](http://bib.schema.org/publisher "http://bib.schema.org/publisher") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The publisher of the book. |GBI-07
 | PB - Metadata | [timeRequired](http://bib.schema.org/timeRequired "http://bib.schema.org/timeRequired") | [Duration](http://bib.schema.org/Duration "http://bib.schema.org/Duration") | The class learning time in minutes. |
 | PB - Metadata |[translator](http://bib.schema.org/translator "http://bib.schema.org/translator") | [Thing](http://schema.org/Thing "http://schema.org/Thing") | The translator of the book. |ACI-04 
