@@ -43,7 +43,7 @@ The related propertires from the type that matters to the project.
 | PB - Metadata| [name](http://schema.org/name "http://schema.org/name") | ---| No comment | 
 | PB - Metadata | [url](http://schema.org/url "http://schema.org/url") | [URL](https://schema.org/URL "https://schema.org/URL")| The URL of the site. | 
 
-## Educational Organization
+## EducationalOrganization
 Properties from: [EducationalOrganization](http://schema.org/EducationalOrganization "http://schema.org/EducationalOrganization")
 All the properties from the type.
 
@@ -89,10 +89,10 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property** | **Type** | **Description** | [ShemaPlace Code](/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| Pending | [additionalName]("") | []("") |  | ---
 | Pending | [address](http://schema.org/address "http://schema.org/address") | [PostalAddress](http://schema.org/PostalAddress "http://schema.org/PostalAddress") | Author Address | ---
 | Pending | [affiliation](http://schema.org/affiliation "http://schema.org/affiliation") | [Organization](http://schema.org/Organization "http://schema.org/Organization") | An University that this person is affiliated with. | ---
-| Pending | [email](http://schema.org/email "http://schema.org/email") | [Text](https://schema.org/Text "https://schema.org/Text") | Email address. | ---
+| Pending | [affiliation](http://schema.org/affiliation "http://schema.org/affiliation") | [Organization](http://schema.org/Organization "http://schema.org/Organization") | An Department/Degree/Faculty/School that this person is affiliated with. | ---]
+| Pending | [email](http://schema.org/email "http://schema.org/email") | [Text](https://schema.org/Text "https://schema.org/Text") | Email address. | AP_CI-01 
 | Pending | [familyName](http://schema.org/familyName "http://schema.org/familyName") | [Text](https://schema.org/Text "https://schema.org/Text") | Family name. The last name of an Person. | ---
 | Pending | [hasOfferCatalog](http://schema.org/hasOfferCatalog "http://schema.org/hasOfferCatalog") | [OfferCatalog](http://schema.org/OfferCatalog "http://schema.org/OfferCatalog") | --- Maybe in the book cover page???--- | ---
 | Pending | [jobTitle](http://schema.org/jobTitle "http://schema.org/jobTitle") | [Text](https://schema.org/Text "https://schema.org/Text") | The job title of the Author. | ---
@@ -108,10 +108,10 @@ The related propertires from the type that matters to the project.
 
 | **Used By** | **Property**| **Type**  | **Description** | [ShemaPlace Code](/docs/SchemaPlace.md) |
 | ----------- | ------------ | -------- | --------------- | --------------------------------------
-| Pending | [alternateName](http://schema.org/alternateName "http://schema.org/alternateName") | [Text](https://schema.org/Text "https://schema.org/Text") | An alias for the Author | ---
-| Pending | [description](http://schema.org/description "http://schema.org/description") | [Text](https://schema.org/Text "https://schema.org/Text") | A description of the Author. | ---
-| Pending | [image](http://schema.org/image "http://schema.org/image") | []("") | An image of the Author. | ---
-| Pending | [sameAs](http://schema.org/sameAs "http://schema.org/sameAs") | [URL](https://schema.org/URL "https://schema.org/URL") | Official website. | ---
+| Pending | [alternateName](http://schema.org/alternateName "http://schema.org/alternateName") | [Text](https://schema.org/Text "https://schema.org/Text") | An alias for the Author | AP_N-01
+| Pending | [description](http://schema.org/description "http://schema.org/description") | [Text](https://schema.org/Text "https://schema.org/Text") | Biographical Info of the Author. | AP_AY-01
+| Pending | [image](http://schema.org/image "http://schema.org/image") | []("") | Profile Picture of the Author. | AP_AY-02
+| Pending | [sameAs](http://schema.org/sameAs "http://schema.org/sameAs") | [URL](https://schema.org/URL "https://schema.org/URL") | Official website. | AP_CI-02 
 
 **???  UNDER REVISION.  ?**
 Properties from: [CollegeOrUniversity](http://schema.org/CollegeOrUniversity "http://schema.org/CollegeOrUniversity")
