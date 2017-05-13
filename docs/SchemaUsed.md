@@ -2,6 +2,9 @@
 We use different types in every of these 3 levels
 - **Network level**
   - [WebSite](#website)
+  - [Educational Organization](## Educational Organization)
+- **Author Page level**
+  - [Person](#Person)
 - **Site level**
   - [Book](#book)
   - [Course](#course)
