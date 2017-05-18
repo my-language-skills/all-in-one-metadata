@@ -88,6 +88,7 @@ Working with administration page
 	* ISCED field and level of education default values #67
 	* Course Prerequisites Info Update #68
 	* Book Edition #66
+	* Prefixing: to chage it to a more neutral name #59
 	
 * **BUGFIXES:** 	
 	
