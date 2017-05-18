@@ -63,10 +63,18 @@ The Pressbooks plugin is supplied "as is" and all use is at your own risk.
 You can see all of the screenshots of the plugin [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/assets/screenshots.md)
 
 ## Roadmap
-	 
-### 0.7
-To create google schoolar. To extend metadata for an integration of the content
 
+### 0.8
+To create a settings page (site and network)
+
+### 0.9
+Working with administration page
+
+### 0.XX
+
+## Changelog
+
+### 0.7
 * **ADDITIONS**
 	* **Google Scholar microtags**
 		* New property: **citation_journal_title**
@@ -86,17 +94,7 @@ To create google schoolar. To extend metadata for an integration of the content
 * **List of Files revised**
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata-plugin-metadata.php
-
-### 0.8
-To create a settings page (site and network)
-
-### 0.9
-Working with administration page
-
-### 0.XX
-
-## Changelog
-
+	
 ### 0.6
 * **ADDITIONS**
 	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
@@ -213,20 +211,23 @@ Working with administration page
   
 ## Upgrade Notice
 
+### 0.7
+To use google scholar. To extend metadata for an integration of the content.
+
 ### 0.6
 Reviw the Site/root metadata and Documentation
 
 ### 0.5
-Review the custom post metadata
+Review the custom post metadata.
 
 ### 0.4
-Review the Site metadata
+Review the Site metadata.
 
 ### 0.3
 To adapt the plugin to PressBooks.
 
 ### 0.2 
-To make works the current old plugin.
+To make the current old plugin work.
 
 ### 0.1
 To use an old version as the start point.
