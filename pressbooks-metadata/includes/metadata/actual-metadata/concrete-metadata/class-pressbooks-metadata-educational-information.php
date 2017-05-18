@@ -42,22 +42,22 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Subject Name', '* The Subject Name is required.', 's_md_subject_name', '', '', '', false, '',
+			'Subject Name', '* The Subject Name is required.', 'pb_subject_name', '', '', '', false, '',
 			'name' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Small Description', 'A short description about this subject.', 's_md_small_description', '', '', '', false, '',
+			'Small Description', 'A short description about this subject.', 'pb_small_description', '', '', '', false, '',
 			'description' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Course Code',
-			'The identifier for the Course (e.g. CS101 or 6.001).', 's_md_course_code', '', '', '', false, '',
+			'The identifier for the Course (e.g. CS101 or 6.001).', 'pb_course_code', '', '', '', false, '',
 			'courseCode' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
 			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
-			's_md_isced_field', '', '', '00',
+			'pb_isced_field', '', '', '00',
 			array(
-				'000'=>	'ISCED field of education',
+				'000'=>	'--Select--',
 				'00' => 'Generic programmes and qualifications',
 				'01' => 'Education',
 				'02' => 'Arts and humanities',
@@ -72,15 +72,15 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			), '' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Provider', 'The Organization, University or Person who provides this subject.', 's_md_provider', '', '', '', false, '',
+			'Provider', 'The Organization, University or Person who provides this subject.', 'pb_provider', '', '', '', false, '',
 			'provider' ) );
 
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED level of education',
 			'Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
-			's_md_isced_level', '', '', '0',
+			'pb_isced_level', '', '', '0',
 			array(
-				'00'=> 'ISCED level of education',
+				'00'=> '--Select--',
 				'0' => 'Early Childhood Education',
 				'1' => 'Primary education',
 				'2' => 'Lower secondary education',
@@ -95,7 +95,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'Age Range',
 			'The target age of this book',
-			's_md_age_range', '', '', '18',
+			'pb_age_range', '', '', '18',
 			array(
 				'18' => 'Adults',
 				'17' => '17-18 years',
@@ -114,22 +114,22 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 			), 'typicalAgeRange' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course.', 's_md_edu_level', '', '', '', false, '',
+			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course.', 'pb_edu_level', '', '', '', false, '',
 			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Course Prerequisites', 'Requirements for taking the Course. If applicable ', 's_md_course_prerequisites', '', '', '', false, '',
+			'Course Prerequisites', 'Requirements for taking the Course. If applicable ', 'pb_course_prerequisites', '', '', '', false, '',
 			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Educational Framework', 'The Framework that the educational level belongs to. Example: CEFR, Common Core, European Baccalaureate', 's_md_edu_framework', '', '', '', false, '',
+			'Educational Framework', 'The Framework that the educational level belongs to. Example: CEFR, Common Core, European Baccalaureate', 'pb_edu_framework', '', '', '', false, '',
 			'' ) );
 
 
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
 			'Learning Resource Type',
 			'The kind of resource this book represents',
-			's_md_learning_resource_type', '', '', 'course',
+			'pb_learning_resource_type', '', '', 'course',
 			array(
 				'course' => 'Course',
 				'exam' => 'Examination',
@@ -139,7 +139,7 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field(
 			'Interactivity Type',
 			'The interactivity type of this book',
-			's_md_interactivity_type', '', '', 'mixed',
+			'pb_interactivity_type', '', '', 'mixed',
 			array(
 				'active' => 'Active',
 				'expositive' => 'Expositive',
@@ -156,16 +156,16 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 */
 		$edu_info->add_field( new Pressbooks_Metadata_Number_Field(
 			'Class Learning Time (hours)', 'The study time required for the book',
-			's_md_time_required', '', '', 0, false, 0, '', '', 'timeRequired' ) );
+			'pb_time_required', '', '', 0, false, 0, '', '', 'timeRequired' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field( 'License URL',
-			'The url of the website with the license of this book', 's_md_license_url', '', '', '', false, 'http://site.com/',
+			'The url of the website with the license of this book', 'pb_license_url', '', '', '', false, 'http://site.com/',
 			'license' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field(
 			'Bibliography URL',
 			'The URL of a website/book this book is inspirated of',
-			's_md_bibliography_url',
+			'pb_bibliography_url',
 			'', '', '', false, 'http://site.com/',
 			'isBasedOnUrl' ) );
 

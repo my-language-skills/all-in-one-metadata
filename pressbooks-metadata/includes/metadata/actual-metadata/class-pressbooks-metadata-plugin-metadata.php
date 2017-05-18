@@ -50,7 +50,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 * @access private
 	 * @var    string $slug_prefix The slug prefix.
 	 */
-	private static $slug_prefix = 'lb_';
+	private static $slug_prefix = '';
 
 	/**
 	 * Initialize the class and set its properties.
@@ -210,7 +210,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 			if( ! empty( $it ) ) {
 				//if the schema is timeRequired, we are using a specific format to display it, like the example here: https://schema.org/timeRequired
 				if ( 'timeRequired' == $it ) { ?>
-	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo 'PT'. $elt->toMicrodataString() . ($elt->get_slug() == 's_md_class_learning_time'? 'M' : 'H'); ?>' />
+	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo 'PT'. $elt->toMicrodataString() . ($elt->get_slug() == 'pb_class_learning_time'? 'M' : 'H'); ?>' />
 				<?php
 				}else{
 ?>
@@ -224,7 +224,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 /**
 	 * Returns the ISCED level code according to what is
-	 * chosen in the 's_md_isced_level' field.
+	 * chosen in the 'pb_isced_level' field.
 	 *
 	 * @since  0.3
 	 * @return string 
@@ -233,31 +233,31 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 		$meta = $this->get_current_metadata_flat();
 
-		if ($meta['s_md_isced_level'] == 'Early Childhood Education'){
+		if ($meta['pb_isced_level'] == 'Early Childhood Education'){
 			$level_code = '0';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Primary education') {
+		elseif ($meta['pb_isced_level'] == 'Primary education') {
 			$level_code = '1';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Lower secondary education') {
+		elseif ($meta['pb_isced_level'] == 'Lower secondary education') {
 			$level_code = '2';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Upper secondary education') {
+		elseif ($meta['pb_isced_level'] == 'Upper secondary education') {
 			$level_code = '3';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Post-secondary non-tertiary education') {
+		elseif ($meta['pb_isced_level'] == 'Post-secondary non-tertiary education') {
 			$level_code = '4';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Short-cycle tertiary education') {
+		elseif ($meta['pb_isced_level'] == 'Short-cycle tertiary education') {
 			$level_code = '5';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Bachelor’s or equivalent level') {
+		elseif ($meta['pb_isced_level'] == 'Bachelor’s or equivalent level') {
 			$level_code = '6';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Master’s or equivalent level') {
+		elseif ($meta['pb_isced_level'] == 'Master’s or equivalent level') {
 			$level_code = '7';
 		}
-		elseif ($meta['s_md_isced_level'] == 'Doctoral or equivalent level') {
+		elseif ($meta['pb_isced_level'] == 'Doctoral or equivalent level') {
 			$level_code = '8';
 		}
 		else{
@@ -284,73 +284,73 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 		$meta = $this->get_current_metadata_flat();
 		$level = $this->get_isced_level_code();
 
-		if ( isset( $meta['s_md_subject_name'] ) ) {
+		if ( isset( $meta['pb_subject_name'] ) ) {
 ?>
 
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>	
 		<meta itemprop = 'alignmentType' content = 'educationalSubject' />
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_subject_name']->toMicrodataString(); ?>' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_subject_name']->toMicrodataString(); ?>' />
 	</span>
 
 <?php
 		}
 
-		if ( $meta['s_md_isced_field'] != 'ISCED field of education' ) {
+		if ( $meta['pb_isced_field'] != '--Select--' ) {
 ?>
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalSubject' />
 		<meta itemprop = 'educationalFramework' content = 'ISCED-2013'/>
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_isced_field']->toMicrodataString(); ?>' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_isced_field']->toMicrodataString(); ?>' />
 	</span>
 
 <?php
 		}
 
-		if ( $meta['s_md_isced_level'] != 'ISCED level of education' ) {
+		if ( $meta['pb_isced_level'] != '--Select--' ) {
 ?>
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
 		<meta itemprop = 'educationalFramework' content = 'ISCED-2011'/>
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_isced_level']->toMicrodataString(); ?>' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_isced_level']->toMicrodataString(); ?>' />
 		<meta itemprop = 'alternateName' content = 'ISCED 2011, Level <?php echo $level; ?>' />
 	</span>
 
 <?php
 		}
 
-		if ( isset( $meta['s_md_edu_level'] ) && isset( $meta['s_md_edu_framework'] )) {
+		if ( isset( $meta['pb_edu_level'] ) && isset( $meta['pb_edu_framework'] )) {
 ?>
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
-		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['s_md_edu_framework']->toMicrodataString(); ?>'/>
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_edu_level']->toMicrodataString(); ?>' />
+		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['pb_edu_framework']->toMicrodataString(); ?>'/>
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_edu_level']->toMicrodataString(); ?>' />
 	</span>
 
 <?php
-		} elseif ( isset( $meta['s_md_edu_level'] ) && !isset( $meta['s_md_edu_framework'] )) {
+		} elseif ( isset( $meta['pb_edu_level'] ) && !isset( $meta['pb_edu_framework'] )) {
 ?>
 	<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_edu_level']->toMicrodataString(); ?>' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_edu_level']->toMicrodataString(); ?>' />
 	</span>
 
 <?php
 		}
 
-		if ( isset( $meta['s_md_course_prerequisites'] ) && isset( $meta['s_md_edu_framework'] )) {
+		if ( isset( $meta['pb_course_prerequisites'] ) && isset( $meta['pb_edu_framework'] )) {
 ?>
 	<span itemprop = 'coursePrerequisites' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
-		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['s_md_edu_framework']->toMicrodataString(); ?>'/>
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_course_prerequisites']->toMicrodataString(); ?>' />
+		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['pb_edu_framework']->toMicrodataString(); ?>'/>
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_course_prerequisites']->toMicrodataString(); ?>' />
 	</span>
 
 <?php
-		} elseif ( isset( $meta['s_md_course_prerequisites'] ) && !isset( $meta['s_md_edu_framework'] )) {
+		} elseif ( isset( $meta['pb_course_prerequisites'] ) && !isset( $meta['pb_edu_framework'] )) {
 ?>
 	<span itemprop = 'coursePrerequisites' itemscope itemtype = 'http://schema.org/AlignmentObject'>
 		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
-		<meta itemprop = 'targetName' content = '<?php echo $meta['s_md_course_prerequisites']->toMicrodataString(); ?>' />
+		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_course_prerequisites']->toMicrodataString(); ?>' />
 	</span>
 
 <?php
@@ -413,9 +413,9 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 		
 	//array of the items that we need from the Educational Information metabox
 		$book_info_data = array(
-			'citation'			=> 	's_md_bibliography_url',
-			'license'			=>	's_md_license_url',
-			'typicalAgeRange'	=>	's_md_age_range'
+			'citation'			=> 	'pb_bibliography_url',
+			'license'			=>	'pb_license_url',
+			'typicalAgeRange'	=>	'pb_age_range'
 		);
 
 		$metadata = $this->get_current_metadata_flat();

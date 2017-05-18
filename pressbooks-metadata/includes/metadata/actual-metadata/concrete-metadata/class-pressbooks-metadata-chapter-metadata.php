@@ -43,12 +43,12 @@ class Pressbooks_Metadata_Chapter_Metadata extends Pressbooks_Metadata_Plugin_Me
 		$chap_meta->add_field( new Pressbooks_Metadata_Url_Field(
 			'Questions and answers',
 			'The URL of a forum/discussion about this page.',
-			's_md_questions_and_answers', '', '', '', false,
+			'pb_questions_and_answers', '', '', '', false,
 			'http://site.com/','discussionUrl' ) );
 
 		$chap_meta->add_field( new Pressbooks_Metadata_Number_Field(
 			'Topic Learning Time (minutes)',
-			'The study time required for the topic', 's_md_class_learning_time', '', '', 0, false, 0, '', '', 'timeRequired') );
+			'The study time required for the topic', 'pb_class_learning_time', '', '', 0, false, 0, '', '', 'timeRequired') );
 
 		// Built-in fields (from WordPress)
 		$chap_meta->add_field( new Pressbooks_Metadata_Creation_Date_Field(
