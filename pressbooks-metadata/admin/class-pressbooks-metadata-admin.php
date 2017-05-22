@@ -107,7 +107,7 @@ class Pressbooks_Metadata_Admin {
 	 * 
 	 * @since    0.6
 	 */
-	function s_md_init() {
+	function mdt_init() {
 		// Must meet miniumum requirements
 		if ( ! @include_once( WP_PLUGIN_DIR . '/pressbooks/compatibility.php' ) ) {
 			add_action( 'admin_notices', function () {
@@ -129,7 +129,7 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.6
 	 */
-	public function s_md_header_function() {
+	public function mdt_header_function() {
 
 		global $post;
 
@@ -146,7 +146,7 @@ class Pressbooks_Metadata_Admin {
 		}
 		elseif ( is_front_page() ) {
 			$pm_GS = Pressbooks_Metadata_General_Book_Information::get_instance();
-			$pm_GS->print_Google_Scolar_meta_tags();
+			$pm_GS->print_Google_Scolar_metatags();
 		}
 	}
 
@@ -157,60 +157,31 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.2
 	 */
-	public function s_md_footer_function() {
+	public function mdt_footer_function() {
 
 		global $post;
 
-		if ( is_home() ) {?>
+		if ( is_home() ) {
 
-		<?php
 		}
-		elseif ( is_front_page() ) { ?>
-
-<!-- Course type -->
-<div itemscope itemtype = 'http://schema.org/Course'>
-			<?php
-			$pm_BM = Pressbooks_Metadata_Educational_Information::get_instance();
-			$pm_BM->print_microdata_meta_tags();
-			$pm_BM->print_educationalAlignment_microdata_meta_tags();
-			?>
-</div>
-<!-- Book type -->
-<div itemscope itemtype = 'http://schema.org/Book'>
-			<?php
+		elseif ( is_front_page() ) { 
+			// print the metatags from General Book Information metabox
 			$pm_BB = Pressbooks_Metadata_General_Book_Information::get_instance();
-			$pm_BB->print_microdata_meta_tags();
-			?>
-</div>
-			<?php
+			$pm_BB->print_microdata_metatags();
+
+			// print the metatags from Educational Information metabox
+			$pm_BM = Pressbooks_Metadata_Educational_Information::get_instance();
+			$pm_BM->print_microdata_metatags();
+			$pm_BM->print_educationalAlignment_metatags();
+			
 		}
 		else{
-		?>
-<!-- Scholarly Article type -->
-<div itemscope itemtype = 'http://schema.org/ScholarlyArticle' >
-
-<!-- Here we take data from the default fields of wordpress -->
-	<meta itemprop = 'headline' content='<?php echo $post->post_title; ?>' />
-	<meta itemprop = 'datePublished' content='<?php echo $post->post_date; ?>' />
-	<meta itemprop = 'dateModified' content='<?php echo $post->post_modified; ?>' />
-
-<!-- Here from the pressbooks fields in the Post level -->
-			<?php
+			// print the metatags in Chapter level
 			$pm_CM = Pressbooks_Metadata_Chapter_Metadata::get_instance();
-			$pm_CM->print_microdata_meta_tags();
-			$pm_CM->print_ScolarlyArticle_meta_tags();
-			$pm_CM->print_Chapter_Metadata_meta_tags();
-
-			/*-- And here from the fields we need to use from the Educational Information metabox --*/
-			$pm_CM = Pressbooks_Metadata_Educational_Information::get_instance();
-			$pm_CM->print_ScolarlyArticle_meta_tags_from_Edu_Info();
-			?>
-</div>
-			<?php
+			$pm_CM->print_microdata_metatags();
+			$pm_CM->print_Chapter_level_metatags();
 		}
-		?>
-
-		<?php
+		
 	}
 
 

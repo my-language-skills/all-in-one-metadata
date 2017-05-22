@@ -187,9 +187,9 @@ class Pressbooks_Metadata {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_footer', $plugin_admin, 's_md_footer_function' );
-		$this->loader->add_action( 'wp_head', $plugin_admin, 's_md_header_function' );
-		$this->loader->add_action( 'init', $plugin_admin, 's_md_init' ); // Meet miniumum requirements
+		$this->loader->add_action( 'wp_footer', $plugin_admin, 'mdt_footer_function' );
+		$this->loader->add_action( 'wp_head', $plugin_admin, 'mdt_header_function' );
+		$this->loader->add_action( 'init', $plugin_admin, 'mdt_init' ); // Meet miniumum requirements
 
 
 	}

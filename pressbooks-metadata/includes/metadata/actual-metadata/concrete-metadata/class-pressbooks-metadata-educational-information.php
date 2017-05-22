@@ -41,18 +41,6 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 		$edu_info->add_post_type( 'metadata' );
 
 
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Subject Name', '* The Subject Name is required.', 'pb_subject_name', '', '', '', false, '',
-			'name' ) );
-
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Small Description', 'A short description about this subject.', 'pb_small_description', '', '', '', false, '',
-			'description' ) );
-
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Course Code',
-			'The identifier for the Course (e.g. CS101 or 6.001).', 'pb_course_code', '', '', '', false, '',
-			'courseCode' ) );
-
 		$edu_info->add_field( new Pressbooks_Metadata_List_Field( 'ISCED field of education',
 			'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
 			'pb_isced_field', '', '', '00',
@@ -106,20 +94,17 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 				'12' => '12-13 years',
 				'11' => '11-12 years',
 				'10' => '10-11 years',
-				'9' => '9-10 years',
-				'8' => '8-9 years',
-				'7' => '7-8 years',
-				'6' => '6-7 years',
-				'5' => '5-3 years'
+				'9'  => '9-10 years',
+				'8'  => '8-9 years',
+				'7'  => '7-8 years',
+				'6'  => '6-7 years',
+				'5'  => '5-3 years'
 			), 'typicalAgeRange' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Educational Level', 'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course.', 'pb_edu_level', '', '', '', false, '',
 			'' ) );
 
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
-			'Course Prerequisites', 'Requirements for taking the Course. If applicable ', 'pb_course_prerequisites', '', '', '', false, '',
-			'' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Text_Field(
 			'Educational Framework', 'The Framework that the educational level belongs to. Example: CEFR, Common Core, European Baccalaureate', 'pb_edu_framework', '', '', '', false, '',
@@ -145,26 +130,18 @@ class Pressbooks_Metadata_Educational_Information extends Pressbooks_Metadata_Pl
 				'expositive' => 'Expositive',
 				'mixed' => 'Mixed'
 			), 'interactivityType' ) );
-/*
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Course Mode',
-			'The medium or means of delivery of the course. (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time")', 'course_mode', '', '', '', false, '',
-			'' ) );
 
-		$edu_info->add_field( new Pressbooks_Metadata_Text_Field( 'Instructor',
-			'A person assigned to instruct or provide instructional assistance for the course.', 'instructor', '', '', '', false, '',
-			'' ) );
-*/
 		$edu_info->add_field( new Pressbooks_Metadata_Number_Field(
 			'Class Learning Time (hours)', 'The study time required for the book',
 			'pb_time_required', '', '', 0, false, 0, '', '', 'timeRequired' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field( 'License URL',
-			'The url of the website with the license of this book', 'pb_license_url', '', '', '', false, 'http://site.com/',
+			'The url of the website with the license of this book.', 'pb_license_url', '', '', '', false, 'http://site.com/',
 			'license' ) );
 
 		$edu_info->add_field( new Pressbooks_Metadata_Url_Field(
 			'Bibliography URL',
-			'The URL of a website/book this book is inspirated of',
+			'The URL of a website/book this book is inspirated of.',
 			'pb_bibliography_url',
 			'', '', '', false, 'http://site.com/',
 			'isBasedOnUrl' ) );

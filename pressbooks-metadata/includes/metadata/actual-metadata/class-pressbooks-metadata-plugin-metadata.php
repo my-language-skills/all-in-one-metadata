@@ -201,7 +201,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 *
 	 * @since 0.1
 	 */
-	public function print_microdata_meta_tags() {
+	public function print_microdata_metatags() {
 
 		$meta = $this->get_current_metadata_flat();
 
@@ -212,9 +212,10 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 				if ( 'timeRequired' == $it ) { ?>
 	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo 'PT'. $elt->toMicrodataString() . ($elt->get_slug() == 'pb_class_learning_time'? 'M' : 'H'); ?>' />
 				<?php
-				}else{
+				}
+				else{
 ?>
-	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo $elt->toMicrodataString(); ?>' id='<?php echo $it; ?>' />
+	<meta itemprop = '<?php echo $it; ?>' content = '<?php echo $elt->toMicrodataString(); ?>' />
 <?php
 				}
 			}
@@ -222,7 +223,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 	}
 
-/**
+	/**
 	 * Returns the ISCED level code according to what is
 	 * chosen in the 'pb_isced_level' field.
 	 *
@@ -279,7 +280,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 * 
 	 * @since 0.2
 	 */
-	public function print_educationalAlignment_microdata_meta_tags() {
+	public function print_educationalAlignment_metatags() {
 
 		$meta = $this->get_current_metadata_flat();
 		$level = $this->get_isced_level_code();
@@ -336,126 +337,73 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 <?php
 		}
-
-		if ( isset( $meta['pb_course_prerequisites'] ) && isset( $meta['pb_edu_framework'] )) {
-?>
-	<span itemprop = 'coursePrerequisites' itemscope itemtype = 'http://schema.org/AlignmentObject'>
-		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
-		<meta itemprop = 'educationalFramework' content = '<?php echo $meta['pb_edu_framework']->toMicrodataString(); ?>'/>
-		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_course_prerequisites']->toMicrodataString(); ?>' />
-	</span>
-
-<?php
-		} elseif ( isset( $meta['pb_course_prerequisites'] ) && !isset( $meta['pb_edu_framework'] )) {
-?>
-	<span itemprop = 'coursePrerequisites' itemscope itemtype = 'http://schema.org/AlignmentObject'>
-		<meta itemprop = 'alignmentType' content = 'educationalLevel' />
-		<meta itemprop = 'targetName' content = '<?php echo $meta['pb_course_prerequisites']->toMicrodataString(); ?>' />
-	</span>
-
-<?php
-		}
 		
 
 	}
 
 	/**
-	 * A function to retrieve the data we need from the custom fields of PressBooks
-	 * for ScholarlyArticle plus the wordCount
+	 * A function to retrieve the data we need from all the fields of PressBooks
+	 * for Chapter level
 	 *
-	 * @since 0.5
+	 * @since 0.8
 	 */
-	public function print_ScolarlyArticle_meta_tags(){
+	public function print_Chapter_level_metatags(){
 
-		//array of the items that we need from the General Book Information metabox
-		$book_info_data = array(
-			'image' 				=>	'pb_cover_image',
-		//	'author' 				=>	'pb_section_author',
+		global $post;
+		$id = $post->ID; 
+
+		// array of the items that we need for the Chapter
+		$chapter_data = array(
+
+		// Here are the fields from General Book Information metabox.
 			'audience' 				=>	'pb_audience',
 			'editor'				=>	'pb_editor',
 			'translator'			=>	'pb_translator',
-		//	'contributor' 			=>	'pb_contributing_authors',		//To review for multiple contributors
-		//	'alternativeHeadline'	=>	'pb_subtitle',
 			'locationCreated'		=>	'pb_publisher_city',
-			'license'				=>	'pb_section_license'
+		//	Here are the fields from Educational Information metabox.
+			'citation'				=> 	'pb_bibliography_url',
+			'license'				=>	'pb_license_url',
+			'typicalAgeRange'		=>	'pb_age_range',
+		// Here are the fields from Chapter Metadata metabox
+			'author'				=> 	'pb_section_author',
+			'alternativeHeadline'	=>	'pb_subtitle'
 		);
 
-		//For the fields of General Book Information Metabox
-		$metadata = \Pressbooks\Book::getBookInformation();
 
-		foreach ($book_info_data as $itemprop => $content){
-			if ( isset( $metadata[$content] ) ) {
-?>
-	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $metadata[$content] ?>' />
-<?php
-			}
-		}
-
-		//To retrieve the word count number
-		global $post;
-    
-    	$char_list = '';
-   		$wordCount = str_word_count(strip_tags($post->post_content), 0, $char_list);
-?>
-	<meta itemprop = 'wordCount' content='<?php echo $wordCount?>' />
-<?php
-
-	}
-
-
-	/**
-	 * A function to retrieve the data we need to add to the
-	 * ScholarlyArticle from the fields of Educational Information metabox
-	 *
-	 * @since 0.5
-	 */
-	public function print_ScolarlyArticle_meta_tags_from_Edu_Info(){
-		
-	//array of the items that we need from the Educational Information metabox
-		$book_info_data = array(
-			'citation'			=> 	'pb_bibliography_url',
-			'license'			=>	'pb_license_url',
-			'typicalAgeRange'	=>	'pb_age_range'
-		);
-
-		$metadata = $this->get_current_metadata_flat();
-
-		foreach ($book_info_data as $itemprop => $content){
-			if ( isset( $metadata[$content] ) ) {
-?>
-	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $metadata[$content] ?>' />
-<?php
-			}
-		}
-	}
-
-
-	/**
-	 * A function to retrieve the data we need to add to the
-	 * ScholarlyArticle from the fields of Chapter Metadata metabox
-	 *
-	 * @since 0.6
-	 */
-	public function print_Chapter_Metadata_meta_tags(){
-
-		global $post;
-
-		$id = $post->ID; 
+		//For the fields of General Book Information metabox
+		$bookinfo = \Pressbooks\Book::getBookInformation();
+		//For the fields of Educational Information metabox
+		$eduinfo = $this->get_current_metadata_flat();
+		//For the fields of Chapter Metadata metabox
 		$post_meta = get_post_meta( $id );
 
-	//array of the items that we need from the Chapter Metadata metabox
-		$chapter_info_data = array(
-			'author'					=> 	'pb_section_author',
-			'alternativeHeadline'		=>	'pb_subtitle'
-		);
+?>
 
-		foreach ($chapter_info_data as $itemprop => $content){
-			if ( isset( $post_meta[$content] ) ) {
+
+<!-- Here we take data from the default fields of wordpress -->
+	<meta itemprop = 'headline' content='<?php echo $post->post_title; ?>' />
+	<meta itemprop = 'datePublished' content='<?php echo $post->post_date; ?>' />
+	<meta itemprop = 'dateModified' content='<?php echo $post->post_modified; ?>' />
+<?php
+
+		foreach ($chapter_data as $itemprop => $content){
+			if ( isset( $bookinfo[$content] ) ) {
+?>
+	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $bookinfo[$content] ?>' />
+<?php
+			}
+			elseif ( isset( $eduinfo[$content] ) ) {
+?>
+	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $eduinfo[$content] ?>' />
+<?php
+			}
+			elseif ( isset( $post_meta[$content] ) ) {
 ?>
 	<meta itemprop = '<?php echo $itemprop ?>' content = '<?php echo $post_meta[$content][0] ?>' />
 <?php
 			}
 		}
+
 	}
 
 	/**
@@ -464,7 +412,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	 *
 	 * @since 0.7
 	 */
-	public function print_Google_Scolar_meta_tags(){
+	public function print_Google_Scolar_metatags(){
 
 		//array of the items that we need from the General Book Information metabox
 		$book_info_data = array(
@@ -472,7 +420,6 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 			'citation_author' 			=>	'pb_author',
 			'citation_language'         => 	'pb_language',
 			'citation_keywords'         =>	'pb_keywords_tags',
-	//		'citation_pdf_url'          => 	s_md_get_citation_pdf_url(),
 			'citation_isbn' 			=>	'pb_ebook_isbn',
 			'citation_publisher'		=>	'pb_publisher',
 			'citation_publication_date'	=>	'pb_publication_date'
@@ -483,6 +430,7 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 
 		foreach ($book_info_data as $name => $content){
 			if ( isset( $metadata[$content] ) ) {
+				// the date must be in a specific format (Y/m/d)
 				if ( 'pb_publication_date' == $content ) {
 					$metadata[$content] = date( 'Y/m/d', (int) $metadata[ $content ] );
 				}
@@ -490,42 +438,11 @@ abstract class Pressbooks_Metadata_Plugin_Metadata {
 	<meta name = '<?php echo $name ?>' content = '<?php echo $metadata[$content] ?>' />
 <?php
 			}
-			elseif ('citation_pdf_url' == $name) {
-?>
-<!--	<meta name = '<?php echo $name ?>' content = 'omorfonios' /> -->
-<?php
-			}
+			
 		}
 
 	}
 
-	/**
-	 * A function that returns the url of the pdf downloadable file
-	 *
-	 * @since 0.7
-	 */
-	function s_md_get_citation_pdf_url() {
-		$url    = '';
-		$domain = site_url();
-
-		if ( method_exists( '\Pressbooks\Utility', 'latest_exports' ) ) {
-			$files = \Pressbooks\Utility\latest_exports();
-
-			$options = get_option( 'pbt_redistribute_settings' );
-			if ( ! empty( $files ) && ( true == $options['latest_files_public'] ) ) {
-
-				foreach ( $files as $filetype => $filename ) {
-					if ( 'pdf' == $filetype || 'mpdf' == $filetype ) {
-						$filename = preg_replace( '/(-\d{10})(.*)/ui', "$1", $filename );
-						// rewrite rule
-						$url = $domain . "/open/download?filename={$filename}&type={$filetype}";
-					}
-				}
-			}
-		}
-
-		return $url;
-	}
 
 }
 
