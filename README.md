@@ -79,7 +79,7 @@ Working with administration page
 	* Rewriting of the plugin #78
 	
 * **BUGFIXES:** 
-	* Extend Pressbooks default types, instead of using different ones
+	* Extend Pressbooks default types, instead of using different ones #91
 	
 ### 0.7
 * **ADDITIONS**
