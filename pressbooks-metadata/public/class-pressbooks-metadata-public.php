@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://on-lingua.com
+ * @link       https://github.com/Books4Languages/pressbooks-metadata
  * @since      0.1
  *
  * @package    Pressbooks_Metadata
@@ -14,11 +14,11 @@
  * The public-facing functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the dashboard-specific stylesheet and JavaScript.
+ * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/public
- * @author     julienCXX <software@chmodplusx.eu>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Public {
 
@@ -44,8 +44,8 @@ class Pressbooks_Metadata_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    0.1
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param    string    $plugin_name       The name of the plugin.
+	 * @param    string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -78,7 +78,7 @@ class Pressbooks_Metadata_Public {
 	}
 
 	/**
-	 * Register the stylesheets for the public-facing side of the site.
+	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    0.1
 	 */

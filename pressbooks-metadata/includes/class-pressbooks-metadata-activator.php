@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://on-lingua.com
+ * @link       https://github.com/Books4Languages/pressbooks-metadata
  * @since      0.1
  *
  * @package    Pressbooks_Metadata
@@ -18,7 +18,7 @@
  * @since      0.1
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     julienCXX <software@chmodplusx.eu>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Activator {
 

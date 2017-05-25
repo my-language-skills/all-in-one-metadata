@@ -4,9 +4,9 @@
  * The file that defines the core plugin class
  *
  * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the dashboard.
+ * public-facing side of the site and the admin area.
  *
- * @link       http://on-lingua.com
+ * @link       https://github.com/Books4Languages/pressbooks-metadata
  * @since      0.1
  *
  * @package    Pressbooks_Metadata
@@ -16,7 +16,7 @@
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, dashboard-specific hooks, and
+ * This is used to define internationalization, admin-specific hooks, and
  * public-facing site hooks.
  *
  * Also maintains the unique identifier of this plugin as well as the current
@@ -25,8 +25,7 @@
  * @since      0.1
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     julienCXX <software@chmodplusx.eu>
- * @author 	   Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata {
 
@@ -62,7 +61,7 @@ class Pressbooks_Metadata {
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the Dashboard and
+	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
 	 * @since    0.1
@@ -74,10 +73,10 @@ class Pressbooks_Metadata {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->set_themes();
 		$this->define_admin_hooks();
-		$this->define_metadata_changes();
 		$this->define_public_hooks();
+
+		$this->define_metadata_changes();
 
 	}
 
@@ -88,8 +87,12 @@ class Pressbooks_Metadata {
 	 *
 	 * - Pressbooks_Metadata_Loader. Orchestrates the hooks of the plugin.
 	 * - Pressbooks_Metadata_i18n. Defines internationalization functionality.
-	 * - Pressbooks_Metadata_Admin. Defines all hooks for the dashboard.
+	 * - Pressbooks_Metadata_Admin. Defines all hooks for the admin area.
 	 * - Pressbooks_Metadata_Public. Defines all hooks for the public side of the site.
+	 *
+	 * - Pressbooks_Metadata_General_Book_Information. Defines metadata of this plugin.
+	 * - Pressbooks_Metadata_Educational_Information. Defines metadata of this plugin.
+	 * - Pressbooks_Metadata_Chapter_Metadata. Defines metadata of this plugin.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -112,12 +115,7 @@ class Pressbooks_Metadata {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-pressbooks-metadata-i18n.php';
 
 		/**
-		 * The class responsible for registering and setting all the themes used by the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-pressbooks-metadata-themes.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the Dashboard.
+		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-pressbooks-metadata-admin.php';
 
@@ -128,10 +126,13 @@ class Pressbooks_Metadata {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-pressbooks-metadata-public.php';
 
 		/**
-		 * Includes all the existing concrete metadata actually used/provided
-		 * by this plugin.
+		 * The classes responsible for defining the metadata of this plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/metadata/actual-metadata/include-concrete-plugin-metadata.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-pressbooks-metadata-general-book-information.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-pressbooks-metadata-educational-information.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-pressbooks-metadata-chapter-metadata.php';
 
 		$this->loader = new Pressbooks_Metadata_Loader();
 
@@ -149,33 +150,13 @@ class Pressbooks_Metadata {
 	private function set_locale() {
 
 		$plugin_i18n = new Pressbooks_Metadata_i18n();
-		$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
 	}
 
 	/**
-	 * Set the plugin's specific themes and removes useless ones.
-	 *
-	 * @since    0.1
-	 * @access   private
-	 */
-	private function set_themes() {
-
-		$plugin_themes = new Pressbooks_Metadata_Themes( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'init', $plugin_themes, 'register_directory' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_themes, 'enqueue_custom_themes' );
-		$this->loader->add_filter( 'allowed_themes', $plugin_themes, 'add_themes_to_filter', 11 );
-
-		// Export fix
-		$this->loader->add_filter( 'pb_epub_css_override', $plugin_themes, 'add_epub_export_styles' );
-
-	}
-
-	/**
-	 * Register all of the hooks related to the dashboard functionality
+	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
 	 * @since    0.1
@@ -187,46 +168,13 @@ class Pressbooks_Metadata {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_footer', $plugin_admin, 'mdt_footer_function' );
-		$this->loader->add_action( 'wp_head', $plugin_admin, 'mdt_header_function' );
-		$this->loader->add_action( 'init', $plugin_admin, 'mdt_init' ); // Meet miniumum requirements
+		// The pmdt_init is being used in the beginning of this plugin
+		$this->loader->add_action( 'init', $plugin_admin, 'pmdt_init' ); 					// Meet miniumum requirements
+		// The pmdt_header_function is used in the header of the website
+		$this->loader->add_action( 'wp_head', $plugin_admin, 'pmdt_header_function' );
+		//	The pmdt_footer_function is used in the footer of the website
+		$this->loader->add_action( 'wp_footer', $plugin_admin, 'pmdt_footer_function' );
 
-
-	}
-
-	/**
-	 * Register all of the metadata customization.
-	 *
-	 *
-	 *
-	 * @since    0.1
-	 * @access   private
-	 */
-	private function define_metadata_changes() {
-
-		$plugin_educational_information = Pressbooks_Metadata_Educational_Information::get_instance();
-		$plugin_chapter_metadata = Pressbooks_Metadata_Chapter_Metadata::get_instance();
-		$plugin_related_books = Pressbooks_Metadata_Related_Books::get_instance();
-		$plugin_general_book_information = Pressbooks_Metadata_General_Book_Information::get_instance();
-
-
-		$this->loader->add_action(
-			'custom_metadata_manager_init_metadata',
-			$plugin_educational_information,
-			'add_to_current_post_metadata', 31 );
-		$this->loader->add_action(
-			'custom_metadata_manager_init_metadata',
-			$plugin_chapter_metadata,
-			'add_to_current_post_metadata', 31 );
-		$this->loader->add_action(
-			'custom_metadata_manager_init_metadata',
-			$plugin_related_books,
-			'add_to_current_post_metadata', 31 );
-		$this->loader->add_action(
-			'custom_metadata_manager_init_metadata',
-			$plugin_general_book_information,
-			'add_to_current_post_metadata', 31 );
-		
 	}
 
 	/**
@@ -243,6 +191,26 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * Register all of the metadata customization.
+	 *
+	 *
+	 *
+	 * @since    0.1
+	 * @access   private
+	 */
+	private function define_metadata_changes() {
+
+		$plugin_general_book_information = new Pressbooks_Metadata_General_Book_Information( $this->get_plugin_name(), $this->get_version() );
+		$plugin_educational_information	 = new Pressbooks_Metadata_Educational_Information( $this->get_plugin_name(), $this->get_version() );
+		$plugin_chapter_metadata		 = new Pressbooks_Metadata_Chapter_Metadata( $this->get_plugin_name(), $this->get_version() );
+
+		// The custom_metadata_manager_init_metadata hook, defines all the metaboxes and their fields 
+		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_general_book_information, 'add_metadata', 31 );
+		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_educational_information, 'add_metadata' );
+		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_chapter_metadata, 'add_metadata', 31 );
 	}
 
 	/**

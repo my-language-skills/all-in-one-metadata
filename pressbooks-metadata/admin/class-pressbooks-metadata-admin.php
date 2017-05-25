@@ -1,25 +1,27 @@
 <?php
 
 /**
- * The dashboard-specific functionality of the plugin.
+ * The admin-specific functionality of the plugin.
  *
- * @link       http://books4languages.com
+ * @link       https://github.com/Books4Languages/pressbooks-metadata
  * @since      0.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
  */
 
+require_once plugin_dir_path( __FILE__ )
+	. '../includes/class-pressbooks-metadata-functions.php';
+
 /**
- * The dashboard-specific functionality of the plugin.
+ * The admin-specific functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the dashboard-specific stylesheet and JavaScript.
+ * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
- * @author     julienCXX <software@chmodplusx.eu>
- * @author 	   Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_Admin {
 
@@ -45,8 +47,8 @@ class Pressbooks_Metadata_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    0.1
-	 * @param    string    $plugin_name       The name of this plugin.
-	 * @param    string    $version    The version of this plugin.
+	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -56,7 +58,7 @@ class Pressbooks_Metadata_Admin {
 	}
 
 	/**
-	 * Register the stylesheets for the Dashboard.
+	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    0.1
 	 */
@@ -79,7 +81,7 @@ class Pressbooks_Metadata_Admin {
 	}
 
 	/**
-	 * Register the JavaScript for the dashboard.
+	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    0.1
 	 */
@@ -107,13 +109,14 @@ class Pressbooks_Metadata_Admin {
 	 * 
 	 * @since    0.6
 	 */
-	function mdt_init() {
-		// Must meet miniumum requirements
+	function pmdt_init() {
+		// Check for Pressbooks install
 		if ( ! @include_once( WP_PLUGIN_DIR . '/pressbooks/compatibility.php' ) ) {
 			add_action( 'admin_notices', function () {
 				echo '<div id="message" class="error fade"><p>' . __( 'PB metadata cannot find a Pressbooks install.', 'pressbooks-metadata' ) . '</p></div>';
 			} );
 			return;
+		// Must meet miniumum requirements
 		} elseif( ! version_compare( PB_PLUGIN_VERSION, '3.9.8.2', '>=' ) ) {
 			add_action( 'admin_notices', function () {
 				echo '<div id="message" class="error fade"><p>' . __( 'PB metadata requires Pressbooks 3.9.8.2 or greater.', 'pressbooks-metadata' ) . '</p></div>';
@@ -129,24 +132,16 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.6
 	 */
-	public function mdt_header_function() {
+	public function pmdt_header_function() {
 
 		global $post;
 
-		if ( is_home() ) {?>
-<div itemscope itemtype="http://schema.org/Website">
-	<meta itemprop = 'name' content = '<?php echo get_bloginfo( 'name' ); ?>'>
-	<meta itemprop = 'description' content = '<?php echo get_bloginfo( 'description' ); ?>'>
-	<meta itemprop = 'url' content = '<?php echo get_bloginfo( 'url' ); ?>'>
-	<meta itemprop = 'inLanguage' content = '<?php echo get_bloginfo( 'language' ); ?>'>
-	<!--<meta itemprop='datePublished' content='<?php echo $post->post_date; ?>' >
-	<meta itemprop='dateModified' content='<?php echo $post->post_modified; ?>' id='name'>-->
-</div>
-		<?php
-		}
-		elseif ( is_front_page() ) {
-			$pm_GS = Pressbooks_Metadata_General_Book_Information::get_instance();
-			$pm_GS->print_Google_Scolar_metatags();
+		$pmdt_GS = new Pressbooks_Metadata_Functions();
+
+		if ( is_home() ) {
+			echo $pmdt_GS->pmdt_get_Root_level_metatags();
+		} elseif ( is_front_page() ) {
+			echo $pmdt_GS->pmdt_get_GoogleScolar_metatags();
 		}
 	}
 
@@ -157,32 +152,24 @@ class Pressbooks_Metadata_Admin {
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.2
 	 */
-	public function mdt_footer_function() {
+	public function pmdt_footer_function() {
 
 		global $post;
 
-		if ( is_home() ) {
+		$pmdt_GS = new Pressbooks_Metadata_Functions();
 
+		if ( is_home() ) {
+			//Do nothing. 
+			//The metatags of the Root page are printed in the header function
 		}
 		elseif ( is_front_page() ) { 
-			// print the metatags from General Book Information metabox
-			$pm_BB = Pressbooks_Metadata_General_Book_Information::get_instance();
-			$pm_BB->print_microdata_metatags();
-
-			// print the metatags from Educational Information metabox
-			$pm_BM = Pressbooks_Metadata_Educational_Information::get_instance();
-			$pm_BM->print_microdata_metatags();
-			$pm_BM->print_educationalAlignment_metatags();
-			
+			echo $pmdt_GS->pmdt_get_Site_level_metatags();
+			echo $pmdt_GS->pmdt_get_educationalAlignment_metatags();
 		}
 		else{
-			// print the metatags in Chapter level
-			$pm_CM = Pressbooks_Metadata_Chapter_Metadata::get_instance();
-			$pm_CM->print_microdata_metatags();
-			$pm_CM->print_Chapter_level_metatags();
+			echo $pmdt_GS->pmdt_get_Post_level_metatags($post);
 		}
 		
 	}
-
 
 }

@@ -1,15 +1,4 @@
 /**
- * All of the CSS for your dashboard-specific functionality should be
+ * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-
-/**
- * Formatting fake metadata fields as input field sets.
- */
-fieldset div, fieldset label {
-	padding-left: 20px;
-}
-fieldset legend {
-	font-weight: bold;
-	margin-left: 0px;
-}

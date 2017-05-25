@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Define the internationalization functionality
+ *
+ * Loads and defines the internationalization files for this plugin
+ * so that it is ready for translation.
+ *
+ * @link       https://github.com/Books4Languages/pressbooks-metadata
+ * @since      0.1
+ *
+ * @package    Pressbooks_Metadata
+ * @subpackage Pressbooks_Metadata/includes
+ */
+
+/**
  * Define the internationalization functionality.
  *
  * Loads and defines the internationalization files for this plugin
@@ -9,18 +22,10 @@
  * @since      0.1
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     julienCXX <software@chmodplusx.eu>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 class Pressbooks_Metadata_i18n {
 
-	/**
-	 * The domain specified for this plugin.
-	 *
-	 * @since    0.1
-	 * @access   private
-	 * @var      string    $domain    The domain identifier for this plugin.
-	 */
-	private $domain;
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -30,21 +35,13 @@ class Pressbooks_Metadata_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			$this->domain,
+			'pressbooks-metadata',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
 
 	}
 
-	/**
-	 * Set the domain equal to that of the specified domain.
-	 *
-	 * @since    0.1
-	 * @param    string    $domain    The domain that represents the locale of this plugin.
-	 */
-	public function set_domain( $domain ) {
-		$this->domain = $domain;
-	}
+
 
 }
