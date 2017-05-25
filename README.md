@@ -74,6 +74,13 @@ Working with administration page
 
 ## Changelog
 
+### 0.8
+* **ADDITIONS**
+	* Rewriting of the plugin #78
+	
+* **BUGFIXES:** 
+	* Extend Pressbooks default types, instead of using different ones
+	
 ### 0.7
 * **ADDITIONS**
 	* **Google Scholar microtags**
