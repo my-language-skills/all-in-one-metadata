@@ -8,7 +8,7 @@ Tags: pressbooks, metadata, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
-Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%203.9.8.2-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
+Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%203.9.9-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.9)
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
