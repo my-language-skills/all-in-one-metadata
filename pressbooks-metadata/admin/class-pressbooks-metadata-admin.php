@@ -11,7 +11,13 @@
  */
 
 require_once plugin_dir_path( __FILE__ )
-	. '../includes/class-pressbooks-metadata-functions.php';
+	. '../admin/schemaFunctions/class-pressbooks-metadata-functions.php';
+
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/settings/class-pressbooks-metadata-sections.php';
+
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php';
 
 /**
  * The admin-specific functionality of the plugin.
@@ -22,6 +28,7 @@ require_once plugin_dir_path( __FILE__ )
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     Christos Amyrotos <christosv2@hotmail.com>
  */
 class Pressbooks_Metadata_Admin {
 
@@ -109,7 +116,7 @@ class Pressbooks_Metadata_Admin {
 	 * 
 	 * @since    0.6
 	 */
-	function pmdt_init() {
+	public function pmdt_init() {
 		// Check for Pressbooks install
 		if ( ! @include_once( WP_PLUGIN_DIR . '/pressbooks/compatibility.php' ) ) {
 			add_action( 'admin_notices', function () {
@@ -134,14 +141,12 @@ class Pressbooks_Metadata_Admin {
 	 */
 	public function pmdt_header_function() {
 
-		global $post;
-
+		//We execute the code below only if the option is selected in the admin menu
 		$pmdt_GS = new Pressbooks_Metadata_Functions();
-
-		if ( is_home() ) {
-			echo $pmdt_GS->pmdt_get_Root_level_metatags();
-		} elseif ( is_front_page() ) {
-			echo $pmdt_GS->pmdt_get_GoogleScolar_metatags();
+		if ( is_home() && get_option('root_meta_basic_metatags') ) {
+			echo $pmdt_GS->pmdt_get_root_level_metatags();
+		} elseif ( is_front_page() && get_option('root_meta_basic_metatags')) {
+			echo $pmdt_GS->pmdt_get_googleScholar_metatags();
 		}
 	}
 
@@ -162,14 +167,104 @@ class Pressbooks_Metadata_Admin {
 			//Do nothing. 
 			//The metatags of the Root page are printed in the header function
 		}
-		elseif ( is_front_page() ) { 
-			echo $pmdt_GS->pmdt_get_Site_level_metatags();
-			echo $pmdt_GS->pmdt_get_educationalAlignment_metatags();
+		elseif ( is_front_page() && get_option('book_type_book_level')) {
+			//If the book_type is enabled for the book level we run the meta data functions below
+			echo $pmdt_GS->pmdt_get_book_metatags('metadata');
 		}
 		else{
-			echo $pmdt_GS->pmdt_get_Post_level_metatags($post);
+			if(get_option('book_type_chapter_level')){
+				//If the book_type is enabled for the chapter level we run the meta data functions below
+				echo $pmdt_GS->pmdt_get_book_metatags("chapter");
+			}
 		}
 		
 	}
 
+	/* ------------------------------------------------------------------- *
+	 * Functions for the Settings Page
+	 * ------------------------------------------------------------------- */
+
+	/**
+ 	* Render the options page for plugin.
+ 	*
+ 	* @since  0.x
+ 	*/
+	public function pmdt_display_options_page() {
+		include_once 'partials/pressbooks-metadata-admin-display.php';
+	}
+
+	/**
+	 * Add an options page under the Settings submenu.
+	 *
+	 * @since  0.x
+	 */
+	public function pmdt_add_options_page() {
+	
+		$this->plugin_screen_hook_suffix = 
+		add_options_page(
+			__( 'Pressbooks Metadata Settings', 'pressbooks-metadata' ),
+			__( 'PB Metadata', 'pressbooks-metadata' ),
+			'manage_options',
+			$this->plugin_name.'_options_page',
+			array( $this, 'pmdt_display_options_page' )
+		);
+	}
+
+	/**
+	 * Adding sections with fields in the options page using the class section.
+	 *
+	 * @since  0.x
+	 */
+	public function pmdt_register_setting() {
+
+		//Every setting you create can be accesed using the example here
+		//book_type -> This is the id of a field in the array below
+		//book_level -> This is the section id that this fields exists
+		//if you add them together with a '_' you have the setting -> book_type_book_level
+		$metaValues = array(
+			'book_type'    =>  'Book Type'
+		);
+
+		new Pressbooks_Metadata_Sections(
+			'book_level',
+			'Book Level',
+			$this->plugin_name . '_options_page',
+			$metaValues
+		);
+
+		new Pressbooks_Metadata_Sections(
+			'chapter_level',
+			'Chapter Level',
+			$this->plugin_name . '_options_page',
+			$metaValues
+		);
+
+		$metaValues = array(
+			'root_meta'    =>  'Root Metatags - Google Scholar'
+		);
+
+		new Pressbooks_Metadata_Sections(
+			'basic_metatags',
+			'Basic Head Metatags',
+			$this->plugin_name . '_options_page',
+			$metaValues
+		);
+	}
+
+	/**
+	 * Adding metaboxes with fields in the desired pages.
+	 *
+	 * @since  0.x
+	 */
+	public function pmdt_place_metaboxes() {
+		//Use the string parameter 'metabox' ->PB BOOK INFO LEVEL or 'chapter' -> PB CHAPTER LEVEL to make the metaboxes appear
+
+		if ( get_option( 'book_type_book_level' ) ) {
+			new Pressbooks_Metadata_Metabox_Book( 'metadata' );
+		}
+
+		if ( get_option( 'book_type_chapter_level' ) ) {
+			new Pressbooks_Metadata_Metabox_Book( 'chapter' );
+		}
+	}
 }
