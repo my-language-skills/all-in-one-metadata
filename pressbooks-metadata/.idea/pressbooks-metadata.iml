@@ -4,5 +4,15 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../Usb Webserver/root/wordpress" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../Usb Webserver/root/wordpress" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -5,6 +5,7 @@
  * it is targeted for the pressbooks-metadata plugin
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
+ * @since      0.x
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
@@ -16,6 +17,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The metadata (schema) type for the field.
 	 *
+	 * @since    0.x
 	 * @access   private
 	 * @var      string    $metaType  The string used to uniquely this field's schema type.
 	 */
@@ -24,6 +26,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The metadata (schema) caption for the settings to show.
 	 *
+	 * @since    0.x
 	 * @access   private
 	 * @var      string    $metaName  The string used to uniquely this field's caption.
 	 */
@@ -32,6 +35,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The section ID for the current field's section.
 	 *
+	 * @since    0.x
 	 * @access   private
 	 * @var      string    $sectionId  The string used to uniquely the field's section ID.
 	 */
@@ -40,6 +44,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The section Name for the current field's section.
 	 *
+	 * @since    0.x
 	 * @access   private
 	 * @var      string    $sectionName  The string used to uniquely this field's section Name.
 	 */
@@ -48,6 +53,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The field's Display Page.
 	 *
+	 * @since    0.x
 	 * @access   private
 	 * @var      string    $displayPage The string used to uniquely this fields's Display Page.
 	 */
@@ -56,6 +62,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The constructor for passing all information to the variables and finally creating a field.
 	 *
+	 * @since    0.x
 	 */
 	function __construct($metaTypeInput,$metaNameInput,$sectionIdInput,$sectionNameInput,$displayPageInput) {
 		$this->metaType = $metaTypeInput;
@@ -70,6 +77,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The main function used to create a field.
 	 *
+	 * @since  0.x
 	 */
 	function pmdt_create_field(){
 		add_settings_field(
@@ -89,6 +97,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The main function used to render the description of the field.
 	 *
+	 * @since  0.x
 	 */
 	function pmdt_field_draw(){
 		$html = '<input type="checkbox" id="'.$this->metaType.'_'.$this->sectionId.'" name="'.$this->metaType.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->metaType.'_'.$this->sectionId), false) . '/>';
