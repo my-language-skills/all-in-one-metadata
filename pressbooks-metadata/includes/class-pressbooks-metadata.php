@@ -75,9 +75,6 @@ class Pressbooks_Metadata {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
-		$this->define_metadata_changes();
-
 	}
 
 	/**
@@ -125,15 +122,6 @@ class Pressbooks_Metadata {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-pressbooks-metadata-public.php';
 
-		/**
-		 * The classes responsible for defining the metadata of this plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-pressbooks-metadata-general-book-information.php';
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-pressbooks-metadata-educational-information.php';
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-pressbooks-metadata-chapter-metadata.php';
-
 		$this->loader = new Pressbooks_Metadata_Loader();
 
 	}
@@ -169,12 +157,17 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		// The pmdt_init is being used in the beginning of this plugin
-		$this->loader->add_action( 'init', $plugin_admin, 'pmdt_init' ); 					// Meet miniumum requirements
+		$this->loader->add_action( 'init', $plugin_admin, 'pmdt_init' );
+		// Load the options page
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'pmdt_add_options_page' );
+		// Register the settings section
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'pmdt_register_setting' );
 		// The pmdt_header_function is used in the header of the website
 		$this->loader->add_action( 'wp_head', $plugin_admin, 'pmdt_header_function' );
 		//	The pmdt_footer_function is used in the footer of the website
-		$this->loader->add_action( 'wp_footer', $plugin_admin, 'pmdt_footer_function' );
-
+		$this->loader->add_action( 'wp_footer', $plugin_admin, 'pmdt_footer_function');
+		//This is the code that will produce the metaboxes in the desired places
+		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_admin, 'pmdt_place_metaboxes',31 );
 	}
 
 	/**
@@ -191,26 +184,6 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-	}
-
-	/**
-	 * Register all of the metadata customization.
-	 *
-	 *
-	 *
-	 * @since    0.1
-	 * @access   private
-	 */
-	private function define_metadata_changes() {
-
-		$plugin_general_book_information = new Pressbooks_Metadata_General_Book_Information( $this->get_plugin_name(), $this->get_version() );
-		$plugin_educational_information	 = new Pressbooks_Metadata_Educational_Information( $this->get_plugin_name(), $this->get_version() );
-		$plugin_chapter_metadata		 = new Pressbooks_Metadata_Chapter_Metadata( $this->get_plugin_name(), $this->get_version() );
-
-		// The custom_metadata_manager_init_metadata hook, defines all the metaboxes and their fields 
-		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_general_book_information, 'add_metadata', 31 );
-		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_educational_information, 'add_metadata' );
-		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_chapter_metadata, 'add_metadata', 31 );
 	}
 
 	/**
