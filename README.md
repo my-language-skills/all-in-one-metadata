@@ -2,7 +2,7 @@
 
 # pressbooks-metadata
 
-Contributors: @colomet, @julienCXX, @masaka222 
+Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa
 
 Tags: pressbooks, metadata, lrmi
 
@@ -64,19 +64,24 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 
 ## Roadmap
 
-### 0.8
-To create a settings page (site and network)
-
 ### 0.9
 Working with administration page
 
 ### 0.XX
 
 ## Changelog
+### 0.8.1
+* **ADDITIONS**
+	* To create a settings page #25
+
+* **ENHANCEMENTS**
+    * To write type and property name inside each field inside of the code #61
+    * Each group of features as an independen file #56
 
 ### 0.8
 * **ADDITIONS**
 	* Rewriting of the plugin #78
+	* Creation of the fields using a plugin: Custom Metadata Manager for WordPress
 	
 * **BUGFIXES:** 
 	* Extend Pressbooks default types, instead of using different ones #91
@@ -219,6 +224,12 @@ Working with administration page
   
 ## Upgrade Notice
 
+### 0.8.1
+To use google scholar. To extend metadata for an integration of the content.
+
+### 0.8
+Rewriting of the plugin and integration with Custom Metadata Manager for WordPress.
+
 ### 0.7
 To use google scholar. To extend metadata for an integration of the content.
 
@@ -248,6 +259,8 @@ Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin
 Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") 
 
 Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
+
+Here's a link to [Custom Metadata Manager for WordPress](https://wordpress.org/plugins/custom-metadata/ "Framework for custom field creation")
 
 Here's a link to [Dillinger](http://dillinger.io/ "Text Editor for markdown")
 
