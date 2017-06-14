@@ -5,7 +5,7 @@
  * it is targeted for the pressbooks-metadata plugin
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
@@ -20,7 +20,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The section ID for the current section.
 	 *
-	 * @since    0.x
+	 * @since    0.8.1
 	 * @access   private
 	 * @var      string    $sectionId  The string used to uniquely this section's ID.
 	 */
@@ -29,7 +29,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The section Name for the current section.
 	 *
-	 * @since    0.x
+	 * @since    0.8.1
 	 * @access   private
 	 * @var      string    $sectionName  The string used to uniquely this section's Name.
 	 */
@@ -38,7 +38,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The section's Display Page for the current section.
 	 *
-	 * @since    0.x
+	 * @since    0.8.1
 	 * @access   private
 	 * @var      string    $displayPage The string used to uniquely this section's Display Page.
 	 */
@@ -47,7 +47,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The information for the metadata so the fields can be created.
 	 *
-	 * @since    0.x
+	 * @since    0.8.1
 	 * @access   private
 	 * @var      array    $metaData  The array used for the creation of the fields.
 	 */
@@ -56,7 +56,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The constructor for passing all information to the variables and finally creating a section.
 	 *
-	 * @since    0.x
+	 * @since    0.8.1
 	 */
 	function __construct($sectionInputId,$sectionInputName,$sectionInputDisplayPage,$metaDataInput) {
 		$this->sectionId = $sectionInputId;
@@ -70,7 +70,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The main function used to create the section, it also creates new objects of type field.
 	 *
-	 * @since  0.x
+	 * @since  0.8.1
 	 */
 	function pmdt_create_section(){
 		add_settings_section(
@@ -81,16 +81,16 @@ class Pressbooks_Metadata_Sections {
 		);
 
 		//A loop that goes through the metaData array and constructs fields corresponding to the arrays size
-		foreach ($this->metaData as $metaType => $metaName) {
+		foreach ($this->metaData as $metaType => $metaInfo) {
 			//New field objects created with the fields class
-			new Pressbooks_Metadata_Fields($metaType,$metaName,$this->sectionId,$this->sectionName,$this->displayPage);
+			new Pressbooks_Metadata_Fields($metaType,$metaInfo,$this->sectionId,$this->sectionName,$this->displayPage);
 		}
 	}
 
 	/**
 	 * The main function used to render the description of the section.
 	 *
-	 * @since  0.x
+	 * @since  0.8.1
 	 */
 	function pmdt_section_draw(){
 		echo '<p>Here you can choose what types of Metadata you want to show in the '.$this->sectionName.' </>';

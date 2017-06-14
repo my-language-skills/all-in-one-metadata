@@ -4,7 +4,7 @@
  * The functions of the plugin that handle metadata.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
@@ -39,7 +39,7 @@ class Pressbooks_Metadata_Functions {
 
 	/**
 	 * A function needed for returning the correct level when a user selects isced.
-	 * @since 0.x
+	 * @since 0.8.1
 	 *
 	 */
 	private function pmdt_get_isced_code($isced_value) {
@@ -81,7 +81,7 @@ class Pressbooks_Metadata_Functions {
 	/**
 	 * A function needed for the array of metadata that comes from each post or chapter
 	 * It automatically returns the first item in the array.
-	 * @since 0.x
+	 * @since 0.8.1
 	 *
 	 */
 	private function pmdt_get_first($my_array){
@@ -90,7 +90,7 @@ class Pressbooks_Metadata_Functions {
 
 	/**
 	 * A function that creates the metadata for book type and creative works.
-	 * @since 0.x
+	 * @since 0.8.1
 	 *
 	 */
 	public function pmdt_get_book_metatags($level_type) {
@@ -198,7 +198,7 @@ class Pressbooks_Metadata_Functions {
 
 	/**
 	 * A function that creates extra metadata for chapters or posts.
-	 * @since 0.x
+	 * @since 0.8.1
 	 *
 	 */
 	private function pmdt_additional_info($html){

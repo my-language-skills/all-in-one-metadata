@@ -4,7 +4,7 @@
  * The metaboxes for the book type
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/metaboxes
@@ -26,7 +26,7 @@ class Pressbooks_Metadata_Metabox_Book {
 	 * The function which produces the metaboxes for the book type
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
 	 * The value passed here is also used when calling the metadata functions in the header and the footer.
-	 * @since 0.x
+	 * @since 0.8.1
 	 */
 	public function add_metabox($meta_position){
 
