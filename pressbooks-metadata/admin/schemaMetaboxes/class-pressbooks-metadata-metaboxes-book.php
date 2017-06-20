@@ -12,14 +12,11 @@
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-//Book type has also creative work properties so we include them
-require_once 'class-pressbooks-metadata-metaboxes-creativeWork.php';
 
 class Pressbooks_Metadata_Metabox_Book {
 
 	public function __construct($meta_position) {
 		$this->add_metabox($meta_position);
-			new Pressbooks_Metadata_Metabox_Creative_Work($meta_position);
 	}
 
 	/**

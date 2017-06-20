@@ -13,9 +13,9 @@
  * @package           Pressbooks_Metadata
  *
  * @wordpress-plugin
- * Plugin Name:       Pressbooks metadata
+ * Plugin Name:       Pressbooks - Metadata
  * Plugin URI:        https://github.com/Books4Languages/pressbooks-metadata
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin adds metadata to the pressbooks plugin
  * Version:           0.8
  * Author:            My Language Skills
  * Author URI:        http://books4languages.com

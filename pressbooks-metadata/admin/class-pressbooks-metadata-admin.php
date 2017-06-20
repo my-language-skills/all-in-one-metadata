@@ -19,6 +19,12 @@ require_once plugin_dir_path( __FILE__ )
 require_once plugin_dir_path( __FILE__ )
              . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php';
 
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-course.php';
+
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php';
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -160,12 +166,14 @@ class Pressbooks_Metadata_Admin {
 
 		$pmdt_GS = new Pressbooks_Metadata_Functions();
 
-		if ( is_front_page() && get_option('book_type_book_level')) {
-			//If the book_type is enabled for the book level we run the meta data functions below
-			echo $pmdt_GS->pmdt_get_book_metatags('metadata');
-		} elseif(get_option('book_type_chapter_level') && !is_home()){
-			//If the book_type is enabled for the chapter level we run the meta data functions below
-			echo $pmdt_GS->pmdt_get_book_metatags("chapter");
+		if ( is_front_page()) {
+			//If the type is enabled for the book level we run the meta data functions below
+			if(get_option('book_type_book_level') || get_option('course_type_book_level') ){echo $pmdt_GS->pmdt_get_book_cw_metatags("metadata");}
+			if(get_option('course_type_book_level')){echo $pmdt_GS->pmdt_get_course_metatags("metadata");}
+		} elseif(!is_home()){
+			//If the type is enabled for the chapter level we run the meta data functions below
+			if(get_option('book_type_chapter_level') || get_option('course_type_chapter_level') ){echo $pmdt_GS->pmdt_get_book_cw_metatags("chapter");}
+			if(get_option('course_type_chapter_level')){echo $pmdt_GS->pmdt_get_course_metatags("chapter");}
 		}
 	}
 
@@ -211,7 +219,8 @@ class Pressbooks_Metadata_Admin {
 		//book_level -> This is the section id that this fields exists
 		//if you add them together with a '_' you have the setting -> book_type_book_level
 		$metaValues = array(
-			'book_type'    =>  array('Book Type', 'http://schema.org/Book')
+			'book_type'    =>  array('Book Type', 'http://schema.org/Book'),
+			'course_type'  =>  array('Course Type','http://schema.org/Course' )
 		);
 
 		new Pressbooks_Metadata_Sections(
@@ -243,10 +252,22 @@ class Pressbooks_Metadata_Admin {
 
 		if ( get_option( 'book_type_book_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Book( 'metadata' );
+			new Pressbooks_Metadata_Metabox_Creative_Work('metadata');
 		}
 
 		if ( get_option( 'book_type_chapter_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Book( 'chapter' );
+			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
+		}
+
+		if ( get_option( 'course_type_book_level' ) ) {
+			new Pressbooks_Metadata_Metabox_Course( 'metadata' );
+			new Pressbooks_Metadata_Metabox_Creative_Work('metadata');
+		}
+
+		if ( get_option( 'course_type_chapter_level' ) ) {
+			new Pressbooks_Metadata_Metabox_Course( 'chapter' );
+			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
 		}
 	}
 }

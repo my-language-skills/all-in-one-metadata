@@ -89,11 +89,55 @@ class Pressbooks_Metadata_Functions {
 	}
 
 	/**
+	 * A function that creates the metadata for course type.
+	 * @since x
+	 *
+	 */
+	public function pmdt_get_course_metatags($level_type) {
+
+		//Distinguishing if we are working on a post --- chapter level or on the main site level
+		//The level_type variable is the string we used to create the metabox using the Pressbooks_Metadata_Metabox_Book Class
+
+		if ( $level_type == 'chapter' ) { //loading the appropriate metadata depending on the level type
+			$metadata = get_post_meta( get_the_ID() );
+		} else {
+			$metadata = \Pressbooks\Book::getBookInformation();
+		}
+
+		// array of the items needed to become microtags
+		$book_data = array(
+			'courseCode'          => 'pb_course_code',
+			'coursePrerequisites' => 'pb_course_prerequisites',
+			'provider'            => 'pb_provider',
+			'name'                => 'pb_course_name',
+			'description'         => 'pb_course_description'
+		);
+
+		$html = "<!-- Microtags --> \n";
+
+		$html .= '<div itemscope itemtype="http://schema.org/Course">';
+
+		foreach ( $book_data as $itemprop => $content ) {
+			if ( isset( $metadata[ $content . '_' . $level_type ] ) ) {
+
+				if ( $level_type == 'chapter' ) { //we are using the get_first function to get the value from the returned array
+					$value = $this->pmdt_get_first( $metadata[ $content . '_' . $level_type ] );
+				} else {
+					$value = $metadata[ $content . '_' . $level_type ];
+				}
+				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
+			}
+		}
+		$html .= '</div>';
+		return $html;
+	}
+
+	/**
 	 * A function that creates the metadata for book type and creative works.
 	 * @since 0.8.1
 	 *
 	 */
-	public function pmdt_get_book_metatags($level_type) {
+	public function pmdt_get_book_cw_metatags($level_type) {
 
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
 		//The level_type variable is the string we used to create the metabox using the Pressbooks_Metadata_Metabox_Book Class
