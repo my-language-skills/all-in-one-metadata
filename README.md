@@ -77,6 +77,7 @@ Working with administration page
 * **ENHANCEMENTS**
     * To write type and property name inside each field inside of the code #61
     * Each group of features as an independen file #56
+    * To enable and dissable metadata fields #20
 
 ### 0.8
 * **ADDITIONS**
