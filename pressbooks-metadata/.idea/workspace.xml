@@ -12,37 +12,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="class-pressbooks-metadata-admin.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="272" column="1" lean-forward="false" selection-start-line="272" selection-start-column="1" selection-end-line="272" selection-end-column="1" />
-              <folding>
-                <element signature="e#7#236#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class-pressbooks-metadata-functions.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="class-pressbooks-metadata-functions.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1541">
-              <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+            <state relative-caret-position="752">
+              <caret line="336" column="0" lean-forward="true" selection-start-line="336" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
               <folding>
-                <element signature="e#7#367#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class-pressbooks-metadata-metaboxes-course.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-course.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="60" column="51" lean-forward="false" selection-start-line="60" selection-start-column="51" selection-end-line="60" selection-end-column="51" />
-              <folding>
-                <element signature="e#7#290#0#PHP" expanded="true" />
+                <element signature="e#7#380#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,6 +52,7 @@
       <find>$post_type</find>
       <find>metaName</find>
       <find>book</find>
+      <find>the</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -96,14 +73,24 @@
         <option value="$PROJECT_DIR$/admin/schemaFunctions/test_functions.php" />
         <option value="$USER_HOME$/Downloads/class-pressbooks-metadata-functions.php" />
         <option value="$PROJECT_DIR$/admin/css/pressbooks-metadata-admin.css" />
-        <option value="$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php" />
         <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/../../../Usb Webserver/root/index.php" />
-        <option value="$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-sections.php" />
-        <option value="$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-fields.php" />
-        <option value="$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php" />
         <option value="$PROJECT_DIR$/pressbooks-metadata.php" />
+        <option value="$USER_HOME$/Downloads/testing/class-test.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/json-ld-class/index.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/json-ld-class/json-class.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/json-class.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/uninstall.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/index.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/options_page.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/wordpress/wp-content/themes/twentysixteen/hooking-temp-example.php" />
+        <option value="$PROJECT_DIR$/../../../Usb Webserver/root/wordpress/wp-content/plugins/general-metadata-generator/json-class.php" />
+        <option value="$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-webPage.php" />
+        <option value="$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php" />
         <option value="$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-course.php" />
+        <option value="$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php" />
+        <option value="$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-fields.php" />
+        <option value="$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-sections.php" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-functions.php" />
         <option value="$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php" />
       </list>
@@ -123,7 +110,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
-    <option name="width" value="1942" />
+    <option name="width" value="1934" />
     <option name="height" value="1042" />
   </component>
   <component name="ProjectView">
@@ -141,7 +128,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -151,6 +137,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pressbooks-metadata" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pressbooks-metadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pressbooks-metadata" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -222,14 +222,33 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pressbooks-metadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pressbooks-metadata" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Usb Webserver/root/wordpress/wp-content/plugins/general-metadata-generator" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -320,6 +339,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="15495115-9964-48f2-a830-f733ce85b2f8" name="Default" comment="" />
@@ -339,18 +361,23 @@
       <workItem from="1497364646254" duration="194000" />
       <workItem from="1497365088527" duration="14000" />
       <workItem from="1497424023126" duration="5009000" />
-      <workItem from="1497948765754" duration="5699000" />
+      <workItem from="1497948765754" duration="7476000" />
+      <workItem from="1497956634193" duration="13703000" />
+      <workItem from="1497974842023" duration="3374000" />
+      <workItem from="1498031258420" duration="6705000" />
+      <workItem from="1498051071782" duration="609000" />
+      <workItem from="1498135695163" duration="1477000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93383000" />
+    <option name="totallyTimeSpent" value="121028000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1934" height="1042" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25989583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29811716" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992035" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -385,36 +412,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/metaboxes/metafields-chapter.php" />
-    <entry file="file://$PROJECT_DIR$/admin/metaboxes/metafields-book.php" />
-    <entry file="file://$PROJECT_DIR$/admin/metaboxes/class-pressbooks-metadata-chapter-metadata.php" />
-    <entry file="file://$PROJECT_DIR$/admin/metaboxes/class-pressbooks-metadata-general-book-information.php" />
-    <entry file="file://$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5562">
-          <caret line="214" column="21" lean-forward="false" selection-start-line="214" selection-start-column="21" selection-end-line="214" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/metaboxes/class-pressbooks-metadata-chapter-metadata.php" />
-    <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata.php" />
-    <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata-functions.php" />
-    <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata.php" />
-    <entry file="file://$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3888">
-          <caret line="144" column="12" lean-forward="false" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata.php" />
     <entry file="file://$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6345">
@@ -465,22 +462,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/partials/pressbooks-metadata-admin-display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata.php" />
     <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata-loader.php" />
-    <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="23" column="107" lean-forward="false" selection-start-line="23" selection-start-column="107" selection-end-line="23" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -491,73 +473,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/index.php" />
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/json-ld-class/index.php" />
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/json-ld-class/json-class.php" />
+    <entry file="file://$USER_HOME$/Downloads/testing/class-test.php" />
     <entry file="file://$PROJECT_DIR$/pressbooks-metadata.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        <state relative-caret-position="27">
+          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/json-class.php" />
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/uninstall.php" />
+    <entry file="file://$PROJECT_DIR$/admin/partials/pressbooks-metadata-admin-display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="29" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/WORK ON ME!/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-243">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/options_page.php" />
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/general-metadata-generator/index.php" />
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/wordpress/wp-content/themes/twentysixteen/contact-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="76" column="6" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="76" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-pressbooks-metadata.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="156" column="35" lean-forward="true" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-fields.php">
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/wordpress/wp-content/plugins/general-metadata-generator/json-class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-sections.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="85" column="62" lean-forward="false" selection-start-line="85" selection-start-column="62" selection-end-line="85" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-432">
-          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        <state relative-caret-position="27">
+          <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
           <folding>
-            <element signature="e#7#356#0#PHP" expanded="true" />
+            <marker date="1498040946582" expanded="true" signature="1246:1389" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Usb Webserver/root/wordpress/wp-content/themes/twentysixteen/hooking-temp-example.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#54#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-course.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="60" column="51" lean-forward="false" selection-start-line="60" selection-start-column="51" selection-end-line="60" selection-end-column="51" />
-          <folding>
-            <element signature="e#7#290#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="243">
+          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-functions.php">
+    <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1541">
-          <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
-          <folding>
-            <element signature="e#7#367#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="243">
+          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-fields.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/settings/class-pressbooks-metadata-sections.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/class-pressbooks-metadata-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="272" column="1" lean-forward="false" selection-start-line="272" selection-start-column="1" selection-end-line="272" selection-end-column="1" />
+        <state relative-caret-position="-2536">
+          <caret line="171" column="31" lean-forward="true" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
           <folding>
             <element signature="e#7#236#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-webPage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="336" column="0" lean-forward="true" selection-start-line="336" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#380#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

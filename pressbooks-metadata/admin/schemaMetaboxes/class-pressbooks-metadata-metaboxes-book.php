@@ -7,7 +7,7 @@
  * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/admin/metaboxes
+ * @subpackage Pressbooks_Metadata/admin/schemaMetaboxes
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */

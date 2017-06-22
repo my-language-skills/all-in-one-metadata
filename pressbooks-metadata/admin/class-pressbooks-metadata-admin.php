@@ -25,6 +25,9 @@ require_once plugin_dir_path( __FILE__ )
 require_once plugin_dir_path( __FILE__ )
              . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php';
 
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-webPage.php';
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -168,12 +171,14 @@ class Pressbooks_Metadata_Admin {
 
 		if ( is_front_page()) {
 			//If the type is enabled for the book level we run the meta data functions below
-			if(get_option('book_type_book_level') || get_option('course_type_book_level') ){echo $pmdt_GS->pmdt_get_book_cw_metatags("metadata");}
+			if(get_option('book_type_book_level') || get_option('course_type_book_level') || get_option('webpage_type_book_level') ){echo $pmdt_GS->pmdt_get_book_cw_metatags("metadata");}
 			if(get_option('course_type_book_level')){echo $pmdt_GS->pmdt_get_course_metatags("metadata");}
+			if(get_option('webpage_type_book_level')){echo $pmdt_GS->pmdt_get_webpage_metatags("metadata");}
 		} elseif(!is_home()){
 			//If the type is enabled for the chapter level we run the meta data functions below
-			if(get_option('book_type_chapter_level') || get_option('course_type_chapter_level') ){echo $pmdt_GS->pmdt_get_book_cw_metatags("chapter");}
+			if(get_option('book_type_chapter_level') || get_option('course_type_chapter_level') || get_option('webpage_type_chapter_level')){echo $pmdt_GS->pmdt_get_book_cw_metatags("chapter");}
 			if(get_option('course_type_chapter_level')){echo $pmdt_GS->pmdt_get_course_metatags("chapter");}
+			if(get_option('webpage_type_chapter_level')){echo $pmdt_GS->pmdt_get_webpage_metatags("chapter");}
 		}
 	}
 
@@ -220,7 +225,8 @@ class Pressbooks_Metadata_Admin {
 		//if you add them together with a '_' you have the setting -> book_type_book_level
 		$metaValues = array(
 			'book_type'    =>  array('Book Type', 'http://schema.org/Book'),
-			'course_type'  =>  array('Course Type','http://schema.org/Course' )
+			'course_type'  =>  array('Course Type','http://schema.org/Course' ),
+			'webpage_type'  =>  array('Webpage Type','http://schema.org/WebPage' )
 		);
 
 		new Pressbooks_Metadata_Sections(
@@ -257,6 +263,16 @@ class Pressbooks_Metadata_Admin {
 
 		if ( get_option( 'book_type_chapter_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Book( 'chapter' );
+			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
+		}
+
+		if ( get_option( 'webpage_type_book_level' ) ) {
+			new Pressbooks_Metadata_Metabox_WebPage( 'metadata' );
+			new Pressbooks_Metadata_Metabox_Creative_Work('metadata');
+		}
+
+		if ( get_option( 'webpage_type_chapter_level' ) ) {
+			new Pressbooks_Metadata_Metabox_WebPage( 'chapter' );
 			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
 		}
 

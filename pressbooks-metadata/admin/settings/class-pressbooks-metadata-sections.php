@@ -8,7 +8,7 @@
  * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/admin
+ * @subpackage Pressbooks_Metadata/admin/settings
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  */
 

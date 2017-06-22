@@ -7,7 +7,7 @@
  * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/includes
+ * @subpackage Pressbooks_Metadata/admin/schemaFunctions
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  */
@@ -116,6 +116,55 @@ class Pressbooks_Metadata_Functions {
 		$html = "<!-- Microtags --> \n";
 
 		$html .= '<div itemscope itemtype="http://schema.org/Course">';
+
+		foreach ( $book_data as $itemprop => $content ) {
+			if ( isset( $metadata[ $content . '_' . $level_type ] ) ) {
+
+				if ( $level_type == 'chapter' ) { //we are using the get_first function to get the value from the returned array
+					$value = $this->pmdt_get_first( $metadata[ $content . '_' . $level_type ] );
+				} else {
+					$value = $metadata[ $content . '_' . $level_type ];
+				}
+				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
+			}
+		}
+		$html .= '</div>';
+		return $html;
+	}
+
+	/**
+	 * A function that creates the metadata for webpage type.
+	 * @since x
+	 *
+	 */
+	public function pmdt_get_webpage_metatags($level_type) {
+
+		//Distinguishing if we are working on a post --- chapter level or on the main site level
+		//The level_type variable is the string we used to create the metabox using the Pressbooks_Metadata_Metabox_Book Class
+
+		if ( $level_type == 'chapter' ) { //loading the appropriate metadata depending on the level type
+			$metadata = get_post_meta( get_the_ID() );
+		} else {
+			$metadata = \Pressbooks\Book::getBookInformation();
+		}
+
+		// array of the items needed to become microtags
+		$book_data = array(
+			'mainContentOfPage'     => 'pb_main_content',
+			'primaryImageOfPage'    => 'pb_primary_image',
+			'relatedLink'           => 'pb_related_link',
+			'significantLink'       => 'pb_significant_link',
+			'specialty'             => 'pb_specialty'
+		);
+
+		$html = "<!-- Microtags --> \n";
+
+		$html .= '<div itemscope itemtype="http://schema.org/WebPage">';
+
+		if($level_type == 'chapter'){
+			$html .= "<meta itemprop = 'lastReviewed' content = '" .get_the_modified_date(). "'>\n";
+			$html .= "<meta itemprop = 'reviewedBy' content = '" .get_the_modified_author(). "'>\n";
+		}
 
 		foreach ( $book_data as $itemprop => $content ) {
 			if ( isset( $metadata[ $content . '_' . $level_type ] ) ) {
@@ -255,7 +304,7 @@ class Pressbooks_Metadata_Functions {
 
 		$html .= '<meta itemprop = "headline" content = "'.get_the_title($id).'">\n';
 		$html .= '<meta itemprop = "datePublished" content = "'.get_the_date($id).'">\n';
-		$html .= '<meta itemprop = "dateModified" content = "'.the_modified_date('F j, Y').'">\n';
+		$html .= '<meta itemprop = "dateModified" content = "'.get_the_modified_date().'">\n';
 		$html .= '<meta itemprop = "audience" content = "'.$bookinfo['pb_audience'].'">\n';
 		$html .= '<meta itemprop = "editor" content = "'.$bookinfo['pb_editor'].'">\n';
 		$html .= '<meta itemprop = "translator" content = "'.$bookinfo['pb_translator'].'">\n';
