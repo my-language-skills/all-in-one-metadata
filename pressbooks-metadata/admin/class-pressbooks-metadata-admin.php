@@ -13,6 +13,10 @@
 require_once plugin_dir_path( __FILE__ )
 	. '../admin/schemaFunctions/class-pressbooks-metadata-functions.php';
 
+//The functions for the educational info will become one file with the schema functions
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/schemaFunctions/class-pressbooks-metadata-edu-functions.php';
+
 require_once plugin_dir_path( __FILE__ )
              . '../admin/settings/class-pressbooks-metadata-sections.php';
 
@@ -27,6 +31,9 @@ require_once plugin_dir_path( __FILE__ )
 
 require_once plugin_dir_path( __FILE__ )
              . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-webPage.php';
+
+require_once plugin_dir_path( __FILE__ )
+             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-educational.php';
 
 /**
  * The admin-specific functionality of the plugin.
@@ -46,7 +53,7 @@ class Pressbooks_Metadata_Admin {
 	 *
 	 * @since    0.1
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -55,7 +62,7 @@ class Pressbooks_Metadata_Admin {
 	 *
 	 * @since    0.1
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -63,13 +70,14 @@ class Pressbooks_Metadata_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    0.1
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 *
+	 * @param      string $plugin_name The name of this plugin.
+	 * @param      string $version The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -122,7 +130,7 @@ class Pressbooks_Metadata_Admin {
 	/**
 	 * A function to echo an error if the latest version of pressbooks is not installed, and
 	 * if there is no Pressbooks installation.
-	 * 
+	 *
 	 * @since    0.6
 	 */
 	public function pmdt_init() {
@@ -131,19 +139,21 @@ class Pressbooks_Metadata_Admin {
 			add_action( 'admin_notices', function () {
 				echo '<div id="message" class="error fade"><p>' . __( 'PB metadata cannot find a Pressbooks install.', 'pressbooks-metadata' ) . '</p></div>';
 			} );
+
 			return;
-		// Must meet miniumum requirements
-		} elseif( ! version_compare( PB_PLUGIN_VERSION, '3.9.8.2', '>=' ) ) {
+			// Must meet miniumum requirements
+		} elseif ( ! version_compare( PB_PLUGIN_VERSION, '3.9.8.2', '>=' ) ) {
 			add_action( 'admin_notices', function () {
 				echo '<div id="message" class="error fade"><p>' . __( 'PB metadata requires Pressbooks 3.9.8.2 or greater.', 'pressbooks-metadata' ) . '</p></div>';
 			} );
+
 			return;
 		}
 	}
 
 	/**
 	 * Used in the header of our site
-	 * 
+	 *
 	 * We can create a new Structured Data Type by adding a new type here. Check the link for an example
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.6
@@ -153,14 +163,14 @@ class Pressbooks_Metadata_Admin {
 		$pmdt_GS = new Pressbooks_Metadata_Functions();
 		if ( is_home() ) {
 			echo $pmdt_GS->pmdt_get_root_level_metatags();
-		}elseif ( is_front_page() ) {
+		} elseif ( is_front_page() ) {
 			echo $pmdt_GS->pmdt_get_googleScholar_metatags();
 		}
 	}
 
 	/**
 	 * Used in the footer of our site
-	 * 
+	 *
 	 * We can create a new Structured Data Type by adding a new type here. Check the link for an example
 	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
 	 * @since    0.2
@@ -169,16 +179,32 @@ class Pressbooks_Metadata_Admin {
 
 		$pmdt_GS = new Pressbooks_Metadata_Functions();
 
-		if ( is_front_page()) {
+		if ( is_front_page() ) {
 			//If the type is enabled for the book level we run the meta data functions below
-			if(get_option('book_type_book_level') || get_option('course_type_book_level') || get_option('webpage_type_book_level') ){echo $pmdt_GS->pmdt_get_book_cw_metatags("metadata");}
-			if(get_option('course_type_book_level')){echo $pmdt_GS->pmdt_get_course_metatags("metadata");}
-			if(get_option('webpage_type_book_level')){echo $pmdt_GS->pmdt_get_webpage_metatags("metadata");}
-		} elseif(!is_home()){
+			if ( get_option( 'book_type_book_level' ) || get_option( 'course_type_book_level' ) || get_option( 'webpage_type_book_level' ) ) {
+				echo $pmdt_GS->pmdt_get_book_cw_metatags( "metadata" );
+			}
+			if ( get_option( 'course_type_book_level' ) ) {
+				echo $pmdt_GS->pmdt_get_course_metatags( "metadata" );
+			}
+			if ( get_option( 'webpage_type_book_level' ) ) {
+				echo $pmdt_GS->pmdt_get_webpage_metatags( "metadata" );
+			}
+			if(get_option('educational_info_book_level')){
+				$test_var = new Pressbooks_Metadata_Edu_Functions();
+				echo $test_var->pmdt_get_educational_metatags();
+			}
+		} elseif ( ! is_home() ) {
 			//If the type is enabled for the chapter level we run the meta data functions below
-			if(get_option('book_type_chapter_level') || get_option('course_type_chapter_level') || get_option('webpage_type_chapter_level')){echo $pmdt_GS->pmdt_get_book_cw_metatags("chapter");}
-			if(get_option('course_type_chapter_level')){echo $pmdt_GS->pmdt_get_course_metatags("chapter");}
-			if(get_option('webpage_type_chapter_level')){echo $pmdt_GS->pmdt_get_webpage_metatags("chapter");}
+			if ( get_option( 'book_type_chapter_level' ) || get_option( 'course_type_chapter_level' ) || get_option( 'webpage_type_chapter_level' ) ) {
+				echo $pmdt_GS->pmdt_get_book_cw_metatags( "chapter" );
+			}
+			if ( get_option( 'course_type_chapter_level' ) ) {
+				echo $pmdt_GS->pmdt_get_course_metatags( "chapter" );
+			}
+			if ( get_option( 'webpage_type_chapter_level' ) ) {
+				echo $pmdt_GS->pmdt_get_webpage_metatags( "chapter" );
+			}
 		}
 	}
 
@@ -187,10 +213,10 @@ class Pressbooks_Metadata_Admin {
 	 * ------------------------------------------------------------------- */
 
 	/**
- 	* Render the options page for plugin.
- 	*
- 	* @since  0.8.1
- 	*/
+	 * Render the options page for plugin.
+	 *
+	 * @since  0.8.1
+	 */
 	public function pmdt_display_options_page() {
 		include_once 'partials/pressbooks-metadata-admin-display.php';
 	}
@@ -201,15 +227,15 @@ class Pressbooks_Metadata_Admin {
 	 * @since  0.8.1
 	 */
 	public function pmdt_add_options_page() {
-	
-		$this->plugin_screen_hook_suffix = 
-		add_options_page(
-			__( 'Pressbooks Metadata Settings', 'pressbooks-metadata' ),
-			__( 'PB Metadata', 'pressbooks-metadata' ),
-			'manage_options',
-			$this->plugin_name.'_options_page',
-			array( $this, 'pmdt_display_options_page' )
-		);
+
+		$this->plugin_screen_hook_suffix =
+			add_options_page(
+				__( 'Pressbooks Metadata Settings', 'pressbooks-metadata' ),
+				__( 'PB Metadata', 'pressbooks-metadata' ),
+				'manage_options',
+				$this->plugin_name . '_options_page',
+				array( $this, 'pmdt_display_options_page' )
+			);
 	}
 
 	/**
@@ -224,9 +250,10 @@ class Pressbooks_Metadata_Admin {
 		//book_level -> This is the section id that this fields exists
 		//if you add them together with a '_' you have the setting -> book_type_book_level
 		$metaValues = array(
-			'book_type'    =>  array('Book Type', 'http://schema.org/Book'),
-			'course_type'  =>  array('Course Type','http://schema.org/Course' ),
-			'webpage_type'  =>  array('Webpage Type','http://schema.org/WebPage' )
+			'book_type'    => array( 'Book Type', 'http://schema.org/Book' ),
+			'course_type'  => array( 'Course Type', 'http://schema.org/Course' ),
+			'webpage_type' => array( 'Webpage Type', 'http://schema.org/WebPage' ),
+			'educational_info' => array('Educational Information','')
 		);
 
 		new Pressbooks_Metadata_Sections(
@@ -258,32 +285,36 @@ class Pressbooks_Metadata_Admin {
 
 		if ( get_option( 'book_type_book_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Book( 'metadata' );
-			new Pressbooks_Metadata_Metabox_Creative_Work('metadata');
+			new Pressbooks_Metadata_Metabox_Creative_Work( 'metadata' );
 		}
 
 		if ( get_option( 'book_type_chapter_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Book( 'chapter' );
-			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
+			new Pressbooks_Metadata_Metabox_Creative_Work( 'chapter' );
 		}
 
 		if ( get_option( 'webpage_type_book_level' ) ) {
 			new Pressbooks_Metadata_Metabox_WebPage( 'metadata' );
-			new Pressbooks_Metadata_Metabox_Creative_Work('metadata');
+			new Pressbooks_Metadata_Metabox_Creative_Work( 'metadata' );
 		}
 
 		if ( get_option( 'webpage_type_chapter_level' ) ) {
 			new Pressbooks_Metadata_Metabox_WebPage( 'chapter' );
-			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
+			new Pressbooks_Metadata_Metabox_Creative_Work( 'chapter' );
 		}
 
 		if ( get_option( 'course_type_book_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Course( 'metadata' );
-			new Pressbooks_Metadata_Metabox_Creative_Work('metadata');
+			new Pressbooks_Metadata_Metabox_Creative_Work( 'metadata' );
 		}
 
 		if ( get_option( 'course_type_chapter_level' ) ) {
 			new Pressbooks_Metadata_Metabox_Course( 'chapter' );
-			new Pressbooks_Metadata_Metabox_Creative_Work('chapter');
+			new Pressbooks_Metadata_Metabox_Creative_Work( 'chapter' );
+		}
+
+		if(get_option('educational_info_book_level')){
+			new Pressbooks_Metadata_Metabox_Educational('metadata');
 		}
 	}
 }
