@@ -164,10 +164,13 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'pmdt_register_setting' );
 		// The pmdt_header_function is used in the header of the website
 		$this->loader->add_action( 'wp_head', $plugin_admin, 'pmdt_header_function' );
-		//	The pmdt_footer_function is used in the footer of the website
+		// The pmdt_footer_function is used in the footer of the website
 		$this->loader->add_action( 'wp_footer', $plugin_admin, 'pmdt_footer_function');
-		//This is the code that will produce the metaboxes in the desired places
+		// This is the code that will produce the metaboxes in the desired places
 		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_admin, 'pmdt_place_metaboxes',31 );
+		// This filter is needed for importing to pressbooks, all new metafields are added here, this is a pressbooks filter
+		// Needed only for chapter level fields
+		$this->loader->add_filter( 'pb_import_metakeys', $plugin_admin, 'pmdt_import_fields');
 	}
 
 	/**

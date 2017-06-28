@@ -68,7 +68,11 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 Working with administration page
 
 ### 0.XX
-
+    * Added Webpage Schema Type
+    * Added Course Schema Type
+    * Added Educational Information Metabox in Book Info #108
+    * Chapter metadata is now being exported and imported as expected #24
+    
 ## Changelog
 ### 0.8.1
 * **ADDITIONS**
