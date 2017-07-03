@@ -64,14 +64,17 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 
 ## Roadmap
 
-### 0.9
-Working with administration page
-
 ### 0.XX
+* **ADDITIONS**
     * Added Webpage Schema Type
     * Added Course Schema Type
     * Added Educational Information Metabox in Book Info #108
+* **ENHANCEMENTS**
     * Chapter metadata is now being exported and imported as expected #24
+    * File structure changed - addition of new types is more modular
+
+### 0.9
+Working with administration page
     
 ## Changelog
 ### 0.8.1

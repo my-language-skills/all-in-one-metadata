@@ -10,30 +10,24 @@
  * @subpackage Pressbooks_Metadata/admin
  */
 
-require_once plugin_dir_path( __FILE__ )
-	. '../admin/schemaFunctions/class-pressbooks-metadata-functions.php';
+//Constant for including files
+define( 'MY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-//The functions for the educational info will become one file with the schema functions
-require_once plugin_dir_path( __FILE__ )
-             . '../admin/schemaFunctions/class-pressbooks-metadata-edu-functions.php';
-
+//Including the settings
 require_once plugin_dir_path( __FILE__ )
              . '../admin/settings/class-pressbooks-metadata-sections.php';
 
-require_once plugin_dir_path( __FILE__ )
-             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php';
+//These two foreach loops include all files that exist in a directory
+//Types
+foreach(glob(MY_PLUGIN_DIR . 'schemaTypes/*.php' ) as $file) {
+	include_once $file;
+}
 
-require_once plugin_dir_path( __FILE__ )
-             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-course.php';
+//Other Functions
+foreach(glob(MY_PLUGIN_DIR . 'schemaFunctions/*.php' ) as $file) {
+	include_once $file;
+}
 
-require_once plugin_dir_path( __FILE__ )
-             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php';
-
-require_once plugin_dir_path( __FILE__ )
-             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-webPage.php';
-
-require_once plugin_dir_path( __FILE__ )
-             . '../admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-educational.php';
 
 /**
  * The admin-specific functionality of the plugin.
@@ -67,6 +61,14 @@ class Pressbooks_Metadata_Admin {
 	private $version;
 
 	/**
+	 * Stores values for creating the settings page.
+	 *
+	 * @since    0.x
+	 *
+	 */
+	private $metaSettings;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    0.1
@@ -78,6 +80,20 @@ class Pressbooks_Metadata_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
+
+		//Every setting you create can be accessed using the example here
+		//book_type -> This is the id of a field in the array below
+		//book_level -> This is the section id that this fields exists (we have 2 sections for now BOOK AND CHAPTER)
+		//if you add them together with a '_' you have the setting -> book_type_book_level
+		//Use get_option() to get the value from the database (Process is Automatic)
+		$this->metaSettings =
+			array(
+				//For every new type we add we need to add the settings here, url can be empty
+			'book_type'    => array( 'Book Type', 'http://schema.org/Book' ),
+			'course_type'  => array( 'Course Type', 'http://schema.org/Course' ),
+			'webpage_type' => array( 'Webpage Type', 'http://schema.org/WebPage' ),
+			'educational_info' => array('Educational Information','')
+		);
 
 	}
 
@@ -160,50 +176,36 @@ class Pressbooks_Metadata_Admin {
 	 */
 	public function pmdt_header_function() {
 
-		$pmdt_GS = new Pressbooks_Metadata_Functions();
+		$generalFunctions = new Pressbooks_Metadata_General_Functions();
+
 		if ( is_home() ) {
-			echo $pmdt_GS->pmdt_get_root_level_metatags();
+			echo $generalFunctions->pmdt_get_root_level_metatags();
 		} elseif ( is_front_page() ) {
-			echo $pmdt_GS->pmdt_get_googleScholar_metatags();
+			echo $generalFunctions->pmdt_get_googleScholar_metatags();
 		}
 	}
 
 	/**
 	 * Used in the footer of our site
 	 *
-	 * We can create a new Structured Data Type by adding a new type here. Check the link for an example
-	 * https://search.google.com/structured-data/testing-tool/u/0/#url=pressbooks.com
+	 * Here we populate all metadata for the activated types to the footer of our site
 	 * @since    0.2
 	 */
 	public function pmdt_footer_function() {
-
-		$pmdt_GS = new Pressbooks_Metadata_Functions();
-
+		$instances = $this->pmdt_engine_run();
 		if ( is_front_page() ) {
-			//If the type is enabled for the book level we run the meta data functions below
-			if ( get_option( 'book_type_book_level' ) || get_option( 'course_type_book_level' ) || get_option( 'webpage_type_book_level' ) ) {
-				echo $pmdt_GS->pmdt_get_book_cw_metatags( "metadata" );
-			}
-			if ( get_option( 'course_type_book_level' ) ) {
-				echo $pmdt_GS->pmdt_get_course_metatags( "metadata" );
-			}
-			if ( get_option( 'webpage_type_book_level' ) ) {
-				echo $pmdt_GS->pmdt_get_webpage_metatags( "metadata" );
-			}
-			if(get_option('educational_info_book_level')){
-				$test_var = new Pressbooks_Metadata_Edu_Functions();
-				echo $test_var->pmdt_get_educational_metatags();
+			//Here we get all the instances of metadata that have to be executed on the Book level - Site level
+			foreach ( $instances as $class_instance ) {
+				if($class_instance->pmdt_get_type_level() == 'metadata'){
+					echo $class_instance->pmdt_get_metatags();
+				}
 			}
 		} elseif ( ! is_home() ) {
-			//If the type is enabled for the chapter level we run the meta data functions below
-			if ( get_option( 'book_type_chapter_level' ) || get_option( 'course_type_chapter_level' ) || get_option( 'webpage_type_chapter_level' ) ) {
-				echo $pmdt_GS->pmdt_get_book_cw_metatags( "chapter" );
-			}
-			if ( get_option( 'course_type_chapter_level' ) ) {
-				echo $pmdt_GS->pmdt_get_course_metatags( "chapter" );
-			}
-			if ( get_option( 'webpage_type_chapter_level' ) ) {
-				echo $pmdt_GS->pmdt_get_webpage_metatags( "chapter" );
+			//Here we get all the instances of metadata that have to be executed on the Chapter level
+			foreach ( $instances as $class_instance ) {
+				if($class_instance->pmdt_get_type_level() == 'chapter'){
+					echo $class_instance->pmdt_get_metatags();
+				}
 			}
 		}
 	}
@@ -245,29 +247,20 @@ class Pressbooks_Metadata_Admin {
 	 */
 	public function pmdt_register_setting() {
 
-		//Every setting you create can be accesed using the example here
-		//book_type -> This is the id of a field in the array below
-		//book_level -> This is the section id that this fields exists
-		//if you add them together with a '_' you have the setting -> book_type_book_level
-		$metaValues = array(
-			'book_type'    => array( 'Book Type', 'http://schema.org/Book' ),
-			'course_type'  => array( 'Course Type', 'http://schema.org/Course' ),
-			'webpage_type' => array( 'Webpage Type', 'http://schema.org/WebPage' ),
-			'educational_info' => array('Educational Information','')
-		);
+		//For every new level / custom post type we add we need modifications here
 
 		new Pressbooks_Metadata_Sections(
 			'book_level',
 			'Book Level',
 			$this->plugin_name . '_options_page',
-			$metaValues
+			$this->metaSettings
 		);
 
 		new Pressbooks_Metadata_Sections(
 			'chapter_level',
 			'Chapter Level',
 			$this->plugin_name . '_options_page',
-			$metaValues
+			$this->metaSettings
 		);
 	}
 
@@ -281,42 +274,13 @@ class Pressbooks_Metadata_Admin {
 	 * @since  0.8.1
 	 */
 	public function pmdt_place_metaboxes() {
-		//Use the string parameter 'metabox' ->PB BOOK INFO LEVEL or 'chapter' -> PB CHAPTER LEVEL to make the metaboxes appear
-
-		if ( get_option( 'book_type_book_level' ) ) {
-			new Pressbooks_Metadata_Metabox_Book( 'metadata' );
-			new Pressbooks_Metadata_Metabox_Creative_Work( 'metadata' );
-		}
-
-		if ( get_option( 'book_type_chapter_level' ) ) {
-			new Pressbooks_Metadata_Metabox_Book( 'chapter' );
-			new Pressbooks_Metadata_Metabox_Creative_Work( 'chapter' );
-		}
-
-		if ( get_option( 'webpage_type_book_level' ) ) {
-			new Pressbooks_Metadata_Metabox_WebPage( 'metadata' );
-			new Pressbooks_Metadata_Metabox_Creative_Work( 'metadata' );
-		}
-
-		if ( get_option( 'webpage_type_chapter_level' ) ) {
-			new Pressbooks_Metadata_Metabox_WebPage( 'chapter' );
-			new Pressbooks_Metadata_Metabox_Creative_Work( 'chapter' );
-		}
-
-		if ( get_option( 'course_type_book_level' ) ) {
-			new Pressbooks_Metadata_Metabox_Course( 'metadata' );
-			new Pressbooks_Metadata_Metabox_Creative_Work( 'metadata' );
-		}
-
-		if ( get_option( 'course_type_chapter_level' ) ) {
-			new Pressbooks_Metadata_Metabox_Course( 'chapter' );
-			new Pressbooks_Metadata_Metabox_Creative_Work( 'chapter' );
-		}
-
-		if(get_option('educational_info_book_level')){
-			new Pressbooks_Metadata_Metabox_Educational('metadata');
-		}
+		//All the instances created by the pmdt_engine_run function - automatically create their metaboxes
+		$this->pmdt_engine_run();
 	}
+
+	/* ------------------------------------------------------------------- *
+    * Function for Importing to pressbooks
+    * ------------------------------------------------------------------- */
 
 	/**
 	 * Passing all the new custom metafields of the CPT chapter to pressbooks so they can be exported and imported normally
@@ -369,4 +333,104 @@ class Pressbooks_Metadata_Admin {
 		//Returning the new values for importing
 		return $additionalFields;
 	}
+
+	/* ------------------------------------------------------------------- *
+    * Function for the main engine (metaboxes,metadata) creation
+    * ------------------------------------------------------------------- */
+
+	/**
+	 * Function used to return all instances for the selected types,
+	 * Instances are used to create the metaboxes and the metadata
+	 * For every new type that we add we need to make modifications here
+	 *
+	 * @since  0.x
+	 */
+	private function pmdt_engine_run(){
+		$instances = array();
+		$levels = array(
+			//For every new level / custom post type we add we need modifications here
+			'book_level' => 'metadata',
+			'chapter_level' => 'chapter'
+		);
+
+		foreach ($levels as $level => $cpt) {
+			foreach ($this->metaSettings as $type => $link){
+
+				//Checking the settings for each level and we create instances for the active types
+				if(get_option($type.'_'.$level)){
+					switch($type){
+
+						case 'book_type':
+							$instances[] = new Pressbooks_Metadata_Book($cpt);
+							break;
+
+						case 'course_type':
+							$instances[] = new Pressbooks_Metadata_Course($cpt);
+							break;
+
+						case 'webpage_type':
+							$instances[] = new Pressbooks_Metadata_WebPage($cpt);
+							break;
+
+						case 'educational_info':
+							//Preventing the Educational metadata being created or run on chapter level (for now)
+							if($cpt != 'chapter'){
+								$instances[] = new Pressbooks_Metadata_Educational($cpt);
+							}
+							break;
+					}
+
+				}
+
+			}
+		}
+		$instances = $this->pmdt_handle_parent_types($instances);
+		return $instances;
+	}
+
+	/**
+	 * Function used to identify what parent needs to be initiated for the activated types in  each level / cpt
+	 *
+	 * @since  0.x
+	 */
+	private function pmdt_handle_parent_types($instances){
+
+		//All classes that have creative work as a parent
+		$creativeWorksParent = array(
+			'Pressbooks_Metadata_WebPage',
+			'Pressbooks_Metadata_Book',
+			'Pressbooks_Metadata_Course'
+		);
+
+		//Splitting the instances into levels
+		$metadata=array(); $chapter=array();
+
+		foreach($instances as $instance){
+			if($instance->pmdt_get_type_level() == 'chapter'){
+				$chapter[]=$instance;
+			}else{
+				$metadata[]=$instance;
+			}
+		}
+
+		//If we encounter any type instance in the metadata level that is associated with creative works we create one instance of creative works
+		foreach($metadata as $class){
+			if(in_array(get_class($class),$creativeWorksParent)){
+				$instances[]=new Pressbooks_Metadata_Creative_Work('metadata');
+				break;
+			}
+		}
+
+		//If we encounter any type instance in the chapter level that is associated with creative works we create one instance of creative works
+		foreach($chapter as $class){
+			if(in_array(get_class($class),$creativeWorksParent)){
+				$instances[]=new Pressbooks_Metadata_Creative_Work('chapter');
+				break;
+			}
+		}
+
+		//Returning the instances with their parents
+		return $instances;
+	}
 }
+
