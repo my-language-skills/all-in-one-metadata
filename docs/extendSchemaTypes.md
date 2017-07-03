@@ -3,7 +3,7 @@
 ### STEPS:
 
 1.	Create a new file in the schemaTypes -> class-pressbooks-metadata-‘name of the type’.php
-2.	Use the template below and replace the text whenever you see [schematype] or [schemaprop] or [schema-meta-value].
+2.	Use the [template](/schema_type_template.zip) below and replace the text whenever you see [schematype] or [schemaprop] or [schema-meta-value].
 Remember some schema types need modifications on how they present the metadata,
 sometimes you will have to change the function [pmdt_get_metatags()]. This is the only function you are likely to change,
 all other structure must remain the same for the correct functionality of the plugin.
