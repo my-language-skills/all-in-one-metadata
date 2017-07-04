@@ -263,6 +263,8 @@ Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorit
 
 Here's a link to [Custom Metadata Manager for WordPress](https://wordpress.org/plugins/custom-metadata/ "Framework for custom field creation")
 
+Here's a link to [PHP Sandbox](http://sandbox.onlinephpfunctions.com/) for PHP code testing
+
 Here's a link to [Dillinger](http://dillinger.io/ "Text Editor for markdown")
 
 and one to [Markdown's Syntax Documentation][markdown syntax].
