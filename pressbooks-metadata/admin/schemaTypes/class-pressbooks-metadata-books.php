@@ -1,4 +1,7 @@
 <?php
+
+namespace schemaTypes;
+
 /**
  * The class for the book type including operations and metaboxes
  *
@@ -21,9 +24,19 @@ class Pressbooks_Metadata_Book {
 	 */
 	private $type_level;
 
+	/**
+	 * The name of the class along with the type_level
+	 * Used to identify each type differently so we can eliminate parent types not needed
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public $class_name;
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->pmdt_add_metabox($this->type_level);
+		$this->class_name = __CLASS__ .'_'. $this->type_level;
 	}
 	/**
 	 * The function which produces the metaboxes for the book type
@@ -32,16 +45,19 @@ class Pressbooks_Metadata_Book {
 	 * @since 0.8.1
 	 */
 	private function pmdt_add_metabox($meta_position){
+		//The meta_position variable is the one that identifies where the metabox should go, on what level, like chapter / post or metadata / book
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'book-type', $meta_position, array(
 			'label' 		=>	'Book Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //
+		//All Metafields i.e pb_illustrator append the meta_position at the end of the string so we can distinguish when getting info from the database
 		// Illustrator
 		x_add_metadata_field( 	'pb_illustrator_'.$meta_position, $meta_position, array(
 			'group' 		=> 	'book-type',
 			'label' 		=> 	'Illustrator',
+			'description'   =>  'The name of the illustrator'
 		) );
 		// Book Edition
 		x_add_metadata_field( 	'pb_edition_'.$meta_position, $meta_position, array(
@@ -52,6 +68,26 @@ class Pressbooks_Metadata_Book {
 	}
 
 		/*FUNCTIONS FOR THIS TYPE START HERE*/
+
+	/**
+	 * Function used for comparing the instances of the schema types
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function __toString() {
+		return $this->class_name;
+	}
+
+	/**
+	 * Returns the father for the type.
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function pmdt_parent_init(){
+		return new Pressbooks_Metadata_Creative_Work($this->type_level);
+	}
 
 	/**
 	 * Returns type level.

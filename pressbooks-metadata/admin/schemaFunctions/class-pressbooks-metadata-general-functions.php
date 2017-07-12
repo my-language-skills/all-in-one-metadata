@@ -1,5 +1,7 @@
 <?php
 
+namespace schemaFunctions;
+
 /**
  * The functions of the plugin that handle general metadata.
  *

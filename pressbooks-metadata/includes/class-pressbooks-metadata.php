@@ -1,5 +1,13 @@
 <?php
 
+//Defining all namespaces to be used in the define_admin_hooks function etc
+
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as siteMeta;
+use adminFunctions\Pressbooks_Metadata_Importing as importing;
+use adminFunctions\Pressbooks_Metadata_Options as options;
+use schemaFunctions\Pressbooks_Metadata_Output as output;
+use schemaFunctions\Pressbooks_Metadata_Engine as engine;
+
 /**
  * The file that defines the core plugin class
  *
@@ -100,6 +108,11 @@ class Pressbooks_Metadata {
 	private function load_dependencies() {
 
 		/**
+		 * The autoload file for using our namespaces - this comes from composer
+		 */
+		require_once plugin_dir_path( __FILE__ ) . '../vendor/autoload.php';
+
+		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
@@ -154,23 +167,30 @@ class Pressbooks_Metadata {
 
 		$plugin_admin = new Pressbooks_Metadata_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		//Load styles and scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		// The pmdt_init is being used in the beginning of this plugin
-		$this->loader->add_action( 'init', $plugin_admin, 'pmdt_init' );
-		// Load the options page
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'pmdt_add_options_page' );
-		// Register the settings section
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'pmdt_register_setting' );
-		// The pmdt_header_function is used in the header of the website
-		$this->loader->add_action( 'wp_head', $plugin_admin, 'pmdt_header_function' );
-		// The pmdt_footer_function is used in the footer of the website
-		$this->loader->add_action( 'wp_footer', $plugin_admin, 'pmdt_footer_function');
-		// This is the code that will produce the metaboxes in the desired places
-		$this->loader->add_action( 'custom_metadata_manager_init_metadata', $plugin_admin, 'pmdt_place_metaboxes',31 );
-		// This filter is needed for importing to pressbooks, all new metafields are added here, this is a pressbooks filter
-		// Needed only for chapter level fields
-		$this->loader->add_filter( 'pb_import_metakeys', $plugin_admin, 'pmdt_import_fields');
+
+		//Load the options page
+		$this->loader->add_action( 'admin_menu', new options(), 'adminFunctions\Pressbooks_Metadata_Options::add_options_page' );
+
+		//Header and footer functions that output metadata
+		$this->loader->add_action( 'wp_head', new output(), 'schemaFunctions\Pressbooks_Metadata_Output::header_run' );
+		$this->loader->add_action( 'wp_footer', new output(), 'schemaFunctions\Pressbooks_Metadata_Output::footer_run');
+
+		//Creating a custom post for site level metadata - only when pressbooks is not present
+		$this->loader->add_action( 'init', new siteMeta(), 'adminFunctions\Pressbooks_Metadata_Site_Cpt::init' );
+		$this->loader->add_action( 'post_updated_messages', new siteMeta(), 'adminFunctions\Pressbooks_Metadata_Site_Cpt::change_custom_post_mess' );
+
+		//This filter is needed for importing to pressbooks, all new metafields are added here, this is a pressbooks filter
+		//Needed only for chapter level fields
+		$this->loader->add_filter( 'pb_import_metakeys', new importing(), 'adminFunctions\Pressbooks_Metadata_Importing::import_fix');
+
+		//Register the settings section
+		$this->loader->add_action( 'admin_init', new engine(), 'schemaFunctions\Pressbooks_Metadata_Engine::register_settings' );
+
+		//This is the code that will produce the metaboxes in the desired places
+		$this->loader->add_action( 'custom_metadata_manager_init_metadata', new engine(), 'schemaFunctions\Pressbooks_Metadata_Engine::place_metaboxes',31 );
 	}
 
 	/**
@@ -228,5 +248,4 @@ class Pressbooks_Metadata {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

@@ -21,8 +21,8 @@
     <form action="options.php" method="post">
 		<?php
 
-			settings_fields( $this->plugin_name.'_options_page');
-			do_settings_sections( $this->plugin_name.'_options_page');
+			settings_fields('pressbooks_metadata_options_page');
+			do_settings_sections( 'pressbooks_metadata_options_page');
 
 		submit_button();
 		?>

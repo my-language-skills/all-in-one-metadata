@@ -1,5 +1,7 @@
 <?php
 
+namespace schemaTypes;
+
 /**
  * The class for the course type including operations and metaboxes
  *
@@ -21,9 +23,19 @@ class Pressbooks_Metadata_Course {
 	 */
 	private $type_level;
 
+	/**
+	 * The name of the class along with the type_level
+	 * Used to identify each type differently so we can eliminate parent types not needed
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public $class_name;
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->pmdt_add_metabox($this->type_level);
+		$this->class_name = __CLASS__ .'_'. $this->type_level;
 	}
 
 	/**
@@ -60,17 +72,39 @@ class Pressbooks_Metadata_Course {
 		// Course Name
 		x_add_metadata_field( 	'pb_course_name_'.$meta_position, $meta_position, array(
 			'group' 		=>	'course-type',
-			'label' 		=>	'Course Name'
+			'label' 		=>	'Course Name',
+			'description'	=>	'Add course name.'
 		) );
 
 		// Course Decription
 		x_add_metadata_field( 	'pb_course_description_'.$meta_position, $meta_position, array(
 			'group' 		=>	'course-type',
-			'label' 		=>	'Course Description'
+			'label' 		=>	'Course Description',
+			'description'	=>	'Add course description.'
 		) );
 	}
 
 	/*FUNCTIONS FOR THIS TYPE START HERE*/
+
+	/**
+	 * Function used for comparing the instances of the schema types
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function __toString() {
+		return $this->class_name;
+	}
+
+	/**
+	 * Returns the father for the type.
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function pmdt_parent_init(){
+		return new Pressbooks_Metadata_Creative_Work($this->type_level);
+	}
 
 	/**
 	 * Returns type level.

@@ -1,5 +1,7 @@
 <?php
 
+namespace schemaTypes;
+
 /**
  * The class for the creativeWork type including operations and metaboxes
  *
@@ -21,10 +23,20 @@ class Pressbooks_Metadata_Creative_Work {
 	 * @access   private
 	 */
 	private $type_level;
-	
+
+	/**
+	 * The name of the class along with the type_level
+	 * Used to identify each type differently so we can eliminate parent types not needed
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public $class_name;
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->add_metabox($this->type_level);
+		$this->class_name = __CLASS__ .'_'. $this->type_level;
 	}
 
 	/**
@@ -192,6 +204,16 @@ class Pressbooks_Metadata_Creative_Work {
 	}
 
 	/*FUNCTIONS FOR THIS TYPE START HERE*/
+
+	/**
+	 * Function used for comparing the instances of the schema types
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function __toString() {
+		return $this->class_name;
+	}
 
 	/**
 	 * Returns type level.

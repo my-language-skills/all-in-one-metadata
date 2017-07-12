@@ -1,5 +1,7 @@
 <?php
 
+namespace settings;
+
 /**
  * This class is an automation for creating fields in the desired sections,
  * it is targeted for the pressbooks-metadata plugin

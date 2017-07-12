@@ -72,6 +72,9 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 * **ENHANCEMENTS**
     * Chapter metadata is now being exported and imported as expected #24
     * File structure changed - addition of new types is more modular
+    * Namespaces are being used for a better file structure - Composer psr-4 standard
+    * Parent types of schema are handled more efficiently
+    * New CPT site-meta is being added every time pressbooks is disabled --testing--
 
 ### 0.9
 Working with administration page
