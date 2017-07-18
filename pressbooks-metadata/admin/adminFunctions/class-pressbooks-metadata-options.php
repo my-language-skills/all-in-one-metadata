@@ -46,7 +46,7 @@ class Pressbooks_Metadata_Options {
 			} else {
 				$site_meta_url = 'post-new.php?post_type=site-meta';
 			}
-			add_menu_page('Site Metadata', 'Site Metadata', 'edit_posts', $site_meta_url, '', 'dashicons-info', 12 );
+			add_submenu_page('tools.php','Site Metadata', 'Site Metadata', 'edit_posts', $site_meta_url);
 		}
 
 		//Creating the options page for the plugin

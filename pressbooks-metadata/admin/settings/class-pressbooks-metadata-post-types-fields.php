@@ -1,6 +1,7 @@
 <?php
 
 namespace settings;
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
  * This class is an automation for creating fields in the section where we show post types,
@@ -87,6 +88,13 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	 */
 	function pmdt_field_draw(){
 		echo '<input type="checkbox" id="'.$this->fieldIdentifier.'" name="'.$this->fieldIdentifier.'" value="1" ' . checked(1, get_option($this->fieldIdentifier), false) . '/>';
-
+		//Outputting messages for the site level -- book level metadata
+		if($this->fieldName == 'Site-meta'){
+			if(site_cpt::pressbooks_identify()){
+				echo '<p>If you enable this you will be able to add metadata to your Book from Book Info menu.</p>';
+			}else{
+				echo '<p>If you enable this you will be able to add metadata to your Site from Site Metadata submenu under Tools</p>';
+			}
+		}
 	}
 }

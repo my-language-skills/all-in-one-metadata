@@ -19,6 +19,10 @@ class Pressbooks_Metadata_Site_Cpt {
 
 	}
 
+	/**
+	 * A function that signals the creation of the CPT
+	 * @since    0.x
+	 */
 	function init(){
 		if(!$this->pressbooks_identify()){
 			$this->run_custom_post();

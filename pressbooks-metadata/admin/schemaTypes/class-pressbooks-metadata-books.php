@@ -137,7 +137,6 @@ class Pressbooks_Metadata_Book {
 
 		$html = "<!-- Microtags --> \n";
 
-		//This code is needed for the book type on chapter level because by default the chapter is a website
 		$html .= '<div itemscope itemtype="http://schema.org/Book">';
 
 		foreach ( $book_data as $itemprop => $content ) {

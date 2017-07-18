@@ -157,9 +157,10 @@ class Pressbooks_Metadata_Educational {
 			'group' 		=> 	'educational-information',
 			'field_type' 	=> 	'select',
 			'values' 		=> 	array(
-				'active' 	=> 	'Active',
 				'expositive'=> 	'Expositive',
-				'mixed' 	=> 	'Mixed'
+				'mixed' 	=> 	'Mixed',
+				'active' 	=> 	'Active'
+
 			),
 			'label' 		=> 	'Interactivity Type',
 			'description' 	=> 	'The interactivity type of this book'
@@ -194,8 +195,16 @@ class Pressbooks_Metadata_Educational {
 
 		// Target Description
 		x_add_metadata_field( 	'pb_trg_desc_ed', $meta_position, array(
-			'group' 		=> 	'educational-information',
-			'label'			=> 	'Target Description',
+			'group' 		    => 	'educational-information',
+			'field_type' 	    => 	'select',
+			'values' 		    => 	array(
+				'General'	    => 	'General',
+				'Mobility'      => 	'Mobility',
+				'Communication' =>'Communication',
+				'Hearing'       =>'Hearing',
+				'Vision'        =>'Vision'
+			),
+			'label' 		=> 	'Target Description',
 			'description' 	=> 	'The description of a node in an established educational framework. <a href="https://ceds.ed.gov/element/001408">Find more here</a>'
 		) );
 
