@@ -7,7 +7,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * The functions of the plugin that handle the output of metadata in our site.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.9
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
@@ -23,7 +23,7 @@ class Pressbooks_Metadata_Output {
 
 	/**
 	 * This function is used to output the metadata in the header of the site.
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	public function header_run() {
 		$generalFunctions = new Pressbooks_Metadata_General_Functions();
@@ -36,7 +36,7 @@ class Pressbooks_Metadata_Output {
 
 	/**
 	 * This function is used to output the metadata in the footer of the site.
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	public function footer_run() {
 		//Getting all instances of schema types that are enabled

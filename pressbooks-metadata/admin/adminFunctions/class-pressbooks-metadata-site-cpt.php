@@ -6,7 +6,7 @@ namespace adminFunctions;
  * The functions of the plugin that handle the creation of the new custom post type.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.9
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/adminFunctions
@@ -21,7 +21,7 @@ class Pressbooks_Metadata_Site_Cpt {
 
 	/**
 	 * A function that signals the creation of the CPT
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	function init(){
 		if(!$this->pressbooks_identify()){
@@ -31,7 +31,7 @@ class Pressbooks_Metadata_Site_Cpt {
 
 	/**
 	 * A function used to create a custom post type
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	private function run_custom_post(){
 		$labels = array(
@@ -67,7 +67,7 @@ class Pressbooks_Metadata_Site_Cpt {
 
 	/**
 	 * A function used for changing the custom post type messages
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	public function change_custom_post_mess($messages){
 		$messages['site-meta'] = array(
@@ -91,7 +91,7 @@ class Pressbooks_Metadata_Site_Cpt {
 	 * We are always working on a single post -- automatic
 	 * This function will be mostly used when the plugin is on wordpress mode and not on pressbooks mode
 	 * Also it will be called from classes inside schemaTypes
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	public static function get_site_meta_metadata(){
 		$args = array(
@@ -116,7 +116,7 @@ class Pressbooks_Metadata_Site_Cpt {
 	/**
 	 * Function that returns always an object, in this object the single post for sete-meta is contained
 	 * This function is used for creating the single site-meta post -> Pressbooks also uses the same technique for Book Info
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	public static function get_site_meta_post() {
 
@@ -141,7 +141,7 @@ class Pressbooks_Metadata_Site_Cpt {
 
 	/**
 	 * A function used to identify whether pressbooks is installed or not
-	 * @since    0.x
+	 * @since    0.9
 	 */
 	public static function pressbooks_identify() {
 		// Check for pressbooks files (this check - can be removed)

@@ -7,7 +7,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * The functions of the plugin that manage other dependent plugins needed.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.9
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/adminFunctions

@@ -21,7 +21,7 @@ class Pressbooks_Metadata_Creative_Work {
 	/**
 	 * The type level where these metaboxes and their schema operations will go
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   private
 	 */
 	private $type_level;
@@ -30,7 +30,7 @@ class Pressbooks_Metadata_Creative_Work {
 	 * The name of the class along with the type_level
 	 * Used to identify each type differently so we can eliminate parent types not needed
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   public
 	 */
 	public $class_name;
@@ -127,7 +127,7 @@ class Pressbooks_Metadata_Creative_Work {
 	/**
 	 * Function used for comparing the instances of the schema types
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   public
 	 */
 	public function __toString() {
@@ -137,7 +137,7 @@ class Pressbooks_Metadata_Creative_Work {
 	/**
 	 * Returns type level.
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   public
 	 */
 	public function pmdt_get_type_level(){
