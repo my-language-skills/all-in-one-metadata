@@ -8,7 +8,7 @@ Tags: pressbooks, metadata, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
-Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%203.9.9-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.9)
+Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
@@ -50,7 +50,7 @@ We use [Explicit Books Versioning](explicit-book-versioning/VERSIONING.md)
 Plugin/Template Name works with:
 
  * ![PHP](https://img.shields.io/badge/PHP-5.6.X-blue.svg)
- * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%203.9.8.2-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/3.9.8.2)
+ * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
  
  Lower versions are not supported.
 
@@ -64,12 +64,46 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 
 ## Roadmap
 
-### 0.9
-Working with administration page
 
-### 0.XX
+### Now
+## 0.xx
+* **ADDITIONS**
 
+* **ENHANCEMENTS**
+
+* **List of Files revised**
+
+
+### Soon
+New Settings page UX.
+Implementation of milestone 9.1 (Finishing educational metadata and related metadata)
+
+### Later
+Settings page in superadmin level
+
+### Future
+New types
+    
 ## Changelog
+### 0.9
+* **ADDITIONS**
+    * Added Webpage Schema Type
+    * Added Course Schema Type
+    * Added Educational Information Metabox in Book Info #108
+* **ENHANCEMENTS**
+    * Chapter metadata is now being exported and imported as expected #24
+    * File structure changed - addition of new types is more modular
+    * Namespaces are being used for a better file structure - Composer psr-4 standard
+    * Parent types of schema are handled more efficiently
+    * New CPT site-meta is being added every time pressbooks is disabled #102
+    * The plugin now works without pressbooks
+    * The Creative Works Type is cleaned up
+    * Automatic display of active post types for schema manipulation
+    * Changes on settings page -- More user friendly
+    * Interactivity Type default value #70
+* **List of Files revised**
+    * Code rewriting for optimisation. 
+
 ### 0.8.1
 * **ADDITIONS**
 	* To create a settings page #25
@@ -225,6 +259,10 @@ Working with administration page
   
 ## Upgrade Notice
 
+### 0.9
+Code rewriting for optimisation. Introduced new types and new file system. Plugin works independently of pressbooks.
+Importing and exporting for pressbooks is fixed.
+
 ### 0.8.1
 To use google scholar. To extend metadata for an integration of the content.
 
@@ -256,6 +294,8 @@ To use an old version as the start point.
 ## Credits
 
 Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
+
+Here's a link to [Composer](https://getcomposer.org/)
 
 Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") 
 

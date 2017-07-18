@@ -1,5 +1,7 @@
 <?php
 
+namespace settings;
+
 /**
  * This class is an automation for creating sections and fields in the desired setting pages,
  * it is targeted for the pressbooks-metadata plugin
@@ -8,7 +10,7 @@
  * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
- * @subpackage Pressbooks_Metadata/admin
+ * @subpackage Pressbooks_Metadata/admin/settings
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  */
 

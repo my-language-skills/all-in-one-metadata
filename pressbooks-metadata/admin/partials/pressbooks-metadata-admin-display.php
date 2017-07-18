@@ -1,5 +1,5 @@
 <?php
-
+ use schemaFunctions\Pressbooks_Metadata_Engine as engine;
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,20 +11,40 @@
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials
  */
+
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
 <div class="wrap">
-    <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-    <form action="options.php" method="post">
+	<?php
+	$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'post_options_page';
+	?>
+
+
+    <h2 class="nav-tab-wrapper">
+        <a href="?page=pressbooks_metadata_options_page&tab=post_options_page" class="nav-tab <?php echo $active_tab == 'post_options_page' ? 'nav-tab-active' : ''; ?>">Post Levels</a>
+        <a href="?page=pressbooks_metadata_options_page&tab=meta_options_page" class="nav-tab <?php echo $active_tab == 'meta_options_page' ? 'nav-tab-active' : ''; ?>">Schema Types</a>
+    </h2>
+
+    <form method="post" action="options.php">
 		<?php
 
-			settings_fields( $this->plugin_name.'_options_page');
-			do_settings_sections( $this->plugin_name.'_options_page');
+		if( $active_tab == 'post_options_page' ) {
+			settings_fields( 'post_options_page' );
+			do_settings_sections( 'post_options_page' );
+		} else {
+			settings_fields( 'meta_options_page' );
+			do_settings_sections( 'meta_options_page' );
+			//Checking for active post levels, if none we show a message
+			$schemaPostLevels = engine::get_enabled_levels();
+			if(empty($schemaPostLevels)){
+				echo '<h3>Please go to Post Levels Tab and select some post types where you want to show schema metadata.</h3>';
+            }
+		}
 
 		submit_button();
+
 		?>
     </form>
+
 </div>

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a88526a1-c966-4400-8f35-b9ee164f6cc4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/.idea/workspace.xml" afterPath="$PROJECT_DIR$/pressbooks-metadata/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/admin/class-pressbooks-metadata-admin.php" afterPath="$PROJECT_DIR$/pressbooks-metadata/admin/class-pressbooks-metadata-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/admin/schemaFunctions/class-pressbooks-metadata-functions.php" afterPath="$PROJECT_DIR$/pressbooks-metadata/admin/schemaFunctions/class-pressbooks-metadata-functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php" afterPath="$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php" afterPath="$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/admin/settings/class-pressbooks-metadata-fields.php" afterPath="$PROJECT_DIR$/pressbooks-metadata/admin/settings/class-pressbooks-metadata-fields.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pressbooks-metadata/admin/settings/class-pressbooks-metadata-sections.php" afterPath="$PROJECT_DIR$/pressbooks-metadata/admin/settings/class-pressbooks-metadata-sections.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/extendSchemaTypes.md" afterPath="$PROJECT_DIR$/docs/extendSchemaTypes.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +13,21 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="extendSchemaTypes.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/extendSchemaTypes.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="135">
+                <caret line="5" column="121" lean-forward="false" selection-start-line="5" selection-start-column="121" selection-end-line="5" selection-end-column="121" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -41,6 +49,7 @@
         <option value="$PROJECT_DIR$/pressbooks-metadata/admin/schemaFunctions/class-pressbooks-metadata-functions.php" />
         <option value="$PROJECT_DIR$/pressbooks-metadata/admin/settings/class-pressbooks-metadata-fields.php" />
         <option value="$PROJECT_DIR$/pressbooks-metadata/admin/class-pressbooks-metadata-admin.php" />
+        <option value="$PROJECT_DIR$/docs/extendSchemaTypes.md" />
       </list>
     </option>
   </component>
@@ -156,28 +165,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="schemaMetaboxes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pressbooks-metadata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pressbooks-metadata" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pressbooks-metadata" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="schemaFunctions" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -206,8 +193,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,14 +294,19 @@
       <updated>1497365102154</updated>
       <workItem from="1497365103553" duration="926000" />
       <workItem from="1497385085494" duration="27000" />
+      <workItem from="1498565705127" duration="15000" />
+      <workItem from="1498740582579" duration="15000" />
+      <workItem from="1499093223651" duration="7000" />
+      <workItem from="1499093367347" duration="314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="953000" />
+    <option name="totallyTimeSpent" value="1304000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -346,6 +338,17 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/docs/ExtendSchemaType.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/class-pressbooks-metadata-admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -358,9 +361,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2484">
           <caret line="92" column="20" lean-forward="false" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-          <folding>
-            <element signature="e#7#392#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -368,42 +369,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2592">
           <caret line="106" column="26" lean-forward="false" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
-          <folding>
-            <element signature="e#7#374#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-          <folding>
-            <element signature="e#7#356#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding>
-            <element signature="e#7#365#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/schemaFunctions/class-pressbooks-metadata-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5400">
-          <caret line="200" column="19" lean-forward="false" selection-start-line="200" selection-start-column="19" selection-end-line="200" selection-end-column="19" />
-          <folding>
-            <element signature="e#7#367#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-book.php" />
+    <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/schemaMetaboxes/class-pressbooks-metadata-metaboxes-creativeWork.php" />
+    <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/schemaFunctions/class-pressbooks-metadata-functions.php" />
     <entry file="file://$PROJECT_DIR$/pressbooks-metadata/admin/partials/pressbooks-metadata-admin-display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-108">
@@ -426,9 +398,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
           <caret line="92" column="20" lean-forward="false" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-          <folding>
-            <element signature="e#7#392#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -436,9 +406,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
           <caret line="106" column="26" lean-forward="false" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
-          <folding>
-            <element signature="e#7#374#0#PHP" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/ExtendSchemaType.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/extendSchemaTypes.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="135">
+            <caret line="5" column="121" lean-forward="false" selection-start-line="5" selection-start-column="121" selection-end-line="5" selection-end-column="121" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
