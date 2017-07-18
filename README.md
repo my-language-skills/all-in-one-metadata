@@ -111,6 +111,7 @@ New types
 * **ENHANCEMENTS**
     * To write type and property name inside each field inside of the code #61
     * Each group of features as an independen file #56
+    * To enable and dissable metadata fields #20
 
 ### 0.8
 * **ADDITIONS**
@@ -301,6 +302,8 @@ Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")
 Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
 
 Here's a link to [Custom Metadata Manager for WordPress](https://wordpress.org/plugins/custom-metadata/ "Framework for custom field creation")
+
+Here's a link to [PHP Sandbox](http://sandbox.onlinephpfunctions.com/) for PHP code testing
 
 Here's a link to [Dillinger](http://dillinger.io/ "Text Editor for markdown")
 
