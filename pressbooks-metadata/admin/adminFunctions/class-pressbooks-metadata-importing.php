@@ -6,7 +6,7 @@ namespace adminFunctions;
  * The functions of the plugin that handle the the importing and exporting of metafields.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.9
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/adminFunctions
@@ -22,7 +22,7 @@ class Pressbooks_Metadata_Importing {
 	/**
 	 * Passing all the new custom metafields of the CPT chapter to pressbooks so they can be exported and imported normally
 	 *
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	function import_fix($additionalFields){
 

@@ -25,7 +25,7 @@ class Pressbooks_Metadata_General_Functions {
 	 * A function that returns the correct metadata for the schemaTypes classes
 	 * If pressbooks is installed we return the metadata for the Book Info information
 	 * If pressbooks is not installed we return the Site Meta metadata
-	 * @since 0.x
+	 * @since 0.9
 	 */
 	public static function get_metadata(){
 		if(!site_cpt::pressbooks_identify()){

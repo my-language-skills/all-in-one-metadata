@@ -8,7 +8,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * it is targeted for the pressbooks-metadata plugin
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.9
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
@@ -20,7 +20,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	/**
 	 * The identifier for the field.
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   private
 	 */
 	private $fieldIdentifier;
@@ -28,7 +28,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	/**
 	 * The field name
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   private
 	 */
 	private $fieldName;
@@ -36,7 +36,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	/**
 	 * The section page for displaying.
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   private
 	 */
 	private $sectionPage;
@@ -44,7 +44,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	/**
 	 * The section name.
 	 *
-	 * @since    0.x
+	 * @since    0.9
 	 * @access   private
 	 */
 	private $sectionName;
@@ -66,7 +66,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	/**
 	 * The main function used to create a field.
 	 *
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	function pmdt_create_field(){
 		add_settings_field(
@@ -84,7 +84,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	/**
 	 * The main function used to render the description of the field.
 	 *
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	function pmdt_field_draw(){
 		echo '<input type="checkbox" id="'.$this->fieldIdentifier.'" name="'.$this->fieldIdentifier.'" value="1" ' . checked(1, get_option($this->fieldIdentifier), false) . '/>';

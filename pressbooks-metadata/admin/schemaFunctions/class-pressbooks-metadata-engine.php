@@ -23,7 +23,7 @@ class Pressbooks_Metadata_Engine {
 	/**
 	 * Variable for creating settings
 	 * Variable also used when creating type instances.
-	 * @since    0.x
+	 * @since    0.9
 	 *
 	 */
 	private $metaSettings;
@@ -59,7 +59,7 @@ class Pressbooks_Metadata_Engine {
 	 * Returning available post types. The post types we receive are different depending
 	 * whether pressbooks is installed or not
 	 *
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	public static function get_all_post_types(){
 		//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
@@ -109,7 +109,7 @@ class Pressbooks_Metadata_Engine {
 	/**
 	 * Function used to return all post types or 'levels' that are active from the settings
 	 * Under the Post Levels Tab
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	public static function get_enabled_levels(){
 
@@ -133,7 +133,7 @@ class Pressbooks_Metadata_Engine {
 	 * Instances are used to create the metaboxes and the metadata
 	 * For every new type that we add we need to make modifications here
 	 *
-	 * @since  0.x
+	 * @since  0.9
 	 */
 	public function engine_run(){
 
