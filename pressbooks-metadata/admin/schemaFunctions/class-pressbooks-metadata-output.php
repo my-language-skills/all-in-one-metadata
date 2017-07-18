@@ -1,6 +1,7 @@
 <?php
 
 namespace schemaFunctions;
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
  * The functions of the plugin that handle the output of metadata in our site.
@@ -25,13 +26,11 @@ class Pressbooks_Metadata_Output {
 	 * @since    0.x
 	 */
 	public function header_run() {
-
 		$generalFunctions = new Pressbooks_Metadata_General_Functions();
-
 		if ( is_home() ) {
-			echo $generalFunctions->pmdt_get_root_level_metatags();
-		} elseif ( is_front_page() ) {
-			echo $generalFunctions->pmdt_get_googleScholar_metatags();
+			echo $generalFunctions->get_root_level_metatags();
+		} elseif ( is_front_page() && site_cpt::pressbooks_identify() ) {
+			echo $generalFunctions->get_googleScholar_metatags();
 		}
 	}
 
@@ -40,19 +39,27 @@ class Pressbooks_Metadata_Output {
 	 * @since    0.x
 	 */
 	public function footer_run() {
+		//Getting all instances of schema types that are enabled
 		$engine = new Pressbooks_Metadata_Engine();
 		$instances = $engine->engine_run();
+
+		//Checking if we are executing Book Info or Site-Meta data for the front page - Site Level - Book Level
+		if(!site_cpt::pressbooks_identify()){
+			$front_schema = 'site-meta';
+		}else{
+			$front_schema = 'metadata';
+		}
 		if ( is_front_page() ) {
 			//Here we get all the instances of metadata that have to be executed on the Book level - Site level
 			foreach ( $instances as $class_instance ) {
-				if($class_instance->pmdt_get_type_level() == 'metadata'){
+				if($class_instance->pmdt_get_type_level() == $front_schema){
 					echo $class_instance->pmdt_get_metatags();
 				}
 			}
 		} elseif ( ! is_home() ) {
-			//Here we get all the instances of metadata that have to be executed on the Chapter level - Post Level
+			//Here we get all the instances of metadata that have to be executed on the post levels - Chapter Level
 			foreach ( $instances as $class_instance ) {
-				if($class_instance->pmdt_get_type_level() == 'chapter'){
+				if($class_instance->pmdt_get_type_level() == get_post_type()){
 					echo $class_instance->pmdt_get_metatags();
 				}
 			}

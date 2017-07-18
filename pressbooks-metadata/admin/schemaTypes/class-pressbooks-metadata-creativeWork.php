@@ -1,6 +1,8 @@
 <?php
 
 namespace schemaTypes;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
  * The class for the creativeWork type including operations and metaboxes
@@ -63,49 +65,6 @@ class Pressbooks_Metadata_Creative_Work {
 			'description' 	=>	'The Organization, University or Person who provides this subject.'
 		) );
 
-		// ISCED field of education
-		x_add_metadata_field( 	'pb_isced_field_'.$meta_position, $meta_position, array(
-			'group' 		=>	'creative-work',
-			'field_type' 	=>	'select',
-			'values' 		=>	array(
-				'--Select--'										=>	'--Select--',
-				'Generic programmes and qualifications' 			=>	'Generic programmes and qualifications',
-				'Education' 										=>	'Education',
-				'Arts and humanities' 								=> 	'Arts and humanities',
-				'Social sciences, journalism and information' 		=> 	'Social sciences, journalism and information',
-				'Business, administration and law' 					=> 	'Business, administration and law',
-				'Natural sciences, mathematics and statistics' 		=> 	'Natural sciences, mathematics and statistics',
-				'Information and Communication Technologies' 		=> 	'Information and Communication Technologies',
-				'Engineering, manufacturing and construction' 		=> 	'Engineering, manufacturing and construction',
-				'Agriculture, forestry, fisheries and veterinary' 	=> 	'Agriculture, forestry, fisheries and veterinary',
-				'Health and welfare' 								=> 	'Health and welfare',
-				'Services' 											=> 	'Services',
-			),
-			'label' 		=> 	'ISCED field of education',
-			'description' 	=> 	'Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
-		) );
-
-		// ISCED level of education
-		x_add_metadata_field( 	'pb_isced_level_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'creative-work',
-			'field_type' 	=> 	'select',
-			'values' 		=> 	array(
-				'--Select--'								=> 	'--Select--',
-				'Early Childhood Education' 				=> 	'Early Childhood Education',
-				'Primary education' 						=> 	'Primary education',
-				'Lower secondary education' 				=> 	'Lower secondary education',
-				'Upper secondary education' 				=> 	'Upper secondary education',
-				'Post-secondary non-tertiary education' 	=> 	'Post-secondary non-tertiary education',
-				'Short-cycle tertiary education' 			=> 	'Short-cycle tertiary education',
-				'Bachelor’s or equivalent level' 			=> 	'Bachelor’s or equivalent level',
-				'Master’s or equivalent level' 				=> 	'Master’s or equivalent level',
-				'Doctoral or equivalent level' 				=> 	'Doctoral or equivalent level',
-				'Not elsewhere classified' 					=> 	'Not elsewhere classified',
-			),
-			'label' 		=> 'ISCED level of education',
-			'description' 	=> 'Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
-		) );
-
 		// Age Range
 		x_add_metadata_field( 	'pb_age_range_'.$meta_position, $meta_position, array(
 			'group' 		=> 	'creative-work',
@@ -128,46 +87,6 @@ class Pressbooks_Metadata_Creative_Work {
 			),
 			'label'	 			=> 	'Age Range',
 			'description'	 	=> 	'The target age of this book',
-		) );
-
-		// Educational Level
-		x_add_metadata_field( 	'pb_edu_level_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'creative-work',
-			'label'			=> 	'Educational Level',
-			'description' 	=> 	'The level of this subject. For ex. B1 for an English Course, or Grade 2 for a Physics Course.',
-		) );
-
-		// Educational Framework
-		x_add_metadata_field( 	'pb_edu_framework_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'creative-work',
-			'label'			=> 	'Educational Framework',
-			'description' 	=> 	'The Framework that the educational level belongs to. Example: CEFR, Common Core, European Baccalaureate',
-		) );
-
-		// Learning Resource Type
-		x_add_metadata_field( 	'pb_learning_resource_type_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'creative-work',
-			'field_type' 	=> 	'select',
-			'values' 		=> 	array(
-				'course'	=> 	'Course',
-				'exam'		=> 	'Examination',
-				'exercise'	=> 	'Exercise'
-			),
-			'label' 		=> 	'Learning Resource Type',
-			'description' 	=> 	'The kind of resource this book represents',
-		) );
-
-		// Learning Resource Type
-		x_add_metadata_field( 	'pb_interactivity_type_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'creative-work',
-			'field_type' 	=> 	'select',
-			'values' 		=> 	array(
-				'active' 	=> 	'Active',
-				'expositive'=> 	'Expositive',
-				'mixed' 	=> 	'Mixed'
-			),
-			'label' 		=> 	'Interactivity Type',
-			'description' 	=> 	'The interactivity type of this book',
 		) );
 
 		// Class Learning Time
@@ -236,47 +155,6 @@ class Pressbooks_Metadata_Creative_Work {
 	}
 
 	/**
-	 * A function needed for returning the correct level when a user selects isced.
-	 * @since 0.8.1
-	 *
-	 */
-	private function pmdt_get_isced_code($isced_value) {
-
-		switch($isced_value){
-			case 'Early Childhood Education':
-				$level_code = '0';
-				break;
-			case 'Primary education':
-				$level_code = '1';
-				break;
-			case 'Lower secondary education':
-				$level_code = '2';
-				break;
-			case 'Upper secondary education':
-				$level_code = '3';
-				break;
-			case 'Post-secondary non-tertiary education':
-				$level_code = '4';
-				break;
-			case 'Short-cycle tertiary education':
-				$level_code = '5';
-				break;
-			case 'Bachelor’s or equivalent level':
-				$level_code = '6';
-				break;
-			case 'Master’s or equivalent level':
-				$level_code = '7';
-				break;
-			case 'Doctoral or equivalent level':
-				$level_code = '8';
-				break;
-			default:
-				$level_code = '9';
-		}
-		return $level_code;
-	}
-
-	/**
 	 * A function that creates the metadata for creative works.
 	 * @since 0.8.1
 	 *
@@ -286,26 +164,19 @@ class Pressbooks_Metadata_Creative_Work {
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
 		//The type_level variable is the string we used to create the metabox
 
-		if($this->type_level == 'chapter') { //loading the appropriate metadata depending on the level type
-			$metadata = get_post_meta( get_the_ID());
-			$isced_field_value = $this->pmdt_get_first($metadata[ 'pb_isced_field_'.$this->type_level ]);
-			$isced_level_value = $this->pmdt_get_first($metadata[ 'pb_isced_level_'.$this->type_level ]);
-			$edu_level_value = $this->pmdt_get_first($metadata[ 'pb_edu_level_'.$this->type_level ]);
-			$edu_framework_value = $this->pmdt_get_first($metadata[ 'pb_edu_framework_'.$this->type_level ]);
-		}else{
-			$metadata =  \Pressbooks\Book::getBookInformation();
-			$isced_field_value = $metadata['pb_isced_field_'.$this->type_level];
-			$isced_level_value = $metadata['pb_isced_level_'.$this->type_level];
-			$edu_level_value = $metadata['pb_edu_level_'.$this->type_level];
-			$edu_framework_value = $metadata['pb_edu_framework_'.$this->type_level];
+		$is_site; // This bool var is used to identify if the level is site level or any other post level
+		if ( $this->type_level == 'metadata' || $this->type_level == 'site-meta' ) { //loading the appropriate metadata depending on the type level
+			$metadata = gen_func::get_metadata();
+			$is_site = true;
+		} else {
+			$is_site = false;
+			$metadata = get_post_meta( get_the_ID() );
 		}
 
 		// array of the items needed to become microtags
 		$book_data = array(
 			'provider'             => 'pb_provider',
 			'typicalAgeRange'      => 'pb_age_range',
-			'learningResourceType' => 'pb_learning_resource_type',
-			'interactivityType'    => 'pb_interactivity_type',
 			'timeRequired'         => 'pb_time_required',
 			'license'              => 'pb_license_url',
 			'isBasedOnUrl'         => 'pb_bibliography_url',
@@ -313,19 +184,19 @@ class Pressbooks_Metadata_Creative_Work {
 		);
 
 		$html = "<!-- Microtags --> \n";
-
-		//This code is needed for the book type on chapter level because by default the chapter is a website
-		$html .= ($this->type_level == 'chapter' ? '<div itemscope itemtype="http://schema.org/Book">' : '');
-
+		$html .= '<body itemscope itemtype="http://schema.org/WebPage">';
 		foreach ($book_data as $itemprop => $content){
 			if ( isset( $metadata[$content.'_'.$this->type_level] ) ) {
 
-				if($this->type_level == 'chapter'){ //we are using the get_first function to get the value from the returned array
+				if(!$is_site){ //we are using the get_first function to get the value from the returned array
 					$value = $this->pmdt_get_first($metadata[ $content.'_'.$this->type_level ]);
 				}else{
-					$value = $metadata[ $content.'_'.$this->type_level ];
+					if($this->type_level == 'site-meta'){
+						$value = $this->pmdt_get_first($metadata[ $content . '_' . $this->type_level ]);
+					}else{ //We always use the get_first function except if our level is metadata coming from pressbooks
+						$value = $metadata[ $content . '_' . $this->type_level ];
+					}
 				}
-
 				if ( 'timeRequired' == $itemprop ) { //using a special type for showing time
 					$value = 'PT'. $value.'H';
 				}
@@ -333,76 +204,32 @@ class Pressbooks_Metadata_Creative_Work {
 			}
 		}
 
-		$html .= "<!-- Microtags Educational -->\n";
-		$pb_meta =  \Pressbooks\Book::getBookInformation(); //Using the default pressbooks fields for some data
-		$level = $this->pmdt_get_isced_code($isced_level_value);
-
-		if ( isset( $pb_meta['pb_title'] ) ) {
-			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
-			         ."	<meta itemprop = 'alignmentType' content = 'educationalSubject'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$pb_meta['pb_title']. "'>\n"
-			         ."</span>\n";
-		}
-		if ( $isced_field_value != '--Select--' ) {
-			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
-			         ."	<meta itemprop = 'alignmentType' content = 'educationalSubject'/>\n"
-			         ."	<meta itemprop = 'educationalFramework' content = 'ISCED-2013'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$isced_field_value. "'>\n"
-			         ."</span>\n";
-		}
-		if ( $isced_level_value != '--Select--' ) {
-			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
-			         ."	<meta itemprop = 'alignmentType' content = 'educationalLevel'/>\n"
-			         ."	<meta itemprop = 'educationalFramework' content = 'ISCED-2011'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$isced_level_value. "'>\n"
-			         ."	<meta itemprop = 'alternateName' content = 'ISCED 2011, Level  " .$level. "' />"
-			         ."</span>\n";
-		}
-		if ( isset( $edu_level_value ) && isset( $edu_framework_value )) {
-			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
-			         ."	<meta itemprop = 'alignmentType' content = 'educationalSubject'/>\n"
-			         ."	<meta itemprop = 'educationalFramework' content = '" .$edu_framework_value. "'>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$edu_level_value. "'>\n"
-			         ."</span>\n";
-
-		} elseif ( isset( $edu_level_value ) && !isset( $edu_framework_value )) {
-			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
-			         ."	<meta itemprop = 'alignmentType' content = 'educationalLevel'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$edu_level_value. "'>\n"
-			         ."</span>\n";
-		}
-
-		//Adding additional data if the type is chapter or post
-		$html = ($this->type_level == 'chapter' ? $this->pmdt_additional_info($html) : $html);
-
-		//We close the DIV if the level is of type chapter -> see above the div was opened for chapters and posts
-		$html .= ($this->type_level == 'chapter' ? '</div>' : '');
-
-		return $html;
-	}
-
-	/**
-	 * A function that creates extra metadata for chapters or posts.
-	 * @since 0.8.1
-	 *
-	 */
-	private function pmdt_additional_info($html){
 		$id = get_the_ID();
 
-		//For the fields from Book Info post type
-		$bookinfo = \Pressbooks\Book::getBookInformation();
-
 		$html 	.= "<!-- WebPage additional microtags -->\n";
+		$html .= '<meta itemprop = "headline" content = "'.get_the_title($id).'">';
+		$html .= '<meta itemprop = "datePublished" content = "'.get_the_date($id).'">';
+		$html .= '<meta itemprop = "dateModified" content = "'.get_the_modified_date().'">';
 
-		$html .= '<meta itemprop = "headline" content = "'.get_the_title($id).'">\n';
-		$html .= '<meta itemprop = "datePublished" content = "'.get_the_date($id).'">\n';
-		$html .= '<meta itemprop = "dateModified" content = "'.get_the_modified_date().'">\n';
-		$html .= '<meta itemprop = "audience" content = "'.$bookinfo['pb_audience'].'">\n';
-		$html .= '<meta itemprop = "editor" content = "'.$bookinfo['pb_editor'].'">\n';
-		$html .= '<meta itemprop = "translator" content = "'.$bookinfo['pb_translator'].'">\n';
-		$html .= '<meta itemprop = "author" content = "'.$bookinfo['pb_section_author'].'">\n';
-		$html .= '<meta itemprop = "alternativeHeadline" content = "'.$bookinfo['pb_subtitle'].'">\n';
+		if(site_cpt::pressbooks_identify()){
+			//For the fields from Book Info post type
+			$bookinfo = \Pressbooks\Book::getBookInformation();
 
+			$book_data = array(
+				'audience'=>'pb_audience',
+				'editor'=>'pb_editor',
+				'translator'=>'pb_translator',
+				'author'=>'pb_section_author',
+				'alternativeHeadline'=>'pb_subtitle'
+			);
+
+			foreach($book_data as $itemprop => $content){
+				if(isset($bookinfo[$content])){
+					$html .= '<meta itemprop = "'.$bookinfo[$itemprop].'" content = "'.$bookinfo[$content].'">\n';
+				}
+			}
+		}
+		$html .= '</div>';
 		return $html;
 	}
 }

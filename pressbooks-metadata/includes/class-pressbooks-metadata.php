@@ -7,6 +7,7 @@ use adminFunctions\Pressbooks_Metadata_Importing as importing;
 use adminFunctions\Pressbooks_Metadata_Options as options;
 use schemaFunctions\Pressbooks_Metadata_Output as output;
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
+use adminFunctions\Pressbooks_Metadata_Required_Plugins as required;
 
 /**
  * The file that defines the core plugin class
@@ -166,6 +167,9 @@ class Pressbooks_Metadata {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Pressbooks_Metadata_Admin( $this->get_plugin_name(), $this->get_version() );
+
+		//Installing required plugins
+		$this->loader->add_action( 'admin_init', new required(), 'adminFunctions\Pressbooks_Metadata_Required_Plugins::check' );
 
 		//Load styles and scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

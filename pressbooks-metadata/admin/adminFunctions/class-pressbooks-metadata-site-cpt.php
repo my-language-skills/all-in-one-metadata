@@ -20,8 +20,7 @@ class Pressbooks_Metadata_Site_Cpt {
 	}
 
 	function init(){
-		//TODO remember to add a not !
-		if($this->pressbooks_identify()){
+		if(!$this->pressbooks_identify()){
 			$this->run_custom_post();
 		}
 	}
@@ -31,7 +30,7 @@ class Pressbooks_Metadata_Site_Cpt {
 	 * @since    0.x
 	 */
 	private function run_custom_post(){
-		$labels = [
+		$labels = array(
 			'name' => 'Site Metadata',
 			'singular_name' => 'Site Metadata',
 			'add_new' => 'Add New Site Metadata',
@@ -44,8 +43,8 @@ class Pressbooks_Metadata_Site_Cpt {
 			'not_found_in_trash' => 'No site metadata found in Trash',
 			'parent_item_colon' => '',
 			'menu_name' => 'Site Metadata',
-		];
-		$args = [
+		);
+		$args = array(
 			'labels' => $labels,
 			'public' => true,
 			'publicly_queryable' => true,
@@ -57,8 +56,8 @@ class Pressbooks_Metadata_Site_Cpt {
 			'capability_type' => 'post',
 			'has_archive' => true,
 			'hierarchical' => false,
-			'supports' => [ '' ],
-		];
+			'supports' => array('')
+		);
 		register_post_type('site-meta',$args);
 	}
 
@@ -67,7 +66,7 @@ class Pressbooks_Metadata_Site_Cpt {
 	 * @since    0.x
 	 */
 	public function change_custom_post_mess($messages){
-		$messages['site-meta'] = [
+		$messages['site-meta'] = array(
 			0 => '', // Unused. Messages start at index 1.
 			1 => 'Site Metadata updated.',
 			2 => 'Custom field updated.',
@@ -78,8 +77,62 @@ class Pressbooks_Metadata_Site_Cpt {
 			6 => 'Site Metadata updated.',
 			7 => 'Site Metadata saved.',
 			8 => 'Site Metadata submitted'
-		];
+		);
 		return $messages;
+	}
+
+	/**
+	 * A function that returns all the metadata from the site_meta cpt
+	 * This is like when we use pressbooks to gather all data from Book Info
+	 * We are always working on a single post -- automatic
+	 * This function will be mostly used when the plugin is on wordpress mode and not on pressbooks mode
+	 * Also it will be called from classes inside schemaTypes
+	 * @since    0.x
+	 */
+	public static function get_site_meta_metadata(){
+		$args = array(
+			'post_type' => 'site-meta',
+			'posts_per_page' => 1,
+			'post_status' => 'publish',
+			'orderby' => 'modified',
+			'no_found_rows' => true,
+			'cache_results' => true,
+		);
+
+		$q = new \WP_Query();
+		$results = $q->query( $args );
+
+		if ( empty( $results ) ) {
+			return false;
+		}
+
+		return get_post_meta( $results[0]->ID );
+	}
+
+	/**
+	 * Function that returns always an object, in this object the single post for sete-meta is contained
+	 * This function is used for creating the single site-meta post -> Pressbooks also uses the same technique for Book Info
+	 * @since  0.x
+	 */
+	public static function get_site_meta_post() {
+
+		$args = array(
+			'post_type' => 'site-meta',
+			'posts_per_page' => 1,
+			'post_status' => 'publish',
+			'orderby' => 'modified',
+			'no_found_rows' => true,
+			'cache_results' => true,
+		);
+
+		$q = new \WP_Query();
+		$results = $q->query( $args );
+
+		if ( empty( $results ) ) {
+			return false;
+		}
+
+		return $results[0];
 	}
 
 	/**

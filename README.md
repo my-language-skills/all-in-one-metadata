@@ -75,6 +75,10 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
     * Namespaces are being used for a better file structure - Composer psr-4 standard
     * Parent types of schema are handled more efficiently
     * New CPT site-meta is being added every time pressbooks is disabled --testing--
+    * The plugin now works without pressbooks
+    * The Creative Works Type is cleaned up
+    * Automatic display of active post types for schema manipulation
+    * Changes on settings page -- More user friendly
 
 ### 0.9
 Working with administration page

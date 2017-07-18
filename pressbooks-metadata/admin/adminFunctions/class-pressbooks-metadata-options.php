@@ -1,6 +1,7 @@
 <?php
 
 namespace adminFunctions;
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
  * The functions of the plugin that handle the the options pages.
@@ -34,25 +35,25 @@ class Pressbooks_Metadata_Options {
 	 * @since  0.8.1
 	 */
 	public function add_options_page() {
-		//Need to change the if statement here TODO
-		if(Pressbooks_Metadata_Site_Cpt::pressbooks_identify()){
+		if(!site_cpt::pressbooks_identify()){
 			//Used to remove the default menu for the cpt we created
 			remove_menu_page( 'edit.php?post_type=site-meta' );
 			remove_meta_box( 'submitdiv', 'site-meta', 'side' );
 			add_meta_box( 'metadata-save', 'Save Site Metadata Information', array( $this, 'metadata_save_box' ), 'site-meta', 'side', 'high' );
-			$meta = $this->get_site_meta_post();
+			$meta = site_cpt::get_site_meta_post();
 			if ( ! empty( $meta ) ) {
-				$book_info_url = 'post.php?post=' . absint( $meta->ID ) . '&action=edit';
+				$site_meta_url = 'post.php?post=' . absint( $meta->ID ) . '&action=edit';
 			} else {
-				$book_info_url = 'post-new.php?post_type=site-meta';
+				$site_meta_url = 'post-new.php?post_type=site-meta';
 			}
-			add_menu_page('Site Metadata', 'Site Metadata', 'edit_posts', $book_info_url, '', 'dashicons-info', 12 );
+			add_menu_page('Site Metadata', 'Site Metadata', 'edit_posts', $site_meta_url, '', 'dashicons-info', 12 );
 		}
 
+		//Creating the options page for the plugin
 		$this->plugin_screen_hook_suffix =
 			add_options_page(
-				__( 'Pressbooks Metadata Settings', 'pressbooks-metadata' ),
-				__( 'PB Metadata', 'pressbooks-metadata' ),
+				'Pressbooks Metadata Settings',
+				'PB Metadata',
 				'manage_options',
 				'pressbooks_metadata_options_page',
 				array( $this, 'display_options_page' )
@@ -72,32 +73,6 @@ class Pressbooks_Metadata_Options {
 			<input name="publish" id="publish" type="submit" class="button button-primary button-large" value="Save" tabindex="5" accesskey="p"/>
 			<?php
 		}
-	}
-
-	/**
-	 * Function that handles the new cpt, this helps us show the site meta cpt as one page
-	 * Its actually one post and we are always editing it
-	 * @since  0.x
-	 */
-	private function get_site_meta_post() {
-
-		$args = [
-			'post_type' => 'site-meta',
-			'posts_per_page' => 1,
-			'post_status' => 'publish',
-			'orderby' => 'modified',
-			'no_found_rows' => true,
-			'cache_results' => true,
-		];
-
-		$q = new \WP_Query();
-		$results = $q->query( $args );
-
-		if ( empty( $results ) ) {
-			return false;
-		}
-
-		return $results[0];
 	}
 }
 

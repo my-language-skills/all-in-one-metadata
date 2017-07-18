@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'adminFunctions\\Pressbooks_Metadata_Importing' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-importing.php',
     'adminFunctions\\Pressbooks_Metadata_Options' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-options.php',
+    'adminFunctions\\Pressbooks_Metadata_Required_Plugins' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php',
     'adminFunctions\\Pressbooks_Metadata_Site_Cpt' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-site-cpt.php',
     'schemaFunctions\\Pressbooks_Metadata_Engine' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-engine.php',
     'schemaFunctions\\Pressbooks_Metadata_General_Functions' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php',
@@ -18,5 +19,6 @@ return array(
     'schemaTypes\\Pressbooks_Metadata_Educational' => $baseDir . '/admin/schemaTypes/class-pressbooks-metadata-educational.php',
     'schemaTypes\\Pressbooks_Metadata_WebPage' => $baseDir . '/admin/schemaTypes/class-pressbooks-metadata-webPage.php',
     'settings\\Pressbooks_Metadata_Fields' => $baseDir . '/admin/settings/class-pressbooks-metadata-fields.php',
+    'settings\\Pressbooks_Metadata_Post_Type_Fields' => $baseDir . '/admin/settings/class-pressbooks-metadata-post-types-fields.php',
     'settings\\Pressbooks_Metadata_Sections' => $baseDir . '/admin/settings/class-pressbooks-metadata-sections.php',
 );

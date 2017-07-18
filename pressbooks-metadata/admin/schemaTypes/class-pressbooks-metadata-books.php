@@ -1,6 +1,7 @@
 <?php
 
 namespace schemaTypes;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 
 /**
  * The class for the book type including operations and metaboxes
@@ -118,10 +119,13 @@ class Pressbooks_Metadata_Book {
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
 		//The type_level variable is the string we used to create the metabox
 
-		if ( $this->type_level == 'chapter' ) { //loading the appropriate metadata depending on the type level
-			$metadata = get_post_meta( get_the_ID() );
+		$is_site; // This bool var is used to identify if the level is site level or any other post level
+		if ( $this->type_level == 'metadata' || $this->type_level == 'site-meta' ) { //loading the appropriate metadata depending on the type level
+			$metadata = gen_func::get_metadata();
+			$is_site = true;
 		} else {
-			$metadata = \Pressbooks\Book::getBookInformation();
+			$is_site = false;
+			$metadata = get_post_meta( get_the_ID() );
 		}
 
 		// array of the items needed to become microtags
@@ -134,21 +138,24 @@ class Pressbooks_Metadata_Book {
 		$html = "<!-- Microtags --> \n";
 
 		//This code is needed for the book type on chapter level because by default the chapter is a website
-		$html .= ( $this->type_level == 'chapter' ? '<div itemscope itemtype="http://schema.org/Book">' : '' );
+		$html .= '<div itemscope itemtype="http://schema.org/Book">';
 
 		foreach ( $book_data as $itemprop => $content ) {
 			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
 
-				if ( $this->type_level == 'chapter' ) { //we are using the get_first function to get the value from the returned array
+				if ( !$is_site ) { //we are using the get_first function to get the value from the returned array
 					$value = $this->pmdt_get_first( $metadata[ $content . '_' . $this->type_level ] );
 				} else {
-					$value = $metadata[ $content . '_' . $this->type_level ];
+					if($this->type_level == 'site-meta'){
+						$value = $this->pmdt_get_first($metadata[ $content . '_' . $this->type_level ]);
+					}else{//We always use the get_first function except if our level is metadata coming from pressbooks
+						$value = $metadata[ $content . '_' . $this->type_level ];
+					}
 				}
-
 				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
 			}
 		}
-		$html .= ( $this->type_level == 'chapter' ? '</div>' : '' );
+		$html .= '</div>';
 		return $html;
 	}
 }

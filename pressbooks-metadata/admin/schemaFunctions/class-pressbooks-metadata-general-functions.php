@@ -1,6 +1,7 @@
 <?php
 
 namespace schemaFunctions;
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
  * The functions of the plugin that handle general metadata.
@@ -21,12 +22,26 @@ class Pressbooks_Metadata_General_Functions {
 	}
 
 	/**
+	 * A function that returns the correct metadata for the schemaTypes classes
+	 * If pressbooks is installed we return the metadata for the Book Info information
+	 * If pressbooks is not installed we return the Site Meta metadata
+	 * @since 0.x
+	 */
+	public static function get_metadata(){
+		if(!site_cpt::pressbooks_identify()){
+			return site_cpt::get_site_meta_metadata();
+		}else{
+			return \Pressbooks\Book::getBookInformation();
+		}
+	}
+
+	/**
 	 * A function to retrieve the metatags we need for the Root level
 	 * of the website. In Pressbooks this is the catalog of the books.
 	 *
 	 * @since 0.8
 	 */
-	public function pmdt_get_root_level_metatags(){
+	public function get_root_level_metatags(){
 
 		$html  = "<!-- WebSite microtags -->\n"
 		         ."<div itemscope itemtype='http://schema.org/Website'>\n"
@@ -45,7 +60,7 @@ class Pressbooks_Metadata_General_Functions {
 	 *
 	 * @since 0.7
 	 */
-	public function pmdt_get_googleScholar_metatags(){
+	public function get_googleScholar_metatags(){
 
 		// array of the items that we need from the General Book Information metabox
 		$book_info_data = array(

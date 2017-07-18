@@ -1,6 +1,7 @@
 <?php
 
 namespace schemaTypes;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 
 /**
  * The class for the educational info including operations and metaboxes
@@ -229,6 +230,16 @@ class Pressbooks_Metadata_Educational {
 	}
 
 	/**
+	 * A function needed for the array of metadata that comes from each post type
+	 * It automatically returns the first item in the array.
+	 * @since 0.8.1
+	 *
+	 */
+	private function pmdt_get_first($my_array){
+		return $my_array[0];
+	}
+
+	/**
 	 * Returns type level.
 	 *
 	 * @since    0.x
@@ -244,6 +255,7 @@ class Pressbooks_Metadata_Educational {
 	 * @since 0.8.1
 	 */
 	public function pmdt_get_metatags(){
+
 		$book_data = array(
 			//	Here are the fields from Educational Information metabox.
 			'typicalAgeRange'		=>	'pb_age_range_ed',
@@ -255,21 +267,49 @@ class Pressbooks_Metadata_Educational {
 
 		$html  = "<!-- Educational Microtags -->\n";
 
-		$metadata = \Pressbooks\Book::getBookInformation();
-
+		$metadata = gen_func::get_metadata();
+		$html .= '<div itemscope itemtype="http://schema.org/WebPage">';
 		foreach ($book_data as $itemprop => $content){
-			if ( isset( $metadata[$content] ) ) {
+			$value;
+			if($this->type_level == 'site-meta'){
+				$value = $this->pmdt_get_first($metadata[$content]);
+			}else{
+				$value = $metadata[$content];
+			}
+			if ( isset( $value ) ) {
 				//if the schema is timeRequired, we are using a specific format to display it,
 				//like the example here: https://schema.org/timeRequired
 				if ( 'timeRequired' == $itemprop ) {
-					$metadata[ $content ] = 'PT'. $metadata[ $content ].'H';
+					$value = 'PT'. $value.'H';
 				}
-				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $metadata[ $content ] . "'>\n";
+				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
 			}
 		}
 
+		$html .= '</div>';
+
+		if($this->type_level == 'metadata' ) { //loading the appropriate metadata depending on the level type
+			$metadata = gen_func::get_metadata();
+			$isced_field_value = $metadata[ 'pb_isced_field_ed' ];
+			$isced_level_value = $metadata[ 'pb_isced_level_ed' ];
+			$edu_level_value =$metadata[ 'pb_edu_level_ed' ];
+			$edu_framework_value = $metadata[ 'pb_edu_framework_ed' ];
+			$trgt_url = $metadata['pb_trg_url_ed'];
+			$trgt_desc = $metadata['pb_trg_desc_ed'];
+			$educ_role = $metadata['pb_educational_role_ed'];
+		}else{
+			$metadata = gen_func::get_metadata();
+			$isced_field_value = $this->pmdt_get_first($metadata[ 'pb_isced_field_ed' ]);
+			$isced_level_value = $this->pmdt_get_first($metadata[ 'pb_isced_level_ed']);
+			$edu_level_value = $this->pmdt_get_first($metadata[ 'pb_edu_level_ed' ]);
+			$edu_framework_value = $this->pmdt_get_first($metadata[ 'pb_edu_framework_ed']);
+			$trgt_url = $this->pmdt_get_first($metadata['pb_trg_url_ed']);
+			$trgt_desc = $this->pmdt_get_first($metadata['pb_trg_desc_ed']);
+			$educ_role = $this->pmdt_get_first($metadata['pb_educational_role_ed']);
+		}
+
 		//Getting the corresponding isced level
-		$level = $this->pmdt_get_isced_code($metadata['pb_isced_level_ed']);
+		$level = $this->pmdt_get_isced_code($isced_level_value);
 
 
 		if ( isset( $metadata['pb_title'] ) ) {
@@ -278,50 +318,52 @@ class Pressbooks_Metadata_Educational {
 			         ."	<meta itemprop = 'targetName' content = '" .$metadata['pb_title']. "'>\n"
 			         ."</span>\n";
 		}
-		if ( $metadata['pb_isced_field_ed'] != '--Select--' ) {
+		if ( $isced_field_value != '--Select--' ) {
 			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
 			         ."	<meta itemprop = 'alignmentType' content = 'educationalSubject'/>\n"
 			         ."	<meta itemprop = 'educationalFramework' content = 'ISCED-2013'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$metadata['pb_isced_field_ed']. "'>\n"
+			         ."	<meta itemprop = 'targetName' content = '" .$isced_field_value. "'>\n"
 			         ."</span>\n";
 		}
-		if ( $metadata['pb_isced_level_ed'] != '--Select--' ) {
+		if ( $isced_level_value != '--Select--' ) {
 			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
 			         ."	<meta itemprop = 'alignmentType' content = 'educationalLevel'/>\n"
 			         ."	<meta itemprop = 'educationalFramework' content = 'ISCED-2011'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$metadata['pb_isced_level_ed']. "'>\n"
+			         ."	<meta itemprop = 'targetName' content = '" .$isced_level_value. "'>\n"
 			         ."	<meta itemprop = 'alternateName' content = 'ISCED 2011, Level  " .$level. "' />"
 			         ."</span>\n";
 		}
-		if ( isset( $metadata['pb_edu_level_ed'] ) && isset( $metadata['pb_edu_framework_ed'] )) {
+		if ( isset( $edu_level_value ) && isset( $edu_framework_value )) {
 			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
 			         ."	<meta itemprop = 'alignmentType' content = 'educationalSubject'/>\n"
-			         ."	<meta itemprop = 'educationalFramework' content = '" .$metadata['pb_edu_framework_ed']. "'>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$metadata['pb_edu_level_ed']. "'>\n"
+			         ."	<meta itemprop = 'educationalFramework' content = '" .$edu_framework_value. "'>\n"
+			         ."	<meta itemprop = 'targetName' content = '" .$edu_level_value. "'>\n"
 			         ."</span>\n";
 
-		} elseif ( isset( $metadata['pb_edu_level_ed'] ) && !isset( $metadata['pb_edu_framework_ed'] )) {
+		} elseif ( isset( $edu_level_value ) && !isset( $edu_framework_value )) {
 			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
 			         ."	<meta itemprop = 'alignmentType' content = 'educationalLevel'/>\n"
-			         ."	<meta itemprop = 'targetName' content = '" .$metadata['pb_edu_level_ed']. "'>\n"
+			         ."	<meta itemprop = 'targetName' content = '" .$edu_level_value. "'>\n"
 			         ."</span>\n";
 		}
 
-		if(isset($metadata['pb_trg_url_ed']) || isset($metadata['pb_trg_desc_ed'])){
+
+		if(isset($trgt_url) || isset($trgt_desc)){
 			$html .= "<span itemprop = 'educationalAlignment' itemscope itemtype = 'http://schema.org/AlignmentObject'>\n"
 			         ."	<meta itemprop = 'alignmentType' content = 'educationalLevel'/>\n";
-			if(isset($metadata['pb_trg_url_ed'])){
-				$html .= "	<link itemprop='targetUrl' href='".$metadata['pb_trg_url_ed']."' />\n";
+			if(isset($trgt_url)){
+				$html .= "	<link itemprop='targetUrl' href='".$trgt_url."' />\n";
 			}
-			if(isset($metadata['pb_trg_desc_ed'])){
-				$html .= "	<link itemprop='targetDescription' content='".$metadata['pb_trg_desc_ed']."' />\n";
+			if(isset($trgt_desc)){
+				$html .= "	<link itemprop='targetDescription' content='".$trgt_desc."' />\n";
 			}
 			$html .= "</span>\n";
 		}
 
-		if(isset($metadata['pb_educational_role_ed'])){
-			$html .= "<span itemprop='audience' itemscope itemtype='http://schema.org/EducationalAudience'>
-       		 <span itemprop='educationalRole'>".$metadata['pb_educational_role_ed']."</span></span>s.";
+		if(isset($educ_role)){
+			$html .= "<span itemprop = 'audience' itemscope itemtype = 'http://schema.org/EducationalAudience'>\n"
+			         ."	<meta itemprop = 'educationalRole' content = '$educ_role'/>\n"
+			         ."</span>\n";
 		}
 		return $html;
 	}

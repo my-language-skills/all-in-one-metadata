@@ -1,6 +1,7 @@
 <?php
 
 namespace schemaTypes;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 
 /**
  * The class for the webPage type including operations and metaboxes
@@ -124,7 +125,7 @@ class Pressbooks_Metadata_WebPage {
 	}
 
 	/**
-	 * A function needed for the array of metadata that comes from each post or chapter
+	 * A function needed for the array of metadata that comes from each post type
 	 * It automatically returns the first item in the array.
 	 * @since 0.8.1
 	 *
@@ -139,14 +140,17 @@ class Pressbooks_Metadata_WebPage {
 	 *
 	 */
 	public function pmdt_get_metatags() {
-		
+
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
 		//The type_level variable is the string we used to create the metabox
 
-		if ( $this->type_level == 'chapter' ) { //loading the appropriate metadata depending on the level type
-			$metadata = get_post_meta( get_the_ID() );
+		$is_site; // This bool var is used to identify if the level is site level or any other post level
+		if ( $this->type_level == 'metadata' || $this->type_level == 'site-meta' ) { //loading the appropriate metadata depending on the type level
+			$metadata = gen_func::get_metadata();
+			$is_site = true;
 		} else {
-			$metadata = \Pressbooks\Book::getBookInformation();
+			$is_site = false;
+			$metadata = get_post_meta( get_the_ID() );
 		}
 
 		// array of the items needed to become microtags
@@ -162,7 +166,7 @@ class Pressbooks_Metadata_WebPage {
 
 		$html .= '<div itemscope itemtype="http://schema.org/WebPage">';
 
-		if($this->type_level == 'chapter'){
+		if(!$is_site){
 			$html .= "<meta itemprop = 'lastReviewed' content = '" .get_the_modified_date(). "'>\n";
 			$html .= "<meta itemprop = 'reviewedBy' content = '" .get_the_modified_author(). "'>\n";
 		}
@@ -170,10 +174,14 @@ class Pressbooks_Metadata_WebPage {
 		foreach ( $book_data as $itemprop => $content ) {
 			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
 
-				if ( $this->type_level == 'chapter' ) { //we are using the get_first function to get the value from the returned array
+				if ( !$is_site ) { //we are using the get_first function to get the value from the returned array
 					$value = $this->pmdt_get_first( $metadata[ $content . '_' . $this->type_level ] );
 				} else {
-					$value = $metadata[ $content . '_' . $this->type_level ];
+					if($this->type_level == 'site-meta'){
+						$value = $this->pmdt_get_first($metadata[ $content . '_' . $this->type_level ]);
+					}else{ //We always use the get_first function except if our level is metadata coming from pressbooks
+						$value = $metadata[ $content . '_' . $this->type_level ];
+					}
 				}
 				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
 			}
