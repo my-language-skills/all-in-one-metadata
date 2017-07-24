@@ -9,3 +9,7 @@
 .page-title-action{
     display:none;
 }
+
+.noPropType{
+    color:red;
+}

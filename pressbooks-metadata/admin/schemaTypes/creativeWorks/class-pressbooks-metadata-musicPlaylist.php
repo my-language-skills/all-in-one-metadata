@@ -1,24 +1,26 @@
 <?php
 
-namespace schemaTypes;
+namespace schemaTypes\cw;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+
 /**
- * The class for the course type including operations and metaboxes
+ * The class for the music playlist  type including operations and metaboxes
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.9
+ * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
  * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-class Pressbooks_Metadata_Course {
+class Pressbooks_Metadata_Music_Playlist{
 
 	/**
 	 * The type level where these metaboxes and their schema operations will go
 	 *
-	 * @since    0.9
+	 * @since    0.x
 	 * @access   private
 	 */
 	private $type_level;
@@ -39,52 +41,34 @@ class Pressbooks_Metadata_Course {
 	}
 
 	/**
-	 * The function which produces the metaboxes for the course type
+	 * The function which produces the metaboxes for the music playlist type
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
 	 * The value passed here is also used when calling the metadata functions in the header and the footer.
 	 * @since 0.8.1
 	 */
 	private function pmdt_add_metabox($meta_position){
-
 		//----------- metabox ----------- //
-
-		x_add_metadata_group( 	'course-type', $meta_position, array(
-			'label' 		=>	'Course Type Properties',
-			'priority' 		=>	'high'
+		x_add_metadata_group( 	'music-playlist', $meta_position, array(
+			'label' 		=>	'Music Playlist Properties',
+			'priority' 		=>	'high',
 		) );
-
 		//----------- metafields ----------- //
-
-		// Course Code
-		x_add_metadata_field( 	'pb_course_code_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'course-type',
-			'label' 		=> 	'Course Code',
-			'description'   =>  'The identifier for the Course used by the course provider (e.g. CS101 or 6.001).'
+		// Num Tracks
+		x_add_metadata_field( 	'pb_numtracks_'.$meta_position, $meta_position, array(
+			'group' 		=>	'music-playlist',
+			'label' 		=>	'Num Tracks',
+			'description' 	=>	'The number of tracks in this album or playlist.'
 		) );
-
-		// Course Prerequisites
-		x_add_metadata_field( 	'pb_course_prerequisites_'.$meta_position, $meta_position, array(
-			'group' 		=>	'course-type',
-			'label' 		=>	'Course Prerequisites',
-			'description'	=>	'Requirements for taking the Course.'
+		// Track
+		x_add_metadata_field( 	'pb_track_'.$meta_position, $meta_position, array(
+			'group' 		=>	'music-playlist',
+			'label' 		=>	'Track',
+			'description' 	=>	'A music recording (track)—usually a single song. If an ItemList is given, the list should contain items of type MusicRecording. Supersedes tracks.'
 		) );
-
-		// Course Name
-		x_add_metadata_field( 	'pb_course_name_'.$meta_position, $meta_position, array(
-			'group' 		=>	'course-type',
-			'label' 		=>	'Course Name',
-			'description'	=>	'Add course name.'
-		) );
-
-		// Course Decription
-		x_add_metadata_field( 	'pb_course_description_'.$meta_position, $meta_position, array(
-			'group' 		=>	'course-type',
-			'label' 		=>	'Course Description',
-			'description'	=>	'Add course description.'
-		) );
+		
 	}
 
-	/*FUNCTIONS FOR THIS TYPE START HERE*/
+		/*FUNCTIONS FOR THIS TYPE START HERE*/
 
 	/**
 	 * Function used for comparing the instances of the schema types
@@ -109,12 +93,12 @@ class Pressbooks_Metadata_Course {
 	/**
 	 * Returns type level.
 	 *
-	 * @since    0.9
+	 * @since    0.x
 	 * @access   public
 	 */
 	public function pmdt_get_type_level(){
-		return $this->type_level;
-	}
+			return $this->type_level;
+		}
 
 	/**
 	 * A function needed for the array of metadata that comes from each post or chapter
@@ -127,12 +111,11 @@ class Pressbooks_Metadata_Course {
 	}
 
 	/**
-	 * A function that creates the metadata for course type.
+	 * A function that creates the metadata for the Music Playlist type.
 	 * @since 0.8.1
 	 *
 	 */
 	public function pmdt_get_metatags() {
-
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
 		//The type_level variable is the string we used to create the metabox
 
@@ -146,19 +129,18 @@ class Pressbooks_Metadata_Course {
 		}
 
 		// array of the items needed to become microtags
-		$book_data = array(
-			'courseCode'          => 'pb_course_code',
-			'coursePrerequisites' => 'pb_course_prerequisites',
-			'provider'            => 'pb_provider',
-			'name'                => 'pb_course_name',
-			'description'         => 'pb_course_description'
+		$musicPlaylist_data = array(
+
+			'numTracks' => 'pb_numtracks',
+			'track' => 'pb_track'
+
 		);
 
 		$html = "<!-- Microtags --> \n";
 
-		$html .= '<div itemscope itemtype="http://schema.org/Course">';
+		$html .= '<div itemscope itemtype="http://schema.org/MusicPlaylist">';
 
-		foreach ( $book_data as $itemprop => $content ) {
+		foreach ( $musicPlaylist_data as $itemprop => $content ) {
 			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
 
 				if ( !$is_site ) { //we are using the get_first function to get the value from the returned array

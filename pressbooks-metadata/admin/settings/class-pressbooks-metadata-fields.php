@@ -106,15 +106,17 @@ class Pressbooks_Metadata_Fields {
 
 		$html .= '<label for="show_header">By checking this you allow the '.$this->metaInfo[0].' to show in the '.$this->sectionName.'</label>';
 
+		//If the type has no properties than we show the user that the parent type will be used insted
+		if(isset($this->metaInfo[2])){
+			$html .= '<p class="noPropType">Type Empty of properties '.$this->metaInfo[2].' will be used</p>';
+		}
+
 		//Deciding if a support link will appear on the settings or not
 		if($this->metaInfo[1] != ''){
 			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'">here</a></p>';
 		}else{
 			$html .= '<p>No description available - this is a custom type</p>';
 		}
-
-		$html.= '<a href="">';
-
 		echo $html;
 	}
 

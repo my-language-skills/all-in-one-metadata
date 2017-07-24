@@ -2,6 +2,7 @@
 
 namespace schemaFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
+use vocabularyFunctions\Pressbooks_Metadata_VC_Functions as vc_func;
 
 /**
  * The functions of the plugin that handle the output of metadata in our site.
@@ -32,6 +33,11 @@ class Pressbooks_Metadata_Output {
 		} elseif ( is_front_page() && site_cpt::pressbooks_identify() ) {
 			echo $generalFunctions->get_googleScholar_metatags();
 		}
+
+		//TODO This has to change settings for these two vocabularies have to be added
+		//echo vc_func::get_dublin_core();
+		//echo vc_func::get_coins();
+
 	}
 
 	/**

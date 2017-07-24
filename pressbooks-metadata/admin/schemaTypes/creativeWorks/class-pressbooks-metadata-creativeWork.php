@@ -1,6 +1,6 @@
 <?php
 
-namespace schemaTypes;
+namespace schemaTypes\cw;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace schemaTypes;
+namespace schemaTypes\cw;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 
 /**
- * The class for the book type including operations and metaboxes
+ * The class for the Visual Art Work including operations and metaboxes
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
  * @since      0.8.1
@@ -15,12 +15,12 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-class Pressbooks_Metadata_Book {
+class Pressbooks_Metadata_Visual_Art_Work{
 
 	/**
 	 * The type level where these metaboxes and their schema operations will go
 	 *
-	 * @since    0.9
+	 * @since    0.x
 	 * @access   private
 	 */
 	private $type_level;
@@ -39,33 +39,63 @@ class Pressbooks_Metadata_Book {
 		$this->pmdt_add_metabox($this->type_level);
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
 	}
+
 	/**
-	 * The function which produces the metaboxes for the book type
+	 * The function which produces the metaboxes for the visual art work
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
 	 * The value passed here is also used when calling the metadata functions in the header and the footer.
 	 * @since 0.8.1
 	 */
 	private function pmdt_add_metabox($meta_position){
-		//The meta_position variable is the one that identifies where the metabox should go, on what level, like chapter / post or metadata / book
 		//----------- metabox ----------- //
-		x_add_metadata_group( 	'book-type', $meta_position, array(
-			'label' 		=>	'Book Type Properties',
+		x_add_metadata_group( 	'visual-art-work', $meta_position, array(
+			'label' 		=>	'Visual Art Work Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //
-		//All Metafields i.e pb_illustrator append the meta_position at the end of the string so we can distinguish when getting info from the database
-		// Illustrator
-		x_add_metadata_field( 	'pb_illustrator_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'book-type',
-			'label' 		=> 	'Illustrator',
-			'description'   =>  'The name of the illustrator'
+		// Art Edition
+		x_add_metadata_field( 	'pb_art_edition_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Art Edition',
+			'description'	=>	'The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, artEdition refers to the total number of copies (in this example "20").',
 		) );
-		// Book Edition
-		x_add_metadata_field( 	'pb_edition_'.$meta_position, $meta_position, array(
-			'group' 		=>	'book-type',
-			'label' 		=>	'Book Edition',
-			'description'	=>	'The edition of the book. Example: First Edition or 1 or 1.0.0',
+		// Art Medium
+		x_add_metadata_field( 	'pb_art_medium_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Art Medium',
+			'description'	=>	'The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)',
 		) );
+		// Art Form
+		x_add_metadata_field( 	'pb_art_form_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Art Form',
+			'description'	=>	'e.g. Painting, Drawing, Sculpture, Print, Photograph, Assemblage, Collage, etc.',
+		) );
+		// Art Work Surface
+		x_add_metadata_field( 	'pb_art_work_surface_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Art Work Surface',
+			'description'	=>	'The supporting materials for the artwork, e.g. Canvas, Paper, Wood, Board, etc. Supersedes surface.',
+		) );
+		// Depth
+		x_add_metadata_field( 	'pb_depth_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Depth',
+			'description'	=>	'The depth of the item.',
+		) );
+		// Height
+		x_add_metadata_field( 	'pb_height_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Height',
+			'description'	=>	'The height of the item..',
+		) );
+		// Width
+		x_add_metadata_field( 	'pb_width_'.$meta_position, $meta_position, array(
+			'group' 		=>	'visual-art-work',
+			'label' 		=>	'Width',
+			'description'	=>	'The width of the item.',
+		) );
+		
 	}
 
 		/*FUNCTIONS FOR THIS TYPE START HERE*/
@@ -93,7 +123,7 @@ class Pressbooks_Metadata_Book {
 	/**
 	 * Returns type level.
 	 *
-	 * @since    0.9
+	 * @since    0.x
 	 * @access   public
 	 */
 	public function pmdt_get_type_level(){
@@ -111,7 +141,7 @@ class Pressbooks_Metadata_Book {
 	}
 
 	/**
-	 * A function that creates the metadata for the book type.
+	 * A function that creates the metadata for the Visual Art Work type.
 	 * @since 0.8.1
 	 *
 	 */
@@ -129,17 +159,23 @@ class Pressbooks_Metadata_Book {
 		}
 
 		// array of the items needed to become microtags
-		$book_data = array(
+		$visualArtWork_data = array(
 
-			'illustrator' => 'pb_illustrator',
-			'bookEdition' => 'pb_edition'
+			'artEdition' => 'pb_art_edition',
+			'artMedium' => 'pb_art_medium',
+			'artform' => 'pb_art_form',
+			'artworkSurface' => 'pb_art_work_surface',
+			'depth' => 'pb_depth',
+			'height' => 'pb_height',
+			'width' => 'pb_width'
+
 		);
 
 		$html = "<!-- Microtags --> \n";
 
-		$html .= '<div itemscope itemtype="http://schema.org/Book">';
+		$html .= '<div itemscope itemtype="http://schema.org/VisualArtwork">';
 
-		foreach ( $book_data as $itemprop => $content ) {
+		foreach ( $visualArtWork_data as $itemprop => $content ) {
 			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
 
 				if ( !$is_site ) { //we are using the get_first function to get the value from the returned array

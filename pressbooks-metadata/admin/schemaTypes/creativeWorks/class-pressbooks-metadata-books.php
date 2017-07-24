@@ -1,20 +1,21 @@
 <?php
 
-namespace schemaTypes;
+namespace schemaTypes\cw;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 
 /**
- * The class for the webPage type including operations and metaboxes
+ * The class for the book type including operations and metaboxes
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.9
+ * @since      0.8.1
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
  * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-class Pressbooks_Metadata_WebPage {
+class Pressbooks_Metadata_Book {
 
 	/**
 	 * The type level where these metaboxes and their schema operations will go
@@ -40,59 +41,35 @@ class Pressbooks_Metadata_WebPage {
 	}
 
 	/**
-	 * The function which produces the metaboxes for the webpage type
+	 * The function which produces the metaboxes for the book type
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
 	 * The value passed here is also used when calling the metadata functions in the header and the footer.
 	 * @since 0.8.1
 	 */
 	private function pmdt_add_metabox($meta_position){
-
+		//The meta_position variable is the one that identifies where the metabox should go, on what level, like chapter / post or metadata / book
 		//----------- metabox ----------- //
-
-		x_add_metadata_group( 	'webpage-type', $meta_position, array(
-			'label' 		=>	'WebPage Type Properties',
+		x_add_metadata_group( 	'book-type', $meta_position, array(
+			'label' 		=>	'Book Type Properties',
 			'priority' 		=>	'high',
 		) );
-
 		//----------- metafields ----------- //
-
-		// Main Content Of Page
-		x_add_metadata_field( 	'pb_main_content_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'webpage-type',
-			'label' 		=> 	'Main Content Of Page',
-			'description'   =>  'Indicates if this web page element is the main subject of the page.'
+		//All Metafields i.e pb_illustrator append the meta_position at the end of the string so we can distinguish when getting info from the database
+		// Illustrator
+		x_add_metadata_field( 	'pb_illustrator_'.$meta_position, $meta_position, array(
+			'group' 		=> 	'book-type',
+			'label' 		=> 	'Illustrator',
+			'description'   =>  'The name of the illustrator'
 		) );
-
-		// Primary Image Of Page
-		x_add_metadata_field( 	'pb_primary_image_'.$meta_position, $meta_position, array(
-			'group' 		=>	'webpage-type',
-			'label' 		=>	'Primary Image Of Page',
-			'description'	=>	'Indicates the main image on the page.'
-		) );
-
-		// Related Link
-		x_add_metadata_field( 	'pb_related_link_'.$meta_position, $meta_position, array(
-			'group' 		=>	'webpage-type',
-			'label' 		=>	'Related Link',
-			'description'	=>	'A link related to this web page, for example to other related web pages.'
-		) );
-
-		// Significant Link
-		x_add_metadata_field( 	'pb_significant_link_'.$meta_position, $meta_position, array(
-			'group' 		=>	'webpage-type',
-			'label' 		=>	'Significant Link',
-			'description'	=>	'One of the more significant URLs on the page.'
-		) );
-
-		// Specialty
-		x_add_metadata_field( 	'pb_specialty_'.$meta_position, $meta_position, array(
-			'group' 		=>	'webpage-type',
-			'label' 		=>	'Specialty',
-			'description'	=>	'One of the domain specialities to which this web page\'s content applies.'
+		// Book Edition
+		x_add_metadata_field( 	'pb_edition_'.$meta_position, $meta_position, array(
+			'group' 		=>	'book-type',
+			'label' 		=>	'Book Edition',
+			'description'	=>	'The edition of the book. Example: First Edition or 1 or 1.0.0',
 		) );
 	}
 
-	/*FUNCTIONS FOR THIS TYPE START HERE*/
+		/*FUNCTIONS FOR THIS TYPE START HERE*/
 
 	/**
 	 * Function used for comparing the instances of the schema types
@@ -121,11 +98,11 @@ class Pressbooks_Metadata_WebPage {
 	 * @access   public
 	 */
 	public function pmdt_get_type_level(){
-		return $this->type_level;
-	}
+			return $this->type_level;
+		}
 
 	/**
-	 * A function needed for the array of metadata that comes from each post type
+	 * A function needed for the array of metadata that comes from each post or chapter
 	 * It automatically returns the first item in the array.
 	 * @since 0.8.1
 	 *
@@ -135,12 +112,11 @@ class Pressbooks_Metadata_WebPage {
 	}
 
 	/**
-	 * A function that creates the metadata for webpage type.
+	 * A function that creates the metadata for the book type.
 	 * @since 0.8.1
 	 *
 	 */
 	public function pmdt_get_metatags() {
-
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
 		//The type_level variable is the string we used to create the metabox
 
@@ -155,21 +131,14 @@ class Pressbooks_Metadata_WebPage {
 
 		// array of the items needed to become microtags
 		$book_data = array(
-			'mainContentOfPage'     => 'pb_main_content',
-			'primaryImageOfPage'    => 'pb_primary_image',
-			'relatedLink'           => 'pb_related_link',
-			'significantLink'       => 'pb_significant_link',
-			'specialty'             => 'pb_specialty'
+
+			'illustrator' => 'pb_illustrator',
+			'bookEdition' => 'pb_edition'
 		);
 
 		$html = "<!-- Microtags --> \n";
 
-		$html .= '<div itemscope itemtype="http://schema.org/WebPage">';
-
-		if(!$is_site){
-			$html .= "<meta itemprop = 'lastReviewed' content = '" .get_the_modified_date(). "'>\n";
-			$html .= "<meta itemprop = 'reviewedBy' content = '" .get_the_modified_author(). "'>\n";
-		}
+		$html .= '<div itemscope itemtype="http://schema.org/Book">';
 
 		foreach ( $book_data as $itemprop => $content ) {
 			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
@@ -179,7 +148,7 @@ class Pressbooks_Metadata_WebPage {
 				} else {
 					if($this->type_level == 'site-meta'){
 						$value = $this->pmdt_get_first($metadata[ $content . '_' . $this->type_level ]);
-					}else{ //We always use the get_first function except if our level is metadata coming from pressbooks
+					}else{//We always use the get_first function except if our level is metadata coming from pressbooks
 						$value = $metadata[ $content . '_' . $this->type_level ];
 					}
 				}

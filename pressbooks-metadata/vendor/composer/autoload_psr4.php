@@ -6,8 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'vocabularyFunctions\\' => array($baseDir . '/admin/vocabularyFunctions'),
     'settings\\' => array($baseDir . '/admin/settings'),
-    'schemaTypes\\' => array($baseDir . '/admin/schemaTypes'),
+    'schemaTypes\\' => array($baseDir . '/admin/schemaTypes/creativeWorks'),
     'schemaFunctions\\' => array($baseDir . '/admin/schemaFunctions'),
     'adminFunctions\\' => array($baseDir . '/admin/adminFunctions'),
 );

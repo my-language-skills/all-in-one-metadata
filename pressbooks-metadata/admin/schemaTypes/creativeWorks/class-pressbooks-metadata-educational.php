@@ -1,6 +1,6 @@
 <?php
 
-namespace schemaTypes;
+namespace schemaTypes\cw;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 
 /**
@@ -152,7 +152,7 @@ class Pressbooks_Metadata_Educational {
 			'description' 	=> 	'The kind of resource this book represents'
 		) );
 
-		// Learning Resource Type
+		// Interactivity Type
 		x_add_metadata_field( 	'pb_interactivity_type_ed', $meta_position, array(
 			'group' 		=> 	'educational-information',
 			'field_type' 	=> 	'select',
