@@ -26,7 +26,7 @@ return array(
     'schemaTypes\\cw\\Pressbooks_Metadata_Data_Set' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataSet.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Digital_Document' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-digitalDocument.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Educational' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-educational.php',
-    'schemaTypes\\cw\\Pressbooks_Metadata_Empty_Type' => $baseDir . '/admin/schemaTypes/creativeWorks/pressbooks-metadata-empty-type.php',
+    'schemaTypes\\cw\\Pressbooks_Metadata_Empty_Type' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-emptyType.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Episode' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-episode.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Game' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-game.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Map' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-map.php',

@@ -67,7 +67,7 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaTypes\\cw\\Pressbooks_Metadata_Data_Set' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataSet.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Digital_Document' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-digitalDocument.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Educational' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-educational.php',
-        'schemaTypes\\cw\\Pressbooks_Metadata_Empty_Type' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/pressbooks-metadata-empty-type.php',
+        'schemaTypes\\cw\\Pressbooks_Metadata_Empty_Type' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-emptyType.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Episode' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-episode.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Game' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-game.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Map' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-map.php',

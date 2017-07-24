@@ -194,6 +194,17 @@ class Pressbooks_Metadata_Engine {
 
 						//TODO Here we can find the correct classes automatically, we need to make improvements
 
+						//Handling types with no properties
+						case 'conversation_type':
+						case 'painting_type':
+						case 'sculpture_type':
+						case 'photograph_type':
+						case 'series_type':
+						case 'webSite_type':
+						case 'webPageElement_type':
+						$instances[] = new cw\Pressbooks_Metadata_Empty_Type($cpt);
+						break;
+
 						case 'visualArtWork_type':
 							$instances[] = new cw\Pressbooks_Metadata_Visual_Art_Work($cpt);
 							break;
