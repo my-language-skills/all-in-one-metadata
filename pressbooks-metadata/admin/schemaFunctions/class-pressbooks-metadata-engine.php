@@ -74,6 +74,10 @@ class Pressbooks_Metadata_Engine {
 				'tvSeason_type'        => array('TV Season Type','http://schema.org/TVSeason'),
 				'tvSeries_type'        => array('TV Series Type','http://schema.org/TVSeries'),
 				'visualArtWork_type'        => array('Visual Artwork Type','http://schema.org/VisualArtwork'),
+				'claimReview_type'        => array('Claim Review Type','http://schema.org/ClaimReview'),
+				'emailMessage_type'        => array('Email Message Type','http://schema.org/EmailMessage'),
+				'musicAlbum_type'        => array('Music Album Type','http://schema.org/MusicAlbum'),
+				'musicRelease_type'        => array('Music Release Type','http://schema.org/MusicRelease'),
 				//Here we add the types that have no elements
 				//For these types we add a third argument inside the array,this argument is the parent type
 				'conversation_type'        => array('Conversation Type','http://schema.org/Conversation','CreativeWorks'),
@@ -204,6 +208,22 @@ class Pressbooks_Metadata_Engine {
 						case 'webPageElement_type':
 						$instances[] = new cw\Pressbooks_Metadata_Empty_Type($cpt);
 						break;
+
+						case 'claimReview_type':
+							$instances[] = new cw\Pressbooks_Metadata_ClaimReview($cpt);
+							break;
+
+						case 'emailMessage_type':
+							$instances[] = new cw\Pressbooks_Metadata_EmailMessage($cpt);
+							break;
+
+						case 'musicAlbum_type':
+							$instances[] = new cw\Pressbooks_Metadata_MusicAlbum($cpt);
+							break;
+
+						case 'musicRelease_type':
+							$instances[] = new cw\Pressbooks_Metadata_MusicRelease($cpt);
+							break;
 
 						case 'visualArtWork_type':
 							$instances[] = new cw\Pressbooks_Metadata_Visual_Art_Work($cpt);
@@ -351,6 +371,11 @@ class Pressbooks_Metadata_Engine {
 			}
 		}
 		//Here we create a parent for each type if one exists
+		foreach($instances as $instance){
+			$instances []= $instance->pmdt_parent_init();
+		}
+
+		//We duplicated this so grand children can have their grand parent, TODO we can/have to improve this
 		foreach($instances as $instance){
 			$instances []= $instance->pmdt_parent_init();
 		}

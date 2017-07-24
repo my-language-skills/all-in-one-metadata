@@ -135,6 +135,16 @@ class Pressbooks_Metadata_Creative_Work {
 	}
 
 	/**
+	 * Returns the father for the type.
+	 *
+	 * @since    0.9
+	 * @access   public
+	 */
+	public function pmdt_parent_init(){
+		return;
+	}
+
+	/**
 	 * Returns type level.
 	 *
 	 * @since    0.9
