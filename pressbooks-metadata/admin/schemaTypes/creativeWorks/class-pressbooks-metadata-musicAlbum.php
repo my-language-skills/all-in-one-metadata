@@ -149,6 +149,7 @@ class Pressbooks_Metadata_MusicAlbum {
 			'byArtist' => 'pb_byArtist'
 		);
 
+
 		$html = "<!-- Microtags --> \n";
 
 		$html .= '<div itemscope itemtype="http://schema.org/MusicAlbum">';

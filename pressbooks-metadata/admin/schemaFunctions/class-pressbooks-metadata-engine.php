@@ -152,6 +152,20 @@ class Pressbooks_Metadata_Engine {
 	}
 
 	/**
+	 * Function used to remove null values from an array
+	 * @since  0.x
+	 */
+	private function remove_null($array) {
+		$cleanArray = array();
+		foreach($array as $item){
+			if($item != NULL){
+				$cleanArray[]=$item;
+			}
+		}
+		return $cleanArray;
+	}
+
+	/**
 	 * Function used to return all post types or 'levels' that are active from the settings
 	 * Under the Post Levels Tab
 	 * @since  0.9
@@ -375,6 +389,9 @@ class Pressbooks_Metadata_Engine {
 			$instances []= $instance->pmdt_parent_init();
 		}
 
+		//Removing null instances
+		$instances = $this->remove_null($instances);
+
 		//We duplicated this so grand children can have their grand parent, TODO we can/have to improve this
 		foreach($instances as $instance){
 			$instances []= $instance->pmdt_parent_init();
@@ -384,14 +401,10 @@ class Pressbooks_Metadata_Engine {
 		//For example book and webpage have both creative works as parent, so we keep only one
 		$instances = array_unique($instances);
 
-		//Removing Null Values in case we spot any
-		$cleanInstances = array();
-		foreach($instances as $instance){
-			if($instance != NULL){
-				$cleanInstances[]=$instance;
-			}
-		}
-		return $cleanInstances;
+		//Removing null instances again
+		$instances = $this->remove_null($instances);
+
+		return $instances;
 	}
 }
 

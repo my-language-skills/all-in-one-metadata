@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Message{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'message', $meta_position, array(
-			'label' 		=>	'Message Properties',
+			'label' 		=>	'Message Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

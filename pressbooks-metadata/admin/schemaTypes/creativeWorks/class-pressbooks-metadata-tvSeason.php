@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Tv_Season{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'tv-season', $meta_position, array(
-			'label' 		=>	'Tv Season Properties',
+			'label' 		=>	'Tv Season Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

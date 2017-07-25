@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Publication_Volume{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'publication-volume', $meta_position, array(
-			'label' 		=>	'Publication Volume Properties',
+			'label' 		=>	'Publication Volume Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Digital_Document {
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'digital-document', $meta_position, array(
-			'label' 		=>	'Digital Document Properties',
+			'label' 		=>	'Digital Document Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

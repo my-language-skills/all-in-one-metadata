@@ -235,7 +235,7 @@ class Pressbooks_Metadata_Educational {
 	 * @access   public
 	 */
 	public function pmdt_parent_init(){
-		return;
+
 	}
 
 	/**

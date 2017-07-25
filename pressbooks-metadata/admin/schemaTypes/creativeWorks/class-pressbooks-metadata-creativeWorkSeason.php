@@ -51,7 +51,7 @@ class Pressbooks_Metadata_Creative_Work_Season {
 	private function pmdt_add_metabox( $meta_position ) {
 		//----------- metabox ----------- //
 		x_add_metadata_group( 'creative-work-season', $meta_position, array(
-			'label'    => 'Creative Work Season Properties',
+			'label'    => 'Creative Work Season Type Properties',
 			'priority' => 'high',
 		) );
 		//----------- metafields ----------- //

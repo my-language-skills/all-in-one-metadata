@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Music_Recording{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'music-recording', $meta_position, array(
-			'label' 		=>	'Music Recording Properties',
+			'label' 		=>	'Music Recording Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

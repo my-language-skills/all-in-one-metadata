@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Menu{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'menu', $meta_position, array(
-			'label' 		=>	'Menu Properties',
+			'label' 		=>	'Menu Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

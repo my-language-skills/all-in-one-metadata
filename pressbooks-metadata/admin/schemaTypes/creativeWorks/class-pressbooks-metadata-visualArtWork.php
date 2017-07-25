@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Visual_Art_Work{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'visual-art-work', $meta_position, array(
-			'label' 		=>	'Visual Art Work Properties',
+			'label' 		=>	'Visual Art Work Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

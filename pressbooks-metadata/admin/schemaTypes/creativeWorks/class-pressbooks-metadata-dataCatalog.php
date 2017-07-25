@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Data_Catalog {
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'data-catalog', $meta_position, array(
-			'label' 		=>	'Data Catalog Properties',
+			'label' 		=>	'Data Catalog Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Software_Source_Code{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'software-source-code', $meta_position, array(
-			'label' 		=>	'Software Source Code Properties',
+			'label' 		=>	'Software Source Code Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

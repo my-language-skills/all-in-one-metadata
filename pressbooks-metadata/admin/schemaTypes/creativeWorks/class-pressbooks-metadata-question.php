@@ -51,7 +51,7 @@ class Pressbooks_Metadata_Question {
 	private function pmdt_add_metabox( $meta_position ) {
 		//----------- metabox ----------- //
 		x_add_metadata_group( 'question', $meta_position, array(
-			'label'    => 'Question Properties',
+			'label'    => 'Question Type Properties',
 			'priority' => 'high',
 		) );
 		//----------- metafields ----------- //

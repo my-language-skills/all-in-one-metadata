@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Music_Playlist{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'music-playlist', $meta_position, array(
-			'label' 		=>	'Music Playlist Properties',
+			'label' 		=>	'Music Playlist Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

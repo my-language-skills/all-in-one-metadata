@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Software_Application{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'software-application', $meta_position, array(
-			'label' 		=>	'Software Application Properties',
+			'label' 		=>	'Software Application Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

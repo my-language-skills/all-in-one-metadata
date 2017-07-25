@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Music_Composition{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'music-composition', $meta_position, array(
-			'label' 		=>	'Music Composition Properties',
+			'label' 		=>	'Music Composition Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

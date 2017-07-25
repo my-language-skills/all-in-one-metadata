@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Data_Set {
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'data-set', $meta_position, array(
-			'label' 		=>	'Data Set Properties',
+			'label' 		=>	'Data Set Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

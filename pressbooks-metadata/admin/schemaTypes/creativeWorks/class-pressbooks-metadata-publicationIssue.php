@@ -51,7 +51,7 @@ class Pressbooks_Metadata_Publication_Issue {
 	private function pmdt_add_metabox( $meta_position ) {
 		//----------- metabox ----------- //
 		x_add_metadata_group( 'publication-issue', $meta_position, array(
-			'label'    => 'Publication Issue Properties',
+			'label'    => 'Publication Issue Type Properties',
 			'priority' => 'high',
 		) );
 		//----------- metafields ----------- //

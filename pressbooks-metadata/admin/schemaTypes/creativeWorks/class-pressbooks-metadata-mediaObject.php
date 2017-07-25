@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Media_Object {
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'media-object', $meta_position, array(
-			'label' 		=>	'Media Object Properties',
+			'label' 		=>	'Media Object Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

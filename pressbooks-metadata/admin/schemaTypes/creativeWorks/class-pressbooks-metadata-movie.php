@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Movie{
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'movie', $meta_position, array(
-			'label' 		=>	'Movie Properties',
+			'label' 		=>	'Movie Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

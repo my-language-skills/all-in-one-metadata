@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Creative_Work_Series {
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'creative-work-series', $meta_position, array(
-			'label' 		=>	'Creative Work Series Properties',
+			'label' 		=>	'Creative Work Series Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

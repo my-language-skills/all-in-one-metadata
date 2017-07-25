@@ -158,10 +158,12 @@ class Pressbooks_Metadata_MusicRelease {
 		// array of the items needed to become microtags
 		$MusicRelease_data = array(
 
-			'albumProductionType' => 'pb_albumProductionType',
-			'albumRelease' => 'pb_albumRelease',
-			'albumReleaseType' => 'pb_albumReleaseType',
-			'byArtist' => 'pb_byArtist'
+			'catalogNumber' => 'pb_catalogNumber',
+			'creditedTo' => 'pb_creditedTo',
+			'duration' => 'pb_duration',
+			'musicReleaseFormat' => 'pb_musicReleaseFormat',
+			'recordLabel' => 'pb_recordLabel',
+			'releaseOf' => 'pb_releaseOf'
 		);
 
 		$html = "<!-- Microtags --> \n";

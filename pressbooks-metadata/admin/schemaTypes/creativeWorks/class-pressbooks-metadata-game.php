@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Game {
 	private function pmdt_add_metabox($meta_position){
 		//----------- metabox ----------- //
 		x_add_metadata_group( 	'game', $meta_position, array(
-			'label' 		=>	'Game Properties',
+			'label' 		=>	'Game Type Properties',
 			'priority' 		=>	'high',
 		) );
 		//----------- metafields ----------- //

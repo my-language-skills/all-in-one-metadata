@@ -52,7 +52,7 @@ class Pressbooks_Metadata_Review {
 	private function pmdt_add_metabox( $meta_position ) {
 		//----------- metabox ----------- //
 		x_add_metadata_group( 'review', $meta_position, array(
-			'label'    => 'Review Properties',
+			'label'    => 'Review Type Properties',
 			'priority' => 'high',
 		) );
 		//----------- metafields ----------- //

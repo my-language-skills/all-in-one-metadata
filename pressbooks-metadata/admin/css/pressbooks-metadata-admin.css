@@ -3,13 +3,6 @@
  * included in this file.
  */
 
-/**
- * Removing the add new 'post' button from the custom post 'site-meta'
- */
-.page-title-action{
-    display:none;
-}
-
 .noPropType{
     color:red;
 }
