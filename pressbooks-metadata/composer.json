@@ -3,7 +3,8 @@
     "psr-4":{
       "schemaFunctions\\": "admin/schemaFunctions",
       "settings\\": "admin/settings",
-      "schemaTypes\\": "admin/schemaTypes/creativeWorks",
+      "schemaTypes\\": "admin/schemaTypes",
+      "schemaTypes\\cw\\": "admin/schemaTypes/creativeWorks",
       "adminFunctions\\": "admin/adminFunctions",
       "vocabularyFunctions\\": "admin/vocabularyFunctions"
     }

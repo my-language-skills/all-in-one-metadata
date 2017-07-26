@@ -628,7 +628,7 @@ class Pressbooks_Metadata_Creative_Work {
 	 * @access   public
 	 */
 	public function pmdt_parent_init(){
-
+		return new \schemaTypes\Pressbooks_Metadata_Thing($this->type_level);
 	}
 
 	/**

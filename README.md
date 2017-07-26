@@ -68,6 +68,8 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 ### Now
 ## 0.xx
 * **ADDITIONS**
+Included all the properties for creative work #114
+Show parent activation and info for empty Types #113
 
 * **ENHANCEMENTS**
 

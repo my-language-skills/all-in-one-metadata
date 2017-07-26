@@ -14,6 +14,7 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         's' => 
         array (
             'settings\\' => 9,
+            'schemaTypes\\cw\\' => 15,
             'schemaTypes\\' => 12,
             'schemaFunctions\\' => 16,
         ),
@@ -32,9 +33,13 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         array (
             0 => __DIR__ . '/../..' . '/admin/settings',
         ),
-        'schemaTypes\\' => 
+        'schemaTypes\\cw\\' => 
         array (
             0 => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks',
+        ),
+        'schemaTypes\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/admin/schemaTypes',
         ),
         'schemaFunctions\\' => 
         array (
@@ -54,6 +59,8 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaFunctions\\Pressbooks_Metadata_Engine' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-engine.php',
         'schemaFunctions\\Pressbooks_Metadata_General_Functions' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php',
         'schemaFunctions\\Pressbooks_Metadata_Output' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-output.php',
+        'schemaTypes\\Pressbooks_Metadata_Thing' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-thing.php',
+        'schemaTypes\\action\\Pressbooks_Metadata_Action' => __DIR__ . '/../..' . '/admin/schemaTypes/action/class-pressbooks-metadata-Action.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Article' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-article.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Blog' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-blog.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Book' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-books.php',
@@ -94,6 +101,12 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaTypes\\cw\\Pressbooks_Metadata_Tv_Series' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-tvSeries.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Visual_Art_Work' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-visualArtWork.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_WebPage' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-webPage.php',
+        'schemaTypes\\event\\Pressbooks_Metadata_Event' => __DIR__ . '/../..' . '/admin/schemaTypes/event/class-pressbooks-metadata-Event.php',
+        'schemaTypes\\intangible\\Pressbooks_Metadata_Intangible' => __DIR__ . '/../..' . '/admin/schemaTypes/intangible/class-pressbooks-metadata-Intangible.php',
+        'schemaTypes\\organisation\\Pressbooks_Metadata_Organization' => __DIR__ . '/../..' . '/admin/schemaTypes/organisation/class-pressbooks-metadata-Organization.php',
+        'schemaTypes\\person\\Pressbooks_Metadata_Person' => __DIR__ . '/../..' . '/admin/schemaTypes/person/class-pressbooks-metadata-Person.php',
+        'schemaTypes\\place\\Pressbooks_Metadata_Place' => __DIR__ . '/../..' . '/admin/schemaTypes/place/class-pressbooks-metadata-Place.php',
+        'schemaTypes\\product\\Pressbooks_Metadata_Product' => __DIR__ . '/../..' . '/admin/schemaTypes/product/class-pressbooks-metadata-Product.php',
         'settings\\Pressbooks_Metadata_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-fields.php',
         'settings\\Pressbooks_Metadata_Post_Type_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-post-types-fields.php',
         'settings\\Pressbooks_Metadata_Sections' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-sections.php',

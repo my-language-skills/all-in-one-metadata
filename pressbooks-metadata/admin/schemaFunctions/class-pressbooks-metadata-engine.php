@@ -5,6 +5,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
 use schemaTypes\cw as cw;
+use schemaTypes;
 
 /**
  * Function used to return all instances for the selected schema types in the settings,
@@ -40,6 +41,7 @@ class Pressbooks_Metadata_Engine {
 		$this->metaSettings =
 			array(
 				//For every new type we add we need to add the settings here, url can be empty
+				'thing_type'       => array('Thing Type','http://schema.org/Thing'),
 				'book_type'        => array( 'Book Type', 'http://schema.org/Book' ),
 				'course_type'      => array( 'Course Type', 'http://schema.org/Course' ),
 				'webpage_type'     => array( 'Webpage Type', 'http://schema.org/WebPage' ),
@@ -117,27 +119,22 @@ class Pressbooks_Metadata_Engine {
 	}
 
 	/**
-	 * Adding sections with fields in the options page using the class section.
+	 * Adding sections with fields in the options page using the settings classes.
 	 *
 	 * @since  0.8.1
 	 */
 	public function register_settings() {
-
 		//Setting section name and page
 		$section = "postTypeSection";
 		$page = "post_options_page";
-
 		//Creating the section
 		add_settings_section($section, "Choose Post Types For Metadata Manipulation", null, $page);
-
 		//Gathering post types
 		$postTypes = $this->get_all_post_types();
-
 		//Creating fields for the section
 		foreach($postTypes as $post_type){
 			new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$page,$section);
 		}
-
 		//Creating another section with the fields automatically created for the schema types
 		foreach($postTypes as $post_type){
 			if(get_option($post_type.'_checkbox')){
@@ -222,6 +219,10 @@ class Pressbooks_Metadata_Engine {
 						case 'webPageElement_type':
 						$instances[] = new cw\Pressbooks_Metadata_Empty_Type($cpt);
 						break;
+
+						case 'thing_type':
+							$instances[] = new schemaTypes\Pressbooks_Metadata_Thing($cpt);
+							break;
 
 						case 'claimReview_type':
 							$instances[] = new cw\Pressbooks_Metadata_ClaimReview($cpt);
