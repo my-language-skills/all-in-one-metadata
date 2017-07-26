@@ -124,28 +124,46 @@ class Pressbooks_Metadata_Engine {
 	 * @since  0.8.1
 	 */
 	public function register_settings() {
-		//Setting section name and page
-		$section = "postTypeSection";
-		$page = "post_options_page";
-		//Creating the section
-		add_settings_section($section, "Choose Post Types For Metadata Manipulation", null, $page);
+		//Post Level
+		$postLevelSection = "postLevelSection";
+		$postLevelPage = "post_level_tab";
+
+		//Site Level
+		$siteLevelSection = "siteLevelSection";
+		$siteLevelPage = "site_level_tab";
+
+		//Multisite Level
+		$multiLevelSection = "multiLevelSection";
+		$multiLevelPage = "multi_level_tab";
+
+		//Creating the sections
+		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
+		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $siteLevelPage);
+		add_settings_section($multiLevelSection, "-------MULTISITE-------", null, $multiLevelPage);
+
 		//Gathering post types
-		$postTypes = $this->get_all_post_types();
-		//Creating fields for the section
-		foreach($postTypes as $post_type){
-			new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$page,$section);
-		}
-		//Creating another section with the fields automatically created for the schema types
-		foreach($postTypes as $post_type){
-			if(get_option($post_type.'_checkbox')){
-				new sections(
-					$post_type.'_level',
-					ucfirst($post_type.' Level'),
-					'meta_options_page',
-					$this->metaSettings
-				);
+		$allPostTypes = $this->get_all_post_types();
+
+		//Creating fields for each section (multisite comming soon)
+		foreach($allPostTypes as $post_type){
+			if($post_type == 'metadata' || $post_type == 'site-meta'){
+				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$siteLevelPage,$siteLevelSection);
+			}else{
+				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
 			}
 		}
+
+		//Creating another section with the fields automatically created for the schema types
+//		foreach($postTypes as $post_type){
+//			if(get_option($post_type.'_checkbox')){
+//				new sections(
+//					$post_type.'_level',
+//					ucfirst($post_type.' Level'),
+//					'meta_options_page',
+//					$this->metaSettings
+//				);
+//			}
+//		}
 	}
 
 	/**

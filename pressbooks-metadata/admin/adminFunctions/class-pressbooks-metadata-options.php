@@ -1,6 +1,8 @@
 <?php
+
 namespace adminFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
+
 /**
  * The functions of the plugin that handle the the options pages.
  *
@@ -11,17 +13,13 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * @subpackage Pressbooks_Metadata/admin/adminFunctions
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  */
+
 class Pressbooks_Metadata_Options {
+
 	function __construct() {
+
 	}
-	/**
-	 * Render the options page for plugin.
-	 *
-	 * @since  0.8.1
-	 */
-	public function display_options_page() {
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-display.php';
-	}
+
 	/**
 	 * Add an options page under the Settings and handle changes on the new cpt if pressbooks is disabled.
 	 *
@@ -41,18 +39,141 @@ class Pressbooks_Metadata_Options {
 			}
 			add_submenu_page('tools.php','Site Metadata', 'Site Metadata', 'edit_posts', $site_meta_url);
 		}
+
 		//Creating the options page for the plugin
-		$this->plugin_screen_hook_suffix =
-			add_options_page(
-				'Pressbooks Metadata Settings',
-				'PB Metadata',
-				'manage_options',
-				'pressbooks_metadata_options_page',
-				array( $this, 'display_options_page' )
-			);
+		$this->pagehook = add_options_page('PB Metadata Settings', "PB Metadata Settings", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'));
+		//Adding the metaboxes on the options page
+		add_action('load-'.$this->pagehook, array($this, 'add_metaboxes'));
 	}
+
 	/**
-	 * A function that manipulates the inputs for saving the new cpt
+	 * Render the options page for plugin.
+	 *
+	 * @since  0.x
+	 */
+	function render_options_page() {
+		?>
+        <div class="wrap">
+            <h2>PB Metadata Settings</h2>
+            <div class="metabox-holder">
+					<?php
+					do_meta_boxes($this->pagehook, 'normal','');
+					?>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            jQuery(document).ready( function($) {
+                // close postboxes that should be closed
+                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+                // postboxes setup
+                postboxes.add_postbox_toggles('<?php echo $this->pagehook; ?>');
+            });
+            //]]>
+        </script>
+		<?php
+	}
+
+	/**
+	 * Add the metaboxes to the options page.
+	 *
+	 * @since  0.x
+	 */
+	function add_metaboxes() {
+		wp_enqueue_script('common');
+		wp_enqueue_script('wp-lists');
+		wp_enqueue_script('postbox');
+		add_meta_box('metadata-location', 'Location Of Metadata', array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
+		add_meta_box('specific-metadata', 'Specific Metadata', array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
+		add_meta_box('activated-schema-locations', 'Activated Locations For Schema Types', array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
+	}
+
+	/**
+	 * Render data for the  metabox.
+	 *
+	 * @since  0.x
+	 */
+	function render_metabox_schema_locations() {
+		?>
+        <p>Select the place you want the metadata to show</p>
+        <div class="nav-tab-wrapper">
+            <button class="tablinks nav-tab defaultOpen" onclick="openSett(event, 'postLevel','levels')">Post Level</button>
+            <button class="tablinks nav-tab" onclick="openSett(event, 'siteLevel','levels')">Site Level</button>
+            <button class="tablinks nav-tab" onclick="openSett(event, 'multisiteLevel','levels')">Multisite Level</button>
+        </div>
+
+        <div id="postLevel" class="levels">
+            <form method="post" action="options.php">
+			<?php
+			settings_fields( 'post_level_tab' );
+			do_settings_sections( 'post_level_tab' );
+			submit_button();
+			?>
+            </form>
+        </div>
+
+        <div id="siteLevel" class="levels">
+            <form method="post" action="options.php">
+			<?php
+			settings_fields( 'site_level_tab' );
+			do_settings_sections( 'site_level_tab' );
+			submit_button();
+			?>
+            </form>
+        </div>
+
+        <div id="multisiteLevel" class="levels">
+            <form method="post" action="options.php">
+			<?php
+			settings_fields( 'multi_level_tab' );
+			do_settings_sections( 'multi_level_tab' );
+			submit_button();
+			?>
+            </form>
+            <p>Comming soon</p>
+        </div>
+		<?php
+	}
+
+	/**
+	 * Render data for the specific_metadata metabox.
+	 *
+	 * @since  0.x
+	 */
+	function render_metabox_specific_metadata(){
+		?>
+        <p>Other Types of Metadata Vocabularies</p>
+        <div class="nav-tab-wrapper">
+            <button class="tablinks nav-tab defaultOpen" onclick="openSett(event, 'coins','vocab')">Coins</button>
+            <button class="tablinks nav-tab" onclick="openSett(event, 'dublin','vocab')">Dublin</button>
+            <button class="tablinks nav-tab" onclick="openSett(event, 'educational','vocab')">Educational</button>
+        </div>
+
+        <div id="coins" class="vocab">
+            <h3>Coins Metadata</h3>
+        </div>
+
+        <div id="dublin" class="vocab">
+            <h3>Dublin Metadata</h3>
+        </div>
+
+        <div id="educational" class="vocab">
+            <h3>Educational Metadata</h3>
+        </div>
+		<?php
+	}
+
+	/**
+	 * Render data for the active_schemas metabox.
+	 *
+	 * @since  0.x
+	 */
+	function render_metabox_active_schemas(){
+
+	}
+
+	/**
+	 * A function that manipulates the inputs for saving the new cpt data
 	 * @since    0.9
 	 */
 	function metadata_save_box( $post ) {
@@ -66,3 +187,4 @@ class Pressbooks_Metadata_Options {
 		}
 	}
 }
+
