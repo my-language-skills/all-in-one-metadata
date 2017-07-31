@@ -2,6 +2,7 @@
 
 namespace schemaTypes\cw;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+use schemaTypes\Pressbooks_Metadata_Type;
 
 /**
  * The class for the game type including operations and metaboxes
@@ -15,37 +16,24 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-class Pressbooks_Metadata_Game {
-
-	/**
-	 * The type level where these metaboxes and their schema operations will go
-	 *
-	 * @since    0.x
-	 * @access   private
-	 */
-	private $type_level;
-
-	/**
-	 * The name of the class along with the type_level
-	 * Used to identify each type differently so we can eliminate parent types not needed
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public $class_name;
-
-	/**
-	 * The variable that holds the values for the settings for this schema type
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public static $type_settings = array('game_type' => array('Game Type','http://schema.org/Game'));
+class Pressbooks_Metadata_Game extends Pressbooks_Metadata_Type {
 
 	public function __construct($type_level_input) {
-		$this->type_level = $type_level_input;
-		$this->pmdt_add_metabox($this->type_level);
+		parent::__construct($type_level_input);
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
+		$this->type_settings = array('game_type' => array('Game Type','http://schema.org/Game'));
+		$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
+		$this->pmdt_add_metabox($this->type_level);
+	}
+
+	/**
+	 * Function used for comparing the instances of the schema types
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function __toString() {
+		return $this->class_name;
 	}
 
 	/**
@@ -91,49 +79,6 @@ class Pressbooks_Metadata_Game {
 			'label' 		=>	'Quest',
 			'description' 	=>	'The task that a player-controlled character, or group of characters may complete in order to gain a reward.'
 		) );
-
-	}
-
-		/*FUNCTIONS FOR THIS TYPE START HERE*/
-
-	/**
-	 * Function used for comparing the instances of the schema types
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public function __toString() {
-		return $this->class_name;
-	}
-
-	/**
-	 * Returns the father for the type.
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public function pmdt_parent_init(){
-		return new Pressbooks_Metadata_Creative_Work($this->type_level);
-	}
-
-	/**
-	 * Returns type level.
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public function pmdt_get_type_level(){
-			return $this->type_level;
-		}
-
-	/**
-	 * A function needed for the array of metadata that comes from each post or chapter
-	 * It automatically returns the first item in the array.
-	 * @since 0.8.1
-	 *
-	 */
-	private function pmdt_get_first($my_array){
-		return $my_array[0];
 	}
 
 	/**

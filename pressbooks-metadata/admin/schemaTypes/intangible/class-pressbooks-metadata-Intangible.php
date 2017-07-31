@@ -2,6 +2,7 @@
 
 namespace schemaTypes\intangible;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+use schemaTypes\Pressbooks_Metadata_Type;
 
 /**
  * The class for the Intangible type including operations and metaboxes
@@ -15,30 +16,26 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-class Pressbooks_Metadata_Intangible {
+class Pressbooks_Metadata_Intangible extends Pressbooks_Metadata_Type {
+
+	public function __construct($type_level_input) {
+		parent::__construct($type_level_input);
+		$this->class_name = __CLASS__ .'_'. $this->type_level;
+		//$this->type_settings;
+		//$this->parent_type;
+		$this->pmdt_add_metabox($this->type_level);
+	}
 
 	/**
-	 * The type level where these metaboxes and their schema operations will go
-	 *
-	 * @since    0.x
-	 * @access   private
-	 */
-	private $type_level;
-
-	/**
-	 * The name of the class along with the type_level
-	 * Used to identify each type differently so we can eliminate parent types not needed
+	 * Function used for comparing the instances of the schema types
 	 *
 	 * @since    0.x
 	 * @access   public
 	 */
-	public $class_name;
-
-	public function __construct($type_level_input) {
-		$this->type_level = $type_level_input;
-		$this->pmdt_add_metabox($this->type_level);
-		$this->class_name = __CLASS__ .'_'. $this->type_level;
+	public function __toString() {
+		return $this->class_name;
 	}
+
 	/**
 	 * The function which produces the metaboxes for the intangible type
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
@@ -138,49 +135,6 @@ class Pressbooks_Metadata_Intangible {
 			'label'       =>     'url',
 			'description' => 	'URL of the item.'
 		) );
-	}
-
-	/* FUNCTIONS FOR THIS TYPE START HERE */
-
-	/**
-	 * Function used for comparing the instances of the schema types
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public function __toString() {
-		return $this->class_name;
-	}
-
-	/**
-	 * Returns the father for the type.
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public function pmdt_parent_init(){
-		// We don't need this function because we are not dealing with the parents of the types right now.
-		//return new Pressbooks_Metadata_[schema-parent-type]($this->type_level);
-	}
-
-	/**
-	 * Returns type level.
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public function pmdt_get_type_level(){
-		return $this->type_level;
-	}
-
-	/**
-	 * A function needed for the array of metadata that comes from each post site-meta cpt or chapter
-	 * It automatically returns the first item in the array.
-	 * @since 0.8.1
-	 *
-	 */
-	private function pmdt_get_first($my_array){
-		return $my_array[0];
 	}
 
 	/**

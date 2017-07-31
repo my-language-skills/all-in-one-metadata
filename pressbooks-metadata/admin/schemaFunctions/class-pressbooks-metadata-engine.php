@@ -41,7 +41,6 @@ class Pressbooks_Metadata_Engine {
 		$this->metaSettings =
 			array(
 				//For every new type we add we need to add the settings here, url can be empty
-				'thing_type'       => array('Thing Type','http://schema.org/Thing'),
 				'book_type'        => array( 'Book Type', 'http://schema.org/Book' ),
 				'course_type'      => array( 'Course Type', 'http://schema.org/Course' ),
 				'webpage_type'     => array( 'Webpage Type', 'http://schema.org/WebPage' ),
