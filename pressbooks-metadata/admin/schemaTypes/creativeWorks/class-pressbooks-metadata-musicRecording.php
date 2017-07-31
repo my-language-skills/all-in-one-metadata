@@ -34,6 +34,14 @@ class Pressbooks_Metadata_Music_Recording{
 	 */
 	public $class_name;
 
+	/**
+	 * The variable that holds the values for the settings for this schema type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public static $type_settings = array('musicRecording_type' => array('Music Recording Type','http://schema.org/MusicRecording'));
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->pmdt_add_metabox($this->type_level);

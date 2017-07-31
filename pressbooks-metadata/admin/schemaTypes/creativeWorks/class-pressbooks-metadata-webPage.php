@@ -33,6 +33,14 @@ class Pressbooks_Metadata_WebPage {
 	 */
 	public $class_name;
 
+	/**
+	 * The variable that holds the values for the settings for this schema type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public static $type_settings = array('webPage_type' => array('Web Page Type','http://schema.org/WebPage'));
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->pmdt_add_metabox($this->type_level);

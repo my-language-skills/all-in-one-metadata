@@ -33,6 +33,23 @@ class Pressbooks_Metadata_Empty_Type {
 	 */
 	public $class_name;
 
+	/**
+	 * The variable that holds the values for the settings for this schema type
+	 * Here we add all the types of CreativeWork that have no properties
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public static $type_settings = array(
+		'conversation_type'        => array('Conversation Type','http://schema.org/Conversation','CreativeWorks'),
+		'painting_type'      	   => array('Painting Type','http://schema.org/Painting','CreativeWorks'),
+		'photograph_type'          => array('Photograph Type','http://schema.org/Photograph','CreativeWorks'),
+		'sculpture_type'           => array('Sculpture Type','http://schema.org/Sculpture','CreativeWorks'),
+		'series_type'              => array('Series Type','http://schema.org/Series','CreativeWorks'),
+		'webPageElement_type'      => array('Web Page Element Type','http://schema.org/WebPageElement','CreativeWorks'),
+		'webSite_type'             => array('Website Type','http://schema.org/WebSite','CreativeWorks')
+	);
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->class_name = __CLASS__ .'_'. $this->type_level;

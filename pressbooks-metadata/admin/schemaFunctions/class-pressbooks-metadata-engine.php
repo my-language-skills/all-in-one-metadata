@@ -154,16 +154,16 @@ class Pressbooks_Metadata_Engine {
 		}
 
 		//Creating another section with the fields automatically created for the schema types
-//		foreach($postTypes as $post_type){
-//			if(get_option($post_type.'_checkbox')){
-//				new sections(
-//					$post_type.'_level',
-//					ucfirst($post_type.' Level'),
-//					'meta_options_page',
-//					$this->metaSettings
-//				);
-//			}
-//		}
+		foreach($allPostTypes as $post_type){
+			if(get_option($post_type.'_checkbox')){
+				new sections(
+					$post_type.'_level',
+					ucfirst($post_type.' Level'),
+					$post_type.'_tab',
+					$this->metaSettings
+				);
+			}
+		}
 	}
 
 	/**

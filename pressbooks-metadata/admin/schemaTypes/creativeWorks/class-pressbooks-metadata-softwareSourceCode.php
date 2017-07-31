@@ -34,6 +34,14 @@ class Pressbooks_Metadata_Software_Source_Code{
 	 */
 	public $class_name;
 
+	/**
+	 * The variable that holds the values for the settings for this schema type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public static $type_settings = array('softwareCode_type' => array('Software Code Type','http://schema.org/SoftwareCode'));
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		$this->pmdt_add_metabox($this->type_level);
