@@ -26,19 +26,23 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	 */
 	const type_setting = array('blog_type' => array('Blog Type','http://schema.org/Blog'));
 
+	/**
+	 * The variable that holds the properties of this schema type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	const type_properties = array(
+		'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
+	);
+
 	public function __construct($type_level_input) {
 		parent::__construct($type_level_input);
-		$this->loadFields();
+		$this->type_fields = self::type_properties;
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
 		//$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
 		$this->pmdt_populate_names(self::type_setting);
 		$this->pmdt_add_metabox($this->type_level);
-	}
-
-	public function  loadFields(){
-		$this->type_fields = array(
-			'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
-		);
 	}
 
 	/**

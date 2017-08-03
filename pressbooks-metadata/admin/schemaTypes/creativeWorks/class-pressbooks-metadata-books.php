@@ -26,23 +26,27 @@ class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 	 */
 	const type_setting = array('book_type' => array('Book Type','http://schema.org/Book'));
 
+	/**
+	 * The variable that holds the properties of this schema type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	const type_properties = array(
+		'illustrator' => array(true,'Illustrator','This is the Description of Illustrator'),
+		'bookEdition' => array(false,'Book Edition','This is the Description of Book Edition'),
+		'bookFormat' => array(false,'Book Format','This is the Description of Book Format'),
+		'isbn' => array(false,'ISBN','The ISBN of the book'),
+		'numberOfPages' => array(false,'Number Of Pages','The number of pages in the book')
+	);
+
 	public function __construct($type_level_input) {
 		parent::__construct($type_level_input);
-		$this->loadFields();
+		$this->type_fields = self::type_properties;
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
 		//$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
 		$this->pmdt_populate_names(self::type_setting);
 		$this->pmdt_add_metabox($this->type_level);
-	}
-
-	public function  loadFields(){
-		$this->type_fields = array(
-			'illustrator' => array(true,'Illustrator','This is the Description of Illustrator'),
-			'bookEdition' => array(false,'Book Edition','This is the Description of Book Edition'),
-			'bookFormat' => array(false,'Book Format','This is the Description of Book Format'),
-			'isbn' => array(false,'ISBN','The ISBN of the book'),
-			'numberOfPages' => array(false,'Number Of Pages','The number of pages in the book')
-		);
 	}
 
 	/**
