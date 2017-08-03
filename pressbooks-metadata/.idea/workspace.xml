@@ -67,12 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>:</find>
-      <find>::</find>
-      <find>meta</find>
-      <find>stati</find>
-      <find>book_type</find>
-      <find>get</find>
       <find>type_settings</find>
       <find>pmdt_populate_names</find>
       <find>type_se</find>
@@ -94,9 +88,15 @@
       <find>defau</find>
       <find>style</find>
       <find>script</find>
-      <find>url</find>
       <find>$</find>
       <find>options-form</find>
+      <find>url</find>
+      <find>active-s</find>
+      <find>active-sc</find>
+      <find>active-sche</find>
+      <find>active-schemas</find>
+      <find>active-schemas-</find>
+      <find>active-schemas-form</find>
     </findStrings>
     <replaceStrings>
       <replace>pb_isced_field_ed</replace>
@@ -504,12 +504,12 @@
       <workItem from="1501485208807" duration="25777000" />
       <workItem from="1501571747752" duration="16827000" />
       <workItem from="1501657554144" duration="25671000" />
-      <workItem from="1501743999524" duration="13360000" />
+      <workItem from="1501743999524" duration="13978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="545567000" />
+    <option name="totallyTimeSpent" value="546185000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -680,6 +680,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="22" column="62" lean-forward="false" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>

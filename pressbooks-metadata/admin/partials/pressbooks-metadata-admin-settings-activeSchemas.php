@@ -49,7 +49,7 @@ if($activatedLevels == 0){
                     <div id="<?= $postType ?>" class="activeSchemas">
                         <br>
                         <br>
-                        <form method="post" action="options.php">
+                        <form method="post" class="active-schemas-forms" action="options.php">
 
                             <?php
                             $tabName = $postType.'_tab';
