@@ -115,21 +115,31 @@ class Pressbooks_Metadata_Engine {
 					$post_type.'_tab',
 					$this->typeSettings
 				);
+
+				foreach(structure::$allSchemaTypes as $type){
+					$type_id = $this->get_type_id($type);
+					$type_name = ucfirst(str_replace('_type','',$type_id));
+					$sectionId = $type_id.'_'.$post_type.'_level';
+					$type_properties = $type::type_properties;
+					sections::properties(
+						$sectionId,
+						$type_name.' Properties',
+						$sectionId.'_properties',
+						$type_properties
+				);
+				}
 			}
 		}
-		sections::properties(
-			'book_type_metadata_level',
-			'Book properties',
-			'book_type_metadata_level_properties',
-			array(
-				'illustrator' => array(true,'Illustrator','This is the Description of Illustrator'),
-				'bookEdition' => array(false,'Book Edition','This is the Description of Book Edition'),
-				'bookFormat' => array(false,'Book Format','This is the Description of Book Format'),
-				'isbn' => array(false,'ISBN','The ISBN of the book'),
-				'numberOfPages' => array(false,'Number Of Pages','The number of pages in the book')
-			)
-		);
+	}
 
+	/**
+	 * Function used to extract the name of the type from its settings
+	 * @since  0.x
+	 */
+	private function get_type_id($type) {
+		foreach($type::type_setting as $typeId => $details) {
+			return $typeId;
+		}
 	}
 
 	/**
@@ -185,16 +195,13 @@ class Pressbooks_Metadata_Engine {
 		foreach ($schemaPostLevels as $level) {
 			//Getting the setting for a type - book etc.
 			foreach (structure::$allSchemaTypes as $type){
-				$typeSettings = $type::type_setting;
-				//Extracting the values from the array
-				foreach($typeSettings as $typeId => $details){
+				$typeId = $this->get_type_id($type);
 					//Checking the settings for each level and type together and we create instances for the active types on each level
 					if(get_option($typeId.'_'.$level)){
 						//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
 						$cpt = str_replace("_level","",$level);
 						$instances []= new $type($cpt);
 					}
-				}
 			}
 		}
 		//Here we create a parent for each type if one exists
