@@ -1,7 +1,8 @@
 <?php
 
 namespace schemaTypes\cw;
-use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
+use schemaTypes\Pressbooks_Metadata_Type;
 
 /**
  * The class for the book type including operations and metaboxes
@@ -15,24 +16,7 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
  */
 
-class Pressbooks_Metadata_Book {
-
-	/**
-	 * The type level where these metaboxes and their schema operations will go
-	 *
-	 * @since    0.9
-	 * @access   private
-	 */
-	private $type_level;
-
-	/**
-	 * The name of the class along with the type_level
-	 * Used to identify each type differently so we can eliminate parent types not needed
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public $class_name;
+class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 
 	/**
 	 * The variable that holds the values for the settings for this schema type
@@ -40,12 +24,35 @@ class Pressbooks_Metadata_Book {
 	 * @since    0.x
 	 * @access   public
 	 */
-	public static $type_settings = array('book_type' => array('Book Type','http://schema.org/Book'));
+	const type_setting = array('book_type' => array('Book Type','http://schema.org/Book'));
 
 	public function __construct($type_level_input) {
-		$this->type_level = $type_level_input;
-		$this->pmdt_add_metabox($this->type_level);
+		parent::__construct($type_level_input);
+		$this->loadFields();
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
+		//$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
+		$this->pmdt_populate_names(self::type_setting);
+		$this->pmdt_add_metabox($this->type_level);
+	}
+
+	public function  loadFields(){
+		$this->type_fields = array(
+			'illustrator' => array(true,'Illustrator','This is the Description of Illustrator'),
+			'bookEdition' => array(false,'Book Edition','This is the Description of Book Edition'),
+			'bookFormat' => array(false,'Book Format','This is the Description of Book Format'),
+			'isbn' => array(false,'ISBN','The ISBN of the book'),
+			'numberOfPages' => array(false,'Number Of Pages','The number of pages in the book')
+		);
+	}
+
+	/**
+	 * Function used for comparing the instances of the schema types
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function __toString() {
+		return $this->class_name;
 	}
 
 	/**
@@ -54,69 +61,8 @@ class Pressbooks_Metadata_Book {
 	 * The value passed here is also used when calling the metadata functions in the header and the footer.
 	 * @since 0.8.1
 	 */
-	private function pmdt_add_metabox($meta_position){
-		//The meta_position variable is the one that identifies where the metabox should go, on what level, like chapter / post or metadata / book
-		//----------- metabox ----------- //
-		x_add_metadata_group( 	'book-type', $meta_position, array(
-			'label' 		=>	'Book Type Properties',
-			'priority' 		=>	'high',
-		) );
-		//----------- metafields ----------- //
-		//All Metafields i.e pb_illustrator append the meta_position at the end of the string so we can distinguish when getting info from the database
-		// Illustrator
-		x_add_metadata_field( 	'pb_illustrator_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'book-type',
-			'label' 		=> 	'Illustrator',
-			'description'   =>  'The name of the illustrator'
-		) );
-		// Book Edition
-		x_add_metadata_field( 	'pb_edition_'.$meta_position, $meta_position, array(
-			'group' 		=>	'book-type',
-			'label' 		=>	'Book Edition',
-			'description'	=>	'The edition of the book. Example: First Edition or 1 or 1.0.0',
-		) );
-	}
-
-		/*FUNCTIONS FOR THIS TYPE START HERE*/
-
-	/**
-	 * Function used for comparing the instances of the schema types
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public function __toString() {
-		return $this->class_name;
-	}
-
-	/**
-	 * Returns the father for the type.
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public function pmdt_parent_init(){
-		return new Pressbooks_Metadata_Creative_Work($this->type_level);
-	}
-
-	/**
-	 * Returns type level.
-	 *
-	 * @since    0.9
-	 * @access   public
-	 */
-	public function pmdt_get_type_level(){
-			return $this->type_level;
-		}
-
-	/**
-	 * A function needed for the array of metadata that comes from each post or chapter
-	 * It automatically returns the first item in the array.
-	 * @since 0.8.1
-	 *
-	 */
-	private function pmdt_get_first($my_array){
-		return $my_array[0];
+	private function pmdt_add_metabox($meta_position) {
+		new create_metabox($this->typeName,$this->typeDisplayName,$meta_position,$this->type_fields,NULL);
 	}
 
 	/**
@@ -125,42 +71,16 @@ class Pressbooks_Metadata_Book {
 	 *
 	 */
 	public function pmdt_get_metatags() {
-		//Distinguishing if we are working on a post --- chapter level or on the main site level
-		//The type_level variable is the string we used to create the metabox
-
-		$is_site; // This bool var is used to identify if the level is site level or any other post level
-		if ( $this->type_level == 'metadata' || $this->type_level == 'site-meta' ) { //loading the appropriate metadata depending on the type level
-			$metadata = gen_func::get_metadata();
-			$is_site = true;
-		} else {
-			$is_site = false;
-			$metadata = get_post_meta( get_the_ID() );
-		}
-
-		// array of the items needed to become microtags
-		$book_data = array(
-
-			'illustrator' => 'pb_illustrator',
-			'bookEdition' => 'pb_edition'
-		);
-
+		//Creating microtags
 		$html = "<!-- Microtags --> \n";
 
 		$html .= '<div itemscope itemtype="http://schema.org/Book">';
 
-		foreach ( $book_data as $itemprop => $content ) {
-			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
-
-				if ( !$is_site ) { //we are using the get_first function to get the value from the returned array
-					$value = $this->pmdt_get_first( $metadata[ $content . '_' . $this->type_level ] );
-				} else {
-					if($this->type_level == 'site-meta'){
-						$value = $this->pmdt_get_first($metadata[ $content . '_' . $this->type_level ]);
-					}else{//We always use the get_first function except if our level is metadata coming from pressbooks
-						$value = $metadata[ $content . '_' . $this->type_level ];
-					}
-				}
-				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
+		foreach ( $this->type_fields as $itemprop => $details ) {
+			$propName = strtolower('pb_' . $itemprop . '_' . $this->type_level);
+			if ($this->pmdt_prop_run($itemprop)) {
+				$value = $this->pmdt_get_value($propName);
+				if(!empty($value)){$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";}
 			}
 		}
 		$html .= '</div>';

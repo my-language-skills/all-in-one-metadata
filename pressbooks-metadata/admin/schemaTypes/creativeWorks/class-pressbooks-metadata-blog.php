@@ -1,7 +1,7 @@
 <?php
 
 namespace schemaTypes\cw;
-use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
 use schemaTypes\Pressbooks_Metadata_Type;
 
 /**
@@ -18,12 +18,27 @@ use schemaTypes\Pressbooks_Metadata_Type;
 
 class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 
+	/**
+	 * The variable that holds the values for the settings for this schema type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	const type_setting = array('blog_type' => array('Blog Type','http://schema.org/Blog'));
+
 	public function __construct($type_level_input) {
 		parent::__construct($type_level_input);
+		$this->loadFields();
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
-		$this->type_settings = array('blog_type' => array('Blog Type','http://schema.org/Blog'));
-		$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
+		//$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
+		$this->pmdt_populate_names(self::type_setting);
 		$this->pmdt_add_metabox($this->type_level);
+	}
+
+	public function  loadFields(){
+		$this->type_fields = array(
+			'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
+		);
 	}
 
 	/**
@@ -37,68 +52,31 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	}
 
 	/**
-	 * The function which produces the metaboxes for the blog type
+	 * The function which produces the metaboxes for the book type
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
 	 * The value passed here is also used when calling the metadata functions in the header and the footer.
 	 * @since 0.8.1
 	 */
-	private function pmdt_add_metabox($meta_position){
-		//----------- metabox ----------- //
-		x_add_metadata_group( 	'blog-type', $meta_position, array(
-			'label' 		=>	'Blog Type Properties',
-			'priority' 		=>	'high',
-		) );
-		//----------- metafields ----------- //
-		// Blog Post
-		x_add_metadata_field( 	'pb_blogpost_'.$meta_position, $meta_position, array(
-			'group' 		=> 	'blog-type',
-			'label' 		=> 	'Blog Post',
-			'description'	=>	'A posting that is part of this blog. Supersedes blogPosts.',
-		) );
+	private function pmdt_add_metabox($meta_position) {
+		new create_metabox($this->typeName,$this->typeDisplayName,$meta_position,$this->type_fields,NULL);
 	}
 
 	/**
-	 * A function that creates the metadata for the blog type.
+	 * A function that creates the metadata for the book type.
 	 * @since 0.8.1
 	 *
 	 */
 	public function pmdt_get_metatags() {
-		//Distinguishing if we are working on a post --- chapter level or on the main site level
-		//The type_level variable is the string we used to create the metabox
-
-		$is_site; // This bool var is used to identify if the level is site level or any other post level
-		if ( $this->type_level == 'metadata' || $this->type_level == 'site-meta' ) { //loading the appropriate metadata depending on the type level
-			$metadata = gen_func::get_metadata();
-			$is_site = true;
-		} else {
-			$is_site = false;
-			$metadata = get_post_meta( get_the_ID() );
-		}
-
-		// array of the items needed to become microtags
-		$blog_data = array(
-
-			'blogPost' => 'pb_blogpost'
-
-		);
-
+		//Creating microtags
 		$html = "<!-- Microtags --> \n";
 
 		$html .= '<div itemscope itemtype="http://schema.org/Blog">';
 
-		foreach ( $blog_data as $itemprop => $content ) {
-			if ( isset( $metadata[ $content . '_' . $this->type_level ] ) ) {
-
-				if ( !$is_site ) { //we are using the get_first function to get the value from the returned array
-					$value = $this->pmdt_get_first( $metadata[ $content . '_' . $this->type_level ] );
-				} else {
-					if($this->type_level == 'site-meta'){
-						$value = $this->pmdt_get_first($metadata[ $content . '_' . $this->type_level ]);
-					}else{//We always use the get_first function except if our level is metadata coming from pressbooks
-						$value = $metadata[ $content . '_' . $this->type_level ];
-					}
-				}
-				$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";
+		foreach ( $this->type_fields as $itemprop => $details ) {
+			$propName = strtolower('pb_' . $itemprop . '_' . $this->type_level);
+			if ($this->pmdt_prop_run($itemprop)) {
+				$value = $this->pmdt_get_value($propName);
+				if(!empty($value)){$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";}
 			}
 		}
 		$html .= '</div>';
