@@ -16,6 +16,7 @@ namespace settings;
 
 //Including the field class so fields can be created for the current section
 require_once('class-pressbooks-metadata-fields.php');
+require_once('class-pressbooks-metadata-property-fields.php');
 
 class Pressbooks_Metadata_Sections {
 
@@ -53,37 +54,90 @@ class Pressbooks_Metadata_Sections {
 	 * @access   private
 	 * @var      array    $metaData  The array used for the creation of the fields.
 	 */
-	private $metaData;
+	private $fieldsData;
 
 	/**
-	 * The constructor for passing all information to the variables and finally creating a section.
+	 * The constructor.
 	 *
-	 * @since    0.8.1
+	 * @since    0.x
 	 */
-	function __construct($sectionInputId,$sectionInputName,$sectionInputDisplayPage,$metaDataInput) {
-		$this->sectionId = $sectionInputId;
-		$this->sectionName = $sectionInputName;
-		$this->displayPage = $sectionInputDisplayPage;
-		$this->metaData = $metaDataInput;
-
-		$this->pmdt_create_section();
+	function __construct() {
 	}
 
 	/**
-	 * The main function used to create the section, it also creates new objects of type field.
+	 * Function for creating an instance of settings for the schema types.
+	 *
+	 * @since  0.x
+	 */
+	public static function properties( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
+		$instance = new self();
+		$instance->sectionId = $sectionInputId;
+		$instance->sectionName = $sectionInputName;
+		$instance->displayPage = $sectionInputDisplayPage;
+		$instance->fieldsData = $fieldsDataInput;
+		$instance->pmdt_load_by_property();
+		return $instance;
+	}
+
+	/**
+	 * The main function used to create the section, it also creates new objects of type field, this is used for the types.
 	 *
 	 * @since  0.8.1
 	 */
-	function pmdt_create_section(){
+	function pmdt_load_by_property(){
 		add_settings_section(
 			$this->sectionId,                                   //Id to identify section
 			$this->sectionName,                                 //Title of the section
-			array( $this, 'pmdt_section_draw' ),                //Rendering the description of the section
+			array( $this, 'pmdt_property_section_draw' ),       //Rendering the description of the section
 			$this->displayPage                                  //Which page to show the section
 		);
 
-		//A loop that goes through the metaData array and constructs fields corresponding to the arrays size
-		foreach ($this->metaData as $metaType => $metaInfo) {
+		//A loop that goes through the fieldData array and constructs fields corresponding to the arrays size
+		foreach ($this->fieldsData as $property => $details) {
+			//New field objects created with the fields class
+			new Pressbooks_Metadata_Property_Fields($property,$details,$this->sectionId,$this->sectionName,$this->displayPage);
+		}
+	}
+
+	/**
+	 * The main function used to render the description of the section.
+	 *
+	 * @since  0.8.1
+	 */
+	function pmdt_property_section_draw(){
+
+	}
+
+	/**
+	 * Function for creating an instance of settings for the schema properties.
+	 *
+	 * @since  0.x
+	 */
+	public static function types( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
+		$instance = new self();
+		$instance->sectionId = $sectionInputId;
+		$instance->sectionName = $sectionInputName;
+		$instance->displayPage = $sectionInputDisplayPage;
+		$instance->fieldsData = $fieldsDataInput;
+		$instance->pmdt_load_by_type();
+		return $instance;
+	}
+
+	/**
+	 * The main function used to create the section, it also creates new objects of type field, this is used for the types.
+	 *
+	 * @since  0.8.1
+	 */
+	function pmdt_load_by_type(){
+		add_settings_section(
+			$this->sectionId,                                   //Id to identify section
+			$this->sectionName,                                 //Title of the section
+			array( $this, 'pmdt_type_section_draw' ),                //Rendering the description of the section
+			$this->displayPage                                  //Which page to show the section
+		);
+
+		//A loop that goes through the fieldData array and constructs fields corresponding to the arrays size
+		foreach ($this->fieldsData as $metaType => $metaInfo) {
 			//New field objects created with the fields class
 			new Pressbooks_Metadata_Fields($metaType,$metaInfo,$this->sectionId,$this->sectionName,$this->displayPage);
 		}
@@ -94,7 +148,7 @@ class Pressbooks_Metadata_Sections {
 	 *
 	 * @since  0.8.1
 	 */
-	function pmdt_section_draw(){
+	function pmdt_type_section_draw(){
 		echo '<p>Here you can choose what types of Metadata you want to show in the '.$this->sectionName.' </>';
 	}
 }
