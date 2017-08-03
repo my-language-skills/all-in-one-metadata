@@ -122,10 +122,10 @@ class Pressbooks_Metadata_Fields {
 
 			ob_start();
 
+			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
 
-
-			settings_fields( 'book_type_metadata_level_properties' );
-			do_settings_sections( 'book_type_metadata_level_properties' );
+			settings_fields( $sectionFieldId );
+			do_settings_sections( $sectionFieldId );
 			submit_button();
 
 			$contents = ob_get_contents();
