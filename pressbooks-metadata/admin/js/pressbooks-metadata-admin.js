@@ -12,6 +12,41 @@ jQuery(document).ready(function() {
     for (i = 0; i < defaults.length; i++) {
         defaults[i].click();
     }
+
+    //Simple fix for the settings to save properly, without this the settings for choosing schema Types,
+    //will not save properly
+    jQuery('.active-schemas-forms').submit(function() {
+        jQuery('.property-settings').remove();
+    });
+
+    //Submitting information for the property settings
+    jQuery('#properties-options-form').submit(function(event){
+        event.preventDefault();
+        jQuery('.properties-loading-image').show();
+        jQuery('.saving-message').hide();
+        var b =  jQuery(this).serialize();
+        jQuery.post( 'options.php', b ).error(
+            function() {
+                jQuery('.saving-message').text('Error Saving Settings');
+                jQuery('.saving-message').css('color','red');
+                jQuery('.saving-message').show();
+                hideMessage();
+            }).success( function() {
+            jQuery('.properties-loading-image').hide();
+            jQuery('.saving-message').show();
+            jQuery('.saving-message').css('color','green');
+            hideMessage();
+        });
+        return false;
+    });
+
+    //Function for hiding the message after its displayed
+function hideMessage(){
+    setTimeout( function(){
+        jQuery('.saving-message').hide();
+    }  , 2000 );
+}
+
 });
 
 //Functions for the settings page

@@ -117,6 +117,35 @@ class Pressbooks_Metadata_Fields {
 		}else{
 			$html .= '<p>No description available - this is a custom type</p>';
 		}
+		if(!isset($this->metaInfo[2])) {
+			add_thickbox();
+
+			ob_start();
+
+
+
+			settings_fields( 'book_type_metadata_level_properties' );
+			do_settings_sections( 'book_type_metadata_level_properties' );
+			submit_button();
+
+			$contents = ob_get_contents();
+
+			ob_end_clean();
+
+			$html .= '<div class="property-settings" id="my-content-id-' . $this->metaType . '-' . $this->sectionId . '" style="display:none;">
+				<h1>
+					Choose ' . $this->metaInfo[0] . ' properties:<br>
+					<form id="properties-options-form" method="post" action="options.php">
+						'.$contents.'
+					</form>
+				</h1>
+				<div style="display: none;" class="properties-loading-image">
+			<img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
+			</div>
+			<p class="saving-message" style="display: none">Settings Saved!</p>
+			</div>
+			<a href="#TB_inline?width=600&height=550&inlineId=my-content-id-' . $this->metaType . '-' . $this->sectionId . '" class="thickbox">Edit Type Properties</a>';
+		}
 		echo $html;
 	}
 
