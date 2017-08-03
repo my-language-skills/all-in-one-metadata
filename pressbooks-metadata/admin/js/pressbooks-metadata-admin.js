@@ -20,12 +20,13 @@ jQuery(document).ready(function() {
     });
 
     //Submitting information for the property settings
-    jQuery('#properties-options-form').submit(function(event){
+    jQuery('.properties-options-form').submit(function(event){
+        var form = jQuery(this).closest('form');
         event.preventDefault();
         jQuery('.properties-loading-image').show();
         jQuery('.saving-message').hide();
-        var b =  jQuery(this).serialize();
-        jQuery.post( 'options.php', b ).error(
+        var data =  form.serialize();
+        jQuery.post( 'options.php', data ).error(
             function() {
                 jQuery('.saving-message').text('Error Saving Settings');
                 jQuery('.saving-message').css('color','red');

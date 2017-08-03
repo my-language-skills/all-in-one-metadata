@@ -123,7 +123,7 @@ class Pressbooks_Metadata_Engine {
 					$type_properties = $type::type_properties;
 					sections::properties(
 						$sectionId,
-						$type_name.' Properties',
+						'',
 						$sectionId.'_properties',
 						$type_properties
 				);

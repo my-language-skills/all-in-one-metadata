@@ -133,13 +133,13 @@ class Pressbooks_Metadata_Fields {
 			ob_end_clean();
 
 			$html .= '<div class="property-settings" id="my-content-id-' . $this->metaType . '-' . $this->sectionId . '" style="display:none;">
-				<h1>
-					Choose ' . $this->metaInfo[0] . ' properties:<br>
-					<form id="properties-options-form" method="post" action="options.php">
-						'.$contents.'
-					</form>
-				</h1>
-				<div style="display: none;" class="properties-loading-image">
+			<h1>
+				Choose ' . $this->metaInfo[0] . ' Properties:<br>
+			</h1>
+			<form class="properties-options-form" method="post" action="options.php">
+					'.$contents.'
+			</form>
+			<div style="display: none;" class="properties-loading-image">
 			<img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
 			</div>
 			<p class="saving-message" style="display: none">Settings Saved!</p>
