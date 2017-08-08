@@ -44,11 +44,11 @@ jQuery(document).ready(function() {
     });
 
     //Function for hiding the message after its displayed
-function hideMessage(message){
-    setTimeout( function(){
-        message.hide();
-    }  , 2000 );
-}
+    function hideMessage(message){
+        setTimeout( function(){
+            message.hide();
+        }  , 2000 );
+    }
 
 });
 

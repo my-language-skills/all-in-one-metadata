@@ -137,6 +137,7 @@ class Pressbooks_Metadata_Fields {
 			<h1>
 				Choose ' . $this->metaInfo[0] . ' Properties:<br>
 			</h1>
+			</form> <!-- This is a fix for the first types properties not saving -->
 			<form class="properties-options-form" method="post" action="options.php">
 					'.$contents.'
 			<div style="display: none;" class="properties-loading-image">
