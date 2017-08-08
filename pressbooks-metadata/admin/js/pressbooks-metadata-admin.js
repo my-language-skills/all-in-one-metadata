@@ -21,21 +21,21 @@ jQuery(document).ready(function() {
 
     //Submitting information for the property settings
     jQuery('.properties-options-form').submit(function(event){
-        var form = jQuery(this).closest('form');
         event.preventDefault();
-        jQuery('.properties-loading-image').show();
-        jQuery('.saving-message').hide();
+        var form = jQuery(this).closest('form');
+        jQuery(form).find('.properties-loading-image').show();
+        jQuery(form).find('.saving-message').hide();
         var data =  form.serialize();
         jQuery.post( 'options.php', data ).error(
             function() {
-                jQuery('.saving-message').text('Error Saving Settings');
-                jQuery('.saving-message').css('color','red');
-                jQuery('.saving-message').show();
+                jQuery(form).find('.saving-message').text('Error Saving Settings');
+                jQuery(form).find('.saving-message').css('color','red');
+                jQuery(form).find('.saving-message').show();
                 hideMessage();
             }).success( function() {
-            jQuery('.properties-loading-image').hide();
-            jQuery('.saving-message').show();
-            jQuery('.saving-message').css('color','green');
+            jQuery(form).find('.properties-loading-image').hide();
+            jQuery(form).find('.saving-message').show();
+            jQuery(form).find('.saving-message').css('color','green');
             hideMessage();
         });
         return false;
