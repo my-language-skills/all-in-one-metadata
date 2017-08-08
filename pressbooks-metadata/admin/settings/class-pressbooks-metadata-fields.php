@@ -120,10 +120,9 @@ class Pressbooks_Metadata_Fields {
 		if(!isset($this->metaInfo[2])) {
 			add_thickbox();
 
-			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
-			$ID = $this->metaType . '-' . $this->sectionId;
-
 			ob_start();
+
+			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
 
 			settings_fields( $sectionFieldId );
 			do_settings_sections( $sectionFieldId );
@@ -133,19 +132,19 @@ class Pressbooks_Metadata_Fields {
 
 			ob_end_clean();
 
-			$html .= '<div class="property-settings" id="my-content-id-' . $ID . '" style="display:none;">
+			$html .= '<div class="property-settings" id="my-content-id-' . $this->metaType . '-' . $this->sectionId . '" style="display:none;">
 			<h1>
 				Choose ' . $this->metaInfo[0] . ' Properties:<br>
 			</h1>
 			<form class="properties-options-form" method="post" action="options.php">
 					'.$contents.'
+			</form>
 			<div style="display: none;" class="properties-loading-image">
 			<img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
 			</div>
 			<p class="saving-message" style="display: none">Settings Saved!</p>
-			</form>
 			</div>
-			<a href="#TB_inline?width=600&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
+			<a href="#TB_inline?width=600&height=550&inlineId=my-content-id-' . $this->metaType . '-' . $this->sectionId . '" class="thickbox">Edit Type Properties</a>';
 		}
 		echo $html;
 	}
