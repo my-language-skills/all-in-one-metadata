@@ -21,30 +21,32 @@ jQuery(document).ready(function() {
 
     //Submitting information for the property settings
     jQuery('.properties-options-form').submit(function(event){
-        var form = jQuery(this).closest('form');
         event.preventDefault();
-        jQuery('.properties-loading-image').show();
-        jQuery('.saving-message').hide();
+        var form = jQuery(this).closest('form');
+        var loadingImage = jQuery(form).find('.properties-loading-image');
+        var savingMessage = jQuery(form).find('.saving-message');
+        loadingImage.show();
+        savingMessage.hide();
         var data =  form.serialize();
         jQuery.post( 'options.php', data ).error(
             function() {
-                jQuery('.saving-message').text('Error Saving Settings');
-                jQuery('.saving-message').css('color','red');
-                jQuery('.saving-message').show();
-                hideMessage();
+                savingMessage.text('Error Saving Settings');
+                savingMessage.css('color','red');
+                savingMessage.show();
+                hideMessage(savingMessage);
             }).success( function() {
-            jQuery('.properties-loading-image').hide();
-            jQuery('.saving-message').show();
-            jQuery('.saving-message').css('color','green');
-            hideMessage();
+            loadingImage.hide();
+            savingMessage.show();
+            savingMessage.css('color','green');
+            hideMessage(savingMessage);
         });
         return false;
     });
 
     //Function for hiding the message after its displayed
-function hideMessage(){
+function hideMessage(message){
     setTimeout( function(){
-        jQuery('.saving-message').hide();
+        message.hide();
     }  , 2000 );
 }
 
