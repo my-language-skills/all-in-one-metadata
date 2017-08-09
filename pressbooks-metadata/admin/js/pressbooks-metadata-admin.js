@@ -13,6 +13,9 @@ jQuery(document).ready(function() {
         defaults[i].click();
     }
 
+    //Making sure that the parents selection is is on the default value
+    jQuery('.selectParent').val('parents');
+
     //Simple fix for the settings to save properly, without this the settings for choosing schema Types,
     //will not save properly
     jQuery('.active-schemas-forms').submit(function() {
@@ -25,6 +28,10 @@ jQuery(document).ready(function() {
         var form = jQuery(this).closest('form');
         var loadingImage = jQuery(form).find('.properties-loading-image');
         var savingMessage = jQuery(form).find('.saving-message');
+        //Resetting the parents section
+        jQuery(form).find('.parents').hide();
+        jQuery(form).find('.selectParent').val('parents');
+        //end
         loadingImage.show();
         savingMessage.hide();
         var data =  form.serialize();
@@ -33,6 +40,7 @@ jQuery(document).ready(function() {
                 savingMessage.text('Error Saving Settings');
                 savingMessage.css('color','red');
                 savingMessage.show();
+                loadingImage.hide();
                 hideMessage(savingMessage);
             }).success( function() {
             loadingImage.hide();
@@ -50,6 +58,14 @@ jQuery(document).ready(function() {
         }  , 2000 );
     }
 
+    //Function that handles the display of the parent types properties in the properties section
+    jQuery('.selectParent').change(function() {
+        var form = jQuery(this).parent();
+        var name = jQuery(form).find('.selectParent :selected').val();
+        jQuery(form).find('.parents').hide();
+        jQuery(form).find('#' + name).show();
+        console.log(name);
+    });
 });
 
 //Functions for the settings page

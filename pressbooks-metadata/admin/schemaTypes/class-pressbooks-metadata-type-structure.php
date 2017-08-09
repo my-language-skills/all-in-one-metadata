@@ -16,7 +16,7 @@ namespace schemaTypes;
 class Pressbooks_Metadata_Type_Structure{
 	public static $allSchemaTypes = array(
 		'schemaTypes\cw\Pressbooks_Metadata_Book',
-		//'schemaTypes\cw\Pressbooks_Metadata_Blog',
-		//'schemaTypes\cw\Pressbooks_Metadata_Message'
+		'schemaTypes\cw\Pressbooks_Metadata_Blog',
+		'schemaTypes\cw\Pressbooks_Metadata_Message'
 	);
 }

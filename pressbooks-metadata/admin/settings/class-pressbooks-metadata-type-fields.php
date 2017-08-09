@@ -99,17 +99,17 @@ class Pressbooks_Metadata_Fields {
 
 	/**
 	 * The function used to get the current type for finding its parents.
-	 *
+	 * The function returns parent ID or parent Name
 	 * @since  0.x
 	 */
-	private function get_parents(){
+	private function get_parents($getName = false){
 		$foundParents = array();
 		foreach(structure::$allSchemaTypes as $type){
 			$typeSettings = $type::$type_setting;
 			foreach($typeSettings as $name => $setting){
 				if($name == $this->metaType){
 					foreach($type::$type_parents as $parent){
-						$foundParents []= $parent::type_name[1];
+						$getName == false ? $foundParents []= $parent::type_name[1] : $foundParents []= $parent::type_name[0];
 					}
 				}
 			}
@@ -151,11 +151,30 @@ class Pressbooks_Metadata_Fields {
 
 			/* GETTING PARENTS */
 
-			$typeParents = $this->get_parents();
-			foreach($typeParents as $parent){
+			$parentIds = $this->get_parents(false);
+			$parentNames = $this->get_parents(true);
+
+			//Creating the select element for selecting parents
+			?><select class="selectParent">
+			  <option value="parents">Select Parent Properties</option> <?php
+
+			for($i = 0; $i < count($parentIds); $i++){
+				?><option value="<?= $parentIds[$i] ?>"><?= $parentNames[$i] ?></option><?php
+			}
+
+			?> </select> <?php
+
+
+			//Creating DIVS with the parents properties inside
+			foreach($parentIds as $parent){
+
+				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
+
 				$parentField = $this->metaType.'_'.$this->sectionId.'_'.$parent.'_dis';
 				settings_fields( $parentField );
 				do_settings_sections( $parentField );
+
+				?></div><?php
 			}
 
 			/* END */
