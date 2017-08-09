@@ -1,6 +1,7 @@
 <?php
 
 namespace settings;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 
 /**
  * This class is an automation for creating fields in the desired sections,
@@ -97,6 +98,26 @@ class Pressbooks_Metadata_Fields {
 	}
 
 	/**
+	 * The function used to get the current type for finding its parents.
+	 *
+	 * @since  0.x
+	 */
+	private function get_parents(){
+		$foundParents = array();
+		foreach(structure::$allSchemaTypes as $type){
+			$typeSettings = $type::$type_setting;
+			foreach($typeSettings as $name => $setting){
+				if($name == $this->metaType){
+					foreach($type::$type_parents as $parent){
+						$foundParents []= $parent::type_name[1];
+					}
+				}
+			}
+		}
+		return $foundParents;
+	}
+
+	/**
 	 * The main function used to render the description of the field.
 	 *
 	 * @since  0.8.1
@@ -127,6 +148,18 @@ class Pressbooks_Metadata_Fields {
 
 			settings_fields( $sectionFieldId );
 			do_settings_sections( $sectionFieldId );
+
+			/* GETTING PARENTS */
+
+			$typeParents = $this->get_parents();
+			foreach($typeParents as $parent){
+				$parentField = $this->metaType.'_'.$this->sectionId.'_'.$parent.'_dis';
+				settings_fields( $parentField );
+				do_settings_sections( $parentField );
+			}
+
+			/* END */
+
 			submit_button('Save Properties');
 
 			$contents = ob_get_contents();

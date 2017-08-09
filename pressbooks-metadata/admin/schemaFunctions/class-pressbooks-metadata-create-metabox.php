@@ -49,36 +49,19 @@ class Pressbooks_Metadata_Create_Metabox {
 	private $fieldProp;
 
 	/**
-	 * The array containing all the dropdown 'select' properties.
-	 *
-	 * @since    0.x
-	 * @access   private
-	 */
-	private $dropDownProp;
-
-
-	/**
 	 * The constructor for passing all information to the variables and finally creating a metabox.
 	 *
 	 * @since    0.x
 	 */
-	function __construct($inpGroupId,$inpMetaboxName,$inpMetaboxlevel,$inpFieldProp = NULL,$inpDropDownProp = NULL) {
+	function __construct($inpGroupId,$inpMetaboxName,$inpMetaboxlevel,$inpFieldProp) {
 		//Getting Variables
 		$this->groupId = $inpGroupId;
 		$this->metaboxName = $inpMetaboxName;
 		$this->metaboxlevel = $inpMetaboxlevel;
 		$this->fieldProp = $inpFieldProp;
-		$this->dropDownProp = $inpDropDownProp;
 
 		//Running functions
 		$this->create_metabox();
-
-		if($this->fieldProp != NULL){
-			$this->create_metabox_fields();
-		}
-		if($this->dropDownProp != NULL){
-			$this->create_metabox_dropdown();
-		}
 	}
 
 	/**
@@ -92,49 +75,51 @@ class Pressbooks_Metadata_Create_Metabox {
 			'label' 		=>	$this->metaboxName,
 			'priority' 		=>	'high'
 		) );
+		$this->create_metabox_fields();
 	}
 
 	/**
-	 * The function for creating the fields (single).
+	 * The function for creating the fields.
 	 *
 	 * @since    0.x
 	 */
-	function create_metabox_fields() {
+	private function create_metabox_fields() {
 		//Creating the Single Fields
 		foreach ( $this->fieldProp as $property => $details ) {
-			//Checking if the property is required
-			if ($details[0] == true) {
-				x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
-					'group'       => $this->groupId,
-					'label'       => $details[1],
-					'description' => $details[2]
-				) );
-			}else if(get_option(strtolower($property).'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
-				x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
-					'group'       => $this->groupId,
-					'label'       => $details[1],
-					'description' => $details[2]
-				) );
-			}
-		}
-	}
-
-	/**
-	 * The function for creating the fields (dropdown).
-	 *
-	 * @since    0.x
-	 */
-	function create_metabox_dropdown(){
-		//Creating the drop down properties
-		foreach($this->dropDownProp as $property => $details){
-			if($details[0] == true || get_option('pb_'.$property.'_'.$this->metaboxlevel.'_sett')){
-				x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
-					'group' 		=> 	$this->groupId,
-					'field_type' 	=> 	'select',
-					'values' 		=> 	$details[3],
-					'label' 		=> 	$details[1],
-					'description' 	=> 	$details[2]
-				) );
+			//Checking if we need a dropdown field
+			if(!isset($details[3])){
+				//Checking if the property is required
+				if ($details[0] == true) {
+					x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+						'group'       => $this->groupId,
+						'label'       => $details[1],
+						'description' => $details[2]
+					) );
+				}else if(get_option(strtolower($property).'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+					x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+						'group'       => $this->groupId,
+						'label'       => $details[1],
+						'description' => $details[2]
+					) );
+				}
+			}else{
+				if ($details[0] == true) {
+					x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
+						'group' 		=> 	$this->groupId,
+						'field_type' 	=> 	'select',
+						'values' 		=> 	$details[3],
+						'label' 		=> 	$details[1],
+						'description' 	=> 	$details[2]
+					) );
+				}else if(get_option(strtolower($property).'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+					x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
+						'group' 		=> 	$this->groupId,
+						'field_type' 	=> 	'select',
+						'values' 		=> 	$details[3],
+						'label' 		=> 	$details[1],
+						'description' 	=> 	$details[2]
+					) );
+				}
 			}
 		}
 	}

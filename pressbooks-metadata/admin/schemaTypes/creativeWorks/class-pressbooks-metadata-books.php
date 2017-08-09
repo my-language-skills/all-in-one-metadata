@@ -1,6 +1,7 @@
 <?php
 
 namespace schemaTypes\cw;
+use schemaTypes;
 use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
 use schemaTypes\Pressbooks_Metadata_Type;
 
@@ -24,7 +25,15 @@ class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 	 * @since    0.x
 	 * @access   public
 	 */
-	const type_setting = array('book_type' => array('Book Type','http://schema.org/Book'));
+	static $type_setting = array('book_type' => array('Book Type','http://schema.org/Book'));
+
+	/**
+	 * The variable that holds the parents for the type
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	static $type_parents = array('schemaTypes\Pressbooks_Metadata_Thing');
 
 	/**
 	 * The variable that holds the properties of this schema type
@@ -32,7 +41,7 @@ class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 	 * @since    0.x
 	 * @access   public
 	 */
-	const type_properties = array(
+	static $type_properties = array(
 		'illustrator' => array(true,'Illustrator','This is the Description of Illustrator'),
 		'bookEdition' => array(false,'Book Edition','This is the Description of Book Edition'),
 		'bookFormat' => array(false,'Book Format','This is the Description of Book Format'),
@@ -42,11 +51,24 @@ class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 
 	public function __construct($type_level_input) {
 		parent::__construct($type_level_input);
-		$this->type_fields = self::type_properties;
+		$this->type_fields = $this->get_all_properties();
 		$this->class_name = __CLASS__ .'_'. $this->type_level;
-		//$this->parent_type = new Pressbooks_Metadata_Creative_Work($this->type_level);
-		$this->pmdt_populate_names(self::type_setting);
+		$this->pmdt_populate_names(self::$type_setting);
 		$this->pmdt_add_metabox($this->type_level);
+	}
+
+	/**
+	 * Function used for combining the current types properties with its parents fields
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public function get_all_properties() {
+		$properties = self::$type_properties;
+		foreach(self::$type_parents as $parentType){
+			$properties = array_merge($properties,$parentType::type_properties);
+		}
+		return $properties;
 	}
 
 	/**
@@ -66,7 +88,7 @@ class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 	 * @since 0.8.1
 	 */
 	private function pmdt_add_metabox($meta_position) {
-		new create_metabox($this->typeName,$this->typeDisplayName,$meta_position,$this->type_fields,NULL);
+		new create_metabox($this->typeName,$this->typeDisplayName,$meta_position,$this->type_fields);
 	}
 
 	/**

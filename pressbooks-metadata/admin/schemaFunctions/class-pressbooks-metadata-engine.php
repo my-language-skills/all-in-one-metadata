@@ -41,7 +41,7 @@ class Pressbooks_Metadata_Engine {
 	public function get_type_settings() {
 		$this->typeSettings = array();
 		foreach(structure::$allSchemaTypes as $type){
-			$this->typeSettings = array_merge($this->typeSettings,$type::type_setting);
+			$this->typeSettings = array_merge($this->typeSettings,$type::$type_setting);
 		}
 	}
 
@@ -118,15 +118,25 @@ class Pressbooks_Metadata_Engine {
 
 				foreach(structure::$allSchemaTypes as $type){
 					$type_id = $this->get_type_id($type);
-					$type_name = ucfirst(str_replace('_type','',$type_id));
 					$sectionId = $type_id.'_'.$post_type.'_level';
-					$type_properties = $type::type_properties;
+					$type_properties = $type::$type_properties;
 					sections::properties(
 						$sectionId,
 						'',
 						$sectionId.'_properties',
 						$type_properties
 				);
+					//Getting parent information and creating the parent properties
+					//For each type on each level
+
+					foreach($type::$type_parents as $parent){
+						sections::properties(
+							$sectionId,
+							$parent::type_name[0],
+							$sectionId.'_'.$parent::type_name[1].'_dis',
+							$parent::type_properties
+						);
+					}
 				}
 			}
 		}
@@ -137,7 +147,7 @@ class Pressbooks_Metadata_Engine {
 	 * @since  0.x
 	 */
 	private function get_type_id($type) {
-		foreach($type::type_setting as $typeId => $details) {
+		foreach($type::$type_setting as $typeId => $details) {
 			return $typeId;
 		}
 	}
@@ -206,7 +216,8 @@ class Pressbooks_Metadata_Engine {
 		}
 		//Here we create a parent for each type if one exists
 		foreach($instances as $instance){
-			$instances []= $instance->pmdt_parent_init();
+			//TODO PARENTS DONT FORGET
+			//$instances []= $instance->pmdt_parent_init();
 		}
 
 		//Removing null instances
@@ -214,7 +225,7 @@ class Pressbooks_Metadata_Engine {
 
 		//We duplicated this so grand children can have their grand parent, TODO we can/have to improve this
 		foreach($instances as $instance){
-			$instances []= $instance->pmdt_parent_init();
+			//$instances []= $instance->pmdt_parent_init();
 		}
 
 		//Then we clear duplicates from the instances

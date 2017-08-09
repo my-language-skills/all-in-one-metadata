@@ -34,14 +34,6 @@ class Pressbooks_Metadata_Type {
 	public $class_name;
 
 	/**
-	 * The variable that holds the parent type
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public $parent_type;
-
-	/**
 	 * The variable that holds the fields/properties for the metaboxes
 	 *
 	 * @since    0.x
@@ -104,14 +96,14 @@ class Pressbooks_Metadata_Type {
 	 */
 	public function pmdt_prop_run($metaProperty){
 
-				if($this->type_fields[$metaProperty][0] == true){
-					return true;
-				}else if(get_option( strtolower($metaProperty) . '_' . $this->typeName . '_' . $this->type_level . '_level' )){
-					return true;
-				}else{
-					return false;
-				}
-			}
+		if($this->type_fields[$metaProperty][0] == true){
+			return true;
+		}else if(get_option( strtolower($metaProperty) . '_' . $this->typeName . '_' . $this->type_level . '_level' )){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	/**
 	 * Function that extracts the type's name from the settings.
@@ -145,16 +137,6 @@ class Pressbooks_Metadata_Type {
 			}
 		}
 		return $value;
-	}
-
-	/**
-	 * Returns the father for the type.
-	 *
-	 * @since    0.x
-	 * @access   public
-	 */
-	public function pmdt_parent_init(){
-		return $this->parent_type;
 	}
 
 	/**

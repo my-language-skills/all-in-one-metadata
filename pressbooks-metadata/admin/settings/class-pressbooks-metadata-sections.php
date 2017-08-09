@@ -15,7 +15,7 @@ namespace settings;
  */
 
 //Including the field class so fields can be created for the current section
-require_once('class-pressbooks-metadata-fields.php');
+require_once('class-pressbooks-metadata-type-fields.php' );
 require_once('class-pressbooks-metadata-property-fields.php');
 
 class Pressbooks_Metadata_Sections {
