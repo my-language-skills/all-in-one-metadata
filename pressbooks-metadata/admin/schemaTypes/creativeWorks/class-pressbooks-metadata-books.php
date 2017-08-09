@@ -2,7 +2,6 @@
 
 namespace schemaTypes\cw;
 use schemaTypes;
-use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
 use schemaTypes\Pressbooks_Metadata_Type;
 
 /**
@@ -79,37 +78,5 @@ class Pressbooks_Metadata_Book extends Pressbooks_Metadata_Type {
 	 */
 	public function __toString() {
 		return $this->class_name;
-	}
-
-	/**
-	 * The function which produces the metaboxes for the book type
-	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
-	 * The value passed here is also used when calling the metadata functions in the header and the footer.
-	 * @since 0.8.1
-	 */
-	private function pmdt_add_metabox($meta_position) {
-		new create_metabox($this->typeName,$this->typeDisplayName,$meta_position,$this->type_fields);
-	}
-
-	/**
-	 * A function that creates the metadata for the book type.
-	 * @since 0.8.1
-	 *
-	 */
-	public function pmdt_get_metatags() {
-		//Creating microtags
-		$html = "<!-- Microtags --> \n";
-
-		$html .= '<div itemscope itemtype="http://schema.org/Book">';
-
-		foreach ( $this->type_fields as $itemprop => $details ) {
-			$propName = strtolower('pb_' . $itemprop . '_' . $this->type_level);
-			if ($this->pmdt_prop_run($itemprop)) {
-				$value = $this->pmdt_get_value($propName);
-				if(!empty($value)){$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";}
-			}
-		}
-		$html .= '</div>';
-		return $html;
 	}
 }

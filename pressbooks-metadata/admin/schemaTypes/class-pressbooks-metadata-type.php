@@ -2,6 +2,7 @@
 
 namespace schemaTypes;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
+use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
 
 /**
  * The class for the Type including operations, this class is used as a base class for all the types
@@ -20,7 +21,7 @@ class Pressbooks_Metadata_Type {
 	 * The type level where these metaboxes and their schema operations will go
 	 *
 	 * @since    0.x
-	 * @access   private
+	 * @access   public
 	 */
 	public $type_level;
 
@@ -73,6 +74,14 @@ class Pressbooks_Metadata_Type {
 	 */
 	public $typeDisplayName;
 
+	/**
+	 * The variable that holds the url of the type.
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public $typeUrl;
+
 	public function __construct($type_level_input) {
 		$this->type_level = $type_level_input;
 		//Distinguishing if we are working on a post --- chapter level or on the main site level
@@ -106,7 +115,7 @@ class Pressbooks_Metadata_Type {
 	}
 
 	/**
-	 * Function that extracts the type's name from the settings.
+	 * Function that extracts the type's details from its settings.
 	 *
 	 * @since    0.x
 	 * @access   public
@@ -115,6 +124,7 @@ class Pressbooks_Metadata_Type {
 		foreach($settings as $type => $details){
 			$this->typeName = $type;
 			$this->typeDisplayName = $details[0];
+			$this->typeUrl = $details[1];
 		}
 	}
 
@@ -161,5 +171,37 @@ class Pressbooks_Metadata_Type {
 		}else {
 			return $my_array[0];
 		}
+	}
+
+	/**
+	 * The function which produces the metaboxes for the book type
+	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
+	 * The value passed here is also used when calling the metadata functions in the header and the footer.
+	 * @since 0.8.1
+	 */
+	public function pmdt_add_metabox($meta_position) {
+		new create_metabox($this->typeName,$this->typeDisplayName,$meta_position,$this->type_fields);
+	}
+
+	/**
+	 * A function that creates the metadata for the book type.
+	 * @since 0.8.1
+	 *
+	 */
+	public function pmdt_get_metatags() {
+		//Creating microtags
+		$html = "<!-- Microtags --> \n";
+
+		$html .= '<div itemscope itemtype="'.$this->typeUrl.'">';
+
+		foreach ( $this->type_fields as $itemprop => $details ) {
+			$propName = strtolower('pb_' . $itemprop . '_' . $this->type_level);
+			if ($this->pmdt_prop_run($itemprop)) {
+				$value = $this->pmdt_get_value($propName);
+				if(!empty($value)){$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";}
+			}
+		}
+		$html .= '</div>';
+		return $html;
 	}
 }
