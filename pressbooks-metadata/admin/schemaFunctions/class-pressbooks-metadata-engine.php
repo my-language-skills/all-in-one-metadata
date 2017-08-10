@@ -93,6 +93,7 @@ class Pressbooks_Metadata_Engine {
 		$multiLevelSection = "multiLevelSection";
 		$multiLevelPage = "multi_level_tab";
 
+
 		//Creating the sections
 		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
 		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $siteLevelPage);
@@ -109,6 +110,28 @@ class Pressbooks_Metadata_Engine {
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
 			}
 		}
+
+		//Coins Level
+		$coinsLevelSection = "coinsLevelSection";
+		$coinsLevelPage = "coins_level_tab";
+
+		//Dublin Level
+		$dublinLevelSection = "dublinLevelSection";
+		$dublinLevelPage = "dublin_level_tab";
+
+		//Educational Level
+		$educationalLevelSection = "educationalLevelSection";
+		$educationalLevelPage = "educational_level_tab";
+
+		//Creating sections for the external vocabularies
+		add_settings_section($coinsLevelSection, "Enable Coins Metadata", null, $coinsLevelPage);
+		add_settings_section($dublinLevelSection, "Enable Dublin Core Metadata", null, $dublinLevelPage);
+		add_settings_section($educationalLevelSection, "Enable Educational Metadata", null, $educationalLevelPage);
+
+
+		new post_type_fields('coins_checkbox','Coins Metadata',$coinsLevelPage,$coinsLevelSection);
+		new post_type_fields('dublin_checkbox','Dublin Core Metadata',$dublinLevelPage,$dublinLevelSection);
+		new post_type_fields('educational_checkbox','Educational Metadata',$educationalLevelPage,$educationalLevelSection);
 
 		//Creating settings for filtering the schemaTypes that show
 		$parentsSection = 'parents_section';

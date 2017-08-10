@@ -1,6 +1,7 @@
 <?php
 
 namespace vocabularyFunctions;
+use schemaFunctions\Pressbooks_Metadata_Create_Metabox as metabox;
 
 /**
  * The functions of the plugin that manage other vocabularies.
@@ -25,8 +26,6 @@ class Pressbooks_Metadata_VC_Functions {
 	 * @since    0.9
 	 */
 	public static function get_dublin_core(){
-		//TODO Review and change the fields where data comes from
-		//We take the information of fields created in book info
 		$metadata =  \Pressbooks\Book::getBookInformation();
 		// title
 		$html = "<!-- Dublin Core metatags -->\n";
