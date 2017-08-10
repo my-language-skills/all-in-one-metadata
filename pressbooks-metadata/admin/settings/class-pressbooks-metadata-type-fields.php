@@ -102,7 +102,7 @@ class Pressbooks_Metadata_Fields {
 	 * The function returns parent ID or parent Name
 	 * @since  0.x
 	 */
-	private function get_parents($getName = false){
+	private function get_type_parents($getName = false){
 		$foundParents = array();
 		foreach(structure::$allSchemaTypes as $type){
 			$typeSettings = $type::$type_setting;
@@ -151,15 +151,15 @@ class Pressbooks_Metadata_Fields {
 
 			/* GETTING PARENTS */
 
-			$parentIds = $this->get_parents(false);
-			$parentNames = $this->get_parents(true);
+			$parentIds = $this->get_type_parents(false);
+			$parentNames = $this->get_type_parents(true);
 
 			//Creating the select element for selecting parents
 			?><select class="selectParent">
-			  <option value="parents">Select Parent Properties</option> <?php
+			  <option value="parents">Show Parent Properties</option> <?php
 
 			for($i = 0; $i < count($parentIds); $i++){
-				?><option value="<?= $parentIds[$i] ?>"><?= $parentNames[$i] ?></option><?php
+				?><option value="<?= $parentIds[$i] ?>">Show <?= $parentNames[$i] ?></option><?php
 			}
 
 			?> </select> <?php

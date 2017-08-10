@@ -5,6 +5,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
 /**
  * Function used to return all instances for the selected schema types in the settings,
@@ -21,28 +22,31 @@ use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 
 class Pressbooks_Metadata_Engine {
 
-	/**
-	 * Variable for creating settings
-	 * Variable also used when creating type instances.
-	 * @since    0.9
-	 *
-	 */
-	private $typeSettings;
-
 	function __construct() {
-		$this->get_type_settings();
 	}
 
 	/**
-	 * A function for gathering all the type settings.
+	 * A function for gathering all the schema type settings from types that are filtered through their parent.
 	 *
 	 * @since  0.x
 	 */
 	public function get_type_settings() {
-		$this->typeSettings = array();
-		foreach(structure::$allSchemaTypes as $type){
-			$this->typeSettings = array_merge($this->typeSettings,$type::$type_setting);
+		$typeSettings = array();
+		$foundChildren = array();
+		$allParentsWithChild = genFunc::get_all_parents();
+		foreach(genFunc::get_activated_parents() as $parent){
+			//TODO IF WITH MANY TYPES THE PERFORMANCE IS DROPPING WE CAN IMPROVE THESE FUNCTIONS (get_all_parents,get_parent_children) from general_functions class
+			//This is more complex than it had to be, now we are filtering one parent per time, but this supports filtering with many parents
+			//to do this we need to change the front end interface, checkboxes are being used so its easier to modify for multiple parent selection
+			if(isset($allParentsWithChild[$parent])){
+				$foundChildren = array_merge($foundChildren,$allParentsWithChild[$parent]);
+			}
 		}
+		$foundChildren = array_unique($foundChildren);
+		foreach($foundChildren as $child){
+			$typeSettings = array_merge($typeSettings,$child::$type_setting);
+		}
+		return $typeSettings;
 	}
 
 	/**
@@ -106,6 +110,33 @@ class Pressbooks_Metadata_Engine {
 			}
 		}
 
+		//Creating settings for filtering the schemaTypes that show
+		$parentsSection = 'parents_section';
+
+		add_settings_section(
+			$parentsSection,
+			'',
+			function(){echo'Filter By Parent Section';},
+			$parentsDisplayPage
+		);
+
+		foreach(structure::$allParents as $parent){
+			$parentDetails = $parent::type_name;
+			add_settings_field(
+				$parentDetails[1].'_filter_setting',
+				'',
+				function() use ($parentDetails) {
+					//TODO IN THE FUTURE RADIO BUTTONS CAN BE USED -> LESS JAVASCRIPT
+					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$parentDetails[1].'_filter_setting'.'" name="'.$parentDetails[1].'_filter_setting'.'" value="1" ' . checked(1, get_option($parentDetails[1].'_filter_setting'), false) . '/>';
+					$html .= '<a class="parent-filters" href="#" id="'.$parentDetails[1].'_filter_link'.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a>';
+					echo $html;
+					},
+				$parentsDisplayPage,
+				$parentsSection
+			);
+			register_setting( $parentsDisplayPage, $parentDetails[1].'_filter_setting');
+		}
+
 		//Creating another section with the fields automatically created for the schema types
 		foreach($allPostTypes as $post_type){
 			if(get_option($post_type.'_checkbox')){
@@ -113,7 +144,7 @@ class Pressbooks_Metadata_Engine {
 					$post_type.'_level',
 					ucfirst($post_type.' Level'),
 					$post_type.'_tab',
-					$this->typeSettings
+					$this->get_type_settings()
 				);
 
 				foreach(structure::$allSchemaTypes as $type){

@@ -2,6 +2,7 @@
 
 namespace schemaFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 
 /**
  * The functions of the plugin that handle general metadata.
@@ -19,6 +20,52 @@ class Pressbooks_Metadata_General_Functions {
 
 	function __construct() {
 
+	}
+
+	/**
+	 * A function used to retrieve all children types of a parent
+	 *
+	 * @since 0.x
+	 */
+	private static function get_parent_children($parent){
+		$childrenNamespaces = structure::$allSchemaTypes;
+		$foundChildren = array();
+		foreach($childrenNamespaces as $children){
+			$currentChildrenParents = $children::$type_parents;
+			if(in_array($parent,$currentChildrenParents)){
+				$foundChildren []= $children;
+			}
+		}
+		return $foundChildren;
+	}
+
+	/**
+	 * A function used to retrieve all parent types along with their children
+	 *
+	 * @since 0.x
+	 */
+	public static function get_all_parents(){
+		$parentNamespaces = structure::$allParents;
+		$childStore = array();
+		foreach($parentNamespaces as $parent){
+			$childStore []= self::get_parent_children($parent);
+		}
+		return array_combine($parentNamespaces,$childStore);
+	}
+
+	/**
+	 * A function that returns activated parents
+	 * @since 0.x
+	 */
+	public static function get_activated_parents($name = false){
+		$parentNamespaces = structure::$allParents;
+		$activeParentsStore = array();
+		foreach($parentNamespaces as $parent){
+			if(get_option($parent::type_name[1].'_filter_setting')){
+				$activeParentsStore []= $name == false ? $parent : $parent::type_name;
+			}
+		}
+		return $activeParentsStore;
 	}
 
 	/**

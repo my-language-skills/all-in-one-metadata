@@ -19,4 +19,9 @@ class Pressbooks_Metadata_Type_Structure{
 		'schemaTypes\cw\Pressbooks_Metadata_Blog',
 		'schemaTypes\cw\Pressbooks_Metadata_Message'
 	);
+
+	public static $allParents = array(
+		'schemaTypes\Pressbooks_Metadata_Thing',
+		'schemaTypes\Pressbooks_Metadata_CreativeWork'
+	);
 }

@@ -64,7 +64,20 @@ jQuery(document).ready(function() {
         var name = jQuery(form).find('.selectParent :selected').val();
         jQuery(form).find('.parents').hide();
         jQuery(form).find('#' + name).show();
-        console.log(name);
+    });
+
+    //Controlling the parent filtering for the schema types
+    jQuery('#parent-filters-form').find('th').remove();
+    jQuery('#parent-filters-form').find('tr').css("float","left");
+    jQuery(".parent-filters-settings").prop('checked', false);
+
+    jQuery('.parent-filters').click(function(event){
+        event.preventDefault();
+        var parentName = jQuery(this).attr('id');
+        parentName = parentName.replace("link", "setting");
+        console.log(parentName);
+        jQuery("#"+parentName).attr('checked', 'checked');
+        jQuery('#parent-filters-form').submit();
     });
 });
 

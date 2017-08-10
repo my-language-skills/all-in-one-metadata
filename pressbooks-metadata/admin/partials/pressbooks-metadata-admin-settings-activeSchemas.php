@@ -29,9 +29,14 @@ if($activatedLevels == 0){
 
 ?>
 	<div class="nav-tab-wrapper">
-
 		<?php
 		if($activatedLevels != 0){
+		    //Filtering form
+			echo'<form id="parent-filters-form" method="post" action="options.php">';
+
+
+			echo'</form>';
+			//End filtering form
 		    $itterator = 0;
 			foreach($allPostTypes as $postType) {
 				if ( get_option( $postType . '_checkbox' ) ) {
