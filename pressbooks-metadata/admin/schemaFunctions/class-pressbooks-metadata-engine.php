@@ -112,6 +112,7 @@ class Pressbooks_Metadata_Engine {
 
 		//Creating settings for filtering the schemaTypes that show
 		$parentsSection = 'parents_section';
+		$parentsDisplayPage = 'parents_display_page';
 
 		add_settings_section(
 			$parentsSection,
@@ -127,8 +128,10 @@ class Pressbooks_Metadata_Engine {
 				'',
 				function() use ($parentDetails) {
 					//TODO IN THE FUTURE RADIO BUTTONS CAN BE USED -> LESS JAVASCRIPT
-					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$parentDetails[1].'_filter_setting'.'" name="'.$parentDetails[1].'_filter_setting'.'" value="1" ' . checked(1, get_option($parentDetails[1].'_filter_setting'), false) . '/>';
-					$html .= '<a class="parent-filters" href="#" id="'.$parentDetails[1].'_filter_link'.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a>';
+					$fieldId = $parentDetails[1].'_filter_setting';
+					$selectedColor = get_option($fieldId)?'style="color:blue"':'';
+					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$fieldId.'" name="'.$fieldId.'" value="1" ' . checked(1, get_option($fieldId), false) . '/>';
+					$html .= '<a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a>';
 					echo $html;
 					},
 				$parentsDisplayPage,
@@ -157,9 +160,9 @@ class Pressbooks_Metadata_Engine {
 						$sectionId.'_properties',
 						$type_properties
 				);
+
 					//Getting parent information and creating the parent properties
 					//For each type on each level
-
 					foreach($type::$type_parents as $parent){
 						sections::properties(
 							$sectionId,

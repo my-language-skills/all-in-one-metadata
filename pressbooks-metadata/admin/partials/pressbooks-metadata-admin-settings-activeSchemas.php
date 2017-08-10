@@ -34,6 +34,8 @@ if($activatedLevels == 0){
 		    //Filtering form
 			echo'<form id="parent-filters-form" method="post" action="options.php">';
 
+			settings_fields( 'parents_display_page' );
+			do_settings_sections( 'parents_display_page' );
 
 			echo'</form>';
 			//End filtering form
