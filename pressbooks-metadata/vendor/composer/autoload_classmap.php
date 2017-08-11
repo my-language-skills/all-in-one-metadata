@@ -68,5 +68,7 @@ return array(
     'settings\\Pressbooks_Metadata_Post_Type_Fields' => $baseDir . '/admin/settings/class-pressbooks-metadata-post-types-fields.php',
     'settings\\Pressbooks_Metadata_Property_Fields' => $baseDir . '/admin/settings/class-pressbooks-metadata-property-fields.php',
     'settings\\Pressbooks_Metadata_Sections' => $baseDir . '/admin/settings/class-pressbooks-metadata-sections.php',
-    'vocabularyFunctions\\Pressbooks_Metadata_VC_Functions' => $baseDir . '/admin/vocabularyFunctions/class-pressbooks-metadata-vc-functions.php',
+    'vocabularyFunctions\\Pressbooks_Metadata_Coins' => $baseDir . '/admin/vocabularyFunctions/class-pressbooks-metadata-coins.php',
+    'vocabularyFunctions\\Pressbooks_Metadata_Dublin' => $baseDir . '/admin/vocabularyFunctions/class-pressbooks-metadata-dublin.php',
+    'vocabularyFunctions\\Pressbooks_Metadata_Educational' => $baseDir . '/admin/vocabularyFunctions/class-pressbooks-metadata-educational.php',
 );

@@ -2,7 +2,7 @@
 
 namespace schemaFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
-use vocabularyFunctions\Pressbooks_Metadata_VC_Functions as vc_func;
+use vocabularyFunctions;
 
 /**
  * The functions of the plugin that handle the output of metadata in our site.
@@ -33,11 +33,6 @@ class Pressbooks_Metadata_Output {
 		} elseif ( is_front_page() && site_cpt::pressbooks_identify() ) {
 			echo $generalFunctions->get_googleScholar_metatags();
 		}
-
-		//TODO This has to change settings for these two vocabularies have to be added
-		//echo vc_func::get_dublin_core();
-		//echo vc_func::get_coins();
-
 	}
 
 	/**
@@ -62,6 +57,21 @@ class Pressbooks_Metadata_Output {
 					echo $class_instance->pmdt_get_metatags();
 				}
 			}
+
+			//Outputting the metadata for the Vocabularies
+			$vocabularySettings = array(
+				'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
+				'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin',
+				//'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
+			);
+
+			foreach($vocabularySettings as $setting => $class){
+				if(get_option($setting)){
+					$vocabToUse = new $class;
+					echo $vocabToUse->pmdt_get_metatags();
+				}
+			}
+
 		} elseif ( ! is_home() ) {
 			//Here we get all the instances of metadata that have to be executed on the post levels - Chapter Level
 			foreach ( $instances as $class_instance ) {

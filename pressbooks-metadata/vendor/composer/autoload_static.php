@@ -114,7 +114,9 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'settings\\Pressbooks_Metadata_Post_Type_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-post-types-fields.php',
         'settings\\Pressbooks_Metadata_Property_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-property-fields.php',
         'settings\\Pressbooks_Metadata_Sections' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-sections.php',
-        'vocabularyFunctions\\Pressbooks_Metadata_VC_Functions' => __DIR__ . '/../..' . '/admin/vocabularyFunctions/class-pressbooks-metadata-vc-functions.php',
+        'vocabularyFunctions\\Pressbooks_Metadata_Coins' => __DIR__ . '/../..' . '/admin/vocabularyFunctions/class-pressbooks-metadata-coins.php',
+        'vocabularyFunctions\\Pressbooks_Metadata_Dublin' => __DIR__ . '/../..' . '/admin/vocabularyFunctions/class-pressbooks-metadata-dublin.php',
+        'vocabularyFunctions\\Pressbooks_Metadata_Educational' => __DIR__ . '/../..' . '/admin/vocabularyFunctions/class-pressbooks-metadata-educational.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -6,6 +6,8 @@ use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use vocabularyFunctions;
+
 
 /**
  * Function used to return all instances for the selected schema types in the settings,
@@ -56,7 +58,22 @@ class Pressbooks_Metadata_Engine {
 	 */
 	public function place_metaboxes() {
 		//All the instances created by the engine_run function - automatically create their metaboxes
+		//This is for the schema types
 		$this->engine_run();
+
+		//Here we generate metaboxes for the other vocabularies
+		$vocabularySettings = array(
+			'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
+			'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin',
+			//'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
+		);
+
+		foreach($vocabularySettings as $setting => $class){
+			if(get_option($setting)){
+				new $class;
+			}
+		}
+
 	}
 
 	/**
@@ -140,7 +157,7 @@ class Pressbooks_Metadata_Engine {
 		add_settings_section(
 			$parentsSection,
 			'',
-			function(){echo'Filter By Parent Section';},
+			function(){echo'Filter Types By Parent Section';},
 			$parentsDisplayPage
 		);
 

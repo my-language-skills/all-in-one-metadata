@@ -95,7 +95,7 @@ class Pressbooks_Metadata_Create_Metabox {
 						'label'       => $details[1],
 						'description' => $details[2]
 					) );
-				}else if(get_option(strtolower($property).'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+				}else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
 					x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
 						'group'       => $this->groupId,
 						'label'       => $details[1],
@@ -103,22 +103,43 @@ class Pressbooks_Metadata_Create_Metabox {
 					) );
 				}
 			}else{
-				if ($details[0] == true) {
-					x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
-						'group' 		=> 	$this->groupId,
-						'field_type' 	=> 	'select',
-						'values' 		=> 	$details[3],
-						'label' 		=> 	$details[1],
-						'description' 	=> 	$details[2]
-					) );
-				}else if(get_option(strtolower($property).'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
-					x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
-						'group' 		=> 	$this->groupId,
-						'field_type' 	=> 	'select',
-						'values' 		=> 	$details[3],
-						'label' 		=> 	$details[1],
-						'description' 	=> 	$details[2]
-					) );
+				if($details[3]=='number'){
+					//This creates a field of type number
+					//To use this functionality add the string 'number' in the fourth parameter when creating a field -> [3] position in the array
+					//'dublin_time_required' => array( true, 'Required Time', '', 'number' ),
+					if ($details[0] == true) {
+						x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+							'group'       => $this->groupId,
+							'field_type'	=> 	'number',
+							'label'       => $details[1],
+							'description' => $details[2]
+						) );
+					}else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+						x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+							'group'       => $this->groupId,
+							'field_type'	=> 	'number',
+							'label'       => $details[1],
+							'description' => $details[2]
+						) );
+					}
+				}else{
+					if ($details[0] == true) {
+						x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
+							'group' 		=> 	$this->groupId,
+							'field_type' 	=> 	'select',
+							'values' 		=> 	$details[3],
+							'label' 		=> 	$details[1],
+							'description' 	=> 	$details[2]
+						) );
+					}else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+						x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
+							'group' 		=> 	$this->groupId,
+							'field_type' 	=> 	'select',
+							'values' 		=> 	$details[3],
+							'label' 		=> 	$details[1],
+							'description' 	=> 	$details[2]
+						) );
+					}
 				}
 			}
 		}
