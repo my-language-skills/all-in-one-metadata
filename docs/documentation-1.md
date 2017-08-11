@@ -124,7 +124,7 @@ Comming soon
 
 
 ogp.me
-
+https://premium.wpmudev.org/blog/schema-wordpress-seo/
 
 
 -----
