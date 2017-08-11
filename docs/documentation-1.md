@@ -47,6 +47,10 @@ Currently we use the version 3.2.
 [Google schoolar overview](https://scholar.google.com/intl/en-US/scholar/inclusion.html#overview).
 
 ## Other vocabularies
+A [vocabulary](https://www.w3.org/standards/semanticweb/ontology) allows the markup of structured data in HTML documents.
+
+On the Semantic Web, vocabularies define the concepts and relationships (also referred to as “terms”) used to describe and represent an area of concern. Vocabularies are used to classify the terms that can be used in a particular application, characterize possible relationships, and define possible constraints on using those terms. In practice, vocabularies can be very complex (with several thousands of terms) or very simple (describing one or two concepts only).
+
 ### LRMI
 The [LRMI](http://lrmi.dublincore.net/) has developed a common metadata framework for describing or ‘tagging’ learning resources on the web. This framework is a key first step in developing a richer, more fruitful search experience for educators and learners. The metadata schema developed by the [LRMI is adopted by Schema.org](http://lrmi.dublincore.net/lrmi-1-1/), meaning that anyone who publishes or curates educational content can now use [LRMI markup to provide rich, education-specific metadata about their resources with the confidence that this metadata will be recognized by major search engines.
 
@@ -61,11 +65,25 @@ COinS (ContextObjects in Spans) is as “a simple, ad hoc community specificatio
 For example, the citation manager [Zotero](http://www.zotero.org/) knows how to read COinS. So, when viewing one of our publications in a browser with Zotero installed, a folder icon will appear in the URL bar.
 
 ## syntaxes
+
+Syntaxes define attributes that get added to your existing HTML elements. You can mix them up as you like. (You could use both vocabularies with both syntaxes on the same page. You could use both vocabularies with only one syntax. You could use only one vocabulary with both syntaxes, or with only one syntax. …). It totally depends on your specific use case.
+
+What do you want to achieve? If you are interested in a specific 3rd party parsing your content, you should check their documentation. They typically support only certain vocabularies with certain syntaxes.
+
+But if you want to mark up your content with semantic metadata without having a specific use case in mind, you could stick to one syntax and use whichever vocabularies are appropriate for your content.
+
 ### JSON-LD
 
 The [JSON-LD](https://www.w3.org/TR/json-ld/) scripts are Search Engine helpers which tell Search Engines how to connect and index the site.
 They can tell the Search Engine if your site contains an internal search engine, what sites you’re socially connected to and what page structure you’re using.
 This is also referred to as Structured Data.
+
+JSON-LD is the recommended format. Google is in the process of adding JSON-LD support for all markup-powered features. The table below lists the exceptions to this. We recommend using JSON-LD where possible.
+
+JSON-LD doesn't require change of HTML compared with Microdata and RDFa. Also you can make changes in JSON-LD without touching HTML. Like adding new fields, parameters, etc.
+
+
+https://json-ld.org/spec/ED/json-ld-syntax/20110507/
 
 http://www.seoskeptic.com/what-is-json-ld/
 http://www.seoskeptic.com/basic-vocabulary-for-schema-org-and-structured-data/#jsonld
@@ -76,7 +94,9 @@ https://moz.com/blog/json-ld-for-beginners
 
 In the web context, [Microdata](https://html.spec.whatwg.org/multipage/microdata.html) is a WHATWG HTML specification for embedding semantically meaningful markup chiefly within the HTML body. Microdata isn’t the same thing as metadata, as microdata isn’t restricted to conveying only information about the creation of the text. Microdata becomes part of the web document itself and serves somewhat like an annotation within the HTML body text. Microdata tells machines something more about the meaning of the text.
 
-Basically, microdata is an HTML specification that allows for the expression of other vocabularies, such as Schema.org, within a webpage
+Basically, microdata is an HTML specification that allows for the expression of other vocabularies, such as Schema.org, within a webpage.
+
+By using Microdata, you are not directly playing part in the Semantic Web (and AFAIK Microdata doesn’t intend to), mostly because it’s not defined as RDF serialization (although there are ways to extract RDF from Microdata).
 
 ### Why Use JSON-LD Versus Microdata?
 
@@ -94,6 +114,8 @@ Comming soon
 
 ### RDFa
 Comming soon
+https://stackoverflow.com/questions/8957902/microdata-vs-rdfa/25888436#25888436
+RDFa can be used in various host languages, i.e. several (X)HTML variants and XML (thus also in SVG, MathML, Atom etc.). Thanks to its use of prefixes, RDFa allows to mix vocabularies. RDFa is published as W3C Recommendation. RDFa is an RDF serialization, and RDF is the foundation of W3C’s Semantic Web.
 
 ### Microformats
 Comming soon
