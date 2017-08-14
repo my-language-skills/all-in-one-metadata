@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
 
     // Get the element with id="defaultOpen" and click on it to make it the default open tab
     var i;
-    var defaults = document.getElementsByClassName('defaultOpen');
+    var defaults = document.getElementsByClassName('nav-tab-active');
     for (i = 0; i < defaults.length; i++) {
         defaults[i].click();
     }
@@ -94,16 +94,16 @@ function hideMessage(message){
 }
 
 //Functions for the settings page
-function openSett(evt, settName, tabType) {
+function openSett(evt,tablink, settName, tabType) {
     var i, tablinks,tabcontent;
     tabcontent = document.getElementsByClassName(tabType);
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName(tablink);
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
     }
     document.getElementById(settName).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " nav-tab-active";
 }

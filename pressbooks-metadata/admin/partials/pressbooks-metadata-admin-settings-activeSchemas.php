@@ -42,10 +42,10 @@ if($activatedLevels == 0){
 		    $itterator = 0;
 			foreach($allPostTypes as $postType) {
 				if ( get_option( $postType . '_checkbox' ) ) {
-				    $defaultClass = ($itterator == 0 ? "defaultOpen" : "");
+				    $defaultClass = ($itterator == 0 ? "nav-tab-active" : "");
 				    $tabName = $postType == 'metadata' || $postType == 'site-meta' ? 'Site Meta' : ucfirst($postType);
 				    ?>
-					<button class="tablinks nav-tab <?=$defaultClass?>" onclick="openSett(event, '<?=$postType?>','activeSchemas')"><?=$tabName?></button>
+					<button class="tablinks-activeSch nav-tab <?=$defaultClass?>" onclick="openSett(event,'tablinks-activeSch', '<?=$postType?>','activeSchemas')"><?=$tabName?></button>
                     <?php
 					$itterator++;
 				}
