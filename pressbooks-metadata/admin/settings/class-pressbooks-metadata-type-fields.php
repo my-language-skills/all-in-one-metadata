@@ -134,7 +134,7 @@ class Pressbooks_Metadata_Fields {
 
 		//Deciding if a support link will appear on the settings or not
 		if($this->metaInfo[1] != ''){
-			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'">here</a></p>';
+			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'"target="_blank">here</a></p>';
 		}else{
 			$html .= '<p>No description available - this is a custom type</p>';
 		}
