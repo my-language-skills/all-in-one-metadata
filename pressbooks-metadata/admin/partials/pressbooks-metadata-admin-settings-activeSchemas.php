@@ -31,14 +31,6 @@ if($activatedLevels == 0){
 	<div class="nav-tab-wrapper">
 		<?php
 		if($activatedLevels != 0){
-		    //Filtering form
-			echo'<form id="parent-filters-form" method="post" action="options.php">';
-
-			settings_fields( 'parents_display_page' );
-			do_settings_sections( 'parents_display_page' );
-
-			echo'</form>';
-			//End filtering form
 		    $itterator = 0;
 			foreach($allPostTypes as $postType) {
 				if ( get_option( $postType . '_checkbox' ) ) {
@@ -50,12 +42,19 @@ if($activatedLevels == 0){
 					$itterator++;
 				}
 			}
+			?></div><?php
 			foreach($allPostTypes as $postType) {
 				if ( get_option( $postType . '_checkbox' ) ) {
 					?>
                     <div id="<?= $postType ?>" class="activeSchemas">
-                        <br>
-                        <br>
+                       <form class="parent-filters-form" method="post" action="options.php">
+                           <p>Filter By Parent To Begin</p>
+                           <?php
+                            settings_fields( 'parents_display_page' );
+                            do_settings_sections( 'parents_display_page' );
+                           ?>
+                            </form>
+
                         <form method="post" class="active-schemas-forms" action="options.php">
 
                             <?php
@@ -74,4 +73,3 @@ if($activatedLevels == 0){
 			}
 			}
 		?>
-	</div>

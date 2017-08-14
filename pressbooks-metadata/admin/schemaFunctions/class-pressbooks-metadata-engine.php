@@ -157,7 +157,7 @@ class Pressbooks_Metadata_Engine {
 		add_settings_section(
 			$parentsSection,
 			'',
-			function(){echo'Filter Types By Parent Section';},
+			function(){},
 			$parentsDisplayPage
 		);
 
@@ -171,7 +171,7 @@ class Pressbooks_Metadata_Engine {
 					$fieldId = $parentDetails[1].'_filter_setting';
 					$selectedColor = get_option($fieldId)?'style="color:blue"':'';
 					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$fieldId.'" name="'.$fieldId.'" value="1" ' . checked(1, get_option($fieldId), false) . '/>';
-					$html .= '<a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a>';
+					$html .= '<span> | </span><a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a><span> | </span>';
 					echo $html;
 					},
 				$parentsDisplayPage,
@@ -288,26 +288,12 @@ class Pressbooks_Metadata_Engine {
 					}
 			}
 		}
-		//Here we create a parent for each type if one exists
-		foreach($instances as $instance){
-			//TODO PARENTS DONT FORGET
-			//$instances []= $instance->pmdt_parent_init();
-		}
 
 		//Removing null instances
 		$instances = $this->remove_null($instances);
 
-		//We duplicated this so grand children can have their grand parent, TODO we can/have to improve this
-		foreach($instances as $instance){
-			//$instances []= $instance->pmdt_parent_init();
-		}
-
-		//Then we clear duplicates from the instances
-		//For example book and webpage have both creative works as parent, so we keep only one
+		//Then we clear duplicates from the instances, this is older code from a different implementation but we keep it just in case something goes wrong
 		$instances = array_unique($instances);
-
-		//Removing null instances again
-		$instances = $this->remove_null($instances);
 
 		return $instances;
 	}
