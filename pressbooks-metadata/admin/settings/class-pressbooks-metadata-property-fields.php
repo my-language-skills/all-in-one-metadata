@@ -105,7 +105,7 @@ class Pressbooks_Metadata_Property_Fields {
 	function pmdt_field_draw(){
 
 		$disabled = $this->details[0]==true? 'disabled' : '';
-		$html = '<input type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/>';
+		$html = '<input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/>';
 		echo $html;
 	}
 }

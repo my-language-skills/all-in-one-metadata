@@ -146,10 +146,13 @@ class Pressbooks_Metadata_Fields {
 
 			ob_start();
 
+			//Rendering the default properties of the type
+			?><form class="properties-options-form" method="post" action="options.php"><?php
 			settings_fields( $sectionFieldId );
 			do_settings_sections( $sectionFieldId );
+            ?></form><?php
 
-			/* GETTING PARENTS */
+			/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
 
 			$parentIds = $this->get_type_parents(false);
 			$parentNames = $this->get_type_parents(true);
@@ -164,22 +167,21 @@ class Pressbooks_Metadata_Fields {
 
 			?> </select> <?php
 
-
 			//Creating DIVS with the parents properties inside
 			foreach($parentIds as $parent){
 
 				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
 
 				$parentField = $this->metaType.'_'.$this->sectionId.'_'.$parent.'_dis';
+				?><form class="properties-options-form" method="post" action="options.php"><?php
 				settings_fields( $parentField );
 				do_settings_sections( $parentField );
+                ?></form><?php
 
 				?></div><?php
 			}
 
 			/* END */
-
-			submit_button('Save Properties');
 
 			$contents = ob_get_contents();
 
@@ -189,14 +191,12 @@ class Pressbooks_Metadata_Fields {
 			<h1>
 				Choose ' . $this->metaInfo[0] . ' Properties:<br>
 			</h1>
-			</form> <!-- This is a fix for the first types properties not saving -->
-			<form class="properties-options-form" method="post" action="options.php">
-					'.$contents.'
 			<div style="display: none;" class="properties-loading-image">
-			<img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
-			</div>
-			<p class="saving-message" style="display: none">Settings Saved!</p>
-			</form>
+            <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
+            </div>
+            <p class="saving-message" style="display: none">Settings Saved!</p>
+			</form> <!-- This is a fix for the first types properties not saving -->
+					'.$contents.'
 			</div>
 			<a href="#TB_inline?width=600&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
 		}

@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
         defaults[i].click();
     }
 
-    //Making sure that the parents selection is is on the default value
+    //Making sure that the parents selection in the properties of each type is is on the default value
     jQuery('.selectParent').val('parents');
 
     //Simple fix for the settings to save properly, without this the settings for choosing schema Types,
@@ -22,16 +22,12 @@ jQuery(document).ready(function() {
         jQuery('.property-settings').remove();
     });
 
+    //TODO Here we need to cancel all requests before making a new one, this approach will make the submission faster
     //Submitting information for the property settings
-    jQuery('.properties-options-form').submit(function(event){
-        event.preventDefault();
+    jQuery('.property-checkbox').on('click',function(){
         var form = jQuery(this).closest('form');
-        var loadingImage = jQuery(form).find('.properties-loading-image');
-        var savingMessage = jQuery(form).find('.saving-message');
-        //Resetting the parents section
-        jQuery(form).find('.parents').hide();
-        jQuery(form).find('.selectParent').val('parents');
-        //end
+        var loadingImage = jQuery('.properties-loading-image');
+        var savingMessage = jQuery('.saving-message');
         loadingImage.show();
         savingMessage.hide();
         var data =  form.serialize();
@@ -43,20 +39,9 @@ jQuery(document).ready(function() {
                 loadingImage.hide();
                 hideMessage(savingMessage);
             }).success( function() {
-            loadingImage.hide();
-            savingMessage.show();
-            savingMessage.css('color','green');
-            hideMessage(savingMessage);
-        });
-        return false;
-    });
 
-    //Function for hiding the message after its displayed
-    function hideMessage(message){
-        setTimeout( function(){
-            message.hide();
-        }  , 2000 );
-    }
+        });
+    });
 
     //Function that handles the display of the parent types properties in the properties section
     jQuery('.selectParent').change(function() {
@@ -80,6 +65,33 @@ jQuery(document).ready(function() {
         jQuery('#parent-filters-form').submit();
     });
 });
+
+//Function that alerts when all property settings are saved
+jQuery(document).ajaxStop(function() {
+    var loadingImage = jQuery('.properties-loading-image');
+    var savingMessage = jQuery('.saving-message');
+    window.onbeforeunload = null;
+    loadingImage.hide();
+    savingMessage.show();
+    savingMessage.css('color','green');
+    hideMessage(savingMessage);
+});
+
+//Function that alerts the user when he is trying to leave the page without all the property settings being saved
+jQuery(document).ajaxStart(function() {
+    window.onbeforeunload = confirmExit;
+    function confirmExit()
+    {
+        return "Not all properties are saved.  Are you sure you want to exit this page?";
+    }
+});
+
+//Function for hiding the message after its displayed
+function hideMessage(message){
+    setTimeout( function(){
+        message.hide();
+    }  , 2000 );
+}
 
 //Functions for the settings page
 function openSett(evt, settName, tabType) {
