@@ -21,15 +21,6 @@ class Pressbooks_Metadata_Options {
 	}
 
 	/**
-	 * Render the options page for plugin.
-	 *
-	 * @since  0.8.1
-	 */
-	public function display_options_page() {
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-display.php';
-	}
-
-	/**
 	 * Add an options page under the Settings and handle changes on the new cpt if pressbooks is disabled.
 	 *
 	 * @since  0.8.1
@@ -50,27 +41,91 @@ class Pressbooks_Metadata_Options {
 		}
 
 		//Creating the options page for the plugin
-		$this->plugin_screen_hook_suffix =
-			add_options_page(
-				'Pressbooks Metadata Settings',
-				'PB Metadata',
-				'manage_options',
-				'pressbooks_metadata_options_page',
-				array( $this, 'display_options_page' )
-			);
+		$this->pagehook = add_options_page('PB Metadata Settings', "PB Metadata Settings", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'));
+		//Adding the metaboxes on the options page
+		add_action('load-'.$this->pagehook, array($this, 'add_metaboxes'));
 	}
 
 	/**
-	 * A function that manipulates the inputs for saving the new cpt
+	 * Render the options page for plugin.
+	 *
+	 * @since  1.0
+	 */
+	function render_options_page() {
+		?>
+        <div class="wrap">
+            <h2>PB Metadata Settings</h2>
+            <div class="metabox-holder">
+					<?php
+					do_meta_boxes($this->pagehook, 'normal','');
+					?>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            jQuery(document).ready( function($) {
+                // close postboxes that should be closed
+                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+                // postboxes setup
+                postboxes.add_postbox_toggles('<?php echo $this->pagehook; ?>');
+            });
+            //]]>
+        </script>
+		<?php
+	}
+
+	/**
+	 * Add the metaboxes to the options page.
+	 *
+	 * @since  1.0
+	 */
+	function add_metaboxes() {
+		wp_enqueue_script('common');
+		wp_enqueue_script('wp-lists');
+		wp_enqueue_script('postbox');
+		add_meta_box('metadata-location', 'Location Of Metadata', array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
+		add_meta_box('activated-schema-locations', 'Activated Locations For Schema Types', array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
+		add_meta_box('specific-metadata', 'Specific Metadata', array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
+	}
+
+	/**
+	 * Render data for the  metabox.
+	 *
+	 * @since  1.0
+	 */
+	function render_metabox_schema_locations() {
+		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-schemaLocations.php';
+	}
+
+	/**
+	 * Render data for the specific_metadata metabox.
+	 *
+	 * @since  1.0
+	 */
+	function render_metabox_specific_metadata(){
+		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-specificMeta.php';
+	}
+
+	/**
+	 * Render data for the active_schemas metabox.
+	 *
+	 * @since  1.0
+	 */
+	function render_metabox_active_schemas(){
+		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-activeSchemas.php';
+	}
+
+	/**
+	 * A function that manipulates the inputs for saving the new cpt data
 	 * @since    0.9
 	 */
 	function metadata_save_box( $post ) {
 		if ( 'publish' === $post->post_status ) { ?>
-			<input name="original_publish" type="hidden" id="original_publish" value="Update"/>
-			<input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="Save"/>
+            <input name="original_publish" type="hidden" id="original_publish" value="Update"/>
+            <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="Save"/>
 		<?php } else { ?>
-			<input name="original_publish" type="hidden" id="original_publish" value="Publish"/>
-			<input name="publish" id="publish" type="submit" class="button button-primary button-large" value="Save" tabindex="5" accesskey="p"/>
+            <input name="original_publish" type="hidden" id="original_publish" value="Publish"/>
+            <input name="publish" id="publish" type="submit" class="button button-primary button-large" value="Save" tabindex="5" accesskey="p"/>
 			<?php
 		}
 	}

@@ -1,6 +1,7 @@
 <?php
 
 namespace settings;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 
 /**
  * This class is an automation for creating fields in the desired sections,
@@ -97,6 +98,26 @@ class Pressbooks_Metadata_Fields {
 	}
 
 	/**
+	 * The function used to get the current type for finding its parents.
+	 * The function returns parent ID or parent Name
+	 * @since  1.0
+	 */
+	private function get_type_parents($getName = false){
+		$foundParents = array();
+		foreach(structure::$allSchemaTypes as $type){
+			$typeSettings = $type::$type_setting;
+			foreach($typeSettings as $name => $setting){
+				if($name == $this->metaType){
+					foreach($type::$type_parents as $parent){
+						$getName == false ? $foundParents []= $parent::type_name[1] : $foundParents []= $parent::type_name[0];
+					}
+				}
+			}
+		}
+		return $foundParents;
+	}
+
+	/**
 	 * The main function used to render the description of the field.
 	 *
 	 * @since  0.8.1
@@ -106,15 +127,79 @@ class Pressbooks_Metadata_Fields {
 
 		$html .= '<label for="show_header">By checking this you allow the '.$this->metaInfo[0].' to show in the '.$this->sectionName.'</label>';
 
+		//If the type has no properties than we show the user that the parent type will be used insted
+		if(isset($this->metaInfo[2])){
+			$html .= '<p class="noPropType">Type Empty of properties '.$this->metaInfo[2].' will be used</p>';
+		}
+
 		//Deciding if a support link will appear on the settings or not
 		if($this->metaInfo[1] != ''){
-			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'">here</a></p>';
+			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'"target="_blank">here</a></p>';
 		}else{
 			$html .= '<p>No description available - this is a custom type</p>';
 		}
+		if(!isset($this->metaInfo[2])) {
+			add_thickbox();
 
-		$html.= '<a href="">';
+			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
+			$ID = $this->metaType . '-' . $this->sectionId;
 
+			ob_start();
+
+			//Rendering the default properties of the type
+			?><form class="properties-options-form" method="post" action="options.php"><?php
+			settings_fields( $sectionFieldId );
+			do_settings_sections( $sectionFieldId );
+            ?></form><?php
+
+			/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
+
+			$parentIds = $this->get_type_parents(false);
+			$parentNames = $this->get_type_parents(true);
+
+			//Creating the select element for selecting parents
+			?><select class="selectParent">
+			  <option value="parents">Show Parent Properties</option> <?php
+
+			for($i = 0; $i < count($parentIds); $i++){
+				?><option value="<?= $parentIds[$i] ?>">Show <?= $parentNames[$i] ?></option><?php
+			}
+
+			?> </select> <?php
+
+			//Creating DIVS with the parents properties inside
+			foreach($parentIds as $parent){
+
+				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
+
+				$parentField = $this->metaType.'_'.$this->sectionId.'_'.$parent.'_dis';
+				?><form class="properties-options-form" method="post" action="options.php"><?php
+				settings_fields( $parentField );
+				do_settings_sections( $parentField );
+                ?></form><?php
+
+				?></div><?php
+			}
+
+			/* END */
+
+			$contents = ob_get_contents();
+
+			ob_end_clean();
+
+			$html .= '<div class="property-settings" id="my-content-id-' . $ID . '" style="display:none;">
+			<h1>
+				Choose ' . $this->metaInfo[0] . ' Properties:<br>
+			</h1>
+			<div style="display: none;" class="properties-loading-image">
+            <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
+            </div>
+            <p class="saving-message" style="display: none">Settings Saved!</p>
+			</form> <!-- This is a fix for the first types properties not saving -->
+					'.$contents.'
+			</div>
+			<a href="#TB_inline?width=600&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
+		}
 		echo $html;
 	}
 

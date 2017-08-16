@@ -20,6 +20,10 @@ class Pressbooks_Metadata_Required_Plugins {
 
 	}
 
+	/**
+	 * A function that checks if third party required plugins are installed
+	 * @since    0.9
+	 */
 	public static function check() {
 		// Check for custom-metadata install
 		if(!site_cpt::pressbooks_identify()){

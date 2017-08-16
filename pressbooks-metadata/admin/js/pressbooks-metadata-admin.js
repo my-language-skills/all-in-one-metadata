@@ -1,32 +1,110 @@
-(function( $ ) {
-	'use strict';
+jQuery(document).ready(function() {
+    //Code used to remove the Button (Add new site metadata) from the CPT Named Site-Meta
+    var txt =  jQuery('.page-title-action').text();
 
-	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+    if(txt == 'Add New Site Metadata'){
+        jQuery('.page-title-action').hide();
+    }
 
-})( jQuery );
+    // Get the element with id="defaultOpen" and click on it to make it the default open tab
+    var i;
+    var defaults = document.getElementsByClassName('nav-tab-active');
+    for (i = 0; i < defaults.length; i++) {
+        defaults[i].click();
+    }
+
+    //Making sure that the parents selection in the properties of each type is is on the default value
+    jQuery('.selectParent').val('parents');
+
+    //Simple fix for the settings to save properly, without this the settings for choosing schema Types,
+    //will not save properly
+    jQuery('.active-schemas-forms').submit(function() {
+        jQuery('.property-settings').remove();
+    });
+
+    //TODO Here we need to cancel all requests before making a new one, this approach will make the submission faster
+    //Submitting information for the property settings
+    jQuery('.property-checkbox').on('click',function(){
+        var form = jQuery(this).closest('form');
+        var loadingImage = jQuery('.properties-loading-image');
+        var savingMessage = jQuery('.saving-message');
+        loadingImage.show();
+        savingMessage.hide();
+        var data =  form.serialize();
+        jQuery.post( 'options.php', data ).error(
+            function() {
+                savingMessage.text('Error Saving Settings');
+                savingMessage.css('color','red');
+                savingMessage.show();
+                loadingImage.hide();
+                hideMessage(savingMessage);
+            }).success( function() {
+
+        });
+    });
+
+    //Function that handles the display of the parent types properties in the properties section
+    jQuery('.selectParent').change(function() {
+        var form = jQuery(this).parent();
+        var name = jQuery(form).find('.selectParent :selected').val();
+        jQuery(form).find('.parents').hide();
+        jQuery(form).find('#' + name).show();
+    });
+
+    //Controlling the parent filtering for the schema types
+    jQuery('.parent-filters-form').find('th').remove();
+    jQuery('.parent-filters-form').find('tr').css("float","left");
+    jQuery(".parent-filters-settings").prop('checked', false);
+
+    jQuery('.parent-filters').click(function(event){
+        event.preventDefault();
+        var parentName = jQuery(this).attr('id');
+        parentName = parentName.replace("link", "setting");
+        jQuery("#"+parentName).attr('checked', 'checked');
+        var form = jQuery(this).closest('form');
+        form.submit();
+    });
+});
+
+//Function that alerts when all property settings are saved
+jQuery(document).ajaxStop(function() {
+    var loadingImage = jQuery('.properties-loading-image');
+    var savingMessage = jQuery('.saving-message');
+    window.onbeforeunload = null;
+    loadingImage.hide();
+    savingMessage.show();
+    savingMessage.css('color','green');
+    hideMessage(savingMessage);
+});
+
+//TODO Remember to fix this
+//Function that alerts the user when he is trying to leave the page without all the property settings being saved
+/*jQuery(document).ajaxStart(function() {
+    window.onbeforeunload = confirmExit;
+    function confirmExit()
+    {
+        return "Not all properties are saved.  Are you sure you want to exit this page?";
+    }
+});*/
+
+//Function for hiding the message after its displayed
+function hideMessage(message){
+    setTimeout( function(){
+        message.hide();
+    }  , 2000 );
+}
+
+//Functions for the settings page
+function openSett(evt,tablink, settName, tabType) {
+    var i, tablinks,tabcontent;
+    tabcontent = document.getElementsByClassName(tabType);
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName(tablink);
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
+    }
+    document.getElementById(settName).style.display = "block";
+    evt.currentTarget.className += " nav-tab-active";
+}

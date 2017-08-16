@@ -68,23 +68,42 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 ### Now
 ## 0.xx
 * **ADDITIONS**
-
+    
 * **ENHANCEMENTS**
-
+    
 * **List of Files revised**
-
+    
 
 ### Soon
-New Settings page UX.
 Implementation of milestone 9.1 (Finishing educational metadata and related metadata)
 
 ### Later
-Settings page in superadmin level
+Settings page in superadmin -network- level
 
 ### Future
 New types
     
 ## Changelog
+
+## 1.0
+* **ADDITIONS**
+    * Show parent activation and info for empty Types #113
+    * Add parent sections under each tab level  #123
+    * Add a link that will pop up a lightbox for the properties for every type #120
+    * Add the coins and the dublin core vocabulary into the plugin #116
+* **ENHANCEMENTS**
+    * Fix Tab Navigation in Settings #133
+    * Each type link is opning in a new page #132
+    * Fixed Positioning of the filters #127
+    * Fix the loading animation and the saving of the first type #125
+    * Change color for warnings on settings page  #122
+    * Change the architecture of the schemaType classes, autoload them and include settings for each type inside the class #121
+* **List of Files revised**
+    * Changes in the engine file
+    * Creation of new files that handle the structure of types
+    * Creation of new settings files for handling the property fields
+    * New files for the new vocabularies
+
 ### 0.9
 * **ADDITIONS**
     * Added Webpage Schema Type
@@ -258,6 +277,11 @@ New types
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
+
+### 1.0
+Code rewriting for optimisation. All the types inherit as classes from a base class called type. The creation of new types is way simpler and faster.
+Each property for each level and each type can be enabled and disabled. Dublin core and Coins vocabularies were added, also the schema types now can be 
+filtered by parent.
 
 ### 0.9
 Code rewriting for optimisation. Introduced new types and new file system. Plugin works independently of pressbooks.

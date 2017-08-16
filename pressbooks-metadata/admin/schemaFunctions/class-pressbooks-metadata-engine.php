@@ -4,6 +4,10 @@ namespace schemaFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use vocabularyFunctions;
+
 
 /**
  * Function used to return all instances for the selected schema types in the settings,
@@ -20,29 +24,31 @@ use settings\Pressbooks_Metadata_Sections as sections;
 
 class Pressbooks_Metadata_Engine {
 
-	/**
-	 * Variable for creating settings
-	 * Variable also used when creating type instances.
-	 * @since    0.9
-	 *
-	 */
-	private $metaSettings;
-
 	function __construct() {
-		//Use this array to create new settings for new types that you add
-		//Every setting you create can be accessed using the example here
-		//book_type -> This is the id of a field in the array below
-		//book_level -> This is the section id that this fields exists
-		//if you add them together with a '_' you have the setting -> book_type_book_level
-		//Use get_option() to get the value from the database (Process is Automatic)
-		$this->metaSettings =
-			array(
-				//For every new type we add we need to add the settings here, url can be empty
-				'book_type'    => array( 'Book Type', 'http://schema.org/Book' ),
-				'course_type'  => array( 'Course Type', 'http://schema.org/Course' ),
-				'webpage_type' => array( 'Webpage Type', 'http://schema.org/WebPage' ),
-				'educational_info' => array('Educational Information','')
-			);
+	}
+
+	/**
+	 * A function for gathering all the schema type settings from types that are filtered through their parent.
+	 *
+	 * @since  1.0
+	 */
+	public function get_type_settings() {
+		$typeSettings = array();
+		$foundChildren = array();
+		$allParentsWithChild = genFunc::get_all_parents();
+		foreach(genFunc::get_activated_parents() as $parent){
+			//TODO IF WITH MANY TYPES THE PERFORMANCE IS DROPPING WE CAN IMPROVE THESE FUNCTIONS (get_all_parents,get_parent_children) from general_functions class
+			//This is more complex than it had to be, now we are filtering one parent per time, but this supports filtering with many parents
+			//to do this we need to change the front end interface, checkboxes are being used so its easier to modify for multiple parent selection
+			if(isset($allParentsWithChild[$parent])){
+				$foundChildren = array_merge($foundChildren,$allParentsWithChild[$parent]);
+			}
+		}
+		$foundChildren = array_unique($foundChildren);
+		foreach($foundChildren as $child){
+			$typeSettings = array_merge($typeSettings,$child::$type_setting);
+		}
+		return $typeSettings;
 	}
 
 	/**
@@ -52,7 +58,22 @@ class Pressbooks_Metadata_Engine {
 	 */
 	public function place_metaboxes() {
 		//All the instances created by the engine_run function - automatically create their metaboxes
+		//This is for the schema types
 		$this->engine_run();
+
+		//Here we generate metaboxes for the other vocabularies
+		$vocabularySettings = array(
+			'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
+			'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin',
+			//'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
+		);
+
+		foreach($vocabularySettings as $setting => $class){
+			if(get_option($setting)){
+				new $class;
+			}
+		}
+
 	}
 
 	/**
@@ -72,38 +93,151 @@ class Pressbooks_Metadata_Engine {
 	}
 
 	/**
-	 * Adding sections with fields in the options page using the class section.
+	 * Adding sections with fields in the options page using the settings classes.
 	 *
 	 * @since  0.8.1
 	 */
 	public function register_settings() {
+		//Post Level
+		$postLevelSection = "postLevelSection";
+		$postLevelPage = "post_level_tab";
 
-		//Setting section name and page
-		$section = "postTypeSection";
-		$page = "post_options_page";
+		//Site Level
+		$siteLevelSection = "siteLevelSection";
+		$siteLevelPage = "site_level_tab";
 
-		//Creating the section
-		add_settings_section($section, "Choose Post Types For Metadata Manipulation", null, $page);
+		//Multisite Level
+		$multiLevelSection = "multiLevelSection";
+		$multiLevelPage = "multi_level_tab";
+
+
+		//Creating the sections
+		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
+		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $siteLevelPage);
+		add_settings_section($multiLevelSection, "-------MULTISITE-------", null, $multiLevelPage);
 
 		//Gathering post types
-		$postTypes = $this->get_all_post_types();
+		$allPostTypes = $this->get_all_post_types();
 
-		//Creating fields for the section
-		foreach($postTypes as $post_type){
-			new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$page,$section);
+		//Creating fields for each section (multisite comming soon)
+		foreach($allPostTypes as $post_type){
+			if($post_type == 'metadata' || $post_type == 'site-meta'){
+				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$siteLevelPage,$siteLevelSection);
+			}else{
+				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
+			}
+		}
+
+		//Coins Level
+		$coinsLevelSection = "coinsLevelSection";
+		$coinsLevelPage = "coins_level_tab";
+
+		//Dublin Level
+		$dublinLevelSection = "dublinLevelSection";
+		$dublinLevelPage = "dublin_level_tab";
+
+		//Educational Level
+		$educationalLevelSection = "educationalLevelSection";
+		$educationalLevelPage = "educational_level_tab";
+
+		//Creating sections for the external vocabularies
+		add_settings_section($coinsLevelSection, "Enable Coins Metadata", null, $coinsLevelPage);
+		add_settings_section($dublinLevelSection, "Enable Dublin Core Metadata", null, $dublinLevelPage);
+		add_settings_section($educationalLevelSection, "Enable Educational Metadata", null, $educationalLevelPage);
+
+
+		new post_type_fields('coins_checkbox','Coins Metadata',$coinsLevelPage,$coinsLevelSection);
+		new post_type_fields('dublin_checkbox','Dublin Core Metadata',$dublinLevelPage,$dublinLevelSection);
+		new post_type_fields('educational_checkbox','Educational Metadata',$educationalLevelPage,$educationalLevelSection);
+
+		//Creating settings for filtering the schemaTypes that show
+		$parentsSection = 'parents_section';
+		$parentsDisplayPage = 'parents_display_page';
+
+		add_settings_section(
+			$parentsSection,
+			'',
+			function(){},
+			$parentsDisplayPage
+		);
+
+		foreach(structure::$allParents as $parent){
+			$parentDetails = $parent::type_name;
+			add_settings_field(
+				$parentDetails[1].'_filter_setting',
+				'',
+				function() use ($parentDetails) {
+					//TODO IN THE FUTURE RADIO BUTTONS CAN BE USED -> LESS JAVASCRIPT
+					$fieldId = $parentDetails[1].'_filter_setting';
+					$selectedColor = get_option($fieldId)?'style="color:blue"':'';
+					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$fieldId.'" name="'.$fieldId.'" value="1" ' . checked(1, get_option($fieldId), false) . '/>';
+					$html .= '<span> | </span><a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a><span> | </span>';
+					echo $html;
+					},
+				$parentsDisplayPage,
+				$parentsSection
+			);
+			register_setting( $parentsDisplayPage, $parentDetails[1].'_filter_setting');
 		}
 
 		//Creating another section with the fields automatically created for the schema types
-		foreach($postTypes as $post_type){
+		foreach($allPostTypes as $post_type){
 			if(get_option($post_type.'_checkbox')){
-				new sections(
+				sections::types(
 					$post_type.'_level',
 					ucfirst($post_type.' Level'),
-					'meta_options_page',
-					$this->metaSettings
+					$post_type.'_tab',
+					$this->get_type_settings()
 				);
+
+				foreach(structure::$allSchemaTypes as $type){
+					$type_id = $this->get_type_id($type);
+					$sectionId = $type_id.'_'.$post_type.'_level';
+					$type_properties = $type::$type_properties;
+					sections::properties(
+						$sectionId,
+						'',
+						$sectionId.'_properties',
+						$type_properties
+				);
+
+					//Getting parent information and creating the parent properties
+					//For each type on each level
+					foreach($type::$type_parents as $parent){
+						sections::properties(
+							$sectionId,
+							$parent::type_name[0],
+							$sectionId.'_'.$parent::type_name[1].'_dis',
+							$parent::type_properties
+						);
+					}
+				}
 			}
 		}
+	}
+
+	/**
+	 * Function used to extract the name of the type from its settings
+	 * @since  1.0
+	 */
+	private function get_type_id($type) {
+		foreach($type::$type_setting as $typeId => $details) {
+			return $typeId;
+		}
+	}
+
+	/**
+	 * Function used to remove null values from an array
+	 * @since  1.0
+	 */
+	private function remove_null($array) {
+		$cleanArray = array();
+		foreach($array as $item){
+			if($item != NULL){
+				$cleanArray[]=$item;
+			}
+		}
+		return $cleanArray;
 	}
 
 	/**
@@ -136,62 +270,32 @@ class Pressbooks_Metadata_Engine {
 	 * @since  0.9
 	 */
 	public function engine_run(){
-
 		//Getting all active post levels
 		$schemaPostLevels = $this->get_enabled_levels();
 
 		//This array will be filled up with instances of the active types, then it will be returned for processing
 		$instances = array();
-
+		//Getting the level - post etc.
 		foreach ($schemaPostLevels as $level) {
-			foreach ($this->metaSettings as $type => $link){
-
-				//Checking the settings for each level and we create instances for the active types
-				if(get_option($type.'_'.$level)){
-					//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
-					$cpt = str_replace("_level","",$level);
-					switch($type){
-
-						case 'book_type':
-							$instances[] = new \schemaTypes\Pressbooks_Metadata_Book($cpt);
-							break;
-
-						case 'course_type':
-							$instances[] = new \schemaTypes\Pressbooks_Metadata_Course($cpt);
-							break;
-
-						case 'webpage_type':
-							$instances[] = new \schemaTypes\Pressbooks_Metadata_WebPage($cpt);
-							break;
-
-						case 'educational_info':
-							//Educational information only appears on the site level schema
-							if($cpt == 'metadata' || $cpt == 'site-meta'){
-								$instances[] = new \schemaTypes\Pressbooks_Metadata_Educational($cpt);
-							}
-							break;
+			//Getting the setting for a type - book etc.
+			foreach (structure::$allSchemaTypes as $type){
+				$typeId = $this->get_type_id($type);
+					//Checking the settings for each level and type together and we create instances for the active types on each level
+					if(get_option($typeId.'_'.$level)){
+						//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
+						$cpt = str_replace("_level","",$level);
+						$instances []= new $type($cpt);
 					}
-
-				}
 			}
 		}
-		//Here we create a parent for each type if one exists
-		foreach($instances as $instance){
-			$instances []= $instance->pmdt_parent_init();
-		}
 
-		//Then we clear duplicates from the instances
-		//For example book and webpage have both creative works as parent, so we keep only one
+		//Removing null instances
+		$instances = $this->remove_null($instances);
+
+		//Then we clear duplicates from the instances, this is older code from a different implementation but we keep it just in case something goes wrong
 		$instances = array_unique($instances);
 
-		//Removing Null Values in case we spot any
-		$cleanInstances = array();
-		foreach($instances as $instance){
-			if($instance != NULL){
-				$cleanInstances[]=$instance;
-			}
-		}
-		return $cleanInstances;
+		return $instances;
 	}
 }
 
