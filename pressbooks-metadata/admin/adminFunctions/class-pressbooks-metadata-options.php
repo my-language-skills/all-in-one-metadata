@@ -49,7 +49,7 @@ class Pressbooks_Metadata_Options {
 	/**
 	 * Render the options page for plugin.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function render_options_page() {
 		?>
@@ -77,7 +77,7 @@ class Pressbooks_Metadata_Options {
 	/**
 	 * Add the metaboxes to the options page.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function add_metaboxes() {
 		wp_enqueue_script('common');
@@ -91,7 +91,7 @@ class Pressbooks_Metadata_Options {
 	/**
 	 * Render data for the  metabox.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function render_metabox_schema_locations() {
 		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-schemaLocations.php';
@@ -100,7 +100,7 @@ class Pressbooks_Metadata_Options {
 	/**
 	 * Render data for the specific_metadata metabox.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function render_metabox_specific_metadata(){
 		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-specificMeta.php';
@@ -109,7 +109,7 @@ class Pressbooks_Metadata_Options {
 	/**
 	 * Render data for the active_schemas metabox.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function render_metabox_active_schemas(){
 		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-activeSchemas.php';

@@ -21,7 +21,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the values for the settings for this schema type
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	static $type_setting = array('blog_type' => array('Blog Type','http://schema.org/Blog'));
@@ -29,7 +29,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the parents for the type
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	static $type_parents = array('schemaTypes\Pressbooks_Metadata_Thing');
@@ -37,7 +37,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the properties of this schema type
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	static $type_properties = array(
@@ -55,7 +55,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for combining the current types properties with its parents fields
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	public function get_all_properties() {
@@ -69,7 +69,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for comparing the instances of the schema types
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	public function __toString() {

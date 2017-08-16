@@ -59,7 +59,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The constructor.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 */
 	function __construct() {
 	}
@@ -67,7 +67,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * Function for creating an instance of settings for the schema types.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	public static function properties( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
 		$instance = new self();
@@ -111,7 +111,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * Function for creating an instance of settings for the schema properties.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	public static function types( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
 		$instance = new self();

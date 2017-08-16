@@ -6,6 +6,7 @@
       "schemaTypes\\": "admin/schemaTypes",
       "schemaTypes\\cw\\": "admin/schemaTypes/creativeWorks",
       "adminFunctions\\": "admin/adminFunctions",
+      "networkFunctions\\": "admin/networkFunctions",
       "vocabularyFunctions\\": "admin/vocabularyFunctions"
     }
   }

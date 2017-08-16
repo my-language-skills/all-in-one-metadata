@@ -30,7 +30,7 @@ class Pressbooks_Metadata_Engine {
 	/**
 	 * A function for gathering all the schema type settings from types that are filtered through their parent.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	public function get_type_settings() {
 		$typeSettings = array();
@@ -218,7 +218,7 @@ class Pressbooks_Metadata_Engine {
 
 	/**
 	 * Function used to extract the name of the type from its settings
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	private function get_type_id($type) {
 		foreach($type::$type_setting as $typeId => $details) {
@@ -228,7 +228,7 @@ class Pressbooks_Metadata_Engine {
 
 	/**
 	 * Function used to remove null values from an array
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	private function remove_null($array) {
 		$cleanArray = array();

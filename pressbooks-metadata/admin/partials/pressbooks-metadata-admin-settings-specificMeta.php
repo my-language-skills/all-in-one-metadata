@@ -3,7 +3,7 @@
 * The file containing the html for the specificMeta Metabox in the settings.
 *
 * @link       https://github.com/Books4Languages/pressbooks-metadata
-* @since      0.x
+* @since      1.0
 *
 * @package    Pressbooks_Metadata
 * @subpackage Pressbooks_Metadata/admin/partials

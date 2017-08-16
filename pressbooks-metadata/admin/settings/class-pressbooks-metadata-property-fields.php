@@ -7,7 +7,7 @@ namespace settings;
  * it is targeted for the pressbooks-metadata plugin
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      1.0
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
@@ -19,7 +19,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The name of the property.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   private
 	 * @var      string    $property  The string used to uniquely this field's schema type property.
 	 */
@@ -28,7 +28,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The property details.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   private
 	 * @var      array   $details  The array used for this property details.
 	 */
@@ -37,7 +37,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The section ID for the current field's section.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   private
 	 * @var      string    $sectionId  The string used to uniquely the field's section ID.
 	 */
@@ -46,7 +46,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The section Name for the current field's section.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   private
 	 * @var      string    $sectionName  The string used to uniquely this field's section Name.
 	 */
@@ -55,7 +55,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The field's Display Page.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   private
 	 * @var      string    $displayPage The string used to uniquely this fields's Display Page.
 	 */
@@ -64,7 +64,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The constructor for passing all information to the variables and finally creating a field.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 */
 	function __construct($propertyInput,$detailsInput,$sectionIdInput,$sectionNameInput,$displayPageInput) {
 		$this->property = $propertyInput;
@@ -79,7 +79,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The main function used to create a field.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function pmdt_create_field(){
 		add_settings_field(
@@ -100,7 +100,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The main function used to render the description of the field.
 	 *
-	 * @since  0.x
+	 * @since  1.0
 	 */
 	function pmdt_field_draw(){
 

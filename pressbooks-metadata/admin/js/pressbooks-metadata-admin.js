@@ -77,14 +77,15 @@ jQuery(document).ajaxStop(function() {
     hideMessage(savingMessage);
 });
 
+//TODO Remember to fix this
 //Function that alerts the user when he is trying to leave the page without all the property settings being saved
-jQuery(document).ajaxStart(function() {
+/*jQuery(document).ajaxStart(function() {
     window.onbeforeunload = confirmExit;
     function confirmExit()
     {
         return "Not all properties are saved.  Are you sure you want to exit this page?";
     }
-});
+});*/
 
 //Function for hiding the message after its displayed
 function hideMessage(message){
