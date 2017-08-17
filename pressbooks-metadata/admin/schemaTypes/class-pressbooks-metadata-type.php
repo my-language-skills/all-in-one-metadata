@@ -195,7 +195,7 @@ class Pressbooks_Metadata_Type {
 		$html .= '<div itemscope itemtype="'.$this->typeUrl.'">';
 
 		foreach ( $this->type_fields as $itemprop => $details ) {
-			$propName = strtolower('pb_' . $itemprop . '_' . $this->type_level);
+			$propName = strtolower('pb_' . $itemprop . '_'.$this->typeName.'_' . $this->type_level);
 			if ($this->pmdt_prop_run($itemprop)) {
 				$value = $this->pmdt_get_value($propName);
 				if(!empty($value)){$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";}
