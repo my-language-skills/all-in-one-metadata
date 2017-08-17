@@ -86,17 +86,19 @@ class Pressbooks_Metadata_Create_Metabox {
 	private function create_metabox_fields() {
 		//Creating the Single Fields
 		foreach ( $this->fieldProp as $property => $details ) {
+			//Creating the field id
+			$fieldId = 'pb_' . $property . '_' .$this->groupId. '_' .$this->metaboxlevel;
 			//Checking if we need a dropdown field
 			if(!isset($details[3])){
 				//Checking if the property is required
 				if ($details[0] == true) {
-					x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+					x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
 						'group'       => $this->groupId,
 						'label'       => $details[1],
 						'description' => $details[2]
 					) );
 				}else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
-					x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+					x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
 						'group'       => $this->groupId,
 						'label'       => $details[1],
 						'description' => $details[2]
@@ -108,14 +110,14 @@ class Pressbooks_Metadata_Create_Metabox {
 					//To use this functionality add the string 'number' in the fourth parameter when creating a field -> [3] position in the array
 					//'dublin_time_required' => array( true, 'Required Time', '', 'number' ),
 					if ($details[0] == true) {
-						x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+						x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
 							'group'       => $this->groupId,
 							'field_type'	=> 	'number',
 							'label'       => $details[1],
 							'description' => $details[2]
 						) );
 					}else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
-						x_add_metadata_field( 'pb_' . $property . '_' . $this->metaboxlevel, $this->metaboxlevel, array(
+						x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
 							'group'       => $this->groupId,
 							'field_type'	=> 	'number',
 							'label'       => $details[1],
@@ -124,7 +126,7 @@ class Pressbooks_Metadata_Create_Metabox {
 					}
 				}else{
 					if ($details[0] == true) {
-						x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
+						x_add_metadata_field( 	$fieldId, $this->metaboxlevel, array(
 							'group' 		=> 	$this->groupId,
 							'field_type' 	=> 	'select',
 							'values' 		=> 	$details[3],
@@ -132,7 +134,7 @@ class Pressbooks_Metadata_Create_Metabox {
 							'description' 	=> 	$details[2]
 						) );
 					}else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
-						x_add_metadata_field( 	'pb_'.$property.'_'.$this->metaboxlevel, $this->metaboxlevel, array(
+						x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
 							'group' 		=> 	$this->groupId,
 							'field_type' 	=> 	'select',
 							'values' 		=> 	$details[3],
