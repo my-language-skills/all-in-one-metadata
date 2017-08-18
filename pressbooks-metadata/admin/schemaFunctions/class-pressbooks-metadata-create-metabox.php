@@ -88,6 +88,10 @@ class Pressbooks_Metadata_Create_Metabox {
 		foreach ( $this->fieldProp as $property => $details ) {
 			//Creating the field id
 			$fieldId = 'pb_' . $property . '_' .$this->groupId. '_' .$this->metaboxlevel;
+			//Checking if the property is frozen from super admin
+			if($frozzenFieldId){
+				continue;
+			}
 			//Checking if we need a dropdown field
 			if(!isset($details[3])){
 				//Checking if the property is required
