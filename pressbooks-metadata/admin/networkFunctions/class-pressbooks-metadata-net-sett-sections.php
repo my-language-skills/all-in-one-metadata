@@ -99,6 +99,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 
 			//Callback function for the input field
 			$fieldRenderFunction = function() use ($propertyOptionName){
+				$html =  '<input type="text" class="regular-text" name="'.$propertyOptionName.'" value="'.get_option($propertyOptionName).'"><br>';
 				echo $html;
 			};
 
@@ -106,6 +107,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 			$checkboxRenderFunction = function() use ($propertyFreeze){
 				?>
 				<label><input type="checkbox" name="<?=$propertyFreeze?>"
+				              value="1" <?php checked(get_option($propertyFreeze)); ?> /> <?php
 				echo 'Check this box if you want to freeze this property.' ?></label>
 				<?php
 			};

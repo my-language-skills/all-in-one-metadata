@@ -154,6 +154,7 @@ class Pressbooks_Metadata_Network_Admin {
 				//Making sure we are saving the option on the root site
 				switch_to_blog(self::ROOT_SITE);
 				// Save our option with the site's options.
+				$readyOption =  $_POST[$option];
 				update_option($option, $readyOption);
 				//Updating the property on all sites
 				$this->update_properties($option,$_POST[$option]);
