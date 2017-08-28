@@ -14,6 +14,7 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         's' => 
         array (
             'settings\\' => 9,
+            'schemaTypes\\organization\\' => 25,
             'schemaTypes\\cw\\' => 15,
             'schemaTypes\\' => 12,
             'schemaFunctions\\' => 16,
@@ -36,6 +37,10 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'settings\\' => 
         array (
             0 => __DIR__ . '/../..' . '/admin/settings',
+        ),
+        'schemaTypes\\organization\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/admin/schemaTypesorganization',
         ),
         'schemaTypes\\cw\\' => 
         array (
@@ -72,6 +77,7 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaFunctions\\Pressbooks_Metadata_Output' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-output.php',
         'schemaFunctions\\Pressbooks_Metadata_Property_Overwrite' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php',
         'schemaTypes\\Pressbooks_Metadata_CreativeWork' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-creativeWork.php',
+        'schemaTypes\\Pressbooks_Metadata_Organization' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-organization.php',
         'schemaTypes\\Pressbooks_Metadata_Thing' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-thing.php',
         'schemaTypes\\Pressbooks_Metadata_Type' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-type.php',
         'schemaTypes\\Pressbooks_Metadata_Type_Structure' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-type-structure.php',
@@ -79,6 +85,13 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaTypes\\cw\\Pressbooks_Metadata_Book' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-books.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Educational' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-educational.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Message' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-message.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_Airline' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-airline.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_Corporation' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-corporation.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_EducationalOrganization' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-educationalOrganization.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_LocalBusiness' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-localBusiness.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_MedicalOrganization' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-medicalOrganization.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_PerformingGroup' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-performingGroup.php',
+        'schemaTypes\\organization\\Pressbooks_Metadata_SportsOrganization' => __DIR__ . '/../..' . '/admin/schemaTypes/organization/class-pressbooks-metadata-sportsOrganization.php',
         'settings\\Pressbooks_Metadata_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-type-fields.php',
         'settings\\Pressbooks_Metadata_Post_Type_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-post-types-fields.php',
         'settings\\Pressbooks_Metadata_Property_Fields' => __DIR__ . '/../..' . '/admin/settings/class-pressbooks-metadata-property-fields.php',

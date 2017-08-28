@@ -1,50 +1,54 @@
 <?php
 
-namespace schemaTypes\cw;
+namespace schemaTypes\organization;
 use schemaTypes;
 use schemaTypes\Pressbooks_Metadata_Type;
 
 /**
- * The class for the blog type including operations and metaboxes
+ * The class for the localBusiness
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.8.1
+ * @since      0.x
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author    Corentin Perrot <perrotcore@gmail.com>
  */
 
-class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
+class Pressbooks_Metadata_LocalBusiness extends Pressbooks_Metadata_Type {
 
 	/**
 	 * The variable that holds the values for the settings for this schema type
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 * @access   public
 	 */
-	static $type_setting = array('blog_type' => array('Blog Type','http://schema.org/Blog'));
+	static $type_setting = array('localBusiness_type' => array('LocalBusiness Type','http://schema.org/LocalBusiness'));
 
 	/**
 	 * The variable that holds the parents for the type
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 * @access   public
 	 */
 	static $type_parents = array(
 		'schemaTypes\Pressbooks_Metadata_Thing',
-		'schemaTypes\Pressbooks_Metadata_CreativeWork'
+		'schemaTypes\Pressbooks_Metadata_Organization'
 	);
 
 	/**
 	 * The variable that holds the properties of this schema type
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 * @access   public
 	 */
 	static $type_properties = array(
-		'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
+    'currenciesAccepted' => array(false,'Currencies Accepted','The currency accepted (in <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a>).'),
+		'openingHours' => array(false,'Opening Hours','The general opening hours for a business.'),
+		'paymentAccepted' => array(false,'Payment Accepted','Cash, credit card, etc.'),
+		'priceRange' => array(false,'Price Range','The price range of the business, for example $$$.')
 	);
 
 	public function __construct($type_level_input) {
@@ -58,7 +62,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for combining the current types properties with its parents fields
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 * @access   public
 	 */
 	public function get_all_properties() {
@@ -72,7 +76,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for comparing the instances of the schema types
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 * @access   public
 	 */
 	public function __toString() {
