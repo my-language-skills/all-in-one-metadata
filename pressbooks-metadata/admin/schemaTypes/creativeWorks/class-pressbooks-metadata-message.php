@@ -32,7 +32,10 @@ class Pressbooks_Metadata_Message extends Pressbooks_Metadata_Type {
 	 * @since    0.10
 	 * @access   public
 	 */
-	static $type_parents = array('schemaTypes\Pressbooks_Metadata_Thing');
+	static $type_parents = array(
+		'schemaTypes\Pressbooks_Metadata_Thing',
+		'schemaTypes\Pressbooks_Metadata_CreativeWork'
+	);
 
 	/**
 	 * The variable that holds the properties of this schema type

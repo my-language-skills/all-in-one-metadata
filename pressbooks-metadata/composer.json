@@ -5,6 +5,7 @@
       "settings\\": "admin/settings",
       "schemaTypes\\": "admin/schemaTypes",
       "schemaTypes\\cw\\": "admin/schemaTypes/creativeWorks",
+      "schemaTypes\\organization\\": "admin/schemaTypesorganization",
       "adminFunctions\\": "admin/adminFunctions",
       "networkFunctions\\": "admin/networkFunctions",
       "vocabularyFunctions\\": "admin/vocabularyFunctions"
