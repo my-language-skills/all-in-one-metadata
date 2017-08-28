@@ -16,6 +16,7 @@ return array(
     'schemaFunctions\\Pressbooks_Metadata_Engine' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-engine.php',
     'schemaFunctions\\Pressbooks_Metadata_General_Functions' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php',
     'schemaFunctions\\Pressbooks_Metadata_Output' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-output.php',
+    'schemaFunctions\\Pressbooks_Metadata_Property_Overwrite' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php',
     'schemaTypes\\Pressbooks_Metadata_CreativeWork' => $baseDir . '/admin/schemaTypes/class-pressbooks-metadata-creativeWork.php',
     'schemaTypes\\Pressbooks_Metadata_Thing' => $baseDir . '/admin/schemaTypes/class-pressbooks-metadata-thing.php',
     'schemaTypes\\Pressbooks_Metadata_Type' => $baseDir . '/admin/schemaTypes/class-pressbooks-metadata-type.php',

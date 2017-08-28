@@ -7,7 +7,7 @@ namespace schemaFunctions;
  * the metabox with the desired properties enabled. It also handles the settings for each property.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
@@ -19,7 +19,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The metabox ID.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   private
 	 */
 	private $groupId;
@@ -27,7 +27,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The metabox name, title that shows on the top of the metabox.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   private
 	 */
 	private $metaboxName;
@@ -35,7 +35,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The metabox level, variable specifies where the metabox should appear.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   private
 	 */
 	private $metaboxlevel;
@@ -43,7 +43,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The array containing all the field properties.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   private
 	 */
 	private $fieldProp;
@@ -51,7 +51,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The constructor for passing all information to the variables and finally creating a metabox.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 */
 	function __construct($inpGroupId,$inpMetaboxName,$inpMetaboxlevel,$inpFieldProp) {
 		//Getting Variables
@@ -67,7 +67,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The function for creating the metabox.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 */
 	function create_metabox(){
 		//Creating the metabox
@@ -81,7 +81,7 @@ class Pressbooks_Metadata_Create_Metabox {
 	/**
 	 * The function for creating the fields.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 */
 	private function create_metabox_fields() {
 		//Creating the Single Fields

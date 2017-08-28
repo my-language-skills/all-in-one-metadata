@@ -25,7 +25,7 @@ class Pressbooks_Metadata_General_Functions {
 	/**
 	 * A function used to retrieve all children types of a parent
 	 *
-	 * @since 1.0
+	 * @since 0.10
 	 */
 	private static function get_parent_children($parent){
 		$childrenNamespaces = structure::$allSchemaTypes;
@@ -42,7 +42,7 @@ class Pressbooks_Metadata_General_Functions {
 	/**
 	 * A function used to retrieve all parent types along with their children
 	 *
-	 * @since 1.0
+	 * @since 0.10
 	 */
 	public static function get_all_parents(){
 		$parentNamespaces = structure::$allParents;
@@ -55,7 +55,7 @@ class Pressbooks_Metadata_General_Functions {
 
 	/**
 	 * A function that returns activated parents
-	 * @since 1.0
+	 * @since 0.10
 	 */
 	public static function get_activated_parents($name = false){
 		$parentNamespaces = structure::$allParents;

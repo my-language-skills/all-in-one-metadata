@@ -29,7 +29,7 @@ class Pressbooks_Metadata_Educational extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for comparing the instances of the schema types
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public function __toString() {
