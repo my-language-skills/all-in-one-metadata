@@ -83,6 +83,7 @@ class Pressbooks_Metadata_Property_Overwrite {
     }
 
 	/**
+	 * Function for updating/deleting post meta, this is called from do_overwrite.
 	 *
 	 * @since  0.x
 	 */
