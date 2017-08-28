@@ -8,7 +8,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * The functions of the plugin that overwrite chapter/post schema properties from book-info or site-meta.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.11
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
@@ -24,7 +24,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	/**
 	 * The function that overwrites property values to chapter or post
 	 *
-	 * @since  0.x
+	 * @since  0.11
 	 */
     function do_overwrite(){
         //Wordpress Database variable for database operations
@@ -85,7 +85,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	/**
 	 * Function for updating/deleting post meta, this is called from do_overwrite.
 	 *
-	 * @since  0.x
+	 * @since  0.11
 	 */
 	function inject_meta_to_posts($key,$value,$posts,$delete){
 
@@ -110,7 +110,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	/**
 	 * The function that returns all the properties we have to overwrite
 	 *
-	 * @since  0.x
+	 * @since  0.11
 	 */
    function get_overwrite_values(){
 
@@ -140,7 +140,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	/**
 	 * The function used to extract all chapter/post ids, we use these ids to create the post meta for each chapter/post.
 	 *
-	 * @since  0.x
+	 * @since  0.11
 	 */
     function get_all_post_ids(){
         //Wordpress Database variable for database operations

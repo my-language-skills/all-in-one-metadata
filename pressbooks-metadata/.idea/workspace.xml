@@ -23,23 +23,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="class-pressbooks-metadata-property-overwrite.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="79" column="59" lean-forward="false" selection-start-line="79" selection-start-column="59" selection-end-line="79" selection-end-column="59" />
-              <folding>
-                <marker date="1503913958356" expanded="true" signature="1289:1372" ph="SELECT ID FR... ${$postsTable}" />
-                <marker date="1503913958356" expanded="true" signature="1961:2108" ph="SELECT meta_... ${$postMetaTable}" />
-                <marker date="1503913958356" expanded="true" signature="4308:4401" ph="SELECT optio... ${$optionsTable}" />
-                <marker date="1503913958356" expanded="true" signature="5438:5485" ph="SELECT ID FR... ${$postsTable}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -50,12 +34,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>seriali</find>
-      <find>serializ</find>
-      <find>serialize</find>
-      <find>u</find>
-      <find>unserialize</find>
-      <find>#</find>
       <find>@</find>
       <find>@since</find>
       <find>@1.0</find>
@@ -78,8 +56,14 @@
       <find>* Sinc</find>
       <find>* Since</find>
       <find>* Since</find>
-      <find>1</find>
       <find>1.0</find>
+      <find>0</find>
+      <find>0.1</find>
+      <find>x</find>
+      <find>0.</find>
+      <find>0.x</find>
+      <find>0.11</find>
+      <find>1</find>
     </findStrings>
     <replaceStrings>
       <replace>pb_isced_field_ed</replace>
@@ -129,7 +113,6 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/includes/class-pressbooks-metadata.php" />
         <option value="$PROJECT_DIR$/admin/networkFunctions/Pressbooks_Metadata_Net_Sett_Sections.php" />
-        <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/admin/schemaTypes/class-pressbooks-metadata-type.php" />
         <option value="$PROJECT_DIR$/admin/vocabularyFunctions/class-pressbooks-metadata-dublin.php" />
         <option value="$PROJECT_DIR$/admin/vocabularyFunctions/class-pressbooks-metadata-coins.php" />
@@ -142,6 +125,7 @@
         <option value="$PROJECT_DIR$/admin/networkFunctions/class-pressbooks-metadata-network-admin.php" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-engine.php" />
+        <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php" />
       </list>
     </option>
@@ -463,12 +447,12 @@
       <workItem from="1502698268354" duration="19712000" />
       <workItem from="1502787818444" duration="19306000" />
       <workItem from="1502867608088" duration="11422000" />
-      <workItem from="1503907901799" duration="3432000" />
+      <workItem from="1503907901799" duration="4643000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="684682000" />
+    <option name="totallyTimeSpent" value="685893000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -481,9 +465,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1934" height="1042" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25027144" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.354506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938388" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918918" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -748,16 +731,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="87" column="5" lean-forward="true" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="123">
-            <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="104" selection-end-column="40" />
-          </first_editor>
-          <second_editor />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -773,6 +747,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -804,11 +779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="156" column="47" lean-forward="false" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
-          <folding>
-            <element signature="e#35#95#0#PHP" expanded="true" />
-            <marker date="1503047187312" expanded="true" signature="3109:3129" ph="SELECT blog_... wp_blogs" />
-            <marker date="1503047187312" expanded="true" signature="3691:3748" ph="SELECT ID,po... ${$postsTable}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -844,15 +815,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="7857">
+            <caret line="291" column="72" lean-forward="false" selection-start-line="291" selection-start-column="72" selection-end-line="291" selection-end-column="72" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="79" column="59" lean-forward="false" selection-start-line="79" selection-start-column="59" selection-end-line="79" selection-end-column="59" />
+        <state relative-caret-position="240">
+          <caret line="114" column="35" lean-forward="true" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
           <folding>
-            <marker date="1503913958356" expanded="true" signature="1289:1372" ph="SELECT ID FR... ${$postsTable}" />
-            <marker date="1503913958356" expanded="true" signature="1961:2108" ph="SELECT meta_... ${$postMetaTable}" />
-            <marker date="1503913958356" expanded="true" signature="4308:4401" ph="SELECT optio... ${$optionsTable}" />
-            <marker date="1503913958356" expanded="true" signature="5438:5485" ph="SELECT ID FR... ${$postsTable}" />
+            <marker date="1503916003247" expanded="true" signature="1291:1374" ph="SELECT ID FR... ${$postsTable}" />
+            <marker date="1503916003247" expanded="true" signature="1963:2110" ph="SELECT meta_... ${$postMetaTable}" />
+            <marker date="1503916003247" expanded="true" signature="4312:4405" ph="SELECT optio... ${$optionsTable}" />
+            <marker date="1503916003247" expanded="true" signature="5443:5490" ph="SELECT ID FR... ${$postsTable}" />
           </folding>
         </state>
       </provider>

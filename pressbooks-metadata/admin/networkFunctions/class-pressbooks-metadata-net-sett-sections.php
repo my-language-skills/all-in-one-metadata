@@ -5,7 +5,7 @@ namespace networkFunctions;
  * The class that handles the creation of fields for the network admin settings
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/networkFunctions
@@ -17,42 +17,42 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	/**
 	 * The id for the section of fields.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	public $sectionId;
 
 	/**
 	 * The display page for the section of fields.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	public $sectionDisPage;
 
 	/**
 	 * The title for the section of fields.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	public $sectionTitle;
 
 	/**
 	 * The type name.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	public $typeId;
 
 	/**
 	 * The type properties.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	public $typeProperties;
 
 	/**
 	 * The type level.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	public $typeLevel;
 
@@ -70,7 +70,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	/**
 	 * Function that creates the settings section, each schema type has its own section.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	function createSection(){
 		//Adding the settings section
@@ -81,7 +81,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	/**
 	 * Function that creates the fields for each section, each schema type property is a field.
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	function createFields($data){
 		//Looping through the properties of the type

@@ -9,7 +9,7 @@ use networkFunctions\Pressbooks_Metadata_Net_Sett_Sections as net_sections;
  * The functions of the plugin that handle the the settings of the network admin and the network admin schema functionality.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/networkFunctions
@@ -21,7 +21,7 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Variable for holding the Root Site ID
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	const ROOT_SITE = 1;
 
@@ -33,7 +33,7 @@ class Pressbooks_Metadata_Network_Admin {
 	 * Creating the settings page for the network administrator, this page is for managing the
 	 * Site-Meta/Book-info information on all sites
 	 *
-	 * @since    0.x
+	 * @since    0.10
 	 */
 	function add_settings() {
 		// Create our options page.
@@ -68,7 +68,7 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Function used to extract the details the type from its settings
 	 *
-	 * @since  0.x
+	 * @since  0.10
 	 */
 	private function get_type_details($type) {
 		foreach($type::$type_setting as $typeId => $details) {
@@ -79,7 +79,7 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Linking the page that the settings will render
 	 *
-	 * @since  0.x
+	 * @since  0.10
 	 */
 	function render_network_settings(){
 		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
@@ -88,7 +88,7 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Function used to distribute property data to all our Book-Info/Site-Meta on all our Sites/Books
 	 *
-	 * @since  0.x
+	 * @since  0.10
 	 */
 	private function update_properties($metaKey,$newValue){
 	
@@ -135,7 +135,7 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Function used for saving the settings on the Super Admin
 	 *
-	 * @since  0.x
+	 * @since  0.10
 	 */
 	function update_network_options() {
 		// Make sure we are posting from our options page. There's a little surprise

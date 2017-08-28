@@ -81,7 +81,7 @@ class Pressbooks_Metadata_Property_Fields {
 	/**
 	 * The main function used to create a field.
 	 *
-	 * @since  0.x
+	 * @since  0.11
 	 */
 	function pmdt_create_field(){
 		$postLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
