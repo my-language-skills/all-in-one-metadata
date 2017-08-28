@@ -78,14 +78,23 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 Implementation of milestone 9.1 (Finishing educational metadata and related metadata)
 
 ### Later
-Settings page in superadmin -network- level
+
 
 ### Future
 New types
     
 ## Changelog
 
-## 1.0
+## 0.11
+* **ADDITIONS**
+    * Enable the cloning of properties from each site (Book Info/Site-Meta) to (Chapter/Post)  #140
+    
+* **List of Files revised**
+    * class-pressbooks-metadata-engine.php
+    * class-pressbooks-metadata-property-overwrite.php
+    * class-pressbooks-metadata-property-fields.php
+
+## 0.10
 * **ADDITIONS**
     * Show parent activation and info for empty Types #113
     * Add parent sections under each tab level  #123
@@ -93,7 +102,7 @@ New types
     * Add the coins and the dublin core vocabulary into the plugin #116
 * **ENHANCEMENTS**
     * Fix Tab Navigation in Settings #133
-    * Each type link is opning in a new page #132
+    * Each type link is opening in a new page #132
     * Fixed Positioning of the filters #127
     * Fix the loading animation and the saving of the first type #125
     * Change color for warnings on settings page  #122
@@ -278,7 +287,11 @@ New types
   
 ## Upgrade Notice
 
-### 1.0
+### 0.11
+Administrator can overwrite Chapter and Post property values from Book-Info and Site-Meta.The administrator can populate type property values in all chapters
+or posts. This is done by selecting the toPost or toChapter option on a property of any type from the Site-Meta tab of the settings
+
+### 0.10
 Code rewriting for optimisation. All the types inherit as classes from a base class called type. The creation of new types is way simpler and faster.
 Each property for each level and each type can be enabled and disabled. Dublin core and Coins vocabularies were added, also the schema types now can be 
 filtered by parent.

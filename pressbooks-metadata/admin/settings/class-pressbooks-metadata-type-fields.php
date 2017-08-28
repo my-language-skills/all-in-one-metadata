@@ -100,7 +100,7 @@ class Pressbooks_Metadata_Fields {
 	/**
 	 * The function used to get the current type for finding its parents.
 	 * The function returns parent ID or parent Name
-	 * @since  1.0
+	 * @since  0.10
 	 */
 	private function get_type_parents($getName = false){
 		$foundParents = array();

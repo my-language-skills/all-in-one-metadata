@@ -8,7 +8,7 @@ use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
  * The class for the Type including operations, this class is used as a base class for all the types
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
@@ -20,7 +20,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The type level where these metaboxes and their schema operations will go
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $type_level;
@@ -29,7 +29,7 @@ class Pressbooks_Metadata_Type {
 	 * The name of the class along with the type_level
 	 * Used to identify each type differently so we can eliminate parent types not needed
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $class_name;
@@ -37,7 +37,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the fields/properties for the metaboxes
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $type_fields;
@@ -45,7 +45,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The variable that checks if we are on a post level or site level
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $is_site;
@@ -53,7 +53,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the values from the database for the schema output
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $metadata;
@@ -61,7 +61,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the name of the type.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $typeName;
@@ -69,7 +69,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the display name of the type.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $typeDisplayName;
@@ -77,7 +77,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the url of the type.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $typeUrl;
@@ -100,7 +100,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * Function that checks if the property has to run on output or not.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public function pmdt_prop_run($metaProperty){
@@ -117,7 +117,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * Function that extracts the type's details from its settings.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public function pmdt_populate_names($settings){
@@ -131,7 +131,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * Gets the value for the microtags from $this->metadata.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public function pmdt_get_value($propName){
@@ -152,7 +152,7 @@ class Pressbooks_Metadata_Type {
 	/**
 	 * Returns type level.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public function pmdt_get_type_level(){

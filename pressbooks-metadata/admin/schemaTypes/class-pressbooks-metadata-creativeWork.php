@@ -6,7 +6,7 @@ namespace schemaTypes;
  * The class for the CreativeWork type including just the properties, this type will inject properties on its child types
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes

@@ -8,6 +8,7 @@ use adminFunctions\Pressbooks_Metadata_Options as options;
 use schemaFunctions\Pressbooks_Metadata_Output as output;
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
 use adminFunctions\Pressbooks_Metadata_Required_Plugins as required;
+use networkFunctions\Pressbooks_Metadata_Network_Admin as netadmin;
 
 /**
  * The file that defines the core plugin class
@@ -177,6 +178,10 @@ class Pressbooks_Metadata {
 
 		//Load the options page
 		$this->loader->add_action( 'admin_menu', new options(), 'adminFunctions\Pressbooks_Metadata_Options::add_options_page' );
+
+		//Network admin settings page
+		$this->loader->add_action( 'network_admin_menu', new netadmin(), 'networkFunctions\Pressbooks_Metadata_Network_Admin::add_settings' );
+		$this->loader->add_action( 'network_admin_edit_update_network_options', new netadmin(), 'networkFunctions\Pressbooks_Metadata_Network_Admin::update_network_options' );
 
 		//Header and footer functions that output metadata
 		$this->loader->add_action( 'wp_head', new output(), 'schemaFunctions\Pressbooks_Metadata_Output::header_run' );

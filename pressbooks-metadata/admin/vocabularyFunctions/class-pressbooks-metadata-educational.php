@@ -6,7 +6,7 @@ namespace vocabularyFunctions;
  * The class for the educational custom vocabulary including operations and metaboxes
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/vocabularyFunctions

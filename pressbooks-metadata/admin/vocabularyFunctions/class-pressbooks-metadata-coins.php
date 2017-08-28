@@ -9,7 +9,7 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
  * The class for the coins vocabulary including operations and metaboxes
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/vocabularyFunctions
@@ -22,7 +22,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * The type level that identifies where these metaboxes will be created
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $type_level;
@@ -30,7 +30,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * The variable that holds the values from the database for the vocabulary output
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public $metadata;
@@ -38,7 +38,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * The variable that holds the properties of this vocabulary
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	static $type_properties = array(
@@ -58,7 +58,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * The function which produces the metaboxes for the vocabulary
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
-	 * @since 1.0
+	 * @since 0.10
 	 */
 	public function pmdt_add_metabox($meta_position) {
 		new create_metabox('coins_vocab','Coins Metadata',$meta_position,self::$type_properties);
@@ -67,7 +67,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * A function needed for the array of metadata that comes from each post site-meta cpt or chapter
 	 * It automatically returns the first item in the array.
-	 * @since 1.0
+	 * @since 0.10
 	 *
 	 */
 	private function pmdt_get_first($my_array){
@@ -81,7 +81,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * Gets the value for the microtags from $this->metadata.
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	private function pmdt_get_value($propName){
@@ -97,7 +97,7 @@ class Pressbooks_Metadata_Coins {
 	/**
 	 * Function that creates the vocabulary metatags
 	 *
-	 * @since    1.0
+	 * @since    0.10
 	 * @access   public
 	 */
 	public function pmdt_get_metatags(){

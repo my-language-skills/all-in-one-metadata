@@ -70,6 +70,7 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaFunctions\\Pressbooks_Metadata_Engine' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-engine.php',
         'schemaFunctions\\Pressbooks_Metadata_General_Functions' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php',
         'schemaFunctions\\Pressbooks_Metadata_Output' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-output.php',
+        'schemaFunctions\\Pressbooks_Metadata_Property_Overwrite' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php',
         'schemaTypes\\Pressbooks_Metadata_CreativeWork' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-creativeWork.php',
         'schemaTypes\\Pressbooks_Metadata_Thing' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-thing.php',
         'schemaTypes\\Pressbooks_Metadata_Type' => __DIR__ . '/../..' . '/admin/schemaTypes/class-pressbooks-metadata-type.php',

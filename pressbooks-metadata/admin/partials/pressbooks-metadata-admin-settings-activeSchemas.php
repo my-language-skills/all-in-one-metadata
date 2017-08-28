@@ -6,7 +6,7 @@ use schemaFunctions\Pressbooks_Metadata_Engine as engine;
  * The file containing the html for the activeSchemas Metabox in the settings.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials

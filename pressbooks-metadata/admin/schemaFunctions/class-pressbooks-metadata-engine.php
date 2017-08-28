@@ -30,7 +30,7 @@ class Pressbooks_Metadata_Engine {
 	/**
 	 * A function for gathering all the schema type settings from types that are filtered through their parent.
 	 *
-	 * @since  1.0
+	 * @since  0.10
 	 */
 	public function get_type_settings() {
 		$typeSettings = array();
@@ -98,6 +98,7 @@ class Pressbooks_Metadata_Engine {
 	 * @since  0.8.1
 	 */
 	public function register_settings() {
+
 		//Post Level
 		$postLevelSection = "postLevelSection";
 		$postLevelPage = "post_level_tab";
@@ -218,7 +219,7 @@ class Pressbooks_Metadata_Engine {
 
 	/**
 	 * Function used to extract the name of the type from its settings
-	 * @since  1.0
+	 * @since  0.10
 	 */
 	private function get_type_id($type) {
 		foreach($type::$type_setting as $typeId => $details) {
@@ -228,7 +229,7 @@ class Pressbooks_Metadata_Engine {
 
 	/**
 	 * Function used to remove null values from an array
-	 * @since  1.0
+	 * @since  0.10
 	 */
 	private function remove_null($array) {
 		$cleanArray = array();
@@ -270,6 +271,10 @@ class Pressbooks_Metadata_Engine {
 	 * @since  0.9
 	 */
 	public function engine_run(){
+		//Overwriting all selected values to chapter or post
+		$overwriteEngine = new Pressbooks_Metadata_Property_Overwrite();
+		$overwriteEngine->do_overwrite();
+
 		//Getting all active post levels
 		$schemaPostLevels = $this->get_enabled_levels();
 
