@@ -29,7 +29,12 @@ class Pressbooks_Metadata_Required_Plugins {
 		if(!site_cpt::pressbooks_identify()){
 			if (!is_plugin_active('custom-metadata/custom_metadata.php')) {
 				add_action( 'admin_notices', function () {
-					echo '<div id="message" class="error fade"><p>Please make sure that the custom-metadata plugin is installed for the full PB Metadata Functionality -- <a href="https://wordpress.org/plugins/custom-metadata/">Get it Here</a></p></div>';
+					if(is_multisite()){
+						$link = network_admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
+					}else{
+						$link = admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
+					}
+					echo '<div id="message" class="error fade"><p>Please make sure that the custom-metadata plugin is installed for the full PB Metadata Functionality -- <a href="'.$link.'">Get it Here</a></p></div>';
 				} );
 				return;
 			}
