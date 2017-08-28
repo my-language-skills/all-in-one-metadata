@@ -1,6 +1,6 @@
 
 
-# pressbooks-metadata
+# All In One Metadata
 
 Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa
 
@@ -84,6 +84,14 @@ Implementation of milestone 9.1 (Finishing educational metadata and related meta
 New types
     
 ## Changelog
+
+## 0.12
+* **ADDITIONS**
+    *  Added Organisation Parent and Types
+    
+* **List of Files revised**
+    * schemaTypes Folder
+    * composer.json
 
 ## 0.11
 * **ADDITIONS**
@@ -286,6 +294,9 @@ New types
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
+
+### 0.12
+Added Organization Parent and Types
 
 ### 0.11
 Administrator can overwrite Chapter and Post property values from Book-Info and Site-Meta.The administrator can populate type property values in all chapters

@@ -13,10 +13,10 @@
  * @package           Pressbooks_Metadata
  *
  * @wordpress-plugin
- * Plugin Name:       Pressbooks - Metadata
+ * Plugin Name:       All In One Metadata
  * Plugin URI:        https://github.com/Books4Languages/pressbooks-metadata
- * Description:       This plugin adds metadata to the pressbooks plugin
- * Version:           0.8.1
+ * Description:       This plugin adds metadata to wordpress and also has support for the pressbooks plugin
+ * Version:           0.12
  * Author:            My Language Skills
  * Author URI:        http://books4languages.com
  * License:           GPL-2.0+

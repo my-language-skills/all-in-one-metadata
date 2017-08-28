@@ -8,7 +8,7 @@ use schemaTypes\Pressbooks_Metadata_Type;
  * The class for the sportsOrganization
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.12
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
@@ -22,7 +22,7 @@ class Pressbooks_Metadata_SportsOrganization extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the values for the settings for this schema type
 	 *
-	 * @since    0.x
+	 * @since    0.12
 	 * @access   public
 	 */
 	static $type_setting = array('sportsOrganization_type' => array('SportsOrganization Type','http://schema.org/SportsOrganization'));
@@ -30,7 +30,7 @@ class Pressbooks_Metadata_SportsOrganization extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the parents for the type
 	 *
-	 * @since    0.x
+	 * @since    0.12
 	 * @access   public
 	 */
 	static $type_parents = array(
@@ -41,7 +41,7 @@ class Pressbooks_Metadata_SportsOrganization extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the properties of this schema type
 	 *
-	 * @since    0.x
+	 * @since    0.12
 	 * @access   public
 	 */
 	static $type_properties = array(
@@ -59,7 +59,7 @@ class Pressbooks_Metadata_SportsOrganization extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for combining the current types properties with its parents fields
 	 *
-	 * @since    0.x
+	 * @since    0.12
 	 * @access   public
 	 */
 	public function get_all_properties() {
@@ -73,7 +73,7 @@ class Pressbooks_Metadata_SportsOrganization extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for comparing the instances of the schema types
 	 *
-	 * @since    0.x
+	 * @since    0.12
 	 * @access   public
 	 */
 	public function __toString() {
