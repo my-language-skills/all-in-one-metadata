@@ -12,6 +12,7 @@ return array(
     'schemaTypes\\cw\\' => array($baseDir . '/admin/schemaTypes/creativeWorks'),
     'schemaTypes\\' => array($baseDir . '/admin/schemaTypes'),
     'schemaFunctions\\' => array($baseDir . '/admin/schemaFunctions'),
+    'requiredPlugins\\' => array($baseDir . '/admin/requiredPlugins'),
     'networkFunctions\\' => array($baseDir . '/admin/networkFunctions'),
     'adminFunctions\\' => array($baseDir . '/admin/adminFunctions'),
 );
