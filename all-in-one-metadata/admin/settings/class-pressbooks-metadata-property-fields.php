@@ -94,7 +94,7 @@ class Pressbooks_Metadata_Property_Fields {
 			//Create the callback function for the overwrite field
 			$overwriteCallback = function() use ($overwriteField,$overwriteTo){
 				$disabled = $this->details[0]==true? 'disabled' : '';
-				$html = '<input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
 				$html .= $overwriteTo . ' <input class="property-checkbox" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, get_option($overwriteField), false) . '/>';
 				echo $html;
 			};
@@ -104,7 +104,7 @@ class Pressbooks_Metadata_Property_Fields {
 			//If level is not metadata or site-meta we just create the property field without the overwrite
 			$overwriteCallback = function(){
 				$disabled = $this->details[0]==true? 'disabled' : '';
-				$html = '<input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
 				echo $html;
 			};
 		}
