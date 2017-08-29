@@ -129,7 +129,7 @@ class Pressbooks_Metadata_Fields {
 
 		//If the type has no properties than we show the user that the parent type will be used insted
 		if(isset($this->metaInfo[2])){
-			$html .= '<p class="noPropType">Type Empty of properties '.$this->metaInfo[2].' will be used</p>';
+			$html .= '<p class="noPropType">Type is Empty of properties '.$this->metaInfo[2].' will be used</p>';
 		}
 
 		//Deciding if a support link will appear on the settings or not

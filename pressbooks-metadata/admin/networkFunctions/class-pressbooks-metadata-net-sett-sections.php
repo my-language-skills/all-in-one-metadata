@@ -56,26 +56,45 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	 */
 	public $typeLevel;
 
-	function __construct($inpSectionId,$inpSectionDisPage,$inpSectionTitle,$inpTypeId,$inpTypeProperties,$inpTypeLevel){
+	/**
+	 * If the type is empty of properties.
+	 *
+	 * @since    0.x
+	 */
+	public $isEmpty;
+
+	function __construct($inpSectionId,$inpSectionDisPage,$inpSectionTitle,$inpTypeId,$inpTypeProperties,$inpTypeLevel,$inpIsEmpty){
 		$this->sectionId = $inpSectionId;
 		$this->sectionDisPage = $inpSectionDisPage;
 		$this->sectionTitle = $inpSectionTitle;
 		$this->typeId = $inpTypeId;
 		$this->typeProperties = $inpTypeProperties;
 		$this->typeLevel = $inpTypeLevel;
+		$this->isEmpty = $inpIsEmpty;
 		$this->createSection();
-		$this->createFields($this->typeProperties);
 	}
 
 	/**
 	 * Function that creates the settings section, each schema type has its own section.
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 */
 	function createSection(){
+
+		//Callback function for the section
+		$sectionCallback = !isset($this->isEmpty) ? false : function() {
+			$html =  '<p class="noPropType">The type is Empty of Properties</p><br>';
+			echo $html;
+		};
+
 		//Adding the settings section
 		add_settings_section($this->sectionId,$this->sectionTitle
-			,false,$this->sectionDisPage);
+			,$sectionCallback,$this->sectionDisPage);
+
+		//If the type has properties then we populate them
+		if(!isset($this->isEmpty)){
+			$this->createFields($this->typeProperties);
+        }
 	}
 
 	/**

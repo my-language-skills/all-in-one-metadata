@@ -33,12 +33,12 @@ class Pressbooks_Metadata_Network_Admin {
 	 * Creating the settings page for the network administrator, this page is for managing the
 	 * Site-Meta/Book-info information on all sites
 	 *
-	 * @since    0.10
+	 * @since    0.x
 	 */
 	function add_settings() {
 		// Create our options page.
-		add_submenu_page( 'settings.php', 'PB Metadata Network Admin Settings',
-			'PB Metadata Network Settings', 'manage_network_options',
+		add_submenu_page( 'settings.php', 'All In One Metadata Network Admin Settings',
+			'All In One Metadata Network Settings', 'manage_network_options',
 			'site_level_admin_display', array( $this, 'render_network_settings' ) );
 
 		//These variables are static now because this is a prototype for the book level types
@@ -60,7 +60,8 @@ class Pressbooks_Metadata_Network_Admin {
 				$type_details[1].' On Site Level',
 				$type_details[0],
 				$type::$type_properties,
-				$siteLevelIndicator
+				$siteLevelIndicator,
+				$type_details[2] //If is empty this will be set
 			);
 		}
 	}
@@ -68,11 +69,16 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Function used to extract the details the type from its settings
 	 *
-	 * @since  0.10
+	 * @since  0.x
 	 */
 	private function get_type_details($type) {
 		foreach($type::$type_setting as $typeId => $details) {
-			return array($typeId,$details[0]);
+			if(isset($details[2])){
+				return array($typeId,$details[0],$details[2]);
+			}else{
+				return array($typeId,$details[0],null);
+			}
+
 		}
 	}
 
