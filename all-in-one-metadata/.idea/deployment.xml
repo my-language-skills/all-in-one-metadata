@@ -12,7 +12,7 @@
       <paths name="Office Server">
         <serverdata>
           <mappings>
-            <mapping deploy="/pressbooks-metadata" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/all-in-one-metadata" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

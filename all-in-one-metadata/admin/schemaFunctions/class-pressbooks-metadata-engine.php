@@ -164,6 +164,9 @@ class Pressbooks_Metadata_Engine {
 
 		foreach(structure::$allParents as $parent){
 			$parentDetails = $parent::type_name;
+			//Not allowing the thing filter to show
+			if($parentDetails[1] == 'thing_properties')
+				continue;
 			add_settings_field(
 				$parentDetails[1].'_filter_setting',
 				'',
@@ -172,7 +175,7 @@ class Pressbooks_Metadata_Engine {
 					$fieldId = $parentDetails[1].'_filter_setting';
 					$selectedColor = get_option($fieldId)?'style="color:blue"':'';
 					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$fieldId.'" name="'.$fieldId.'" value="1" ' . checked(1, get_option($fieldId), false) . '/>';
-					$html .= '<span> | </span><a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','Parent',$parentDetails[0]).'</a><span> | </span>';
+					$html .= '<span> | </span><a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','',$parentDetails[0]).'</a><span> | </span>';
 					echo $html;
 					},
 				$parentsDisplayPage,
