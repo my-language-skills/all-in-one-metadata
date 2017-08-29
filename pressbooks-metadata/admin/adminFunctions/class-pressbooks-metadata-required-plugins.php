@@ -34,7 +34,7 @@ class Pressbooks_Metadata_Required_Plugins {
 					}else{
 						$link = admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
 					}
-					echo '<div id="message" class="error fade"><p>Please make sure that the custom-metadata plugin is installed for the full PB Metadata Functionality -- <a href="'.$link.'">Get it Here</a></p></div>';
+					echo '<div id="message" class="error fade"><p>Please make sure that the Custom Metadata Manager plugin is installed for the full plugin functionality -- <a href="'.$link.'">Get it Here</a></p></div>';
 				} );
 				return;
 			}

@@ -24,7 +24,17 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="class-pressbooks-metadata-type-structure.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="class-pressbooks-metadata-required-plugins.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="36" column="115" lean-forward="false" selection-start-line="36" selection-start-column="115" selection-end-line="36" selection-end-column="115" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class-pressbooks-metadata-type-structure.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/schemaTypes/class-pressbooks-metadata-type-structure.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="825">
@@ -114,16 +124,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class-pressbooks-metadata-series.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-series.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-162">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -149,7 +149,6 @@
       <find>Book from Book Info menu.</find>
       <find>T</find>
       <find>Type E</find>
-      <find>PB</find>
       <find>PRESSBO</find>
       <find>PRESSBOOK</find>
       <find>p</find>
@@ -165,6 +164,7 @@
       <find>Pressbooks</find>
       <find>Pressbooks</find>
       <find>O</find>
+      <find>PB</find>
     </findStrings>
     <replaceStrings>
       <replace>pb_isced_field_ed</replace>
@@ -225,13 +225,13 @@
         <option value="$PROJECT_DIR$/admin/schemaTypes/class-pressbooks-metadata-organization.php" />
         <option value="$PROJECT_DIR$/pressbooks-metadata.php" />
         <option value="$PROJECT_DIR$/../README.md" />
-        <option value="$PROJECT_DIR$/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php" />
         <option value="$PROJECT_DIR$/admin/networkFunctions/class-pressbooks-metadata-network-admin.php" />
         <option value="$PROJECT_DIR$/admin/networkFunctions/class-pressbooks-metadata-net-sett-sections.php" />
         <option value="$PROJECT_DIR$/admin/partials/pressbooks-metadata-admin-settings-schemaLocations.php" />
         <option value="$PROJECT_DIR$/admin/schemaTypes/organization/class-pressbooks-metadata-ngo.php" />
         <option value="$PROJECT_DIR$/admin/schemaTypes/organization/class-pressbooks-metadata-governmentOrganization.php" />
         <option value="$PROJECT_DIR$/admin/schemaTypes/class-pressbooks-metadata-type-structure.php" />
+        <option value="$PROJECT_DIR$/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php" />
       </list>
     </option>
   </component>
@@ -559,12 +559,12 @@
       <workItem from="1502787818444" duration="19306000" />
       <workItem from="1502867608088" duration="11422000" />
       <workItem from="1503907901799" duration="4643000" />
-      <workItem from="1503990867395" duration="4946000" />
+      <workItem from="1503990867395" duration="5163000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="696999000" />
+    <option name="totallyTimeSpent" value="697216000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -576,7 +576,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2372973" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -646,14 +646,6 @@
             <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1038,6 +1030,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="41" column="44" lean-forward="false" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="36" column="115" lean-forward="false" selection-start-line="36" selection-start-column="115" selection-end-line="36" selection-end-column="115" />
           <folding />
         </state>
       </provider>
