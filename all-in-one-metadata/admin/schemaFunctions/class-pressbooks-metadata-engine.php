@@ -210,7 +210,7 @@ class Pressbooks_Metadata_Engine {
 					foreach($type::$type_parents as $parent){
 						sections::properties(
 							$sectionId,
-							$parent::type_name[0],
+							str_replace('Thing','General',$parent::type_name[0]),
 							$sectionId.'_'.$parent::type_name[1].'_dis',
 							$parent::type_properties
 						);

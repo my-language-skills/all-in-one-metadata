@@ -162,7 +162,7 @@ class Pressbooks_Metadata_Fields {
 			  <option value="parents">Show Basic Properties</option> <?php
 
 			for($i = 0; $i < count($parentIds); $i++){
-				?><option value="<?= $parentIds[$i] ?>">Show <?= $parentNames[$i] ?></option><?php
+				?><option value="<?= $parentIds[$i] ?>">Show <?= str_replace('Thing','General',$parentNames[$i]) ?></option><?php
 			}
 
 			?> </select> <?php
@@ -192,13 +192,13 @@ class Pressbooks_Metadata_Fields {
 				Choose ' . $this->metaInfo[0] . ' Properties:<br>
 			</h1>
 			<div style="display: none;" class="properties-loading-image">
-            <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'pressbooks-metadata/assets/loading.gif"/>
+            <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'all-in-one-metadata/assets/loading.gif"/>
             </div>
             <p class="saving-message" style="display: none">Settings Saved!</p>
 			</form> <!-- This is a fix for the first types properties not saving -->
 					'.$contents.'
 			</div>
-			<a href="#TB_inline?width=600&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
+			<a href="#TB_inline?width=380&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
 		}
 		echo $html;
 	}
