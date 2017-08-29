@@ -48,7 +48,7 @@ if($activatedLevels == 0){
 					?>
                     <div id="<?= $postType ?>" class="activeSchemas">
                        <form class="parent-filters-form" method="post" action="options.php">
-                           <p>Filter By Parent To Begin</p>
+                           <p>Click On What You Are Trying To Describe With Metadata</p>
                            <?php
                             settings_fields( 'parents_display_page' );
                             do_settings_sections( 'parents_display_page' );
