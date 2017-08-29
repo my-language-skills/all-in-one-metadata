@@ -28,12 +28,15 @@ class Pressbooks_Metadata_Required_Plugins {
 		// Check for custom-metadata install
 		if(!site_cpt::pressbooks_identify()){
 			if (!is_plugin_active('custom-metadata/custom_metadata.php')) {
+				if(is_multisite()){
+					$link = network_admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
+				}else{
+					$link = admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
+				}
 				add_action( 'admin_notices', function () {
-					if(is_multisite()){
-						$link = network_admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
-					}else{
-						$link = admin_url( 'plugin-install.php?tab=plugin-information&plugin=custom-metadata&TB_iframe=true&width=600&height=550' );
-					}
+					echo '<div id="message" class="error fade"><p>Please make sure that the Custom Metadata Manager plugin is installed for the full plugin functionality -- <a href="'.$link.'">Get it Here</a></p></div>';
+				} );
+				add_action( 'network_admin_notices', function () {
 					echo '<div id="message" class="error fade"><p>Please make sure that the Custom Metadata Manager plugin is installed for the full plugin functionality -- <a href="'.$link.'">Get it Here</a></p></div>';
 				} );
 				return;
@@ -41,4 +44,3 @@ class Pressbooks_Metadata_Required_Plugins {
 		}
 	}
 }
-
