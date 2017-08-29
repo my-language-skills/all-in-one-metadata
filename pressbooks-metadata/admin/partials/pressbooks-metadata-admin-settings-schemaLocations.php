@@ -19,7 +19,7 @@
 		if(is_multisite()){
 		?>
         <button class="tablinks-level nav-tab" onclick="openSett(event,'tablinks-level', 'multisiteLevel','levels')">Multisite Level</button>
-            <?php
+        <?php
 		}
 		?>
     </div>
