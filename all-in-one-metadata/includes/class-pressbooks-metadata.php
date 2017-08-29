@@ -7,7 +7,7 @@ use adminFunctions\Pressbooks_Metadata_Importing as importing;
 use adminFunctions\Pressbooks_Metadata_Options as options;
 use schemaFunctions\Pressbooks_Metadata_Output as output;
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
-use adminFunctions\Pressbooks_Metadata_Required_Plugins as required;
+use requiredPlugins\Pressbooks_Metadata_Required_Plugins as required;
 use networkFunctions\Pressbooks_Metadata_Network_Admin as netadmin;
 
 /**
@@ -137,6 +137,11 @@ class Pressbooks_Metadata {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-pressbooks-metadata-public.php';
 
+		/**
+		 * The class responsible for installing required plugins.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/requiredPlugins/class-tgm-plugin-activation.php';
+
 		$this->loader = new Pressbooks_Metadata_Loader();
 
 	}
@@ -170,7 +175,7 @@ class Pressbooks_Metadata {
 		$plugin_admin = new Pressbooks_Metadata_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		//Installing required plugins
-		$this->loader->add_action( 'admin_init', new required(), 'adminFunctions\Pressbooks_Metadata_Required_Plugins::check' );
+		$this->loader->add_action( 'tgmpa_register', new required(), 'requiredPlugins\Pressbooks_Metadata_Required_Plugins::install' );
 
 		//Load styles and scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

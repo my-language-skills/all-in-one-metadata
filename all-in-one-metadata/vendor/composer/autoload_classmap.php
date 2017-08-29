@@ -8,10 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'adminFunctions\\Pressbooks_Metadata_Importing' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-importing.php',
     'adminFunctions\\Pressbooks_Metadata_Options' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-options.php',
-    'adminFunctions\\Pressbooks_Metadata_Required_Plugins' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php',
     'adminFunctions\\Pressbooks_Metadata_Site_Cpt' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-site-cpt.php',
     'networkFunctions\\Pressbooks_Metadata_Net_Sett_Sections' => $baseDir . '/admin/networkFunctions/class-pressbooks-metadata-net-sett-sections.php',
     'networkFunctions\\Pressbooks_Metadata_Network_Admin' => $baseDir . '/admin/networkFunctions/class-pressbooks-metadata-network-admin.php',
+    'requiredPlugins\\Pressbooks_Metadata_Required_Plugins' => $baseDir . '/admin/requiredPlugins/class-pressbooks-metadata-required-plugins.php',
     'schemaFunctions\\Pressbooks_Metadata_Create_Metabox' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php',
     'schemaFunctions\\Pressbooks_Metadata_Engine' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-engine.php',
     'schemaFunctions\\Pressbooks_Metadata_General_Functions' => $baseDir . '/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php',

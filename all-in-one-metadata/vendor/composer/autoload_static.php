@@ -19,6 +19,10 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
             'schemaTypes\\' => 12,
             'schemaFunctions\\' => 16,
         ),
+        'r' => 
+        array (
+            'requiredPlugins\\' => 16,
+        ),
         'n' => 
         array (
             'networkFunctions\\' => 17,
@@ -54,6 +58,10 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         array (
             0 => __DIR__ . '/../..' . '/admin/schemaFunctions',
         ),
+        'requiredPlugins\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/admin/requiredPlugins',
+        ),
         'networkFunctions\\' => 
         array (
             0 => __DIR__ . '/../..' . '/admin/networkFunctions',
@@ -67,10 +75,10 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
     public static $classMap = array (
         'adminFunctions\\Pressbooks_Metadata_Importing' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-importing.php',
         'adminFunctions\\Pressbooks_Metadata_Options' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-options.php',
-        'adminFunctions\\Pressbooks_Metadata_Required_Plugins' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-required-plugins.php',
         'adminFunctions\\Pressbooks_Metadata_Site_Cpt' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-site-cpt.php',
         'networkFunctions\\Pressbooks_Metadata_Net_Sett_Sections' => __DIR__ . '/../..' . '/admin/networkFunctions/class-pressbooks-metadata-net-sett-sections.php',
         'networkFunctions\\Pressbooks_Metadata_Network_Admin' => __DIR__ . '/../..' . '/admin/networkFunctions/class-pressbooks-metadata-network-admin.php',
+        'requiredPlugins\\Pressbooks_Metadata_Required_Plugins' => __DIR__ . '/../..' . '/admin/requiredPlugins/class-pressbooks-metadata-required-plugins.php',
         'schemaFunctions\\Pressbooks_Metadata_Create_Metabox' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php',
         'schemaFunctions\\Pressbooks_Metadata_Engine' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-engine.php',
         'schemaFunctions\\Pressbooks_Metadata_General_Functions' => __DIR__ . '/../..' . '/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php',
