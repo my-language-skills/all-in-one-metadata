@@ -58,6 +58,7 @@ if($activatedLevels == 0){
                         <form method="post" class="active-schemas-forms" action="options.php">
 
                             <?php
+                            submit_button();
                             $tabName = $postType.'_tab';
 
                             settings_fields( $tabName );
