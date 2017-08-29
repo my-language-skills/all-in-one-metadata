@@ -138,7 +138,7 @@ class Pressbooks_Metadata_Fields {
 		}else{
 			$html .= '<p>No description available - this is a custom type</p>';
 		}
-		if(!isset($this->metaInfo[2])) {
+		if(!isset($this->metaInfo[2]) && get_option($this->metaType.'_'.$this->sectionId)) {
 			add_thickbox();
 
 			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
