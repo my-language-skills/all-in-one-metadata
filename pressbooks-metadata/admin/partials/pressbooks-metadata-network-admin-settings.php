@@ -13,7 +13,7 @@ if (isset($_GET['updated'])): ?>
 <div id="message" class="updated notice is-dismissible"><p><?php _e('Options saved.') ?></p></div>
 <?php endif; ?>
 <div class="wrap">
-    <h1>My Network Options</h1>
+    <h1>All In One Metadata Network Settings</h1>
     <form method="POST" action="edit.php?action=update_network_options"><?php
 		settings_fields('site_level_admin_display');
 		do_settings_sections('site_level_admin_display');

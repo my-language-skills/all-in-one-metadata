@@ -41,7 +41,7 @@ class Pressbooks_Metadata_Options {
 		}
 
 		//Creating the options page for the plugin
-		$this->pagehook = add_options_page('PB Metadata Settings', "PB Metadata Settings", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'));
+		$this->pagehook = add_options_page('All In One Metadata Settings', "All In One Metadata Settings", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'));
 		//Adding the metaboxes on the options page
 		add_action('load-'.$this->pagehook, array($this, 'add_metaboxes'));
 	}
@@ -54,7 +54,7 @@ class Pressbooks_Metadata_Options {
 	function render_options_page() {
 		?>
         <div class="wrap">
-            <h2>PB Metadata Settings</h2>
+            <h2>All In One Metadata Settings</h2>
             <div class="metabox-holder">
 					<?php
 					do_meta_boxes($this->pagehook, 'normal','');
