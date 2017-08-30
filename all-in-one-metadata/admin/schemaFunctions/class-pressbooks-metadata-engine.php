@@ -29,23 +29,15 @@ class Pressbooks_Metadata_Engine {
 	/**
 	 * A function for gathering all the schema type settings from types that are filtered through their parent.
 	 *
-	 * @since  0.10
+	 * @since  0.x
 	 */
 	public function get_type_settings() {
+		$activeParent = genFunc::get_active_parent();
 		$typeSettings = array();
-		$foundChildren = array();
-		$allParentsWithChild = genFunc::get_all_parents();
-		foreach(genFunc::get_activated_parents() as $parent){
-			//TODO IF WITH MANY TYPES THE PERFORMANCE IS DROPPING WE CAN IMPROVE THESE FUNCTIONS (get_all_parents,get_parent_children) from general_functions class
-			//This is more complex than it had to be, now we are filtering one parent per time, but this supports filtering with many parents
-			//to do this we need to change the front end interface, checkboxes are being used so its easier to modify for multiple parent selection
-			if(isset($allParentsWithChild[$parent])){
-				$foundChildren = array_merge($foundChildren,$allParentsWithChild[$parent]);
+		foreach(structure::$allSchemaTypes as $type){
+			if(in_array($activeParent,$type::$type_parents)){
+				$typeSettings = array_merge($typeSettings,$type::$type_setting);
 			}
-		}
-		$foundChildren = array_unique($foundChildren);
-		foreach($foundChildren as $child){
-			$typeSettings = array_merge($typeSettings,$child::$type_setting);
 		}
 		return $typeSettings;
 	}
@@ -183,6 +175,9 @@ class Pressbooks_Metadata_Engine {
 			register_setting( $parentsDisplayPage, $parentDetails[1].'_filter_setting');
 		}
 
+		//Getting type settings
+		$typeSettings = $this->get_type_settings();
+
 		//Creating another section with the fields automatically created for the schema types
 		foreach($allPostTypes as $post_type){
 			if(get_option($post_type.'_checkbox')){
@@ -190,11 +185,11 @@ class Pressbooks_Metadata_Engine {
 					$post_type.'_level',
 					ucfirst($post_type.' Level'),
 					$post_type.'_tab',
-					$this->get_type_settings()
+					$typeSettings
 				);
 
 				foreach(structure::$allSchemaTypes as $type){
-					$type_id = $this->get_type_id($type);
+					$type_id = gen_func::get_type_id($type);
 					$sectionId = $type_id.'_'.$post_type.'_level';
 					$type_properties = $type::$type_properties;
 					sections::properties(
@@ -217,30 +212,6 @@ class Pressbooks_Metadata_Engine {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Function used to extract the name of the type from its settings
-	 * @since  0.10
-	 */
-	private function get_type_id($type) {
-		foreach($type::$type_setting as $typeId => $details) {
-			return $typeId;
-		}
-	}
-
-	/**
-	 * Function used to remove null values from an array
-	 * @since  0.10
-	 */
-	private function remove_null($array) {
-		$cleanArray = array();
-		foreach($array as $item){
-			if($item != NULL){
-				$cleanArray[]=$item;
-			}
-		}
-		return $cleanArray;
 	}
 
 	/**
@@ -286,7 +257,7 @@ class Pressbooks_Metadata_Engine {
 		foreach ($schemaPostLevels as $level) {
 			//Getting the setting for a type - book etc.
 			foreach (structure::$allSchemaTypes as $type){
-				$typeId = $this->get_type_id($type);
+				$typeId = gen_func::get_type_id($type);
 					//Checking the settings for each level and type together and we create instances for the active types on each level
 					if(get_option($typeId.'_'.$level)){
 						//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
@@ -297,7 +268,7 @@ class Pressbooks_Metadata_Engine {
 		}
 
 		//Removing null instances
-		$instances = $this->remove_null($instances);
+		$instances = gen_func::remove_null($instances);
 
 		//Then we clear duplicates from the instances, this is older code from a different implementation but we keep it just in case something goes wrong
 		$instances = array_unique($instances);
