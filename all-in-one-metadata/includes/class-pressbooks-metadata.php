@@ -175,7 +175,6 @@ class Pressbooks_Metadata {
 		$plugin_admin = new Pressbooks_Metadata_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		//Installing required plugins
-		$this->loader->add_action( 'tgmpa_register', new required(), 'requiredPlugins\Pressbooks_Metadata_Required_Plugins::install' );
 		$this->loader->add_action( 'admin_init', new required(), 'requiredPlugins\Pressbooks_Metadata_Required_Plugins::check' );
 
 		//Load styles and scripts
