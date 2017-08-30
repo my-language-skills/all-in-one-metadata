@@ -23,49 +23,40 @@ class Pressbooks_Metadata_General_Functions {
 	}
 
 	/**
-	 * A function used to retrieve all children types of a parent
-	 *
-	 * @since 0.10
+	 * A function that returns the active parent from the parent filter
+	 * @since 0.x
 	 */
-	private static function get_parent_children($parent){
-		$childrenNamespaces = structure::$allSchemaTypes;
-		$foundChildren = array();
-		foreach($childrenNamespaces as $children){
-			$currentChildrenParents = $children::$type_parents;
-			if(in_array($parent,$currentChildrenParents)){
-				$foundChildren []= $children;
-			}
-		}
-		return $foundChildren;
-	}
-
-	/**
-	 * A function used to retrieve all parent types along with their children
-	 *
-	 * @since 0.10
-	 */
-	public static function get_all_parents(){
+	public static function get_active_parent(){
 		$parentNamespaces = structure::$allParents;
-		$childStore = array();
-		foreach($parentNamespaces as $parent){
-			$childStore []= self::get_parent_children($parent);
-		}
-		return array_combine($parentNamespaces,$childStore);
-	}
-
-	/**
-	 * A function that returns activated parents
-	 * @since 0.10
-	 */
-	public static function get_activated_parents($name = false){
-		$parentNamespaces = structure::$allParents;
-		$activeParentsStore = array();
 		foreach($parentNamespaces as $parent){
 			if(get_option($parent::type_name[1].'_filter_setting')){
-				$activeParentsStore []= $name == false ? $parent : $parent::type_name;
+				return $parent;
 			}
 		}
-		return $activeParentsStore;
+	}
+
+	/**
+	 * Function used to remove null values from an array
+	 * @since  0.10
+	 */
+	public static function remove_null($array) {
+		$cleanArray = array();
+		foreach($array as $item){
+			if($item != NULL){
+				$cleanArray[]=$item;
+			}
+		}
+		return $cleanArray;
+	}
+
+	/**
+	 * Function used to extract the name of the type from its settings
+	 * @since  0.10
+	 */
+	static public function get_type_id($type) {
+		foreach($type::$type_setting as $typeId => $details) {
+			return $typeId;
+		}
 	}
 
 	/**
