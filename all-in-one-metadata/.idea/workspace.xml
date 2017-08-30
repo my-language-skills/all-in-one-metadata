@@ -24,14 +24,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="class-pressbooks-metadata-engine.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="class-pressbooks-metadata-engine.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-engine.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="193" column="74" lean-forward="false" selection-start-line="193" selection-start-column="74" selection-end-line="193" selection-end-column="74" />
+            <state relative-caret-position="296">
+              <caret line="194" column="47" lean-forward="true" selection-start-line="194" selection-start-column="47" selection-end-line="194" selection-end-column="47" />
               <folding>
                 <element signature="e#34#94#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class-pressbooks-metadata-create-metabox.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="96" column="17" lean-forward="false" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -134,7 +144,6 @@
         <option value="$PROJECT_DIR$/../docs/extendSchemaTypes.md" />
         <option value="$PROJECT_DIR$/admin/js/pressbooks-metadata-admin.js" />
         <option value="$PROJECT_DIR$/admin/partials/pressbooks-metadata-network-admin-settings.php" />
-        <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-property-overwrite.php" />
         <option value="$PROJECT_DIR$/admin/schemaTypes/organization/class-pressbooks-metadata-airline.php" />
         <option value="$PROJECT_DIR$/admin/schemaTypes/organization/class-pressbooks-metadata-corporation.php" />
@@ -165,6 +174,7 @@
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/class-pressbooks-metadata-type-structure.php" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-general-functions.php" />
         <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-engine.php" />
+        <option value="$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php" />
       </list>
     </option>
   </component>
@@ -476,12 +486,12 @@
       <workItem from="1504015503613" duration="3935000" />
       <workItem from="1504076893791" duration="2678000" />
       <workItem from="1504080175539" duration="1422000" />
-      <workItem from="1504087488837" duration="4452000" />
+      <workItem from="1504087488837" duration="6444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="719168000" />
+    <option name="totallyTimeSpent" value="721160000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -532,7 +542,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataCatalog.php" />
     <entry file="file://$PROJECT_DIR$/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataset.php" />
     <entry file="file://$PROJECT_DIR$/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-digitalDocument.php" />
     <entry file="file://$PROJECT_DIR$/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-episode.php" />
@@ -695,11 +704,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-engine.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="193" column="74" lean-forward="false" selection-start-line="193" selection-start-column="74" selection-end-line="193" selection-end-column="74" />
+        <state relative-caret-position="296">
+          <caret line="194" column="47" lean-forward="true" selection-start-line="194" selection-start-column="47" selection-end-line="194" selection-end-column="47" />
           <folding>
             <element signature="e#34#94#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="96" column="17" lean-forward="false" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
