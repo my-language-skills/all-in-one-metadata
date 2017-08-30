@@ -75,3 +75,15 @@ By activating a Type and the properties, the activated properties are show in th
 Site metadata allow to create the metadata for the main page. But is also the place where the metadata must be site available can be writing for all the posts, pages or CPTs.
 
 Each Type is a secction with all the Properties of the Type and the supersedes Type.
+
+
+
+
+
+
+
+
+
+- As SuperAdmin you area allow to transfer properties from the SuperAdmin settings page to all of the Sites (site meta/book info).
+
+- As Admin, you can later to clone that properties from your site meta to your post or chapter (not any other type of CPT).
