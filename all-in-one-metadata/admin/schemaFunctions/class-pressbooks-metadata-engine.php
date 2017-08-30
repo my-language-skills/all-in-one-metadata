@@ -189,7 +189,7 @@ class Pressbooks_Metadata_Engine {
 				);
 
 				foreach(structure::$allSchemaTypes as $type){
-					$type_id = gen_func::get_type_id($type);
+					$type_id = genFunc::get_type_id($type);
 					$sectionId = $type_id.'_'.$post_type.'_level';
 					$type_properties = $type::$type_properties;
 					sections::properties(
@@ -257,7 +257,7 @@ class Pressbooks_Metadata_Engine {
 		foreach ($schemaPostLevels as $level) {
 			//Getting the setting for a type - book etc.
 			foreach (structure::$allSchemaTypes as $type){
-				$typeId = gen_func::get_type_id($type);
+				$typeId = genFunc::get_type_id($type);
 					//Checking the settings for each level and type together and we create instances for the active types on each level
 					if(get_option($typeId.'_'.$level)){
 						//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
@@ -268,7 +268,7 @@ class Pressbooks_Metadata_Engine {
 		}
 
 		//Removing null instances
-		$instances = gen_func::remove_null($instances);
+		$instances = genFunc::remove_null($instances);
 
 		//Then we clear duplicates from the instances, this is older code from a different implementation but we keep it just in case something goes wrong
 		$instances = array_unique($instances);

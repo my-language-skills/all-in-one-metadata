@@ -26,7 +26,7 @@ class Pressbooks_Metadata_General_Functions {
 	 * A function that returns the active parent from the parent filter
 	 * @since 0.x
 	 */
-	public function get_active_parent(){
+	public static function get_active_parent(){
 		$parentNamespaces = structure::$allParents;
 		foreach($parentNamespaces as $parent){
 			if(get_option($parent::type_name[1].'_filter_setting')){
