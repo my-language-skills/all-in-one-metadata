@@ -89,10 +89,12 @@ class Pressbooks_Metadata_Create_Metabox {
 			//Creating the field id
 			$fieldId = 'pb_' . $property . '_' .$this->groupId. '_' .$this->metaboxlevel;
 			//Checking if the property is frozen from super admin
-			$frozzenFieldId = get_blog_option(1,$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze');
-			if($frozzenFieldId){
-				//If the field is frozen we dont create it we skip the loop iteration
-				continue;
+			if(is_multisite()){
+				$frozzenFieldId = get_blog_option(1,$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze');
+				if($frozzenFieldId){
+					//If the field is frozen we dont create it we skip the loop iteration
+					continue;
+				}
 			}
 			//Checking if we need a dropdown field
 			if(!isset($details[3])){
