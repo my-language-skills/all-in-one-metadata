@@ -27,7 +27,7 @@ class Pressbooks_Metadata_Required_Plugins {
 	public static function check() {
 		if ( ! site_cpt::pressbooks_identify() ) {
 			//This is the error message for the network admin, it will pop up if the custom-metadata plugin is missing
-			if ( ! is_plugin_active( 'custom-metadata/custom_metadata.php' ) ) {
+			if ( ! is_plugin_active( 'custom-metadata-master/custom_metadata.php' ) ) {
 				$link =  plugin_dir_url('') . 'all-in-one-metadata\admin\requiredPlugins\plugins\custom-metadata.zip';
 				add_action( 'network_admin_notices', function () use ( $link ) {
 					echo '<div id="message" class="error fade"><p>Please make sure that the custom-metadata plugin is installed and activated for the full All In One Metadata Plugin Functionality -- <a href="' . $link . '">Get it Here</a></p></div>';
