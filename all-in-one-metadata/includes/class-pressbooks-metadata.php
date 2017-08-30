@@ -137,11 +137,6 @@ class Pressbooks_Metadata {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-pressbooks-metadata-public.php';
 
-		/**
-		 * The class responsible for installing required plugins.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/requiredPlugins/class-tgm-plugin-activation.php';
-
 		$this->loader = new Pressbooks_Metadata_Loader();
 
 	}
