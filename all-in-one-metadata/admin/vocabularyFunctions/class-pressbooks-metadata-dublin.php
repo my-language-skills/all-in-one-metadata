@@ -36,6 +36,14 @@ class Pressbooks_Metadata_Dublin {
 	public $metadata;
 
 	/**
+	 * The variable that holds the group id of the metabox
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public $groupId;
+
+	/**
 	 * The variable that holds the properties of this vocabulary
 	 *
 	 * @since    0.10
@@ -81,6 +89,7 @@ class Pressbooks_Metadata_Dublin {
 	);
 
 	public function __construct() {
+		$this->groupId = 'dublin_vocab';
 		$this->type_level = siteCpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 		$this->pmdt_add_metabox( $this->type_level );
 	}
@@ -93,7 +102,7 @@ class Pressbooks_Metadata_Dublin {
 	 * @since 0.10
 	 */
 	public function pmdt_add_metabox( $meta_position ) {
-		new create_metabox( 'dublin_vocab', 'Dublin Metadata', $meta_position, self::$type_properties );
+		new create_metabox( $this->groupId, 'Dublin Metadata', $meta_position, self::$type_properties );
 	}
 
 	/**
@@ -143,7 +152,7 @@ class Pressbooks_Metadata_Dublin {
 		//We walk the array and for each element we see if it matches the fields that we want to visualize
 		foreach ( self::$type_properties as $key => $desc ) {
 			//Constructing the key for the data
-			$dataKey = 'pb_' . $key . '_' . $this->type_level;
+			$dataKey = 'pb_' . $key . '_' . $this->groupId .'_'. $this->type_level;
 			//Getting the data
 			$val = $this->pmdt_get_value($dataKey);
 			//Checking if the value exists
