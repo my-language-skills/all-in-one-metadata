@@ -6,7 +6,7 @@
 2.	Download the [template](https://github.com/Books4Languages/pressbooks-metadata/blob/christos/docs/schema_type_template.zip).
 3.  Extract the zip archive and open the file named 'type-template.php', then copy all of its contents.
 4.  Paste the contents in the new type file you created.
-5.  Replace all the fields having this indications [namespace], [schema-type-name], [property-name], [property-name-title], and [property-description] -- see instructions in file.
+5.  Replace all the fields having this indications [namespace], [schema-type-name], [property-name],[your_name], [your_email], [property-name-title], and [property-description] -- see instructions in file.
 6.  For every property populate the type_properties array as indicated in the file. Also be care full to use the correct namespace on the beginning of the file.
 7.  Add any parent related with this type in the type_parents array, use the parents namespace to do that properly.
 Remember some schema types need modifications on how they present the metadata,
@@ -29,20 +29,35 @@ use schemaTypes\Pressbooks_Metadata_Type;
  * The class for the [schema-type-name] type including operations and metaboxes
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.8.1
+ * @since      0.x
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
  * @author     Christos Amyrotos <christosv2@hotmail.com>
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     [your_name] <[your_email]>
  */
 
 class Pressbooks_Metadata_[schema-type-name] extends Pressbooks_Metadata_Type {
 
+    /**
+     * The variable that holds all parent required properties
+     *
+     * @since    0.x
+     * @access   public
+     */
+    static $required_parent_props = array(
+    '[property-name]', '[property-name]'
+    //Here you add all the properties that the type requires from its parents -> add only mandatory properties
+    //You can see whitch properties are mandatory by running the schema test tool
+    //If text property from creativeWorks is required just write 'text' in the array
+    //For more than one property use a comma separated list 'text','about',etc
+    );
+
 	/**
 	 * The variable that holds the values for the settings for this schema type
 	 *
-	 * @since    1.0
+	 * @since    0.x
 	 * @access   public
 	 */
 	static $type_setting = array('[schema-type-name]_type' => array('[schema-type-name] Type','http://schema.org/[schema-type-name]'));
@@ -51,7 +66,7 @@ class Pressbooks_Metadata_[schema-type-name] extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the parents for the type
 	 *
-	 * @since    1.0
+	 * @since    0.x
 	 * @access   public
 	 */
 	static $type_parents = array(
@@ -63,7 +78,7 @@ class Pressbooks_Metadata_[schema-type-name] extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the properties of this schema type
 	 *
-	 * @since    1.0
+	 * @since    0.x
 	 * @access   public
 	 */
 	static $type_properties = array(
@@ -86,7 +101,7 @@ class Pressbooks_Metadata_[schema-type-name] extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for combining the current types properties with its parents fields
 	 *
-	 * @since    1.0
+	 * @since    0.x
 	 * @access   public
 	 */
 	public function get_all_properties() {
@@ -100,7 +115,7 @@ class Pressbooks_Metadata_[schema-type-name] extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for comparing the instances of the schema types
 	 *
-	 * @since    1.0
+	 * @since    0.x
 	 * @access   public
 	 */
 	public function __toString() {
@@ -140,7 +155,7 @@ namespace schemaTypes;
  * The class for the [parent-type-name] type including just the properties, this type will inject properties on its child types
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      1.0
+ * @since      0.x
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes

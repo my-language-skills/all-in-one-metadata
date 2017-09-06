@@ -36,6 +36,14 @@ class Pressbooks_Metadata_Coins {
 	public $metadata;
 
 	/**
+	 * The variable that holds the group id of the metabox
+	 *
+	 * @since    0.x
+	 * @access   public
+	 */
+	public $groupId;
+
+	/**
 	 * The variable that holds the properties of this vocabulary
 	 *
 	 * @since    0.10
@@ -51,6 +59,7 @@ class Pressbooks_Metadata_Coins {
 	);
 
 	public function __construct() {
+		$this->groupId = 'coins_vocab';
 		$this->type_level = siteCpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 		$this->pmdt_add_metabox($this->type_level);
 	}
@@ -61,7 +70,7 @@ class Pressbooks_Metadata_Coins {
 	 * @since 0.10
 	 */
 	public function pmdt_add_metabox($meta_position) {
-		new create_metabox('coins_vocab','Coins Metadata',$meta_position,self::$type_properties);
+		new create_metabox($this->groupId,'Coins Metadata',$meta_position,self::$type_properties);
 	}
 
 	/**
@@ -86,11 +95,11 @@ class Pressbooks_Metadata_Coins {
 	 */
 	private function pmdt_get_value($propName){
 		$array = isset($this->metadata[$propName])? $this->metadata[$propName] : '';
-			if($this->type_level == 'site-meta'){
-				$value = $this->pmdt_get_first($array);
-			}else{//We always use the get_first function except if our level is metadata coming from pressbooks
-				$value = $array;
-			}
+		if($this->type_level == 'site-meta'){
+			$value = $this->pmdt_get_first($array);
+		}else{//We always use the get_first function except if our level is metadata coming from pressbooks
+			$value = $array;
+		}
 		return $value;
 	}
 
@@ -116,7 +125,7 @@ class Pressbooks_Metadata_Coins {
 		//We walk the array and for each element we see if it matches the fields that we want to visualize
 		foreach ( self::$type_properties as $key => $description ) {
 			//Constructing the key for the data
-			$dataKey = 'pb_' . $key . '_' . $this->type_level;
+			$dataKey = 'pb_' . $key . '_' . $this->groupId .'_'. $this->type_level;
 			//Getting the data
 			$val = $this->pmdt_get_value($dataKey);
 			//Checking if the value exists
@@ -146,6 +155,7 @@ class Pressbooks_Metadata_Coins {
 			}
 			//problems to visualizate date
 			if($key == 'publication_date'){
+				//TODO Needs fix
 				//$v= CAST($val AS DATETIME);
 				//$coinsTitle .= '&amp;rft.date='. the_time('Y-m-d');
 			}

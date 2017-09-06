@@ -19,6 +19,16 @@ use schemaTypes\Pressbooks_Metadata_Type;
 
 class Pressbooks_Metadata_WebPageElement extends Pressbooks_Metadata_Type {
 
+    /**
+     * The variable that holds all parent required properties
+     *
+     * @since    0.x
+     * @access   public
+     */
+    static $required_parent_props = array(
+
+    );
+
 	/**
 	 * The variable for the webPageElements
 	 *

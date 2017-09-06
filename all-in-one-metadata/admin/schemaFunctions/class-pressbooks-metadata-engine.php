@@ -6,6 +6,7 @@ use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use vocabularyFunctions;
 
 
 /**
@@ -52,11 +53,14 @@ class Pressbooks_Metadata_Engine {
 		//This is for the schema types
 		$this->engine_run();
 
-		//Here we generate metaboxes for the other vocabularies
+        //Creating prefixes for fields for external vocabularies options
+        $postLevel = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
+        $siteLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+
+        //Here we generate metaboxes for the other vocabularies
 		$vocabularySettings = array(
 			'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
-			'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin',
-			//'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
+			'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin'
 		);
 
 		foreach($vocabularySettings as $setting => $class){
@@ -64,6 +68,15 @@ class Pressbooks_Metadata_Engine {
 				new $class;
 			}
 		}
+
+		//Enabling Educational Vocabulary on each level
+		if(get_option('educational_checkbox_'.$siteLevel)){
+		    new vocabularyFunctions\Pressbooks_Metadata_Educational($siteLevel);
+        }
+
+        if(get_option('educational_checkbox_'.$postLevel)){
+            new vocabularyFunctions\Pressbooks_Metadata_Educational($postLevel);
+        }
 
 	}
 
@@ -137,10 +150,18 @@ class Pressbooks_Metadata_Engine {
 		add_settings_section($dublinLevelSection, "Enable Dublin Core Metadata", null, $dublinLevelPage);
 		add_settings_section($educationalLevelSection, "Enable Educational Metadata", null, $educationalLevelPage);
 
+		//Creating prefixes for fields for external vocabularies
+        $postLevel = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
+        $siteLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 
+
+		//Vocabularies for Book Info and Site Meta
 		new post_type_fields('coins_checkbox','Coins Metadata',$coinsLevelPage,$coinsLevelSection);
 		new post_type_fields('dublin_checkbox','Dublin Core Metadata',$dublinLevelPage,$dublinLevelSection);
-		new post_type_fields('educational_checkbox','Educational Metadata',$educationalLevelPage,$educationalLevelSection);
+		new post_type_fields('educational_checkbox_'.$siteLevel,'Educational Metadata Site Level',$educationalLevelPage,$educationalLevelSection);
+
+		//Educational Vocabulary for Chapters and Posts
+        new post_type_fields('educational_checkbox_'.$postLevel,'Educational Metadata '.ucfirst($postLevel),$educationalLevelPage,$educationalLevelSection);
 
 		//Creating settings for filtering the schemaTypes that show
 		$parentsSection = 'parents_section';
@@ -201,7 +222,8 @@ class Pressbooks_Metadata_Engine {
 						$sectionId,
 						'',
 						$sectionId.'_properties',
-						$type_properties
+						$type_properties,
+                        false
 				);
 
 					//Getting parent information and creating the parent properties
@@ -211,7 +233,8 @@ class Pressbooks_Metadata_Engine {
 							$sectionId,
 							str_replace('Thing','General',$parent::type_name[0]),
 							$sectionId.'_'.$parent::type_name[1].'_dis',
-							$parent::type_properties
+							$parent::type_properties,
+                            $type::$required_parent_props
 						);
 					}
 				}
