@@ -47,8 +47,10 @@ class Pressbooks_Metadata_Output {
 		//Checking if we are executing Book Info or Site-Meta data for the front page - Site Level - Book Level
 		if(!site_cpt::pressbooks_identify()){
 			$front_schema = 'site-meta';
+			$post_schema = 'post';
 		}else{
 			$front_schema = 'metadata';
+			$post_schema = 'chapter';
 		}
 		if ( is_front_page() ) {
 			//Here we get all the instances of metadata that have to be executed on the Book level - Site level
@@ -61,8 +63,7 @@ class Pressbooks_Metadata_Output {
 			//Outputting the metadata for the Vocabularies
 			$vocabularySettings = array(
 				'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
-				'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin',
-				'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
+				'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin'
 			);
 
 			foreach($vocabularySettings as $setting => $class){
@@ -72,6 +73,12 @@ class Pressbooks_Metadata_Output {
 				}
 			}
 
+			//Outputting metadata for the Educational Vocabulary on Site Level
+			if(get_option('educational_checkbox_'.$front_schema)){
+                $vocabToUse = new vocabularyFunctions\Pressbooks_Metadata_Educational($front_schema);
+                echo $vocabToUse->pmdt_get_metatags();
+            }
+
 		} elseif ( ! is_home() ) {
 			//Here we get all the instances of metadata that have to be executed on the post levels - Chapter Level
 			foreach ( $instances as $class_instance ) {
@@ -79,6 +86,12 @@ class Pressbooks_Metadata_Output {
 					echo $class_instance->pmdt_get_metatags();
 				}
 			}
+
+            //Outputting metadata for the Educational Vocabulary on Post Level
+            if(get_option('educational_checkbox_'.$post_schema)){
+                $vocabToUse = new vocabularyFunctions\Pressbooks_Metadata_Educational($post_schema);
+                echo $vocabToUse->pmdt_get_metatags();
+            }
 		}
 	}
 }
