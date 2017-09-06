@@ -48,10 +48,17 @@ class Pressbooks_Metadata_Educational{
 	 * @since    0.x
 	 * @access   public
 	 */
-	static $type_properties = array(
+	private $type_properties = array(
 		//For all the properties on external vocabularies we use the true paramenter
 		//We do this because we dont select properties for other vocabularies except from schema
 		//Without the true parameter the fields will not render
+        'educationalType' => array(true,'Educational Metadata Type','Choose the type of data your educational data best describes',
+        array('Default'=>'Default',
+            'WebPage'=>'WebPage',
+            'Article'=>'Article',
+            'Course'=>'Course',
+            'WebSite'=>'WebSite',
+            'Book' => 'Book')),
 		'isced_field' => array(true,'ISCED field of education','Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
 			array(
 				'Generic programmes and qualifications' 			=>	'Generic programmes and qualifications',
@@ -117,9 +124,13 @@ class Pressbooks_Metadata_Educational{
 		'trg_url'=>array(true,'Target Url','The URL of a node in an established educational framework. http://example.com')
 	);
 
-	public function __construct() {
+	public function __construct($typeLevelInput) {
 		$this->groupId = 'edu_vocab';
-		$this->type_level = siteCpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+		$this->type_level = $typeLevelInput;
+		//Removing the EducationalType dropdown form the array because Pressbooks Book Info is a Book By Default
+		if($this->type_level == 'metadata'){
+		    unset($this->type_properties['educationalType']);
+        }
 		$this->pmdt_add_metabox( $this->type_level );
 	}
 
@@ -131,7 +142,7 @@ class Pressbooks_Metadata_Educational{
 	 * @since 0.x
 	 */
 	public function pmdt_add_metabox( $meta_position ) {
-		new create_metabox( $this->groupId, 'Educational Metadata', $meta_position, self::$type_properties );
+		new create_metabox( $this->groupId, 'Educational Metadata', $meta_position, $this->type_properties );
 	}
 
 	/**
@@ -156,7 +167,7 @@ class Pressbooks_Metadata_Educational{
 	 */
 	private function pmdt_get_value( $propName ) {
 		$array = isset( $this->metadata[ $propName ] ) ? $this->metadata[ $propName ] : '';
-		if ( $this->type_level == 'site-meta' ) {
+		if ( $this->type_level != 'metadata' ) {
 			$value = $this->pmdt_get_first( $array );
 		} else {
 			//We always use the get_first function except if our level is metadata coming from pressbooks
@@ -196,7 +207,11 @@ class Pressbooks_Metadata_Educational{
 	 */
 	public function pmdt_get_metatags() {
 		//Getting the information from the database
-		$this->metadata = genFunc::get_metadata();
+        if($this->type_level == 'metadata' || $this->type_level == 'site-meta'){
+            $this->metadata = genFunc::get_metadata();
+        }else{
+            $this->metadata = get_post_meta( get_the_ID() );
+        }
 
 		//Keys for looping
 		$loop_keys = array(
@@ -207,13 +222,32 @@ class Pressbooks_Metadata_Educational{
 			'educationalUse'
 		);
 
-		//Starting point of educational schema part 1
-		$html  = "<!-- Educational Microtags -->\n";
-		$html .= '<div itemscope itemtype="http://schema.org/WebPage">';
+        //Starting point of educational schema part 1
+        $html  = "<!-- Educational Microtags -->\n";
+        //If not Pressbooks Book Info we show the selected educationalType
+        if($this->type_level != 'metadata'){
+            //Constructing the key
+            $dataKey = strtolower('pb_educationalType_' . $this->groupId .'_'. $this->type_level);
+            //Getting the data
+            $val = $this->pmdt_get_value($dataKey);
+            //Checking for default value
+            if(empty($val) || $val == 'Default'){
+                switch ($this->type_level){
+                    case 'post':
+                    case 'chapter':
+                        $val = 'WebPage';
+                        break;
+                    case 'site-meta':
+                        $val = 'WebSite';
+                        break;
+                }
+            }
+            $html .= '<div itemscope itemtype="http://schema.org/'.$val.'">';
+        }
 
 		$partTwoMetadata = null;
 
-		foreach ( self::$type_properties as $key => $desc ) {
+		foreach ( $this->type_properties as $key => $desc ) {
 			//Constructing the key for the data
 			//Add strtolower in all vocabs remember
 			$dataKey = strtolower('pb_' . $key . '_' . $this->groupId .'_'. $this->type_level);
@@ -236,7 +270,6 @@ class Pressbooks_Metadata_Educational{
 			}
 		}
 		//Ending schema part 1
-		$html .= '</div>';
 
 		//Starting point of educational schema part 2
 		if ( isset( $this->metadata['pb_title'] ) ) {
@@ -292,6 +325,9 @@ class Pressbooks_Metadata_Educational{
 			         ."	<meta itemprop = 'educationalRole' content = '$partTwoMetadata[edu_role]'/>\n"
 			         ."</span>\n";
 		}
+		if($this->type_level != 'metadata'){
+            $html .= '</div>';
+        }
 		echo $html;
 	}
 }
