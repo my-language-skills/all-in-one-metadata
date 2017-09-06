@@ -201,7 +201,8 @@ class Pressbooks_Metadata_Engine {
 						$sectionId,
 						'',
 						$sectionId.'_properties',
-						$type_properties
+						$type_properties,
+                        false
 				);
 
 					//Getting parent information and creating the parent properties
@@ -211,7 +212,8 @@ class Pressbooks_Metadata_Engine {
 							$sectionId,
 							str_replace('Thing','General',$parent::type_name[0]),
 							$sectionId.'_'.$parent::type_name[1].'_dis',
-							$parent::type_properties
+							$parent::type_properties,
+                            $type::$required_parent_props
 						);
 					}
 				}

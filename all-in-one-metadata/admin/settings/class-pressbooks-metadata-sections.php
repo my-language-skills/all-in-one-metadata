@@ -56,6 +56,14 @@ class Pressbooks_Metadata_Sections {
 	 */
 	private $fieldsData;
 
+    /**
+     * The required properties from all parents.
+     *
+     * @since    0.x
+     * @access   private
+     */
+    private $requiredParentProps;
+
 	/**
 	 * The constructor.
 	 *
@@ -69,12 +77,13 @@ class Pressbooks_Metadata_Sections {
 	 *
 	 * @since  0.10
 	 */
-	public static function properties( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
+	public static function properties( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput,$requiredParentPropsInput ) {
 		$instance = new self();
 		$instance->sectionId = $sectionInputId;
 		$instance->sectionName = $sectionInputName;
 		$instance->displayPage = $sectionInputDisplayPage;
 		$instance->fieldsData = $fieldsDataInput;
+		$instance->requiredParentProps = $requiredParentPropsInput;
 		$instance->pmdt_load_by_property();
 		return $instance;
 	}
@@ -82,7 +91,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The main function used to create the section, it also creates new objects of type field, this is used for the types.
 	 *
-	 * @since  0.8.1
+	 * @since  0.x
 	 */
 	function pmdt_load_by_property(){
 		add_settings_section(
@@ -94,6 +103,15 @@ class Pressbooks_Metadata_Sections {
 
 		//A loop that goes through the fieldData array and constructs fields corresponding to the arrays size
 		foreach ($this->fieldsData as $property => $details) {
+
+            if(is_array($this->requiredParentProps)){
+                //Checking if the property being processed is in the requiredParentProps array
+                if(in_array($property,$this->requiredParentProps)){
+                    //Changing the details array of the property to make it required for the current type
+                    $details[0] = true;
+                }
+            }
+
 			//New field objects created with the fields class
 			new Pressbooks_Metadata_Property_Fields($property,$details,$this->sectionId,$this->sectionName,$this->displayPage);
 		}

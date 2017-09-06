@@ -20,7 +20,7 @@ class Pressbooks_Metadata_CreativeWork {
 	const type_properties = array(
 		'about' => array(false,'About','The subject matter of the content.'),
 		'accessMode' => array(false,'Access Mode Sufficient','The human sensory perceptual system or cognitive faculty through which a person may process or perceive information. Expected values include: auditory, tactile, textual, visual, colorDependent, chartOnVisual, chemOnVisual, diagramOnVisual, mathOnVisual, musicOnVisual, textOnVisual.'),
-		'accessModeSufficient' => array(false,'Text','A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource. Expected values include: auditory, tactile, textual, visual.'),
+		'accessModeSufficient' => array(false,'Access Mode Sufficient','A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource. Expected values include: auditory, tactile, textual, visual.'),
 		'accessibilityAPI' => array(false,'Accessibility API','Indicates that the resource is compatible with the referenced accessibility API (WebSchemas wiki lists possible values).'),
 		'accessibilityControl' => array(false,'Accessibility Control','The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.'),
 		'accessibilityFeature ' => array(false,'Accessibility Feature','Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility (WebSchemas wiki lists possible values).'),
