@@ -62,7 +62,7 @@ class Pressbooks_Metadata_Output {
 			$vocabularySettings = array(
 				'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
 				'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin',
-				//'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
+				'educational_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Educational'
 			);
 
 			foreach($vocabularySettings as $setting => $class){
