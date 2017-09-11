@@ -11,6 +11,8 @@
     color:red;
 }
 
+/* Tooltip for property description */
+
 .tooltip {
     position: relative;
     display: inline-block;
@@ -50,6 +52,8 @@
     opacity: 1;
 }
 
+/* Style for the buttons that enable or clean an overwritten property */
+
 .propertyButtonStyle {
     background-color: #AF4C62;
     border: none;
@@ -63,6 +67,7 @@
     border-radius:100px;
 }
 
+/* Class for hiding elements */
 .hide{
     visibility: hidden;
 }

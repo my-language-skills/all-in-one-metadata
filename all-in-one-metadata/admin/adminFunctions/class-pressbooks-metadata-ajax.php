@@ -19,7 +19,12 @@ class Pressbooks_Metadata_Ajax {
 	function __construct() {
 
     }
-    
+
+    /**
+     * This function cleans the fields of the property that was overwritten to post/chapter
+     *
+     * @since  0.x
+     */
     function overwrite_prop_clean(){
         //Receiving the property
         $ajaxProperty = $_POST['property'];
@@ -56,6 +61,11 @@ class Pressbooks_Metadata_Ajax {
         wp_die();
     }
 
+    /**
+     * This function disables the property that was overwritten to post/chapter
+     *
+     * @since  0.x
+     */
     function overwrite_prop_disable(){
         //Receiving the property
         $ajaxProperty = $_POST['property'];
