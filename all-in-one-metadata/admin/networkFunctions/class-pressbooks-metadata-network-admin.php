@@ -130,7 +130,7 @@ class Pressbooks_Metadata_Network_Admin {
             $selectedPosts = $wpdb->get_results($wpdb->prepare(" 
 			SELECT ID,post_type FROM $postsTable WHERE post_type = %s",$postType),ARRAY_A);
 
-            //If no site-meta/metadata post found we create one
+            //If no initial site-meta/metadata post found we create one
             if(empty($selectedPosts)){
                 $args = array(
                     'post_author'		=>	get_current_user_id(),

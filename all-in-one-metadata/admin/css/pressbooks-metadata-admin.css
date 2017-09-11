@@ -49,3 +49,20 @@
     visibility: visible;
     opacity: 1;
 }
+
+.propertyButtonStyle {
+    background-color: #AF4C62;
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius:100px;
+}
+
+.hide{
+    visibility: hidden;
+}

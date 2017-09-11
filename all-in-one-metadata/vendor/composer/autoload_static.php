@@ -73,6 +73,7 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
     );
 
     public static $classMap = array (
+        'adminFunctions\\Pressbooks_Metadata_Ajax' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-ajax.php',
         'adminFunctions\\Pressbooks_Metadata_Importing' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-importing.php',
         'adminFunctions\\Pressbooks_Metadata_Options' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-options.php',
         'adminFunctions\\Pressbooks_Metadata_Site_Cpt' => __DIR__ . '/../..' . '/admin/adminFunctions/class-pressbooks-metadata-site-cpt.php',
@@ -100,7 +101,6 @@ class ComposerStaticInit7b45f2627b90d93643d5c14f1b35257a
         'schemaTypes\\cw\\Pressbooks_Metadata_DataCatalog' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataCatalog.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Dataset' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataset.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_DigitalDocument' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-digitalDocument.php',
-        'schemaTypes\\cw\\Pressbooks_Metadata_Educational' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-educational.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Episode' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-episode.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_Game' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-game.php',
         'schemaTypes\\cw\\Pressbooks_Metadata_HowTo' => __DIR__ . '/../..' . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-howTo.php',

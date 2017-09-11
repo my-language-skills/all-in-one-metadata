@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'adminFunctions\\Pressbooks_Metadata_Ajax' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-ajax.php',
     'adminFunctions\\Pressbooks_Metadata_Importing' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-importing.php',
     'adminFunctions\\Pressbooks_Metadata_Options' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-options.php',
     'adminFunctions\\Pressbooks_Metadata_Site_Cpt' => $baseDir . '/admin/adminFunctions/class-pressbooks-metadata-site-cpt.php',
@@ -33,7 +34,6 @@ return array(
     'schemaTypes\\cw\\Pressbooks_Metadata_DataCatalog' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataCatalog.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Dataset' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-dataset.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_DigitalDocument' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-digitalDocument.php',
-    'schemaTypes\\cw\\Pressbooks_Metadata_Educational' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-educational.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Episode' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-episode.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_Game' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-game.php',
     'schemaTypes\\cw\\Pressbooks_Metadata_HowTo' => $baseDir . '/admin/schemaTypes/creativeWorks/class-pressbooks-metadata-howTo.php',
