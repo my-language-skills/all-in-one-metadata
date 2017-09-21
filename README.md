@@ -82,6 +82,7 @@ Implementation of milestone 9.1 (Finishing educational metadata and related meta
 
 ### Future
 New types
+Use the library from Spatie that auto generates schema [Schema](https://github.com/spatie/schema-org)
     
 ## Changelog
 
