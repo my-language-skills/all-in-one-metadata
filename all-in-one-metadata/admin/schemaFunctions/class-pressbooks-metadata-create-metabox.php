@@ -87,7 +87,11 @@ class Pressbooks_Metadata_Create_Metabox {
      */
     function frozen_field( $field_slug, $field, $value ) {
         $value = get_post_meta(get_the_ID(),$field_slug);
-        $value = $value[0];
+        if(array_key_exists(0, $value)){
+            $value = $value[0];
+        }else{
+            $value = "";   
+        }
         $broken_slug = explode('_',$field_slug);
         $property = ucfirst($broken_slug[1]);
         ?>
