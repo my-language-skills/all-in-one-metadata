@@ -90,7 +90,7 @@ class Pressbooks_Metadata_Create_Metabox {
         if(array_key_exists(0, $value)){
             $value = $value[0];
         }else{
-            $value = "";   
+            $value = "";
         }
         $broken_slug = explode('_',$field_slug);
         $property = ucfirst($broken_slug[1]);
