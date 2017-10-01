@@ -1,7 +1,6 @@
 <?php
 
 namespace vocabularyFunctions;
-use adminFunctions\Pressbooks_Metadata_Site_Cpt as siteCpt;
 use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
@@ -61,6 +60,7 @@ class Pressbooks_Metadata_Educational{
             'Book' => 'Book')),
 		'isced_field' => array(true,'ISCED field of education','Broad field of education according to ISCED-F 2013.'. '<br><a target="_blank" href="http://alliance4universities.eu/wp-content/uploads/2017/03/ISCED-2013-Fields-of-education.pdf">Click Here for more information</a>',
 			array(
+				'--Select--'										=> '--Select--',
 				'Generic programmes and qualifications' 			=>	'Generic programmes and qualifications',
 				'Education' 										=>	'Education',
 				'Arts and humanities' 							=> 	'Arts and humanities',
@@ -74,7 +74,7 @@ class Pressbooks_Metadata_Educational{
 				'Services' 										=> 	'Services',)),
 		'isced_level'=>array(true,'ISCED level of education','Level of education according to ISCED-P 2011'.'<br><a target="_blank" href="http://www.uis.unesco.org/Education/Documents/isced-2011-en.pdf">Click Here for more information</a>',
 			array(
-				'' => 'Select',
+				'' => '--Select--',
 				'10' => 'Early Childhood Education',
 				'1' => 'Primary education',
 				'2' => 'Lower secondary education',
@@ -125,6 +125,7 @@ class Pressbooks_Metadata_Educational{
 	);
 
 	public function __construct($typeLevelInput) {
+		$this->modify_isced_field();
 		$this->groupId = 'edu_vocab';
 		$this->type_level = $typeLevelInput;
 		//Removing the EducationalType dropdown form the array because Pressbooks Book Info is a Book By Default
@@ -132,6 +133,23 @@ class Pressbooks_Metadata_Educational{
 		    unset($this->type_properties['educationalType']);
         }
 		$this->pmdt_add_metabox( $this->type_level );
+	}
+
+	/**
+	 * The function which modifies the isced field depending on the addon plugin
+	 *
+	 * @since 0.x
+	 */
+	function modify_isced_field(){
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( is_plugin_active( 'pressbooks-isced-fields/pressbooks-isced-fields.php' ) ) {
+			require_once( ABSPATH . '/wp-content/plugins/pressbooks-isced-fields/admin/class-pressbooks-isced-fields-admin.php');
+			$isced_field = \Pressbooks_Isced_Fields_Admin::get_isced_field();
+			if($isced_field != null){
+				unset($this->type_properties['isced_field']);
+				$this->type_properties['isced_field'] = $isced_field['isced_field'];
+			}
+		}
 	}
 
 	/**
@@ -185,7 +203,7 @@ class Pressbooks_Metadata_Educational{
 	 */
 	private function get_isced_level($level){
 		$isced_level_data = array(
-			''  => 'Select',
+			''  => '--Select--',
 			'10' => 'Early Childhood Education',
 			'1' => 'Primary education',
 			'2' => 'Lower secondary education',
@@ -254,7 +272,7 @@ class Pressbooks_Metadata_Educational{
 			//Getting the data
 			$val = $this->pmdt_get_value($dataKey);
 			//Checking if the value exists and that the key is in the array for the schema
-			if(empty($val)){
+			if(empty($val) || $val == '--Select--'){
 				continue;
 			}else{
 				if(in_array($key,$loop_keys)){

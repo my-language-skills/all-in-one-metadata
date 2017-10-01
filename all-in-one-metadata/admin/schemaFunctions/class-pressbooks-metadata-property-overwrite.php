@@ -17,21 +17,24 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 class Pressbooks_Metadata_Property_Overwrite {
 
-	function __construct() {
+    function __construct() {
 
     }
 
-	/**
-	 * The function that overwrites property values to chapter or post
-	 *
-	 * @since  0.11
-	 */
+    /**
+     * The function that overwrites property values to chapter or post
+     *
+     * @since  0.11
+     */
     function do_overwrite(){
         //Wordpress Database variable for database operations
         global $wpdb;
-         
+
         //Choosing the type of post for the data -> Pressbooks Installation is metadata
         $dataPostType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+
+        //Post type that values are populated - we use this to enable the shema types and properties along with the post level in the settings
+        $enablePostType = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
 
         //Get the posts table name
         $postsTable = $wpdb->prefix . "posts";
@@ -53,73 +56,95 @@ class Pressbooks_Metadata_Property_Overwrite {
         //The post ID
         $ID = $selectedPostId[0]['ID'];
 
-        //Our query that chooses all the postmeta that are related to the Book-Info Post / Site-Meta Post 
+        //Our query that chooses all the postmeta that are related to the Book-Info Post / Site-Meta Post
         $selectedMeta = $wpdb->get_results($wpdb->prepare(" 
         SELECT meta_key, meta_value FROM $postMetaTable WHERE post_id LIKE %s
         AND meta_key LIKE %s AND meta_key LIKE %s
-        AND meta_value <>''",$ID,'%%pb_%%','%%_'.$dataPostType.'%%') 
-        ,ARRAY_A);
+        AND meta_value <>''",$ID,'%%pb_%%','%%_'.$dataPostType.'%%')
+            ,ARRAY_A);
 
-	    //Array for storing metakey=>metavalue
-	    $metaData = null;
-	    foreach($selectedMeta as $meta){
-		    $metaData[$meta['meta_key']] = $meta['meta_value'];
-	    }
+        //Array for storing metakey=>metavalue
+        $metaData = null;
+        foreach($selectedMeta as $meta){
+            $metaData[$meta['meta_key']] = $meta['meta_value'];
+        }
 
-	    //Getting the overwrite values from settings
-	    $toOverwrite = $this->get_overwrite_values();
+        //Getting the overwrite values from settings
+        $toOverwrite = $this->get_overwrite_values();
 
-	    foreach($toOverwrite as $key){
-		    //Creating the key to overwrite from settings
-		    $modifiedKey = strtolower('pb_'.$key.'_'.$dataPostType);
-		    if(isset($metaData[$modifiedKey])){
-			    //If found we update
-			    $this->inject_meta_to_posts($modifiedKey,$metaData[$modifiedKey],$this->get_all_post_ids(),false);
-		    }else{
-			    //If not it means the field we are trying to read is empty so we delete the related postmeta from all chapters/posts
-			    $this->inject_meta_to_posts($modifiedKey,'',$this->get_all_post_ids(),true);
-		    }
-	    }
+        foreach($toOverwrite as $key){
+            //Enabling the level the type and the property
+            $this->enable_type($key,$enablePostType);
+            //Creating the key to overwrite from settings
+            $modifiedKey = strtolower('pb_'.$key.'_'.$dataPostType);
+            if(isset($metaData[$modifiedKey])){
+                //If found we update
+                $this->inject_meta_to_posts($modifiedKey,$metaData[$modifiedKey],$this->get_all_post_ids(),false);
+            }else{
+                //If not it means the field we are trying to read is empty so we delete the related postmeta from all chapters/posts
+                $this->inject_meta_to_posts($modifiedKey,'',$this->get_all_post_ids(),true);
+            }
+        }
     }
 
-	/**
-	 * Function for updating/deleting post meta, this is called from do_overwrite.
-	 *
-	 * @since  0.11
-	 */
-	function inject_meta_to_posts($key,$value,$posts,$delete){
+    /**
+     * Function for enabling the level the type and the property of the overwritten value
+     *
+     * @since  0.x
+     */
+    private function enable_type($key,$postType){
+        $dataForEnabling = explode('_',$key);
+        $schemaType = $dataForEnabling[1].'_'.$dataForEnabling[2];
+        $schemaProp = $dataForEnabling[0];
 
-		//Choosing the type of post for inserting the data
-		$overwritePostType = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
+        //Enable Post Level
+        update_option($postType.'_checkbox',1);
 
-		//The current post type where the information is comming from (Book Info - Sitemeta)
-		$currentDataPostType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+        //Enable Type
+        update_option($schemaType.'_'.$postType.'_level',1);
 
-		//Creating the key for the new postmeta values
-		$modifiedKey = str_replace($currentDataPostType,$overwritePostType,$key);
+        //Enable Property
+        update_option($schemaProp.'_'.$schemaType.'_'.$postType.'_level',1);
+    }
 
-		foreach($posts as $post){
-			if(!$delete){
-				update_post_meta($post,$modifiedKey,$value);
-			}else{
-				delete_post_meta($post,$modifiedKey,$value);
-			}
-		}
-	}
+    /**
+     * Function for updating/deleting post meta, this is called from do_overwrite.
+     *
+     * @since  0.11
+     */
+    function inject_meta_to_posts($key,$value,$posts,$delete){
 
-	/**
-	 * The function that returns all the properties we have to overwrite
-	 *
-	 * @since  0.11
-	 */
-   function get_overwrite_values(){
+        //Choosing the type of post for inserting the data
+        $overwritePostType = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
+
+        //The current post type where the information is comming from (Book Info - Sitemeta)
+        $currentDataPostType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+
+        //Creating the key for the new postmeta values
+        $modifiedKey = str_replace($currentDataPostType,$overwritePostType,$key);
+
+        foreach($posts as $post){
+            if(!$delete){
+                update_post_meta($post,$modifiedKey,$value);
+            }else{
+                delete_post_meta($post,$modifiedKey,$value);
+            }
+        }
+    }
+
+    /**
+     * The function that returns all the properties we have to overwrite
+     *
+     * @since  0.11
+     */
+    function get_overwrite_values(){
 
         //Wordpress Database variable for database operations
         global $wpdb;
 
         //Get the options table name
         $optionsTable = $wpdb->prefix . "options";
-            
+
         $filterOption = '%%_overwrite%%';
 
         //Our query that chooses options that are enabled and contain the word overwrite
@@ -137,15 +162,15 @@ class Pressbooks_Metadata_Property_Overwrite {
         return $trimmedOptions;
     }
 
-	/**
-	 * The function used to extract all chapter/post ids, we use these ids to create the post meta for each chapter/post.
-	 *
-	 * @since  0.11
-	 */
+    /**
+     * The function used to extract all chapter/post ids, we use these ids to create the post meta for each chapter/post.
+     *
+     * @since  0.11
+     */
     function get_all_post_ids(){
         //Wordpress Database variable for database operations
         global $wpdb;
-        
+
         //Choosing the type of post -> Pressbooks Installation is chapter
         $selectedPostType = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
 

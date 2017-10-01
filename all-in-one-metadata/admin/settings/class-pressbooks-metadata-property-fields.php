@@ -94,8 +94,12 @@ class Pressbooks_Metadata_Property_Fields {
 			//Create the callback function for the overwrite field
 			$overwriteCallback = function() use ($overwriteField,$overwriteTo){
 				$disabled = $this->details[0]==true? 'disabled' : '';
+				$overwriteHide = get_option($overwriteField) ? 'hide' : '';
+				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn2">Disable</button>' : '';
 				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
-				$html .= $overwriteTo . ' <input class="property-checkbox" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, get_option($overwriteField), false) . '/>';
+				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, get_option($overwriteField), false) . '/>';
+				$html .= '<button class="overwrite_prop_clean propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn">Clear</button>';
+				$html .= $disableButton;
 				echo $html;
 			};
 			//Register overwrite setting

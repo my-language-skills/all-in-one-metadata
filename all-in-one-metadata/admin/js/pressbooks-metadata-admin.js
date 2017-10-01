@@ -64,6 +64,64 @@ jQuery(document).ready(function() {
         var form = jQuery(this).closest('form');
         form.submit();
     });
+
+    //Handling the overwrite_prop_clean button
+    jQuery('.property-overwrite').click(function(){
+        var btn = this.id + '_btn';
+        var btn2 = this.id + '_btn2';
+        if ( jQuery(this).is(':checked') ) {
+            jQuery('#'+btn2).addClass('hide');
+            jQuery('#'+btn).addClass('hide');
+        } 
+        else {
+            jQuery('#'+btn2).removeClass('hide');
+            jQuery('#'+btn).removeClass('hide');
+        }
+    });
+
+    //Handling the overwrite_prop_disable
+    jQuery('.overwrite_prop_disable').click(function(event) {
+        event.preventDefault();
+        var propId = jQuery(this).attr('id');
+        if(confirm('Note that by continuing you are disabling this property from all relevant posts')){
+            var data = {
+                'action': 'overwrite_prop_disable',
+                'property': propId
+            };
+            jQuery.post( 'admin-ajax.php', data ).error(
+                function() {
+                    savingMessage.text('Error Disabling Properties');
+                    savingMessage.css('color','red');
+                    savingMessage.show();
+                    loadingImage.hide();
+                    hideMessage(savingMessage);
+                }).success( function() {
+                    
+            });
+        }
+    });
+
+    //Handling the overwrite_prop_clean
+    jQuery('.overwrite_prop_clean').click(function(event) {
+        event.preventDefault();
+        var propId = jQuery(this).attr('id');
+        if(confirm('Note that by continuing you are deleting this property from all relevant posts')){
+            var data = {
+                'action': 'overwrite_prop_clean',
+                'property': propId
+            };
+            jQuery.post( 'admin-ajax.php', data ).error(
+                function() {
+                    savingMessage.text('Error Clearing Properties');
+                    savingMessage.css('color','red');
+                    savingMessage.show();
+                    loadingImage.hide();
+                    hideMessage(savingMessage);
+                }).success( function() {
+                    
+            });
+        }
+    });
 });
 
 //Function that alerts when all property settings are saved

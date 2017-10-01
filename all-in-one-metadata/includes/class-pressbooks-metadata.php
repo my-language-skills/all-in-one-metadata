@@ -5,6 +5,7 @@
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as siteMeta;
 use adminFunctions\Pressbooks_Metadata_Importing as importing;
 use adminFunctions\Pressbooks_Metadata_Options as options;
+use adminFunctions\Pressbooks_Metadata_Ajax as ajax;
 use schemaFunctions\Pressbooks_Metadata_Output as output;
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
 use requiredPlugins\Pressbooks_Metadata_Required_Plugins as required;
@@ -168,6 +169,10 @@ class Pressbooks_Metadata {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Pressbooks_Metadata_Admin( $this->get_plugin_name(), $this->get_version() );
+
+		//Handling ajax requests for overwrite_prop_clean overwrite_prop_disable
+		$this->loader->add_action( 'wp_ajax_overwrite_prop_clean', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::overwrite_prop_clean' );
+		$this->loader->add_action( 'wp_ajax_overwrite_prop_disable', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::overwrite_prop_disable' );
 
 		//Installing required plugins
 		$this->loader->add_action( 'admin_init', new required(), 'requiredPlugins\Pressbooks_Metadata_Required_Plugins::check' );
