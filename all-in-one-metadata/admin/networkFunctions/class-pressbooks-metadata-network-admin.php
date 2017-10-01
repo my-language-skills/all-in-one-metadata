@@ -153,7 +153,7 @@ class Pressbooks_Metadata_Network_Admin {
 
             //Going through all posts and adding the new post_meta
             foreach($selectedPosts as $post){
-                update_post_meta( $post[ID],$metaKey,$newValue);
+                update_post_meta( $post['ID'],$metaKey,$newValue);
             }
 
             //Extracting data for enabling the post level the schema type and property
