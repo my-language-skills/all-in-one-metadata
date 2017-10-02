@@ -13,7 +13,7 @@
 
 	<p>Select the place you want the metadata to show</p>
 	<div class="nav-tab-wrapper">
-		<button class="tablinks-level nav-tab nav-tab-active" onclick="openSett(event,'tablinks-level', 'postLevel','levels')">Post Level</button>
+		<button class="tablinks-level nav-tab" onclick="openSett(event,'tablinks-level', 'postLevel','levels')">Post Level</button>
 		<button class="tablinks-level nav-tab" onclick="openSett(event,'tablinks-level', 'siteLevel','levels')">Site Level</button>
 		<?php
 		if(is_multisite()){

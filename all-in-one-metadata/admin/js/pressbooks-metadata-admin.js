@@ -72,7 +72,7 @@ jQuery(document).ready(function() {
         if ( jQuery(this).is(':checked') ) {
             jQuery('#'+btn2).addClass('hide');
             jQuery('#'+btn).addClass('hide');
-        } 
+        }
         else {
             jQuery('#'+btn2).removeClass('hide');
             jQuery('#'+btn).removeClass('hide');
@@ -96,7 +96,7 @@ jQuery(document).ready(function() {
                     loadingImage.hide();
                     hideMessage(savingMessage);
                 }).success( function() {
-                    
+
             });
         }
     });
@@ -118,10 +118,29 @@ jQuery(document).ready(function() {
                     loadingImage.hide();
                     hideMessage(savingMessage);
                 }).success( function() {
-                    
+
             });
         }
     });
+
+    //Clicking on the last visited tab
+    var buttonGroups = ['tablinks-level','tablinks-activeSch','tablinks-vocab'];
+    for (i = 0; i < buttonGroups.length; i++) {
+        var buttons = document.getElementsByClassName(buttonGroups[i]);
+        var lastClickedTab = localStorage.getItem(buttonGroups[i]);
+        if(buttons[0] == null) break;
+        if(lastClickedTab == null){
+            buttons[0].className += " nav-tab-active";
+            buttons[0].click();
+        }else{
+            for (j = 0; j < buttons.length; j++) {
+                if(buttons[j].textContent == lastClickedTab){
+                    buttons[j].className += " nav-tab-active";
+                    buttons[j].click();
+                }
+            }
+        }
+    }
 });
 
 //Function that alerts when all property settings are saved
@@ -138,12 +157,12 @@ jQuery(document).ajaxStop(function() {
 //TODO Remember to fix this
 //Function that alerts the user when he is trying to leave the page without all the property settings being saved
 /*jQuery(document).ajaxStart(function() {
-    window.onbeforeunload = confirmExit;
-    function confirmExit()
-    {
-        return "Not all properties are saved.  Are you sure you want to exit this page?";
-    }
-});*/
+ window.onbeforeunload = confirmExit;
+ function confirmExit()
+ {
+ return "Not all properties are saved.  Are you sure you want to exit this page?";
+ }
+ });*/
 
 //Function for hiding the message after its displayed
 function hideMessage(message){
@@ -154,6 +173,8 @@ function hideMessage(message){
 
 //Functions for the settings page
 function openSett(evt,tablink, settName, tabType) {
+    //Saving the last visited tab
+    localStorage.setItem(tablink,evt.currentTarget.textContent);
     var i, tablinks,tabcontent;
     tabcontent = document.getElementsByClassName(tabType);
     for (i = 0; i < tabcontent.length; i++) {
