@@ -13,7 +13,7 @@
 
 <p>Other Types of Metadata Vocabularies</p>
 <div class="nav-tab-wrapper">
-	<button class="tablinks-vocab nav-tab nav-tab-active" onclick="openSett(event,'tablinks-vocab', 'coins','vocab')">Coins</button>
+	<button class="tablinks-vocab nav-tab" onclick="openSett(event,'tablinks-vocab', 'coins','vocab')">Coins</button>
 	<button class="tablinks-vocab  nav-tab" onclick="openSett(event,'tablinks-vocab', 'dublin','vocab')">Dublin</button>
 	<button class="tablinks-vocab  nav-tab" onclick="openSett(event,'tablinks-vocab', 'educational','vocab')">Educational</button>
 </div>
