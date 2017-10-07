@@ -59,7 +59,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	/**
 	 * If the type is empty of properties.
 	 *
-	 * @since    0.x
+	 * @since    0.13
 	 */
 	public $isEmpty;
 
@@ -77,7 +77,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	/**
 	 * Function that creates the settings section, each schema type has its own section.
 	 *
-	 * @since    0.x
+	 * @since    0.13
 	 */
 	function createSection(){
 

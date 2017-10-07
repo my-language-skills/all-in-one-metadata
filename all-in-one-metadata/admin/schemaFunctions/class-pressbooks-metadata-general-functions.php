@@ -24,7 +24,7 @@ class Pressbooks_Metadata_General_Functions {
 
 	/**
 	 * A function that returns the active parent from the parent filter
-	 * @since 0.x
+	 * @since 0.13
 	 */
 	public static function get_active_parent(){
 		$enabledParent = get_option('parent_filter_settings');

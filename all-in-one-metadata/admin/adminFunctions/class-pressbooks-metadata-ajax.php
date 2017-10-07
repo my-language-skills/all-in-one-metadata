@@ -7,7 +7,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * The functions of the plugin that handle custom ajax requests.
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.13
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/adminFunctions
@@ -23,7 +23,7 @@ class Pressbooks_Metadata_Ajax {
     /**
      * This function cleans the fields of the property that was overwritten to post/chapter
      *
-     * @since  0.x
+     * @since  0.13
      */
     function overwrite_prop_clean(){
         //Receiving the property
@@ -64,7 +64,7 @@ class Pressbooks_Metadata_Ajax {
     /**
      * This function disables the property that was overwritten to post/chapter
      *
-     * @since  0.x
+     * @since  0.13
      */
     function overwrite_prop_disable(){
         //Receiving the property

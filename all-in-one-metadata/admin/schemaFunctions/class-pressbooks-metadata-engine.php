@@ -30,7 +30,7 @@ class Pressbooks_Metadata_Engine {
 	/**
 	 * A function for gathering all the schema type settings from types that are filtered through their parent.
 	 *
-	 * @since  0.x
+	 * @since  0.13
 	 */
 	public function get_type_settings() {
 		$activeParent = genFunc::get_active_parent();
