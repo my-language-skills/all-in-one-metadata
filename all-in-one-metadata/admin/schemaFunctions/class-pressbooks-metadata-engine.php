@@ -163,38 +163,8 @@ class Pressbooks_Metadata_Engine {
 		//Educational Vocabulary for Chapters and Posts
         new post_type_fields('educational_checkbox_'.$postLevel,'Educational Metadata '.ucfirst($postLevel),$educationalLevelPage,$educationalLevelSection);
 
-		//Creating settings for filtering the schemaTypes that show
-		$parentsSection = 'parents_section';
-		$parentsDisplayPage = 'parents_display_page';
-
-		add_settings_section(
-			$parentsSection,
-			'',
-			function(){},
-			$parentsDisplayPage
-		);
-
-		foreach(structure::$allParents as $parent){
-			$parentDetails = $parent::type_name;
-			//Not allowing the thing filter to show
-			if($parentDetails[1] == 'thing_properties')
-				continue;
-			add_settings_field(
-				$parentDetails[1].'_filter_setting',
-				'',
-				function() use ($parentDetails) {
-					//TODO IN THE FUTURE RADIO BUTTONS CAN BE USED -> LESS JAVASCRIPT
-					$fieldId = $parentDetails[1].'_filter_setting';
-					$selectedColor = get_option($fieldId)?'style="color:blue"':'';
-					$html = '<input class="parent-filters-settings" style="display:none" type="checkbox" id="'.$fieldId.'" name="'.$fieldId.'" value="1" ' . checked(1, get_option($fieldId), false) . '/>';
-					$html .= '<span> | </span><a class="parent-filters" '.$selectedColor.' href="#" id="'.$fieldId.'">'.str_replace('Properties','',$parentDetails[0]).'</a><span> | </span>';
-					echo $html;
-					},
-				$parentsDisplayPage,
-				$parentsSection
-			);
-			register_setting( $parentsDisplayPage, $parentDetails[1].'_filter_setting');
-		}
+		//Registering a setting for the parents filtering
+		register_setting('parent_filter_group', 'parent_filter_settings');
 
 		//Getting type settings
 		$typeSettings = $this->get_type_settings();

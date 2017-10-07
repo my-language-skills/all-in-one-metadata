@@ -27,9 +27,11 @@ class Pressbooks_Metadata_General_Functions {
 	 * @since 0.x
 	 */
 	public static function get_active_parent(){
+		$enabledParent = get_option('parent_filter_settings');
+		$enabledParent = $enabledParent['radio1'];
 		$parentNamespaces = structure::$allParents;
 		foreach($parentNamespaces as $parent){
-			if(get_option($parent::type_name[1].'_filter_setting')){
+			if($parent::type_name[1] == $enabledParent){
 				return $parent;
 			}
 		}

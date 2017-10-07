@@ -51,20 +51,6 @@ jQuery(document).ready(function() {
         jQuery(form).find('#' + name).show();
     });
 
-    //Controlling the parent filtering for the schema types
-    jQuery('.parent-filters-form').find('th').remove();
-    jQuery('.parent-filters-form').find('tr').css("float","left");
-    jQuery(".parent-filters-settings").prop('checked', false);
-
-    jQuery('.parent-filters').click(function(event){
-        event.preventDefault();
-        var parentName = jQuery(this).attr('id');
-        parentName = parentName.replace("link", "setting");
-        jQuery("#"+parentName).attr('checked', 'checked');
-        var form = jQuery(this).closest('form');
-        form.submit();
-    });
-
     //Handling the overwrite_prop_clean button
     jQuery('.property-overwrite').click(function(){
         var btn = this.id + '_btn';
@@ -128,19 +114,37 @@ jQuery(document).ready(function() {
     for (i = 0; i < buttonGroups.length; i++) {
         var buttons = document.getElementsByClassName(buttonGroups[i]);
         var lastClickedTab = localStorage.getItem(buttonGroups[i]);
-        if(buttons[0] == null) break;
+        if(buttons[0] == null) continue;
         if(lastClickedTab == null){
             buttons[0].className += " nav-tab-active";
             buttons[0].click();
         }else{
+            let found = false;
             for (j = 0; j < buttons.length; j++) {
                 if(buttons[j].textContent == lastClickedTab){
                     buttons[j].className += " nav-tab-active";
                     buttons[j].click();
+                    found = true;
+                    break;
                 }
+            }
+            if(found == false){
+                buttons[0].className += " nav-tab-active";
+                buttons[0].click();
             }
         }
     }
+
+    //Autosaving parent filters on change
+    jQuery('#parent_filter_form :input').change(function(){
+        let data = jQuery('#parent_filter_form').serialize();
+        jQuery.post( 'options.php', data ).error(
+            function() {
+                alert('Error filtering, please refresh')
+            }).success( function() {
+                location.reload();
+        });
+    });
 });
 
 //Function that alerts when all property settings are saved
