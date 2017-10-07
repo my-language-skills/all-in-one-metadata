@@ -8,7 +8,7 @@ use schemaTypes\Pressbooks_Metadata_Type;
  * The class for the movie
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.13
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes

@@ -59,7 +59,7 @@ class Pressbooks_Metadata_Sections {
     /**
      * The required properties from all parents.
      *
-     * @since    0.x
+     * @since    0.13
      * @access   private
      */
     private $requiredParentProps;
@@ -91,7 +91,7 @@ class Pressbooks_Metadata_Sections {
 	/**
 	 * The main function used to create the section, it also creates new objects of type field, this is used for the types.
 	 *
-	 * @since  0.x
+	 * @since  0.13
 	 */
 	function pmdt_load_by_property(){
 		add_settings_section(

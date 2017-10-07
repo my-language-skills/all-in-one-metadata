@@ -75,16 +75,46 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
     
 
 ### Soon
-Implementation of milestone 9.1 (Finishing educational metadata and related metadata)
+New types
+Use the library from Spatie that auto generates schema [Schema](https://github.com/spatie/schema-org)
 
 ### Later
 
 
 ### Future
-New types
-Use the library from Spatie that auto generates schema [Schema](https://github.com/spatie/schema-org)
+
     
 ## Changelog
+
+## 0.13
+* **ADDITIONS**
+    *  Added more types on creative workds and organisation parents
+    *  Added 'types' for the educational vocabulary -> Book, Course, Website, Webpage and Article
+    *  Enabled Required Parent Properties for types
+    *  Documentation Update for adding new types
+    *  Admin can clean and disable properties that were overwritten 
+    *  Plugin is fully compatible with the addon Isced Plugin
+* **ENHANCEMENTS**
+    *  Required plugin error and link improved
+    *  In network settings empty types are noted with red color
+    *  Multi site schemaLocation is disabled from settings on a single site 
+    *  Improved parent filtering with radio buttons
+    *  Made the engine more efficient
+    *  Loading only properties for activated types
+    *  Enhanced Dublin Core and Coins vocabularies
+    *  Fully implemented Educational Vocabulary
+    *  Auto activation of types and properties on all sites when super admin adds a property
+    *  Auto activation of types and properties for chapter/post when admin overwrites a property
+    *  Frozen and Overwritten fields now display much better to the user
+    *  Showing last visited tab in settings 
+    *  Fixed the overlap of metaboxes in the settings 
+* **List of Files revised**
+    *  Schema type files
+    *  Engine file
+    *  All files in partials folder
+    *  Admin JavaScript file
+    *  All vocabulary files
+    *  Network admin files
 
 ## 0.12
 * **ADDITIONS**
@@ -295,6 +325,13 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
   
 ## Upgrade Notice
+
+### 0.13
+Plugin now is much more efficient wasting less memory on the server as the engine file had improvements. The plugin had many improvements
+on both the visual interface and the engine. The user experience has improved as we are saving the tabs that were used before reloading the settings page.
+Many new types were added along with improvements on how the type requires parent properties. Now the external vocabularies along with the
+educational vocabulary are fully implemented. The admin and the super admin can simply clone properties without having to enable types manually on site/posts/chapters.
+Another handy feature is the clear and disable feature on overwritten properties. For the educational vocabulary the plugin now is accepting data from a secondary addon plugin named Isced Fields.
 
 ### 0.12
 Added Organization Parent and Types

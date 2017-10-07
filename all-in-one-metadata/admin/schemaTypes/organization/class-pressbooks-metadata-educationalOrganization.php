@@ -21,7 +21,7 @@ class Pressbooks_Metadata_EducationalOrganization extends Pressbooks_Metadata_Ty
     /**
      * The variable that holds all parent required properties
      *
-     * @since    0.x
+     * @since    0.13
      * @access   public
      */
     static $required_parent_props = array(

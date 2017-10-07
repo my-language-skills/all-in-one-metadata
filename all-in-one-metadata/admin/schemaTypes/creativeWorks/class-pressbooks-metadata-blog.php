@@ -21,7 +21,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
     /**
      * The variable that holds all parent required properties
      *
-     * @since    0.x
+     * @since    0.13
      * @access   public
      */
     static $required_parent_props = array(

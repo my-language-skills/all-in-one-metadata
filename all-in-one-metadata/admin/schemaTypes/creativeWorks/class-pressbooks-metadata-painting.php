@@ -8,7 +8,7 @@ use schemaTypes\Pressbooks_Metadata_Type;
  * The class for the painting
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.x
+ * @since      0.13
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
@@ -22,7 +22,7 @@ class Pressbooks_Metadata_Painting extends Pressbooks_Metadata_Type {
     /**
      * The variable that holds all parent required properties
      *
-     * @since    0.x
+     * @since    0.13
      * @access   public
      */
     static $required_parent_props = array(
@@ -32,7 +32,7 @@ class Pressbooks_Metadata_Painting extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable for the paintings
 	 *
-	 * @since    0.x
+	 * @since    0.13
 	 * @access   public
 	 */
 	static $type_setting = array('painting_type' => array('Painting Type','http://schema.org/Painting'));
@@ -40,7 +40,7 @@ class Pressbooks_Metadata_Painting extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the parents for the type
 	 *
-	 * @since    0.x
+	 * @since    0.13
 	 * @access   public
 	 */
 	static $type_parents = array(
@@ -51,7 +51,7 @@ class Pressbooks_Metadata_Painting extends Pressbooks_Metadata_Type {
 	/**
 	 * The variable that holds the properties of this schema type
 	 *
-	 * @since    0.x
+	 * @since    0.13
 	 * @access   public
 	 */
 	static $type_properties = array();
@@ -67,7 +67,7 @@ class Pressbooks_Metadata_Painting extends Pressbooks_Metadata_Type {
 	/**
 	 * Function used for combining the current types properties with its parents fields
 	 *
-	 * @since    0.x
+	 * @since    0.13
 	 * @access   public
 	 */
 	public function get_all_properties() {
