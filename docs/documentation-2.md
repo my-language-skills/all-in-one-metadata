@@ -6,11 +6,14 @@
 * Activate the plugin through the 'Plugins' screen in WordPress
 
 For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
+
 ## Installing Required Plugins
 
 If we were to try to create our plugin without the use of existing plugin solutions we simply would not exist. There is no sustainable way to develop all the functionality needed for our plugin while still being able to offer a competitive price.
 
 * [Custom Metadata Manager](https://github.com/Automattic/custom-metadata) An easy way to add custom fields to your object types (post, pages, custom post types, users) & to generate option pages. PressBooks users have Custom Metadata Manager integrated in the code.
+
+For non PressBooks users, All In One Metadata plugin will let you know with an error that the additional plugin is required and it will provide you with a link so you can download and install it. By clicking the link in the error box you will be provided with the required plugin, upload the plugin to your Wordpress installation using one of the two ways described above when we were installing All In One Metadata, activate the plugin and the error will go away. Now we can start using our newly installed plugin.
 
 ## Integrations
 
@@ -49,11 +52,11 @@ By activating the plugin, a warming appear in the administrator page with the me
 
 All in one metadata use Custom Metadata Manager (no for PressBooks users) as an easy way to add custom fields to your object types (post, pages, custom post types, users)
 
-All in one metadata will create two new tabs. Metadata settings in Settings and Site metadata in Tools.
+All in one metadata will create two new tabs. All In One Metadata settings in Settings and Site metadata in Tools (For PressBooks users, Site metadata is integrated with Book Info).
 
 All in one metadata metadata is put into Object cache when a caching plugin is available. The descriptions and Schema.org scripts are put into Transients. Please be sure to clear your cache.
 
-### Plugin settings
+### All In One Metadata settings
 The settings page slplit the settings in
 * Location of Metadata
 * Activated locations for schema Types
@@ -62,19 +65,32 @@ The settings page slplit the settings in
 #### Location of metadata
 Location of metadata allow the configuration of the metadata for Post level, Site level and Multisite level.
 
-* Post level will load all the wordpres posts (Page and Post) and all the Custom Post Types (in a PressBooks installation just the Part, Chapter, Frond Page and Back page CPTs)
+* Post level will load all the WordPress posts (Page and Post) and all the Custom Post Types (in a PressBooks installation just the Part, Chapter, Frond Page and Back page CPTs)
 * Site level allows to load the metadata for the front page.
 * Multisite (comming soon)
 
+![location of metadata](images/location_of_metadata.PNG)
+
+After activate the metadata trough the checkbox in the different tabs (Post Level, Site Level or Multisite) in the ‘Location Of Metadata’ and saving, the metabox named ‘Activated Locations For Schema Types’ will display the active places for the metadata.
+
+
+
 #### Activated locations for schema Types
+The second metabox in the settings page displays all the active locations that schema metadata will go in, if did not enable any post-type from the above metabox you will see this
+
+![no active locations](images/no_active_locations.PNG)
+
 For each one of the activated locations, the different Types and Properties can be activated.
 
-By activating a Type and the properties, the activated properties are show in the location. A **BOOK INFO** page
+By activating a Type and the properties, the activated properties are show in the location (in Posts or in Site Metadata or Book Info).
 
-## Site metadata
+### Site metadata (Book Info for PressBooks)
 Site metadata allow to create the metadata for the main page. But is also the place where the metadata must be site available can be writing for all the posts, pages or CPTs.
 
 Each Type is a secction with all the Properties of the Type and the supersedes Type.
+
+### All In One Metadata Network Settings (Multisite - PressBooks)
+
 
 
 

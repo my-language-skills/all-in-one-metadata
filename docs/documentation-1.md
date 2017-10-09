@@ -4,6 +4,8 @@ We're convinced that structured data makes the web better, and we've worked hard
 
 ## About All in one metadata plugin
 
+This is a plugin for the Wordpress CMS that can be used to add metadata on a website. The plugin supports integration with the Pressbooks plugin that enables the user to add Books on a website. This plugin works on both multisite installation and singe site installation of Wordpress. When the plugin is operating on multisite it has extra functionality which is described later in this documentation.
+
 The aim of All in one metadata is to accomplish:
 
 * A detailed description of the schema metadata.
@@ -11,7 +13,7 @@ The aim of All in one metadata is to accomplish:
  * Google schoolar
  * Dublin Core
  * Coins
- * Educational metadata (LRMI)
+ * Educational metadata (LRMI) trough schema
 
 This plugin is unbranded! This means that we don’t even put the name “All in one metadata” anywhere within the WordPress interface, aside from the plugin activation page.
 This plugin makes great use of the default WordPress interface elements, like as if this plugin is part of WordPress. No ads, no nags.
