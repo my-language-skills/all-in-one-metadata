@@ -73,8 +73,6 @@ Location of metadata allow the configuration of the metadata for Post level, Sit
 
 After activate the metadata trough the checkbox in the different tabs (Post Level, Site Level or Multisite) in the ‘Location Of Metadata’ and saving, the metabox named ‘Activated Locations For Schema Types’ will display the active places for the metadata.
 
-
-
 #### Activated locations for schema Types
 The second metabox in the settings page displays all the active locations that schema metadata will go in, if did not enable any post-type from the above metabox you will see this
 
@@ -82,7 +80,113 @@ The second metabox in the settings page displays all the active locations that s
 
 For each one of the activated locations, the different Types and Properties can be activated.
 
+![active locations](images/active_locations.PNG)
+
 By activating a Type and the properties, the activated properties are show in the location (in Posts or in Site Metadata or Book Info).
+
+The full list of Types and Properties can be find [here](http://schema.org/docs/full.html).
+
+By selecting the first checkbox and saving, a new option will appear. *Edit Type Properties* where the different Properties of the Type can be selected.
+
+![active Type](images/active_type.png)
+
+Edit Type Properties allow to see the properties organised in 3 groups.
+![properties group](images/properties_group.png)
+
+* Show basic properties (The specifical properties of the Type).
+* Show General Properties (The general properties of all the Types)
+* Show Creative Work Properties (The properties of the group of types of the current Type)
+
+
+
+#### Specific metadata
+Offer other types of specific Metadata vocabularies
+* Coins
+* Dublin Core
+* Educational (LRMI)
+
+##### Coins
+Is a method to embed bibliographic metadata
+
+##### Dublin Core
+Is a small set of vocabulary terms that can be used to describe web resources.
+The original set of 15 classic metadata terms, known as the Dublin Core Metadata Element Set.
+
+    Title
+    Creator
+    Subject
+    Description
+    Publisher
+    Contributor
+    Date
+    Type
+    Format
+    Identifier
+    Source
+    Language
+    Relation
+    Coverage
+    Rights
+
+The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of the Dublin Core vocabulary.[13] This set includes the fifteen terms of the Dublin Core Metadata Element Set (in italic), as well as the qualified terms. Each term has a unique URI in the namespace http://purl.org/dc/terms, and all are defined as RDF properties.
+
+    abstract
+    accessRights
+    accrualMethod
+    accrualPeriodicity
+    accrualPolicy
+    alternative
+    audience
+    available
+    bibliographicCitation
+    conformsTo
+    _contributor_
+    _coverage_
+    created
+    _creator_
+    _date_
+    dateAccepted
+    dateCopyrighted
+    dateSubmitted
+    _description_
+    educationLevel
+    extent
+    _format_
+    hasFormat
+    hasPart
+    hasVersion
+    _identifier_
+    instructionalMethod
+    isFormatOf
+    isPartOf
+    isReferencedBy
+    isReplacedBy
+    isRequiredBy
+    issued
+    isVersionOf
+    _language_
+    license
+    mediator
+    medium
+    modified
+    provenance
+    _publisher_
+    references
+    _relation_
+    replaces
+    requires
+    _rights_
+    rightsHolder
+    _source_
+    spatial
+    _subject_
+    tableOfContents
+    temporal
+    _title_
+    _type_
+    valid
+
+
 
 ### Site metadata (Book Info for PressBooks)
 Site metadata allow to create the metadata for the main page. But is also the place where the metadata must be site available can be writing for all the posts, pages or CPTs.

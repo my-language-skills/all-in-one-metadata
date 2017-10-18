@@ -20,13 +20,19 @@ Educational Metadata for Pressbooks
 
 ## Description
 
-Pressbooks gives you the ability to add metadata to your books thus helping Google and other search engines to recognize it. 
+Pressbooks gives you the ability to add metadata to your books thus helping Google and other search engines to recognize it.
 The problem comes if your book is for educational purposes.
 
-Pressbooks-metadata, extends the functionality of Pressbooks and gives you the flexibility to add more metadata in your books, 
+Pressbooks-metadata, extends the functionality of Pressbooks and gives you the flexibility to add more metadata in your books,
 taking advantage of the LRMI schema markup.
 
 You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
+
+
+[General documentation](/docs/documentation-1.md)
+
+[Specifical documentation](/docs/documentation-2.md)
+
 
 ## Installation
 
@@ -51,7 +57,7 @@ Plugin/Template Name works with:
 
  * ![PHP](https://img.shields.io/badge/PHP-5.6.X-blue.svg)
  * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
- 
+
  Lower versions are not supported.
 
 ## Disclaimers
@@ -68,11 +74,11 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 ### Now
 ## 0.xx
 * **ADDITIONS**
-    
+
 * **ENHANCEMENTS**
-    
+
 * **List of Files revised**
-    
+
 
 ### Soon
 New types
@@ -83,7 +89,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 
 ### Future
 
-    
+
 ## Changelog
 
 ## 0.13
@@ -92,12 +98,12 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
     *  Added 'types' for the educational vocabulary -> Book, Course, Website, Webpage and Article
     *  Enabled Required Parent Properties for types
     *  Documentation Update for adding new types
-    *  Admin can clean and disable properties that were overwritten 
+    *  Admin can clean and disable properties that were overwritten
     *  Plugin is fully compatible with the addon Isced Plugin
 * **ENHANCEMENTS**
     *  Required plugin error and link improved
     *  In network settings empty types are noted with red color
-    *  Multi site schemaLocation is disabled from settings on a single site 
+    *  Multi site schemaLocation is disabled from settings on a single site
     *  Improved parent filtering with radio buttons
     *  Made the engine more efficient
     *  Loading only properties for activated types
@@ -106,8 +112,8 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
     *  Auto activation of types and properties on all sites when super admin adds a property
     *  Auto activation of types and properties for chapter/post when admin overwrites a property
     *  Frozen and Overwritten fields now display much better to the user
-    *  Showing last visited tab in settings 
-    *  Fixed the overlap of metaboxes in the settings 
+    *  Showing last visited tab in settings
+    *  Fixed the overlap of metaboxes in the settings
 * **List of Files revised**
     *  Schema type files
     *  Engine file
@@ -119,7 +125,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 ## 0.12
 * **ADDITIONS**
     *  Added Organisation Parent and Types
-    
+
 * **List of Files revised**
     * schemaTypes Folder
     * composer.json
@@ -127,7 +133,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 ## 0.11
 * **ADDITIONS**
     * Enable the cloning of properties from each site (Book Info/Site-Meta) to (Chapter/Post)  #140
-    
+
 * **List of Files revised**
     * class-pressbooks-metadata-engine.php
     * class-pressbooks-metadata-property-overwrite.php
@@ -169,7 +175,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
     * Changes on settings page -- More user friendly
     * Interactivity Type default value #70
 * **List of Files revised**
-    * Code rewriting for optimisation. 
+    * Code rewriting for optimisation.
 
 ### 0.8.1
 * **ADDITIONS**
@@ -184,10 +190,10 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 * **ADDITIONS**
 	* Rewriting of the plugin #78
 	* Creation of the fields using a plugin: Custom Metadata Manager for WordPress
-	
-* **BUGFIXES:** 
+
+* **BUGFIXES:**
 	* Extend Pressbooks default types, instead of using different ones #91
-	
+
 ### 0.7
 * **ADDITIONS**
 	* **Google Scholar microtags**
@@ -196,20 +202,20 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 		* New property: **citation_isbn**
 		* New property: **citation_publisher**
 		* New property: **citation_publication_date**
-		
+
 * **ENHANCEMENTS**
 	* Educational Framework info Update #69
 	* ISCED field and level of education default values #67
 	* Course Prerequisites Info Update #68
 	* Book Edition #66
 	* Prefixing: to chage it to a more neutral name #59
-	
+
 * **BUGFIXES:** 	
-	
+
 * **List of Files revised**
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata-plugin-metadata.php
-	
+
 ### 0.6
 * **ADDITIONS**
 	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
@@ -222,12 +228,12 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 	* function prefixing #47
 	* timeRequired formating for Site and Chapter #55
 * **REMOVED:**
-	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#35) 
+	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#35)
 		* Delete property: **copyrightYear**
 		* Delete property: **inLanguage**
 		* Delete property: **copyrightHolder**
 		* Delete property: **publisher**
-* **BUGFIXES:** 
+* **BUGFIXES:**
 	* Change the name of the plugin (from draft name to default name)
 	* Author and Alternative headline from PB Chapter level instead of Site level
 	* ScholarlyArticle Bug #58
@@ -237,10 +243,10 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 	* class-pressbooks-metadata.php
 	* class-pressbooks-metadata-plugin-metadata.php
 	* class-pressbooks-metadata-data-field.php
-	
+
 ### 0.5
 * **ADDITIONS**
-	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9) 
+	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9)
 		* New property: **headline**
 		* New property: **image**
 		* New property: **wordCount**
@@ -263,10 +269,10 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 		* New property: **typicalAgeRange**
 * **ENHANCEMENTS**
 	* Code changes to make it the pressbooks-way (#38)
-	* Code changes to use one common prefix $slug to our fields (#39) 
+	* Code changes to use one common prefix $slug to our fields (#39)
 		* **Breaking Change:** The data will disapear.  The previous data still remains saved in the database with the old $slug.
 	* Documentation
-* **BUGFIXES:** 
+* **BUGFIXES:**
 	* Change the Schema type of Chapter to ScholarlyArticle
 	* Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 
@@ -279,7 +285,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 	* Course Type (#30)
 		* New property: **Course Code:** identifier for the Course (e.g. CS101 or 6.001).
 		* New property: **coursePrerequisites**: Course Prerequisites.
-	
+
 ### 0.3
 * **ADDITIONS**
 	* Course Type
@@ -291,7 +297,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 	* Organize the plugin for an easy extension of types. (#10)
 	* Review the code of the plugin, comment and organization. (#11)
 	* Correct the order of the fields.
-* **BUGFIXES:** 
+* **BUGFIXES:**
 	* Bug Fixes: Main page became blank.
 	* Bug Fixes: Pressbooks schema information is being produced twice .(#27)
 
@@ -314,7 +320,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 	* Functions: New function header_function() that produces the microdata code
 	* New Actions: wp_head() action for the function header_function() to be placed in the header
 	* Functions: New function print_educationalAlignment_microdata_meta_tags() that produces the code for the educational alignment properties
-* **BUGFIXES:** 
+* **BUGFIXES:**
 	* Make all the fields produce the expected schema information
 * **REMOVED:**
 	* The fields we added in the General Book Information metabox and move them to a new metabox
@@ -323,7 +329,7 @@ Use the library from Spatie that auto generates schema [Schema](https://github.c
 * **DRAFT VERSION - OLD CODE**
 	* Accessibility: General Book Information: new custom metafields: **Target language:** Level of education according to ISCED-P 2011; **Level:** Level of the course; **Learning Reasource Type:** Course, Examination, Exercise, Descriptor; **Interactivity Type:** Active, Expositive, Mixed; **Age range:** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults; **Class Learning Time:** how long the students will need for the book; **License URL:** custom link to a licence; **Bibliography URL:** custom link to a bibliography
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
-  
+
 ## Upgrade Notice
 
 ### 0.13
@@ -342,7 +348,7 @@ or posts. This is done by selecting the toPost or toChapter option on a property
 
 ### 0.10
 Code rewriting for optimisation. All the types inherit as classes from a base class called type. The creation of new types is way simpler and faster.
-Each property for each level and each type can be enabled and disabled. Dublin core and Coins vocabularies were added, also the schema types now can be 
+Each property for each level and each type can be enabled and disabled. Dublin core and Coins vocabularies were added, also the schema types now can be
 filtered by parent.
 
 ### 0.9
@@ -370,7 +376,7 @@ Review the Site metadata.
 ### 0.3
 To adapt the plugin to PressBooks.
 
-### 0.2 
+### 0.2
 To make the current old plugin work.
 
 ### 0.1
@@ -383,7 +389,7 @@ Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin
 
 Here's a link to [Composer](https://getcomposer.org/)
 
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") 
+Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")
 
 Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
 
@@ -397,7 +403,7 @@ and one to [Markdown's Syntax Documentation][markdown syntax].
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
             "Markdown is what the parser uses to process much of the readme file"
-	    
-	    
-	    
+
+
+
 [AllMyChanges](https://allmychanges.com/p/new/) will track release notes for you and will send you a digest with information about new updates.
