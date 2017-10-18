@@ -91,6 +91,7 @@ By selecting the first checkbox and saving, the page will refresh and you will s
 ![active Type](images/active_type.png)
 
 Edit Type Properties allow to see the properties organised in 3 groups.
+
 ![properties group](images/properties_group.png)
 
 * Show basic properties (The specifical properties of the Type).
