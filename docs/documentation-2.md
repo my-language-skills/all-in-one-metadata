@@ -86,11 +86,11 @@ By activating a Type and the properties, the activated properties are show in th
 
 The full list of Types and Properties can be find [here](http://schema.org/docs/full.html).
 
-By selecting the first checkbox and saving, the page will refresh and you will see this under all activated types a new option *Edit Type Properties* where the different Properties of the Type can be selected.
+By selecting the first checkbox and saving, the page will refresh and you will see this under all activated types a new option **Edit Type Properties** where the different Properties of the Type can be selected.
 
 ![active Type](images/active_type.png)
 
-Edit Type Properties allow to see the properties organised in 3 groups.
+The drop down menu on the bottom shows alternative properties (organised in 3 groups) for the type that you selected.
 
 ![properties group](images/properties_group.png)
 
@@ -98,12 +98,9 @@ Edit Type Properties allow to see the properties organised in 3 groups.
 * Show General Properties (The general properties of all the Types)
 * Show Creative Work Properties (The properties of the group of types of the current Type)
 
+When the mouse cursor is over the meta box it's display the description for each property so you don’t have to go to the schema website all the times, once you select or deselect an item from the list the data is saving automatically, some properties will be enabled by default for some types, it means that these properties are mandatory from the schema.org and it’s always good to fill them when creating the post.
 
----
-When clicking on the metabox you can see a description for each property so you don’t have to go to the schema website all the times, once you select or deselect an item from the list the data is saving automatically, some properties will be enabled by default for some types, it means that these properties are mandatory from the schema.org and it’s always good to fill them when creating the post
----
-
-
+ NOTE: that if you activate a Type and you don’t select any properties the metabox will not show in your posts because you simply did not choose anything to describe, if the Type though has required properties by activating it the required properties will show in the metabox.
 
 #### Specific metadata
 Offer other types of specific Metadata vocabularies
@@ -146,22 +143,22 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
     available
     bibliographicCitation
     conformsTo
-    _contributor_
-    _coverage_
+    *contributor*
+    *coverage*
     created
-    _creator_
-    _date_
+    *creator*
+    *date*
     dateAccepted
     dateCopyrighted
     dateSubmitted
-    _description_
+    *description*
     educationLevel
     extent
-    _format_
+    *format*
     hasFormat
     hasPart
     hasVersion
-    _identifier_
+    *identifier*
     instructionalMethod
     isFormatOf
     isPartOf
@@ -170,26 +167,26 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
     isRequiredBy
     issued
     isVersionOf
-    _language_
+    *language*
     license
     mediator
     medium
     modified
     provenance
-    _publisher_
+    *publisher*
     references
-    _relation_
+    *relation*
     replaces
     requires
-    _rights_
+    *rights*
     rightsHolder
-    _source_
+    *source*
     spatial
-    _subject_
+    *subject*
     tableOfContents
     temporal
-    _title_
-    _type_
+    *title*
+    *type*
     valid
 
 
@@ -202,8 +199,8 @@ Each Type is a secction with all the Properties of the Type and the supersedes T
 ### All In One Metadata Network Settings (Multisite - PressBooks)
 
 
-
-
+### Post metadata (Post, Page or CPT)
+Now, simply add the info in the fields from the new metabox to describe the selected properties and click Save Changes.
 
 
 
