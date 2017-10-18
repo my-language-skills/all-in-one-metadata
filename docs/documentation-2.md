@@ -190,22 +190,35 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
     valid
 
 ### Post metadata (Post, Page or CPT)
-Now, simply add the info in the fields from the new metabox to describe the selected properties and click Save Changes.
+In your selected Post, Page or a Custom Post Type will appear a new metabox for the creation of the metadata. Simply add the info in the fields from the new metabox to describe the selected properties.
 
 ![Chapter Book Type metadata metabox](images/chapter_book_type_metabox.png)
 
-Once the information is created-updated,
+Once the information is created-updated, click Save Changes.
 
 ![Chapter Book Type metadata metabox completed](images/chapter_book_type_metabox-complete.png)
 
-google will be able to read the metadata (Google structured data testing tool).
+google will be able to read the metadata in the post (Test with [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/)).
 
 ![Google Structured Data Testing Tool](images/google-structured-data-testing-tool.png)
 
 ### Site metadata (Book Info for PressBooks)
-Site metadata allow to create the metadata for the main page. But is also the place where the metadata must be site available can be writing for all the posts, pages or CPTs.
+Site metadata allow to create the metadata for the main page. Also is the place where the metadata must be site available can be writing for all the posts, pages or CPTs.
 
-Each Type is a secction with all the Properties of the Type and the supersedes Type.
+Each Type is a section with all the Properties of the Type and the supersedes Type.
+
+Now, simply add the info in the fields from the new metabox to describe the selected properties
+
+![Chapter Book Type metadata metabox](images/chapter_book_type_metabox.png)
+
+Once the information is created-updated, click Save Changes.
+
+![Chapter Book Type metadata metabox completed](images/chapter_book_type_metabox-complete.png)
+
+
+
+
+
 
 
 
@@ -214,7 +227,7 @@ Each Type is a secction with all the Properties of the Type and the supersedes T
 
   * Post level will load all the WordPress posts (Page and Post) and all the Custom Post Types (in a PressBooks installation just the Part, Chapter, Frond Page and Back page CPTs)
   * Site level allows to load the metadata for the front page.
-  * Multisite (comming soon)
+  * Multisite (coming soon)
 
 ### All In One Metadata Network Settings (Multisite - PressBooks)
 
