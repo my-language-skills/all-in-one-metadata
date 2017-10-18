@@ -194,6 +194,13 @@ Now, simply add the info in the fields from the new metabox to describe the sele
 
 ![Chapter Book Type metadata metabox](images/chapter_book_type_metabox.png)
 
+Once the information is created-updated,
+
+![Chapter Book Type metadata metabox completed](images/chapter_book_type_metabox-complete.png)
+
+google will be able to read the metadata (Google structured data testing tool).
+
+![Google Structured Data Testing Tool](images/google-structured-data-testing-tool.png)
 
 ### Site metadata (Book Info for PressBooks)
 Site metadata allow to create the metadata for the main page. But is also the place where the metadata must be site available can be writing for all the posts, pages or CPTs.
