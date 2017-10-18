@@ -212,3 +212,8 @@ A SEO plugin offer between other, the following features:
 * Prevents canonical errors with categories, pages, subdomains and Multisite Domain Mapping.
 * Discourages 404 pages and empty categories from being indexed, even if they don’t send a 404 response.
 * Automatically notifies Google, Bing, and Yandex on website updates when sitemaps are enabled.
+
+
+
+---
+[Readme](/Readme.md)

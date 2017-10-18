@@ -86,7 +86,7 @@ By activating a Type and the properties, the activated properties are show in th
 
 The full list of Types and Properties can be find [here](http://schema.org/docs/full.html).
 
-By selecting the first checkbox and saving, a new option will appear. *Edit Type Properties* where the different Properties of the Type can be selected.
+By selecting the first checkbox and saving, the page will refresh and you will see this under all activated types a new option *Edit Type Properties* where the different Properties of the Type can be selected.
 
 ![active Type](images/active_type.png)
 
@@ -96,6 +96,11 @@ Edit Type Properties allow to see the properties organised in 3 groups.
 * Show basic properties (The specifical properties of the Type).
 * Show General Properties (The general properties of all the Types)
 * Show Creative Work Properties (The properties of the group of types of the current Type)
+
+
+---
+When clicking on the metabox you can see a description for each property so you don’t have to go to the schema website all the times, once you select or deselect an item from the list the data is saving automatically, some properties will be enabled by default for some types, it means that these properties are mandatory from the schema.org and it’s always good to fill them when creating the post
+---
 
 
 
@@ -207,3 +212,8 @@ Each Type is a secction with all the Properties of the Type and the supersedes T
 - As SuperAdmin you area allow to transfer properties from the SuperAdmin settings page to all of the Sites (site meta/book info).
 
 - As Admin, you can later to clone that properties from your site meta to your post or chapter (not any other type of CPT).
+
+
+
+---
+[Readme](/Readme.md)
