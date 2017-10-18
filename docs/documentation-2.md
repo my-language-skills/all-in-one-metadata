@@ -189,6 +189,10 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
     *type*
     valid
 
+### Post metadata (Post, Page or CPT)
+Now, simply add the info in the fields from the new metabox to describe the selected properties and click Save Changes.
+
+![Chapter Book Type metadata metabox](images/chapter_book_type_metabox.png)
 
 
 ### Site metadata (Book Info for PressBooks)
@@ -196,11 +200,18 @@ Site metadata allow to create the metadata for the main page. But is also the pl
 
 Each Type is a secction with all the Properties of the Type and the supersedes Type.
 
+
+
+  #### Location of metadata
+  Location of metadata allow the configuration of the metadata for Post level, Site level and Multisite level.
+
+  * Post level will load all the WordPress posts (Page and Post) and all the Custom Post Types (in a PressBooks installation just the Part, Chapter, Frond Page and Back page CPTs)
+  * Site level allows to load the metadata for the front page.
+  * Multisite (comming soon)
+
 ### All In One Metadata Network Settings (Multisite - PressBooks)
 
 
-### Post metadata (Post, Page or CPT)
-Now, simply add the info in the fields from the new metabox to describe the selected properties and click Save Changes.
 
 
 
