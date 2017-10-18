@@ -69,18 +69,18 @@ Location of metadata allow the configuration of the metadata for Post level, Sit
 * Site level allows to load the metadata for the front page.
 * Multisite (comming soon)
 
-![location of metadata](images/location_of_metadata.PNG)
+![location of metadata](images/location_of_metadata.png)
 
 After activate the metadata trough the checkbox in the different tabs (Post Level, Site Level or Multisite) in the ‘Location Of Metadata’ and saving, the metabox named ‘Activated Locations For Schema Types’ will display the active places for the metadata.
 
 #### Activated locations for schema Types
 The second metabox in the settings page displays all the active locations that schema metadata will go in, if did not enable any post-type from the above metabox you will see this
 
-![no active locations](images/no_active_locations.PNG)
+![no active locations](images/no_active_locations.png)
 
 For each one of the activated locations, the different Types and Properties can be activated.
 
-![active locations](images/active_locations.PNG)
+![active locations](images/active_locations.png)
 
 By activating a Type and the properties, the activated properties are show in the location (in Posts or in Site Metadata or Book Info).
 
@@ -214,4 +214,4 @@ Now, simply add the info in the fields from the new metabox to describe the sele
 
 
 ---
-[Readme](//Readme.md)
+[Readme](https://github.com/Books4Languages/pressbooks-metadata/blob/master/Readme.md)
