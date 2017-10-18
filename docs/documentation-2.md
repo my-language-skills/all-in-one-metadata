@@ -214,4 +214,4 @@ Now, simply add the info in the fields from the new metabox to describe the sele
 
 
 ---
-[Readme](/Readme.md)
+[Readme](//Readme.md)
