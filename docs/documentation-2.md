@@ -97,13 +97,19 @@ By selecting the first checkbox and saving, the page will refresh and you will s
 
 ![active Type](images/active_type.png)
 
+##### Edit Type Properties
+
 Edit Type Properties open a new window with all the Properties for a selected Type. The window will be different for the Post level and Site level.
 
-For Post level we can see
+###### Edit Type Properties for Post level
+
+For Post level we can see a checkbox for each Property of the Type
 
 ![active Type](images/post_book_type_properties.png)
 
 ![active Type](images/post_book_type_properties_saved.png)
+
+###### Edit Type Properties for Site level
 
 For Site level we have two columns with chekboxes.
 
@@ -117,8 +123,9 @@ The new checkboxes copy the information for a specific property from the Site le
 
 ![active Type](images/site_book_type_properties_saved_freezed.png)
 
-
 An example of the metabox with the Properties frozzen are [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/documentation-2.md#frozzen-post-metadata-post-page-or-cpt).
+
+###### Edit Type Properties extended
 
 The drop down menu on the bottom shows alternative properties (organised in 3 groups) for the type that you selected.
 
