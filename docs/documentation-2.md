@@ -97,7 +97,15 @@ By selecting the first checkbox and saving, the page will refresh and you will s
 
 ![active Type](images/active_type.png)
 
-Edit Type Properties open a new window with all the Properties for a selected Type
+Edit Type Properties open a new window with all the Properties for a selected Type. The window will be different for the Post level and Site level.
+
+For Post level we can see
+
+![active Type](images/post_book_type_properties.png)
+
+![active Type](images/post_book_type_properties_saved.png)
+
+For Site level we can see a new column with chekboxes. The new checkboxes copy the information for a specific property from the Site level to all the Post. By activating the clone of the information from the Site level to all the posts, Clear and Disable buttom will desappear.
 
 ![active Type](images/site_book_type_properties.png)
 
@@ -206,11 +214,15 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
 ### Post metadata (Post, Page or CPT)
 In your selected Post, Page or a Custom Post Type will appear a new metabox for the creation of the metadata. Simply add the info in the fields from the new metabox to describe the selected properties.
 
-![Chapter Book Type metadata metabox](images/post_book_type_metabox.png)
+![Post Book Type metadata metabox](images/post_book_type_metabox.png)
 
 Once the information is created-updated, click Save Changes.
 
-![Chapter Book Type metadata metabox completed](images/post_book_type_metabox_complete.png)
+![Post Book Type metadata metabox completed](images/post_book_type_metabox_complete.png)
+
+If the Properties are frozzen from the Site level, instead of cells for writing the information, we will see for each frozzen property the values from the same property in written in Site level.
+
+![Post Book Type metadata freezed values](images/post_book_type_properties_freezed_values.png)
 
 google will be able to read the metadata in the post (Test with [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/)).
 
@@ -256,4 +268,4 @@ google will be able to read the metadata in the Main Page (Test with [Google str
 
 
 ---
-[Readme](https://github.com/Books4Languages/pressbooks-metadata/blob/master/Readme.md)
+[Readme](https://github.com/Books4Languages/pressbooks-metadata/blob/master/README.md)
