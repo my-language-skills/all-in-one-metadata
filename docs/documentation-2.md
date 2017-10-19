@@ -109,8 +109,7 @@ For Site level we can see a new column with chekboxes. The new checkboxes copy t
 
 ![active Type](images/site_book_type_properties.png)
 
-
-
+An example of the metabox with the Properties frozzen are [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/documentation-2.md#frozzen-post-metadata-post-page-or-cpt).
 
 The drop down menu on the bottom shows alternative properties (organised in 3 groups) for the type that you selected.
 
@@ -219,6 +218,8 @@ In your selected Post, Page or a Custom Post Type will appear a new metabox for 
 Once the information is created-updated, click Save Changes.
 
 ![Post Book Type metadata metabox completed](images/post_book_type_metabox_complete.png)
+
+#### Frozzen Post metadata (Post, Page or CPT)
 
 If the Properties are frozzen from the Site level, instead of cells for writing the information, we will see for each frozzen property the values from the same property in written in Site level.
 
