@@ -41,7 +41,6 @@ Any theme can work with All in one metadata.
 * WordPress 4.8 and higher.
 * Internationalization through WordPress.org.
 * MultiSite.
-* **Detection of various other popular SEO tools to prevent duplicated output.**
 * Translation plugins WPML, Polylang and qTranslate X.
 * Custom Post Types.
 
@@ -69,7 +68,14 @@ Location of metadata allow the configuration of the metadata for Post level, Sit
 * Site level allows to load the metadata for the front page.
 * Multisite (comming soon)
 
-![location of metadata](images/location_of_metadata.png)
+For Post level
+
+![location of metadata](images/location_of_metadata_post.png)
+
+For Site level
+
+![location of metadata](images/location_of_metadata_site.png)
+
 
 After activate the metadata trough the checkbox in the different tabs (Post Level, Site Level or Multisite) in the ‘Location Of Metadata’ and saving, the metabox named ‘Activated Locations For Schema Types’ will display the active places for the metadata.
 
