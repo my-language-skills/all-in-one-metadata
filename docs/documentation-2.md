@@ -68,6 +68,8 @@ Location of metadata allow the configuration of the metadata for Post level, Sit
 * Site level allows to load the metadata for the front page.
 * Multisite (comming soon)
 
+After activate the metadata trough the checkbox in the different tabs (Post Level, Site Level or Multisite) in the ‘Location Of Metadata’ and saving, the metabox named ‘Activated Locations For Schema Types’ will display the active places for the metadata.
+
 For Post level
 
 ![location of metadata](images/location_of_metadata_post.png)
@@ -76,8 +78,7 @@ For Site level
 
 ![location of metadata](images/location_of_metadata_site.png)
 
-
-After activate the metadata trough the checkbox in the different tabs (Post Level, Site Level or Multisite) in the ‘Location Of Metadata’ and saving, the metabox named ‘Activated Locations For Schema Types’ will display the active places for the metadata.
+Multisite (comming soon)
 
 #### Activated locations for schema Types
 The second metabox in the settings page displays all the active locations that schema metadata will go in, if did not enable any post-type from the above metabox you will see this
@@ -96,9 +97,16 @@ By selecting the first checkbox and saving, the page will refresh and you will s
 
 ![active Type](images/active_type.png)
 
+Edit Type Properties open a new window with all the Properties for a selected Type
+
+![active Type](images/site_book_type_properties.png)
+
+
+
+
 The drop down menu on the bottom shows alternative properties (organised in 3 groups) for the type that you selected.
 
-![properties group](images/properties_group.png)
+![properties group](images/type_properties_group.png)
 
 * Show basic properties (The specifical properties of the Type).
 * Show General Properties (The general properties of all the Types)
@@ -198,11 +206,11 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
 ### Post metadata (Post, Page or CPT)
 In your selected Post, Page or a Custom Post Type will appear a new metabox for the creation of the metadata. Simply add the info in the fields from the new metabox to describe the selected properties.
 
-![Chapter Book Type metadata metabox](images/chapter_book_type_metabox.png)
+![Chapter Book Type metadata metabox](images/post_book_type_metabox.png)
 
 Once the information is created-updated, click Save Changes.
 
-![Chapter Book Type metadata metabox completed](images/chapter_book_type_metabox-complete.png)
+![Chapter Book Type metadata metabox completed](images/post_book_type_metabox_complete.png)
 
 google will be able to read the metadata in the post (Test with [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/)).
 
@@ -215,11 +223,11 @@ Each Type is a section with all the Properties of the Type and the supersedes Ty
 
 Now, simply add the info in the fields from the new metabox to describe the selected properties
 
-![Chapter Book Type metadata metabox](images/chapter_book_type_metabox.png)
+![Chapter Book Type metadata metabox](images/post_book_type_metabox.png)
 
 Once the information is created-updated, click Save Changes.
 
-![Chapter Book Type metadata metabox completed](images/chapter_book_type_metabox-complete.png)
+![Chapter Book Type metadata metabox completed](images/post_book_type_metabox_complete.png)
 
 google will be able to read the metadata in the Main Page (Test with [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/)).
 
