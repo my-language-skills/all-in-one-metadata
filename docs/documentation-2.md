@@ -105,9 +105,18 @@ For Post level we can see
 
 ![active Type](images/post_book_type_properties_saved.png)
 
-For Site level we can see a new column with chekboxes. The new checkboxes copy the information for a specific property from the Site level to all the Post. By activating the clone of the information from the Site level to all the posts, Clear and Disable buttom will desappear.
+For Site level we have two columns with chekboxes.
 
 ![active Type](images/site_book_type_properties.png)
+
+By activating the clone of the information from the Site level to all the posts, Clear and Disable buttom will desappear.
+
+![active Type](images/site_book_type_properties_saved.png)
+
+The new checkboxes copy the information for a specific property from the Site level to all the Post.
+
+![active Type](images/site_book_type_properties_saved_freezed.png)
+
 
 An example of the metabox with the Properties frozzen are [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/documentation-2.md#frozzen-post-metadata-post-page-or-cpt).
 
