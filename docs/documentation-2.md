@@ -215,12 +215,9 @@ Once the information is created-updated, click Save Changes.
 
 ![Chapter Book Type metadata metabox completed](images/chapter_book_type_metabox-complete.png)
 
+google will be able to read the metadata in the Main Page (Test with [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/)).
 
-
-
-
-
-
+![Google Structured Data Testing Tool](images/google-structured-data-testing-tool.png)
 
   #### Location of metadata
   Location of metadata allow the configuration of the metadata for Post level, Site level and Multisite level.
