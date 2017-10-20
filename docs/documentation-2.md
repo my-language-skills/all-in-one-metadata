@@ -115,7 +115,7 @@ For Site level we have two columns with chekboxes.
 
 ![active Type](images/site_book_type_properties.png)
 
-By activating the clone of the information from the Site level to all the posts, Clear and Disable buttom will desappear.
+By activating the clone of the information from the Site level to all the posts, the Home page metadata of the selected properties will be clone to all the Post. Also the Clear and Disable buttom will desappear.
 
 ![active Type](images/site_book_type_properties_saved.png)
 
@@ -138,6 +138,16 @@ The drop down menu on the bottom shows alternative properties (organised in 3 gr
 When the mouse cursor is over the meta box it's display the description for each property so you don’t have to go to the schema website all the times, once you select or deselect an item from the list the data is saving automatically, some properties will be enabled by default for some types, it means that these properties are mandatory from the schema.org and it’s always good to fill them when creating the post.
 
  NOTE: that if you activate a Type and you don’t select any properties the metabox will not show in your posts because you simply did not choose anything to describe, if the Type though has required properties by activating it the required properties will show in the metabox.
+
+###### Site Edit Type Properties extended
+
+In Site level, two new bottoms allow new functionalities.
+
+![properties group](images/site_editing_type_properties_extended.png)
+
+**Clear:** allow to clear all the fiels for a specific Property. Useful if we did clone to all the posts and later we do not whant to show any more such data and we whan to have an empty field.
+
+**Disable:**  allo to 
 
 #### Specific metadata
 Offer other types of specific Metadata vocabularies
