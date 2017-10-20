@@ -145,9 +145,9 @@ In Site level, two new bottoms allow new functionalities.
 
 ![properties group](images/site_editing_type_properties_extended.png)
 
-**Clear:** allow to clear all the fiels for a specific Property. Useful if we did clone to all the posts and later we do not whant to show any more such data and we whan to have an empty field.
+**Clear:** allow to clear all the fiels for a specific Property. Useful if we did clone to all the posts and later we do not whant to show any more such data and we whant to have an empty field.
 
-**Disable:**  allo to 
+**Disable:**  allo to disable the selected property from the post level. Note that this will just disable the property NOT the schema type or the active post level.
 
 #### Specific metadata
 Offer other types of specific Metadata vocabularies
@@ -157,6 +157,11 @@ Offer other types of specific Metadata vocabularies
 
 ##### Coins
 Is a method to embed bibliographic metadata
+
+---from the documentation ---
+ **From there just select the Coins tab check the checkbox and click Save Changes, this will enable the Coins metadata on your homepage, similarly enable the Dublin metadata by going to its tab checking the checkbox and clicking Save Changes. As you remember from our previous examples all metadata related to our homepage can be edited under the Tools tab by selecting Site Metadata. After activating the vocabularies and navigating to the Site Metadata you should see two metaboxes with predefined properties for each metadata vocabulary. Fill in the ones you like and click save. Any property that is left empty will not display any data on the mark-up of the site.**
+ ----
+![Coins vocabulary](images/vocabularies_coins.png)
 
 ##### Dublin Core
 Is a small set of vocabulary terms that can be used to describe web resources.
@@ -177,6 +182,11 @@ The original set of 15 classic metadata terms, known as the Dublin Core Metadata
     Relation
     Coverage
     Rights
+
+![Coins vocabulary](images/vocabularies_dc.png)
+
+###### Dublin Core Metadata Terms
+
 
 The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of the Dublin Core vocabulary.[13] This set includes the fifteen terms of the Dublin Core Metadata Element Set (in italic), as well as the qualified terms. Each term has a unique URI in the namespace http://purl.org/dc/terms, and all are defined as RDF properties.
 
