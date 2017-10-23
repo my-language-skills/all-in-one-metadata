@@ -119,7 +119,7 @@ By activating the clone of the information from the Site level to all the posts,
 
 ![active Type](images/site_book_type_properties_saved.png)
 
-The new checkboxes copy the information for a specific property from the Site level to all the Post.
+The new checkboxes copy the information for a specific property from the Site level to all the Post. By uncheck, the value will remain in the field, but it would be editable by the Site Administrator.
 
 ![active Type](images/site_book_type_properties_saved_freezed.png)
 
@@ -155,16 +155,15 @@ Offer other types of specific Metadata vocabularies
 * Dublin Core
 * Educational (LRMI)
 
-##### Coins
-Is a method to embed bibliographic metadata
+![Specific metadata](images/specific_metadata.png)
 
----from the documentation ---
- **From there just select the Coins tab check the checkbox and click Save Changes, this will enable the Coins metadata on your homepage, similarly enable the Dublin metadata by going to its tab checking the checkbox and clicking Save Changes. As you remember from our previous examples all metadata related to our homepage can be edited under the Tools tab by selecting Site Metadata. After activating the vocabularies and navigating to the Site Metadata you should see two metaboxes with predefined properties for each metadata vocabulary. Fill in the ones you like and click save. Any property that is left empty will not display any data on the mark-up of the site.**
+##### Coins
+Is a method to embed bibliographic metadata on the homepage by going to its tab checking the checkbox and clicking Save Changes. As before, all metadata related to our homepage can be edited under the Tools tab by selecting Site Metadata (or Book info for PressBooks users).
  ----
 ![Coins vocabulary](images/vocabularies_coins.png)
 
 ##### Dublin Core
-Is a small set of vocabulary terms that can be used to describe web resources.
+Is a small set of vocabulary terms that can be used to describe web resources on the homepage by going to its tab checking the checkbox and clicking Save Changes. As before, all metadata related to our homepage can be edited under the Tools tab by selecting Site Metadata (or Book info for PressBooks users).
 The original set of 15 classic metadata terms, known as the Dublin Core Metadata Element Set.
 
     Title
@@ -186,8 +185,6 @@ The original set of 15 classic metadata terms, known as the Dublin Core Metadata
 ![Coins vocabulary](images/vocabularies_dc.png)
 
 ###### Dublin Core Metadata Terms
-
-
 The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of the Dublin Core vocabulary.[13] This set includes the fifteen terms of the Dublin Core Metadata Element Set (in italic), as well as the qualified terms. Each term has a unique URI in the namespace http://purl.org/dc/terms, and all are defined as RDF properties.
 
     abstract
@@ -245,6 +242,33 @@ The Dublin Core Metadata Initiative (DCMI) Metadata Terms is the current set of 
     *title*
     *type*
     valid
+
+##### Educational Metadata (LRMI)
+The [LRMI specification](http://dublincore.org/dcx/lrmi-terms/1.1) is a collection of classes and properties for markup and description of educational resources. The specification builds on the extensive vocabulary provided by Schema.org and other standards. [LRMI terms](http://dublincore.org/dcx/lrmi-terms/) not included in schema.org may nevertheless be used to augment and enrich Schema.org markup.
+
+Index of Terms in the /lrmi-terms/ Namespace
+  Classes
+  AlignmentObject
+  EducationalAudience
+  Properties
+  alignmentType
+  educationalAlignment
+  educationalFramework
+  educationalRole
+  educationalUse
+  interactivityType
+  isBasedOnUrl
+  learningResourceType
+  targetDescription
+  targetName
+  targetUrl
+  timeRequired
+  typicalAgeRange
+  useRightsUrl
+
+![lrmi vocabuary](images/vocabularies_lrmi_1.png)
+
+![lrmi vocabuary](images/vocabularies_lrmi_2.png)
 
 ### Post metadata (Post, Page or CPT)
 In your selected Post, Page or a Custom Post Type will appear a new metabox for the creation of the metadata. Simply add the info in the fields from the new metabox to describe the selected properties.
