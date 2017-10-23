@@ -272,7 +272,6 @@ Index of Terms in the /lrmi-terms/ Namespace
   useRightsUrl
 
 ![lrmi vocabuary](images/vocabularies_lrmi_1.png)
-
 ![lrmi vocabuary](images/vocabularies_lrmi_2.png)
 
 ### Post metadata (Post, Page or CPT)
