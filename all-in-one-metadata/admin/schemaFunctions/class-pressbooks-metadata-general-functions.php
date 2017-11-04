@@ -22,20 +22,24 @@ class Pressbooks_Metadata_General_Functions {
 
 	}
 
-	/**
-	 * A function that returns the active parent from the parent filter
-	 * @since 0.13
-	 */
-	public static function get_active_parent(){
-		$enabledParent = get_option('parent_filter_settings');
-		$enabledParent = $enabledParent['radio1'];
-		$parentNamespaces = structure::$allParents;
-		foreach($parentNamespaces as $parent){
-			if($parent::type_name[1] == $enabledParent){
-				return $parent;
-			}
-		}
-	}
+    /**
+     * A function that returns the active parent from the parent filter
+     * @since 0.13
+     */
+    public static function get_active_parent(){
+        if(get_option('parent_filter_settings') == false){
+            $enabledParent = 'organization_properties';
+        }else{
+            $enabledParent = get_option('parent_filter_settings');
+            $enabledParent = $enabledParent['radio1'];
+        }
+        $parentNamespaces = structure::$allParents;
+        foreach($parentNamespaces as $parent){
+            if($parent::type_name[1] == $enabledParent){
+                return $parent;
+            }
+        }
+    }
 
 	/**
 	 * Function used to remove null values from an array

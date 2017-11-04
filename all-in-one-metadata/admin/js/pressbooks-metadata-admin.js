@@ -135,6 +135,22 @@ jQuery(document).ready(function() {
         }
     }
 
+    //Selecting a parent by default
+    var inputs =  jQuery('#parent_filter_form input:radio');
+    var toEnable = null;
+    var isEnabled = false;
+    inputs.each(function( index ) {
+        if(jQuery(this).attr('checked') == 'checked'){
+            isEnabled = true;
+        }
+        if(jQuery(this).attr('value') == 'organization_properties'){
+            toEnable = this;
+        }
+    });
+    if(isEnabled == false){
+        jQuery(toEnable).prop('checked', true);
+    }
+
     //Autosaving parent filters on change
     jQuery('#parent_filter_form :input').change(function(){
         let data = jQuery('#parent_filter_form').serialize();
