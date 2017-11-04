@@ -134,7 +134,7 @@ class Pressbooks_Metadata_Sections {
 	public static function types( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
 		$instance = new self();
 		$instance->sectionId = $sectionInputId;
-		$instance->sectionName = $sectionInputName;
+		$instance->sectionName = $sectionInputName == 'Site-meta Level' || $sectionInputName == 'Metadata Level' ? 'Site Meta Level' : $sectionInputName;
 		$instance->displayPage = $sectionInputDisplayPage;
 		$instance->fieldsData = $fieldsDataInput;
 		$instance->pmdt_load_by_type();
