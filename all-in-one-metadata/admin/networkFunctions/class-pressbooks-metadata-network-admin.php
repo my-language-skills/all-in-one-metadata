@@ -96,7 +96,7 @@ class Pressbooks_Metadata_Network_Admin {
      *
      * @since  0.10
      */
-    private function update_properties($metaKey,$newValue){
+    private function update_properties($metaKey,$newValue,$freezes){
 
         if ((strpos($metaKey, '_freeze') !== false) || $newValue=="") {
             return;
@@ -124,7 +124,7 @@ class Pressbooks_Metadata_Network_Admin {
             switch_to_blog($site_id);
 
             //Check if the site allows super admin to change data
-            if(!(get_option($postType.'_saoverwr'))){
+            if(!(get_option($postType.'_saoverwr')) && $freezes[str_replace('pb_','',$metaKey).'_freeze'] != 1){
                 continue;
             }
 
@@ -178,6 +178,30 @@ class Pressbooks_Metadata_Network_Admin {
     }
 
     /**
+     * Function used for taking an array and generating a cleaned one with the keys you ask
+     *
+     * @since  0.x
+     */
+    function cleanCollect($arrayInput,$searchWord,$toLower){
+        $newArray = array();
+        if($toLower == true){
+            foreach($arrayInput as $key => $val){
+                if(strpos($key,$searchWord) !== false){
+                    $newArray[strtolower($key)] = $val;
+                }
+            }
+        }else{
+            foreach($arrayInput as $key => $val){
+                if(strpos($key,$searchWord) !== false){
+                    $newArray[$key] = $val;
+                }
+            }
+        }
+
+        return $newArray;
+    }
+
+    /**
      * Function used for saving the settings on the Super Admin
      *
      * @since  0.10
@@ -193,6 +217,9 @@ class Pressbooks_Metadata_Network_Admin {
         global $new_whitelist_options;
         $options = $new_whitelist_options['site_level_admin_display'];
 
+        //Collecting freezes from post variable - converting keys to lowercase
+        $freezes = $this->cleanCollect($_POST,'_freeze',true);
+
         // Go through the posted data and save only our options.
         foreach ($options as $option) {
             if (isset($_POST[$option])) {
@@ -202,7 +229,7 @@ class Pressbooks_Metadata_Network_Admin {
                 $readyOption =  $_POST[$option];
                 update_option($option, $readyOption);
                 //Updating the property on all sites
-                $this->update_properties($option,$_POST[$option]);
+                $this->update_properties($option,$_POST[$option],$freezes);
             } else {
                 //Making sure we are deleting the option from the root site
                 switch_to_blog(self::ROOT_SITE);
