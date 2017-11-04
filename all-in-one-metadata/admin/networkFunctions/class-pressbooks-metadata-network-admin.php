@@ -117,14 +117,19 @@ class Pressbooks_Metadata_Network_Admin {
             //Skipping the RootSite
             if($site_id == self::ROOT_SITE) {continue;}
 
+            //Get the post type we want to work with
+            $postType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+
             //Switching site
             switch_to_blog($site_id);
 
+            //Check if the site allows super admin to change data
+            if(!(get_option($postType.'_saoverwr'))){
+                continue;
+            }
+
             //Get the posts table name for the current site
             $postsTable = $wpdb->prefix . "posts";
-
-            //Get the post type we want to work with
-            $postType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 
             //Our query that chooses posts of type site-meta or metadata for the book info
             $selectedPosts = $wpdb->get_results($wpdb->prepare(" 
