@@ -6,13 +6,15 @@
       "schemaTypes\\": "admin/schemaTypes",
       "requiredPlugins\\": "admin/requiredPlugins",
       "schemaTypes\\cw\\": "admin/schemaTypes/creativeWorks",
-      "schemaTypes\\organization\\": "admin/schemaTypesorganization",
+      "schemaTypes\\organization\\": "admin/schemaTypes/organization",
       "adminFunctions\\": "admin/adminFunctions",
       "networkFunctions\\": "admin/networkFunctions",
-      "vocabularyFunctions\\": "admin/vocabularyFunctions"
+      "vocabularyFunctions\\": "admin/vocabularyFunctions",
+      "Spatie\\SchemaOrg\\": "vendor/spatie/schema-org/src"
     }
   },
   "require": {
     "spatie/schema-org": "^1.4"
   }
 }
+
