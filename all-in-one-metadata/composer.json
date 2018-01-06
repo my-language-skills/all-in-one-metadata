@@ -11,5 +11,8 @@
       "networkFunctions\\": "admin/networkFunctions",
       "vocabularyFunctions\\": "admin/vocabularyFunctions"
     }
+  },
+  "require": {
+    "spatie/schema-org": "^1.4"
   }
 }

@@ -36,7 +36,8 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 
 ## Installation
 
-1. Clone (or copy) this repository to the `/wp-content/plugins/` directory
+1. Clone (or copy) this repository folder `all-in-one-metadata` to the `/wp-content/plugins/` directory
+1. Navigate into `/wp-content/plugins/all-in-one-metadata` and run `composer install` and then `composer dump-autoload -o`
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 ## Frequently Asked Questions
