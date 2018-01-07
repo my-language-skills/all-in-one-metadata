@@ -191,7 +191,7 @@ class Pressbooks_Metadata_Type {
 	 */
 	public function pmdt_get_metatags(){
 		//Here we need to check for a wordpress option
-		if(0){
+		if(!get_option('jsonld_output')){
 			return $this->get_microdata();
 		}else{
 			return $this->get_jsonld();
@@ -237,6 +237,14 @@ class Pressbooks_Metadata_Type {
 		//Calling the Schema.php class from the library invoking its function that returns the type
 		//Note that the functions in Schema.php are static and the name of the function ($clearTypeName) returns the type of the name
 		//For example $schema = jsonldGen::$book(); will return a book object
+		$schema = new jsonldGen;
+
+		//Checking if the type exists in the library, in case we have a naming error comming from our type files we end the opperation
+		if(!method_exists($schema,$clearTypeName)){
+			return;
+		}
+
+		//Creating a schema type from the library
 		$schema = jsonldGen::$clearTypeName();
 
 
