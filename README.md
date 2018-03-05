@@ -34,6 +34,10 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 [Specifical documentation](/docs/documentation-2.md)
 
 
+---
+https://github.com/pressbooks/pressbooks/issues/950
+
+
 ## Installation
 
 1. Clone (or copy) this repository to the `/wp-content/plugins/` directory
