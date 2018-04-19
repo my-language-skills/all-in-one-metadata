@@ -88,6 +88,7 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 New types
 Use the library from Spatie that auto generates schema [Schema](https://github.com/spatie/schema-org)
 Detection of various other popular SEO tools to prevent duplicated output
+Review: https://yoast.com/hreflang-ultimate-guide/
 
 ### Later
 
