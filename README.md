@@ -89,6 +89,8 @@ New types
 Use the library from Spatie that auto generates schema [Schema](https://github.com/spatie/schema-org)
 Detection of various other popular SEO tools to prevent duplicated output
 Review: https://yoast.com/hreflang-ultimate-guide/
+Maybe if a book have a version name (once is achive) we can have automatic link to the original one
+https://moz.com/learn/seo/duplicate-content
 
 ### Later
 
