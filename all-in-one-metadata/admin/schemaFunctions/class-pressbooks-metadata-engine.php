@@ -103,6 +103,14 @@ class Pressbooks_Metadata_Engine {
 	 */
 	public function register_settings() {
 
+		//General settings
+		$generalSettSection = "generalSettingsSection";
+		$generalSettPage = "general_settings_page";
+
+		//Registering the general settings for the general settings metabox
+		add_settings_section($generalSettSection, "Metadata Output Type", null, $generalSettPage);
+		new post_type_fields('jsonld_output','Enable Jsonld',$generalSettPage,$generalSettSection);
+
 		//Post Level
 		$postLevelSection = "postLevelSection";
 		$postLevelPage = "post_level_tab";

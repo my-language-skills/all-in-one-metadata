@@ -3,6 +3,7 @@
 namespace schemaTypes;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
+use Spatie\SchemaOrg\Schema as jsonldGen;
 
 /**
  * The class for the Type including operations, this class is used as a base class for all the types
@@ -184,11 +185,25 @@ class Pressbooks_Metadata_Type {
 	}
 
 	/**
-	 * A function that creates the metadata for the book type.
+	 * This is a routing function used to check if the administrator wants the metadata to be in jsonld or microdata format
+	 * @since 0.x
+	 *
+	 */
+	public function pmdt_get_metatags(){
+		//Here we need to check for a wordpress option
+		if(!get_option('jsonld_output')){
+			return $this->get_microdata();
+		}else{
+			return $this->get_jsonld();
+		}
+	}
+
+	/**
+	 * A function that creates the metadata for the types using microdata.
 	 * @since 0.8.1
 	 *
 	 */
-	public function pmdt_get_metatags() {
+	private function get_microdata() {
 		//Creating microtags
 		$html = "<!-- Microtags --> \n";
 
@@ -196,6 +211,7 @@ class Pressbooks_Metadata_Type {
 
 		foreach ( $this->type_fields as $itemprop => $details ) {
 			$propName = strtolower('pb_' . $itemprop . '_'.$this->typeName.'_' . $this->type_level);
+			$clearTypeName = str_replace('http://schema.org/','',$this->typeUrl);
 			if ($this->pmdt_prop_run($itemprop)) {
 				$value = $this->pmdt_get_value($propName);
 				if(!empty($value)){$html .= "<meta itemprop = '" . $itemprop . "' content = '" . $value . "'>\n";}
@@ -203,5 +219,48 @@ class Pressbooks_Metadata_Type {
 		}
 		$html .= '</div>';
 		return $html;
+	}
+
+	/**
+	 * A function that creates the metadata for the types using jsonld.
+	 * @since 0.x
+	 *
+	 */
+	private function get_jsonld(){
+
+		//Getting the clear name of the type so we can load a class (type object) from the spatie/schema
+		$clearTypeName = str_replace('http://schema.org/','',$this->typeUrl);
+
+		//Changing the first letter of the type into lower case so we can match the function name in the library (starting point Schema.php)
+		$clearTypeName = lcfirst($clearTypeName);
+
+		//Calling the Schema.php class from the library invoking its function that returns the type
+		//Note that the functions in Schema.php are static and the name of the function ($clearTypeName) returns the type of the name
+		//For example $schema = jsonldGen::$book(); will return a book object
+		$schema = new jsonldGen;
+
+		//Checking if the type exists in the library, in case we have a naming error comming from our type files we end the opperation
+		if(!method_exists($schema,$clearTypeName)){
+			return;
+		}
+
+		//Creating a schema type from the library
+		$schema = jsonldGen::$clearTypeName();
+
+
+		//Where ever we find a property that has a value we add it into the object created above ($schema)
+		foreach ( $this->type_fields as $itemprop => $details ) {
+			$propName = strtolower('pb_' . $itemprop . '_'.$this->typeName.'_' . $this->type_level);
+			if ($this->pmdt_prop_run($itemprop)) {
+				$value = $this->pmdt_get_value($propName);
+				if(!empty($value)){
+					//Note that schema is the object created above and $itemprop is used to call a function from the type stored in the $schema variable
+					//Assuming like above that the $schema is holding a book object doing this $schema->illustrator('a_name') sets the illustrator property of the type to 'a_name'
+					$schema->$itemprop($value);
+				}
+			}
+		}
+		//This uses the $schema object and all the properties we gave it above (illustrator for example) to return jasonld data
+		return $schema->toScript();
 	}
 }
