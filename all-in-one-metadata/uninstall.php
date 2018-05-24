@@ -70,7 +70,8 @@ foreach( $blogs_ids as $b ){
 	foreach ( $all_options as $name => $value ) {
 		foreach ($allPostTypes as $postType) {
 			if ( stristr( $name, '_type_' . $postType ) || stristr( $name, '_type_' . $postType . '_level' ) 
-				|| stristr( $name, '_type_overwrite' ) || stristr($name, 'saoverwr') || stristr($name, $postType.'_checkbox')) {
+				|| stristr( $name, '_type_overwrite' ) || stristr($name, 'saoverwr') || stristr($name, $postType.'_checkbox')
+				|| stristr( $name, 'dublin_checkbox' ) || stristr($name, 'coins_checkbox') || stristr($name, 'educational_checkbox')) {
 				$plugin_options[ $name ] = $value;
 
 			}
@@ -90,6 +91,7 @@ foreach( $blogs_ids as $b ){
 	$blog_id = $b->blog_id == 1 ? '' : $b->blog_id.'_';
 	//DELETE query to postmeta database
 	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'pb%type%'");
+	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'pb%vocab%'");
 }
 
 
