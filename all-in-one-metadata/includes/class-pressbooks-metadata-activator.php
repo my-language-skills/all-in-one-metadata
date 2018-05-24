@@ -6,7 +6,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * Fired during plugin activation
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.1
+ * @since      0.16
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
@@ -17,7 +17,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      0.1
+ * @since      0.16
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>

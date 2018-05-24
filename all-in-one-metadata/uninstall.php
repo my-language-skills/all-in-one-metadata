@@ -20,7 +20,7 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.1
+ * @since      0.16
  *
  * @package    Pressbooks_Metadata
  */

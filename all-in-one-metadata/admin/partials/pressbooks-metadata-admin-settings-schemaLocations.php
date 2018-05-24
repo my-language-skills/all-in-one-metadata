@@ -57,7 +57,6 @@
                 submit_button();
                 ?>
             </form>
-            <p>Comming soon</p>
         </div>
     <?php
     }

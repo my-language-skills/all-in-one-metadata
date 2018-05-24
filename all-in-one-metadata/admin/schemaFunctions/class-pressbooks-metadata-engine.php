@@ -127,7 +127,7 @@ class Pressbooks_Metadata_Engine {
 		//Creating the sections
 		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
 		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $siteLevelPage);
-		add_settings_section($multiLevelSection, "-------MULTISITE-------", null, $multiLevelPage);
+		add_settings_section($multiLevelSection, "Choose If You Want To Have a Superadmin Control", null, $multiLevelPage);
 
 		//Gathering post types
 		$allPostTypes = $this->get_all_post_types();
@@ -138,7 +138,7 @@ class Pressbooks_Metadata_Engine {
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$siteLevelPage,$siteLevelSection);
 
 				if(is_multisite()) {
-                    new post_type_fields($post_type . '_saoverwr', 'Allow Overwrite', $siteLevelPage, $siteLevelSection);
+                    new post_type_fields($post_type . '_saoverwr', 'Allow Overwrite', $multiLevelPage, $multiLevelSection);
                 }
 			}else{
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
