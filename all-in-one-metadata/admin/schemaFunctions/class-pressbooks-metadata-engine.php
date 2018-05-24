@@ -136,11 +136,13 @@ class Pressbooks_Metadata_Engine {
 		foreach($allPostTypes as $post_type){
 			if($post_type == 'metadata' || $post_type == 'site-meta'){
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$siteLevelPage,$siteLevelSection);
+
 				if(is_multisite()) {
                     new post_type_fields($post_type . '_saoverwr', 'Allow Overwrite', $siteLevelPage, $siteLevelSection);
                 }
 			}else{
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
+
 			}
 		}
 
@@ -189,7 +191,6 @@ class Pressbooks_Metadata_Engine {
 					$post_type.'_tab',
 					$typeSettings
 				);
-
 				foreach(structure::$allSchemaTypes as $type){
 					$type_id = genFunc::get_type_id($type);
 					$sectionId = $type_id.'_'.$post_type.'_level';
