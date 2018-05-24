@@ -394,6 +394,10 @@ To use an old version as the start point.
 
 ## Credits
 
+Here's a link to [Debug Bar](https://wordpress.org/plugins/debug-bar/#description)
+
+Here's a link to [Debug Bar PHP/MySQL console](https://wordpress.org/plugins/debug-bar-console/)
+
 Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
 
 Here's a link to [Composer](https://getcomposer.org/)
