@@ -30,6 +30,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
+//declaring global DB connection variable
+global $wpdb;
+
 //get all the sites for multisite
 $blogs_ids=get_sites();
 
@@ -82,9 +85,11 @@ foreach( $blogs_ids as $b ){
 		}
 	}
 
-	// Delete Custom Post Type posts' meta
-
-	//$wpdb->query( "DELETE FROM {$wpdb->postmeta} meta WHERE `meta_key` LIKE '%\_type\_%' OR `meta_key` LIKE '%\_type\_%\_level'" );
+	// Delete plugin related posts' meta
+	//if blog is root, do not add blog number to table name
+	$blog_id = $b->blog_id == 1 ? '' : $b->blog_id.'_';
+	//DELETE query to postmeta database
+	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'pb%type%'");
 }
 
 
