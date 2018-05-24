@@ -57,6 +57,7 @@
                 submit_button();
                 ?>
             </form>
+            <p></p>
         </div>
     <?php
     }
