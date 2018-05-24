@@ -103,14 +103,15 @@ https://moz.com/learn/seo/duplicate-content
 
 ## 0.16
 * **ADDITIONS**
-    * Multisite setting tab
-    * Pre-defined options out-of-the-box (example for users to see how plugin works)
+    *  Multisite setting tab
+    *  Pre-defined options out-of-the-box (example for users to see how plugin works)
 * **ENHANCEMENTS**
-    * Database cleaning after uninstalling
+    *  Database cleaning after uninstalling
 * **List of Files Revised**
-    * Uninstall file
-    * Activation file
-    * Engine files
+    *  uninstall.php
+    *  class-pressbooks-metadata-activator.php
+    *  class-pressbooks-metadata-engine.php
+    *  pressbooks-metadata-admin-settings-schemaLocations.php
 
 ## 0.13
 * **ADDITIONS**
@@ -136,11 +137,12 @@ https://moz.com/learn/seo/duplicate-content
     *  Fixed the overlap of metaboxes in the settings
 * **List of Files revised**
     *  Schema type files
-    *  Engine file
     *  All files in partials folder
-    *  Admin JavaScript file
     *  All vocabulary files
-    *  Network admin files
+    *  class-pressbooks-metadata-engine.php
+    *  pressbooks-metadata-admin.js
+    *  class-pressbooks-metadata-net-sett-sections.php
+    *  class-pressbooks-metadata-network-admin.php
 
 ## 0.12
 * **ADDITIONS**
