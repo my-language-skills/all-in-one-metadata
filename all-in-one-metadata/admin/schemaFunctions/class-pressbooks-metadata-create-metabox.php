@@ -111,12 +111,17 @@ class Pressbooks_Metadata_Create_Metabox {
         //Getting the origin for overwritten data
         $dataFrom = site_cpt::pressbooks_identify() ? 'Book-Info' : 'Site-Meta';
         $value = get_post_meta(get_the_ID(),$field_slug);
-        $value = $value[0];
+	    if(array_key_exists(0, $value)){
+		    $value = $value[0];
+	    }else{
+		    $value = "";
+	    }
+
         $broken_slug = explode('_',$field_slug);
         $property = ucfirst($broken_slug[1]);
         ?>
         <hr />
-        <p><strong><?=$property?></strong> is Overwritten by <?=$dataFrom?>. The value is "<?=$value?>".</p>
+        <p><strong><?=$property?></strong> is Overwritten by <?=$dataFrom?>. <?php if ($value !== "") echo 'The value is "'.$value.'"'; else echo 'Check the predefined value there.';?></p>
         <input type="hidden" name="<?=$field_slug?>" value="<?=$value?>" />
         <hr />
         <?php

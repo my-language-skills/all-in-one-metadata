@@ -101,6 +101,18 @@ https://moz.com/learn/seo/duplicate-content
 
 ## Changelog
 
+## 0.16
+* **ADDITIONS**
+    *  Multisite setting tab
+    *  Pre-defined options out-of-the-box (example for users to see how plugin works)
+* **ENHANCEMENTS**
+    *  Database cleaning after uninstalling
+* **List of Files Revised**
+    *  uninstall.php
+    *  class-pressbooks-metadata-activator.php
+    *  class-pressbooks-metadata-engine.php
+    *  pressbooks-metadata-admin-settings-schemaLocations.php
+
 ## 0.13
 * **ADDITIONS**
     *  Added more types on creative workds and organisation parents
@@ -125,11 +137,12 @@ https://moz.com/learn/seo/duplicate-content
     *  Fixed the overlap of metaboxes in the settings
 * **List of Files revised**
     *  Schema type files
-    *  Engine file
     *  All files in partials folder
-    *  Admin JavaScript file
     *  All vocabulary files
-    *  Network admin files
+    *  class-pressbooks-metadata-engine.php
+    *  pressbooks-metadata-admin.js
+    *  class-pressbooks-metadata-net-sett-sections.php
+    *  class-pressbooks-metadata-network-admin.php
 
 ## 0.12
 * **ADDITIONS**
@@ -340,6 +353,9 @@ https://moz.com/learn/seo/duplicate-content
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
 
 ## Upgrade Notice
+
+### 0.16
+Plugin now properly uninstalls itself, no remaining data in database is kept after uninstalling. In order for users to see how plugin works without requiring initial setting, we have added some enabled options out-of-the-box in order to see how actually plugin works. The predefined options can be disabled after activation. Schema location options now stays more logical, multisite control setting is also supported from this moment.
 
 ### 0.13
 Plugin now is much more efficient wasting less memory on the server as the engine file had improvements. The plugin had many improvements

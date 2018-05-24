@@ -16,7 +16,7 @@
  * Plugin Name:       All In One Metadata
  * Plugin URI:        https://github.com/Books4Languages/pressbooks-metadata
  * Description:       This plugin adds metadata to wordpress and also has support for the pressbooks plugin
- * Version:           0.12
+ * Version:           0.16
  * Author:            My Language Skills
  * Author URI:        http://books4languages.com
  * License:           GPL-2.0+
@@ -73,3 +73,4 @@ function run_pressbooks_metadata() {
 
 }
 run_pressbooks_metadata();
+
