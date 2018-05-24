@@ -110,6 +110,8 @@ class Pressbooks_Metadata {
 	 */
 	private function load_dependencies() {
 
+		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
 		/**
 		 * The autoload file for using our namespaces - this comes from composer
 		 */
@@ -120,6 +122,13 @@ class Pressbooks_Metadata {
 		 * core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-pressbooks-metadata-loader.php';
+
+		/**
+		 * The custom-metadata plugin functionality
+		 */
+		if (!siteMeta::pressbooks_identify() && !is_plugin_active('custom-metadata')) {
+			require_once plugin_dir_path( dirname(__FILE__ ) ) . 'vendor/custom-metadata/custom_metadata.php';
+		}
 
 		/**
 		 * The class responsible for defining internationalization functionality
@@ -174,8 +183,6 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'wp_ajax_overwrite_prop_clean', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::overwrite_prop_clean' );
 		$this->loader->add_action( 'wp_ajax_overwrite_prop_disable', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::overwrite_prop_disable' );
 
-		//Installing required plugins
-		$this->loader->add_action( 'admin_init', new required(), 'requiredPlugins\Pressbooks_Metadata_Required_Plugins::check' );
 
 		//Load styles and scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
