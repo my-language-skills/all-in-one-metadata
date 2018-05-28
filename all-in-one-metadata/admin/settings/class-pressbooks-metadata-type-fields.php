@@ -75,6 +75,7 @@ class Pressbooks_Metadata_Fields {
 		$this->displayPage = $displayPageInput;
 
 		$this->pmdt_create_field();
+
 	}
 
 	/**
@@ -94,7 +95,7 @@ class Pressbooks_Metadata_Fields {
 		//We are using a combination of the metaType and the sectionId for the field id so
 		// we can rapidly create fields of the same type in more that one sections,
 		// without having to specify different ids for each section's field's
-		register_setting( $this->displayPage, $this->metaType.'_'.$this->sectionId);
+        register_setting( $this->displayPage, $this->metaType . '_' . $this->sectionId );
 	}
 
 	/**

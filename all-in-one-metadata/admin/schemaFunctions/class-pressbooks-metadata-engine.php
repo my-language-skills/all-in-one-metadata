@@ -194,7 +194,7 @@ class Pressbooks_Metadata_Engine {
 				foreach(structure::$allSchemaTypes as $type){
 					$type_id = genFunc::get_type_id($type);
 					$sectionId = $type_id.'_'.$post_type.'_level';
-					//Here we are procedding to the next loop itteration if the type is not active
+					//Here we are proceeding to the next loop itteration if the type is not active
 					//With this we are only registering properties for active types
 					if(!get_option($sectionId)){
 						continue;

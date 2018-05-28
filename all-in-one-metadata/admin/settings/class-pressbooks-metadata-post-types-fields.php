@@ -96,7 +96,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 				echo '<p>If you enable this you will be able to add metadata to your Site from Site Metadata submenu under Tools</p>';
 			}
 		}else if($this->fieldName == 'Allow Overwrite'){
-            echo '<p>If you enable this you allow the super admin to take full access on your site\'s metadata.</p>';
+            echo '<p>If you enable this you allow the super admin to take full access on your site metadata.</p>';
         }
 	}
 }

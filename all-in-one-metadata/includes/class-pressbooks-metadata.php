@@ -8,7 +8,6 @@ use adminFunctions\Pressbooks_Metadata_Options as options;
 use adminFunctions\Pressbooks_Metadata_Ajax as ajax;
 use schemaFunctions\Pressbooks_Metadata_Output as output;
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
-use requiredPlugins\Pressbooks_Metadata_Required_Plugins as required;
 use networkFunctions\Pressbooks_Metadata_Network_Admin as netadmin;
 
 /**
