@@ -78,7 +78,8 @@ foreach( $blogs_ids as $b ){
 		foreach ($allPostTypes as $postType) {
 			if ( stristr( $name, '_type_' . $postType ) || stristr( $name, '_type_' . $postType . '_level' ) 
 				|| stristr( $name, '_type_overwrite' ) || stristr($name, 'saoverwr') || stristr($name, $postType.'_checkbox')
-				|| stristr( $name, 'dublin_checkbox' ) || stristr($name, 'coins_checkbox') || stristr($name, 'educational_checkbox')) {
+				|| stristr( $name, 'dublin_checkbox' ) || stristr($name, 'coins_checkbox') || stristr($name, 'educational_checkbox')
+			    || $name == 'property_network_value' || $name == 'property_network_value_freeze') {
 				$plugin_options[ $name ] = $value;
 
 			}
