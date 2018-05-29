@@ -103,40 +103,57 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	 * @since    0.10
 	 */
 	function createFields($data){
+
+	    //declaring names for accumulated options
+	    $optionName = 'property_network_value';
+		$freezeOptionName = $optionName.'_freeze';
+
+		//getting option array, if not, initialize empty array
+		$values = get_option($optionName) ?: [];
+		$freeze_values = get_option($optionName.'_freeze') ?: [];
+
+		//Registering the setting holding the values of options
+		register_setting($this->sectionDisPage,$optionName);
+
+		//Registering the setting for freezing values
+		register_setting($this->sectionDisPage,$freezeOptionName);
+
 		//Looping through the properties of the type
 		foreach($data as $propertyId => $details){
 
-			//Creating the name of the options
-			$propertyOptionName = $propertyId.'_'.$this->typeId.'_'.$this->typeLevel;
-			$propertyFreeze = $propertyOptionName.'_freeze';
+		    $propertyOptionName = $propertyId.'_'.$this->typeId.'_'.$this->typeLevel;
+		    $propertyFreeze = $propertyOptionName.'_freeze';
 
-			//Registering the setting holding the value
-			register_setting($this->sectionDisPage,$propertyOptionName);
+		    //retrieving property option from array, if not, initialize it
+			$values[$propertyOptionName] = isset($values[$propertyOptionName]) ? $values[$propertyOptionName] : '';
+			$freeze_values[$propertyFreeze] = isset($freeze_values[$propertyFreeze]) ? $freeze_values[$propertyFreeze] : '';
 
-			//Registering the setting for freezing
-			register_setting($this->sectionDisPage,$propertyFreeze);
+			////Creating the name of the options
+			//$propertyOptionName = $propertyId.'_'.$this->typeId.'_'.$this->typeLevel;
+			//$propertyFreeze = $propertyOptionName.'_freeze';
+
 
 			//Callback function for the input field
-			$fieldRenderFunction = function() use ($propertyOptionName){
-				$html =  '<input type="text" class="regular-text" name="'.$propertyOptionName.'" value="'.get_option($propertyOptionName).'"><br>';
+			$fieldRenderFunction = function() use ($propertyOptionName, $optionName, $values){
+				$html =  '<input type="text" class="regular-text" name="'.$optionName.'['.$propertyOptionName.']" value="'.$values[$propertyOptionName].'"><br>';
 				echo $html;
 			};
 
 			//Callback function for the freeze checkbox
-			$checkboxRenderFunction = function() use ($propertyFreeze){
+			$checkboxRenderFunction = function() use ($propertyFreeze, $freezeOptionName, $freeze_values){
 				?>
-				<label><input type="checkbox" name="<?=$propertyFreeze?>"
-				              value="1" <?php checked(get_option($propertyFreeze)); ?> /> <?php
+				<label><input type="checkbox" name="<?=$freezeOptionName.'['.$propertyFreeze.']'?>"
+				              value="1" <?php checked($freeze_values[$propertyFreeze]); ?> /> <?php
 				echo 'Check this box if you want to freeze this property.' ?></label>
 				<?php
 			};
 
 			//Adding the property field
-			add_settings_field($propertyOptionName,$details[1]
+			add_settings_field($optionName.'['.$propertyOptionName.']',$details[1]
 				,$fieldRenderFunction,$this->sectionDisPage,$this->sectionId);
 
 			//Adding the checkbox field
-			add_settings_field($propertyFreeze,''
+			add_settings_field($freezeOptionName.'['.$propertyFreeze.']',''
 				,$checkboxRenderFunction,$this->sectionDisPage,$this->sectionId);
 		}
 	}

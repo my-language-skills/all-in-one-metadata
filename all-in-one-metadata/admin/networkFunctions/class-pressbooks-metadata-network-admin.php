@@ -215,10 +215,11 @@ class Pressbooks_Metadata_Network_Admin {
 
         // This is the list of registered options.
         global $new_whitelist_options;
-        $options = $new_whitelist_options['site_level_admin_display'];
+        $options = array_unique($new_whitelist_options['site_level_admin_display']);
 
         //Collecting freezes from post variable - converting keys to lowercase
         $freezes = $this->cleanCollect($_POST,'_freeze',true);
+        $freezes = $freezes['property_network_value_freeze'];
 
         // Go through the posted data and save only our options.
         foreach ($options as $option) {
@@ -228,19 +229,26 @@ class Pressbooks_Metadata_Network_Admin {
                 // Save our option with the site's options.
                 $readyOption =  $_POST[$option];
                 update_option($option, $readyOption);
-                //Updating the property on all sites
-                $this->update_properties($option,$_POST[$option],$freezes);
+
+				//get all properties from option
+	            $properties = $_POST[$option];
+
+                foreach ($properties as $property => $value) {
+
+	                //Updating the property on all sites
+	                $this->update_properties( $property, $properties[$property], $freezes );
+                }
             } else {
-                //Making sure we are deleting the option from the root site
-                switch_to_blog(self::ROOT_SITE);
-                // If the option is not here then delete it.
-                delete_option($option);
+	            //Making sure we are deleting the option from the root site
+	            switch_to_blog(self::ROOT_SITE);
+	            // If the option is not here then delete it.
+	            delete_option($option);
             }
         }
 
-        // At last we redirect back to our options page.
-        wp_redirect(add_query_arg(array('page' => 'site_level_admin_display',
-            'updated' => 'true'), network_admin_url('settings.php')));
+        // At the end we redirect back to our options page.
+       wp_redirect(add_query_arg(array('page' => 'site_level_admin_display',
+           'updated' => 'true'), network_admin_url('settings.php')));
 
         exit;
     }
