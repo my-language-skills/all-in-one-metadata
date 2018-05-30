@@ -46,9 +46,9 @@ class Pressbooks_Metadata_Activator {
 			}
 			//activate post/chapter level meta for demonstration (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'chapter_checkbox', '1' );
+				update_option( 'schema_locations', ['chapter_checkbox' => '1'] );
 			} else {
-				update_option( 'post_checkbox', '1' );
+				update_option( 'schema_locations', ['post_checkbox' => '1'] );
 			}
 
 			//activate site-level meta for demonstration (these are gonna be created anyway)

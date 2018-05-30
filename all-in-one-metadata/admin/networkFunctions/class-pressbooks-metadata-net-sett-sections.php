@@ -120,18 +120,13 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 
 		//Looping through the properties of the type
 		foreach($data as $propertyId => $details){
-
+			//Creating the name of the options
 		    $propertyOptionName = $propertyId.'_'.$this->typeId.'_'.$this->typeLevel;
 		    $propertyFreeze = $propertyOptionName.'_freeze';
 
 		    //retrieving property option from array, if not, initialize it
 			$values[$propertyOptionName] = isset($values[$propertyOptionName]) ? $values[$propertyOptionName] : '';
 			$freeze_values[$propertyFreeze] = isset($freeze_values[$propertyFreeze]) ? $freeze_values[$propertyFreeze] : '';
-
-			////Creating the name of the options
-			//$propertyOptionName = $propertyId.'_'.$this->typeId.'_'.$this->typeLevel;
-			//$propertyFreeze = $propertyOptionName.'_freeze';
-
 
 			//Callback function for the input field
 			$fieldRenderFunction = function() use ($propertyOptionName, $optionName, $values){

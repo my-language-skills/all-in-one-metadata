@@ -6,6 +6,7 @@ use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use settings\Pressbooks_Metadata_Location_Fields as location_fields;
 use vocabularyFunctions;
 
 
@@ -127,12 +128,15 @@ class Pressbooks_Metadata_Engine {
 		//Creating the sections
 		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
 		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $siteLevelPage);
-		add_settings_section($multiLevelSection, "Choose If You Want To Have a Superadmin Control", null, $multiLevelPage);
+		add_settings_section($multiLevelSection, "Choose If You Want To Provide Control to Superadmin ", null, $multiLevelPage);
 
 		//Gathering post types
 		$allPostTypes = $this->get_all_post_types();
 
-		//Creating fields for each section (multisite comming soon)
+		//registring locations option
+		register_setting($postLevelPage, 'schema_locations');
+
+		//Creating fields for each section (multisite coming soon)
 		foreach($allPostTypes as $post_type){
 			if($post_type == 'metadata' || $post_type == 'site-meta'){
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$siteLevelPage,$siteLevelSection);
@@ -141,7 +145,7 @@ class Pressbooks_Metadata_Engine {
                     new post_type_fields($post_type . '_saoverwr', 'Allow Overwrite', $multiLevelPage, $multiLevelSection);
                 }
 			}else{
-				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
+				new location_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$postLevelSection);
 
 			}
 		}
@@ -182,9 +186,12 @@ class Pressbooks_Metadata_Engine {
 		//Getting type settings
 		$typeSettings = $this->get_type_settings();
 
+		//get general option for locations
+		$option = get_option('schema_locations');
+
 		//Creating another section with the fields automatically created for the schema types
 		foreach($allPostTypes as $post_type){
-			if(get_option($post_type.'_checkbox')){
+			if((isset($option[$post_type.'_checkbox']) && $option[$post_type.'_checkbox'] == 1) || get_option($post_type.'_checkbox') ){
 				sections::types(
 					$post_type.'_level',
 					ucfirst($post_type.' Level'),
@@ -237,9 +244,12 @@ class Pressbooks_Metadata_Engine {
 		//This array is needed for the levels that we show different schema types, like chapter and metadata
 		$schemaPostLevels = array();
 
+		//get general option for locations
+		$option = get_option('schema_locations');
+
 		//The loop checks if the setting is enabled and then stores the activated post in the level array
 		foreach($postTypes as $post_type){
-			if(get_option($post_type.'_checkbox')) {
+			if((isset($option[$post_type.'_checkbox']) && $option[$post_type.'_checkbox'] == 1) || get_option($post_type.'_checkbox')) {
 				$schemaPostLevels []= $post_type.'_level';
 			}
 		}

@@ -1,7 +1,6 @@
 <?php
 
 //Defining all namespaces to be used in the define_admin_hooks function etc
-
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as siteMeta;
 use adminFunctions\Pressbooks_Metadata_Importing as importing;
 use adminFunctions\Pressbooks_Metadata_Options as options;

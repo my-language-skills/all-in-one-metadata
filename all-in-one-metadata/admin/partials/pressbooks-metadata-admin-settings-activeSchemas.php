@@ -49,8 +49,11 @@ if($activatedLevels != 0){
 ?>
 	<div class="nav-tab-wrapper">
 		<?php
+		    //get general option for locations
+		    $option = get_option('schema_locations');
+
 			foreach($allPostTypes as $postType) {
-				if ( get_option( $postType . '_checkbox' ) ) {
+				if ( (isset($option[$postType.'_checkbox']) && $option[$postType.'_checkbox'] == 1) || get_option($postType.'_checkbox') ) {
 				    $tabName = $postType == 'metadata' || $postType == 'site-meta' ? 'Site Meta' : ucfirst($postType);
 				    ?>
 					    <button class="tablinks-activeSch nav-tab" onclick="openSett(event,'tablinks-activeSch', '<?=$postType?>','activeSchemas')"><?=$tabName?></button>
@@ -62,7 +65,7 @@ if($activatedLevels != 0){
     
 <?php
         foreach($allPostTypes as $postType) {
-            if ( get_option( $postType . '_checkbox' ) ) {
+            if ( (isset($option[$postType.'_checkbox']) && $option[$postType.'_checkbox'] == 1) || get_option($postType.'_checkbox') ) {
                 ?>
                     <div id="<?= $postType ?>" class="activeSchemas">
 

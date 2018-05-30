@@ -97,8 +97,12 @@ class Pressbooks_Metadata_Property_Overwrite {
         $schemaType = $dataForEnabling[1].'_'.$dataForEnabling[2];
         $schemaProp = $dataForEnabling[0];
 
-        //Enable Post Level
-        update_option($postType.'_checkbox',1);
+        //get locations accumulated options
+	    $optionLocations = get_option('schema_locations');
+
+	    //Enable Post Level
+	    $optionLocations[$postType.'_checkbox'] = 1;
+        update_option('schema_locations',$optionLocations);
 
         //Enable Type
         update_option($schemaType.'_'.$postType.'_level',1);
