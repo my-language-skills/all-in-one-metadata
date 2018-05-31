@@ -55,6 +55,9 @@ by running [Google structured data testing tool](https://search.google.com/struc
 1. How can I know wich is the version I should give to my book?
 We use [Explicit Books Versioning](explicit-book-versioning/VERSIONING.md)
 
+1. Which metadata can I find?
+All in one metadata have the Types XXX and XXX with all the subtipes and properties till [schema](http://webschemas.org/docs/releases.html) version [3.3](http://webschemas.org/version/3.3/)
+
 
 ## Requirements
 
