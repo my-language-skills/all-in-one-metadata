@@ -105,7 +105,12 @@ class Pressbooks_Metadata_Network_Admin {
         //Wordpress Database variable for database operations
         global $wpdb;
 
-        //Modifying the metakey so it maches the already saved fields created by create metabox class
+
+	    //Extracting data for enabling property
+	    $dataForEnabling = explode('_',$metaKey);
+	    $schemaProp = $dataForEnabling[0];
+
+        //Modifying the metakey so it matches the already saved fields created by create metabox class
         $metaKey = strtolower('pb_'.$metaKey);
 
         //Grabbing all the site IDs
@@ -161,19 +166,41 @@ class Pressbooks_Metadata_Network_Admin {
                 update_post_meta( $post['ID'],$metaKey,$newValue);
             }
 
-            //Extracting data for enabling the post level the schema type and property
+            //Extracting data for enabling the post level and the schema type
             $dataForEnabling = explode('_',$metaKey);
             $schemaType = $dataForEnabling[2].'_'.$dataForEnabling[3];
-            $schemaProp = $dataForEnabling[1];
+
+	        //> get parent type to select proper schema type option
+	        foreach(structure::$allSchemaTypes as $type) {
+	        	if(stripos($type,'metadata_'.$dataForEnabling[2]) || stripos($type,'site-meta_'.$dataForEnabling[2])){
+	        		$schemaTypeParents = $type::$type_parents;
+		        }
+	        }
+
+			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
+				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+			} else{
+				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+			}
+			//<
+
+	        //get accumulated option for schema types activated
+	        $optionsSchemaTypes = get_option($schemaOptionName);
+
+	        //get accumulated option for activated properties
+	        $optionsSchemaProperties = get_option('schema_properties_'.$schemaType.'_'.$postType.'_level');
 
             //Enable Post Level
-            update_option($postType.'_checkbox',1);
+            update_option($postType.'_checkbox', 1);
 
             //Enable Type
-            update_option($schemaType.'_'.$postType.'_level',1);
+	        $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+
+            update_option($schemaOptionName,$optionsSchemaTypes);
 
             //Enable Property
-            update_option($schemaProp.'_'.$schemaType.'_'.$postType.'_level',1);
+	        $optionsSchemaProperties[$schemaProp] = 1;
+            update_option('schema_properties_'.$schemaType.'_'.$postType.'_level', $optionsSchemaProperties);
         }
     }
 

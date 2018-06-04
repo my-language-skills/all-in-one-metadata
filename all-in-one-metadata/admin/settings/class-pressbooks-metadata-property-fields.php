@@ -28,6 +28,14 @@ class Pressbooks_Metadata_Property_Fields {
 	private $property;
 
 	/**
+	 * Accumulated option for properties of given post type and schema type
+	 *
+	 *  @since   0.17
+	 *  @access private
+	 */
+	private $generalFunction;
+
+	/**
 	 * The property details.
 	 *
 	 * @since    0.10
@@ -74,6 +82,7 @@ class Pressbooks_Metadata_Property_Fields {
 		$this->sectionId = $sectionIdInput;
 		$this->sectionName = $sectionNameInput;
 		$this->displayPage = $displayPageInput;
+		$this->generalFunction = get_option('schema_properties_'.$this->sectionId);
 
 		$this->pmdt_create_field();
 	}
@@ -96,7 +105,7 @@ class Pressbooks_Metadata_Property_Fields {
 				$disabled = $this->details[0]==true? 'disabled' : '';
 				$overwriteHide = get_option($overwriteField) ? 'hide' : '';
 				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn2">Disable</button>' : '';
-				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalFunction[$this->property]) ? ($this->generalFunction[$this->property] == 1 ? 1 : 0) : 0, false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
 				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, get_option($overwriteField), false) . '/>';
 				$html .= '<button class="overwrite_prop_clean propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn">Clear</button>';
 				$html .= $disableButton;
@@ -108,14 +117,14 @@ class Pressbooks_Metadata_Property_Fields {
 			//If level is not metadata or site-meta we just create the property field without the overwrite
 			$overwriteCallback = function(){
 				$disabled = $this->details[0]==true? 'disabled' : '';
-				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->property.'_'.$this->sectionId.'" name="'.$this->property.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->property.'_'.$this->sectionId), false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalFunction[$this->property]) ? ($this->generalFunction[$this->property] == 1 ? 1 : 0) : 0, false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
 				echo $html;
 			};
 		}
 
 		//Adding the property field
 		add_settings_field(
-			$this->property.'_'.$this->sectionId,           // ID used to identify the field throughout the theme
+			'schema_properties_'.$this->sectionId.'['.$this->property.']',           // ID used to identify the field throughout the theme
 			$this->details[1],                              // The label to the left of the option interface element
 			$overwriteCallback,              				// The name of the function responsible for rendering the option interface
 			$this->displayPage,                             // The page on which this option will be displayed
@@ -123,10 +132,12 @@ class Pressbooks_Metadata_Property_Fields {
 		);
 		
 		//Registering the property field
-		register_setting( $this->displayPage, $this->property.'_'.$this->sectionId);
+		$this->generalFunction[$this->property] = isset($this->generalFunction[$this->property]) ? ($this->generalFunction[$this->property] == 1 ? 1 : '') : '';
+		update_option('schema_properties_'.$this->sectionId,$this->generalFunction);
 		//Setting the required properties to be always enabled
 		if($this->details[0] == true){
-			update_option($this->property.'_'.$this->sectionId,1);
+			$this->generalFunction[$this->property] = 1;
+			update_option('schema_properties_'.$this->sectionId,$this->generalFunction);
 		}
 	}
 }

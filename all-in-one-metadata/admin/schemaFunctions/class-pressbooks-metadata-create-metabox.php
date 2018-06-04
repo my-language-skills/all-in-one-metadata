@@ -141,9 +141,12 @@ class Pressbooks_Metadata_Create_Metabox {
             //Render function name, by default is empty
             $renderFunction = '';
 
+	        //get general option for freezes
+	        $option = get_blog_option(1, 'property_network_value_freeze');
+
             //Checking if the property is frozen from super admin
             if(is_multisite() && ($this->metaboxlevel == 'site-meta' || $this->metaboxlevel == 'metadata')){
-                $frozzenFieldId = get_blog_option(1,$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze');
+                $frozzenFieldId = isset($option[$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze']) ?: '';
                 if($frozzenFieldId){
                     $renderFunction = 'frozen_field';
                 }
@@ -157,9 +160,12 @@ class Pressbooks_Metadata_Create_Metabox {
                 }
             }
 
+            //getting accumulated option for properties
+	        $propertiesOption = get_option('schema_properties_'.$this->groupId. '_' . $this->metaboxlevel . '_level');
 
             //Checking if we need a dropdown field
             if(!isset($details[3])){
+
                 //Checking if the property is required
                 if ($details[0] == true) {
                     x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
@@ -168,7 +174,7 @@ class Pressbooks_Metadata_Create_Metabox {
                         'description' => $details[2],
                         'display_callback' => array($this,$renderFunction)
                     ) );
-                }else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+                }else if(isset($propertiesOption[$property]) ? ($propertiesOption[$property] == 1 ? 1 : 0) : 0){
                     x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
                         'group'       => $this->groupId,
                         'label'       => $details[1],
@@ -189,7 +195,7 @@ class Pressbooks_Metadata_Create_Metabox {
                             'description' => $details[2],
                             'display_callback' => array($this,$renderFunction)
                         ) );
-                    }else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+                    }else if(isset($propertiesOption[$property]) ? ($propertiesOption[$property] == 1 ? 1 : 0) : 0){
                         x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
                             'group'       => $this->groupId,
                             'field_type'	=> 	'number',
@@ -208,7 +214,7 @@ class Pressbooks_Metadata_Create_Metabox {
                             'description' 	=> 	$details[2],
                             'display_callback' => array($this,$renderFunction)
                         ) );
-                    }else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+                    }else if(isset($propertiesOption[$property]) ? ($propertiesOption[$property] == 1 ? 1 : 0) : 0){
                         x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
                             'group' 		=> 	$this->groupId,
                             'field_type' 	=> 	'select',

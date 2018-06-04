@@ -105,10 +105,10 @@ class Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	public function pmdt_prop_run($metaProperty){
-
+		$propertiesOption = get_option('schema_properties_'.$this->typeName. '_' . $this->type_level . '_level');
 		if($this->type_fields[$metaProperty][0] == true){
 			return true;
-		}else if(get_option( strtolower($metaProperty) . '_' . $this->typeName . '_' . $this->type_level . '_level' )){
+		}else if(isset($propertiesOption[$metaProperty]) ? ($propertiesOption[$metaProperty] == 1 ? 1 : 0) : 0){
 			return true;
 		}else{
 			return false;

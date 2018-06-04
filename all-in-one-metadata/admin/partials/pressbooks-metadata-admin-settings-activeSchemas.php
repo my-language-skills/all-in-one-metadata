@@ -18,9 +18,9 @@ use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 <?php
 $allPostTypes = engine::get_all_post_types();
 $activatedLevels = 0;
-foreach($allPostTypes as $postType){
-	if ( get_option( $postType . '_checkbox' ) )
-	    $activatedLevels++;
+
+if ( in_array(1,get_option( 'schema_locations' )) || get_option('site-meta_checkbox') || get_option('metadata_checkbox') ) {
+	$activatedLevels ++;
 }
 if($activatedLevels == 0){
     echo '<p id="noLocationError">Select a Location to show metadata</p>';
@@ -53,7 +53,7 @@ if($activatedLevels != 0){
 		    $option = get_option('schema_locations');
 
 			foreach($allPostTypes as $postType) {
-				if ( (isset($option[$postType.'_checkbox']) && $option[$postType.'_checkbox'] == 1) || get_option($postType.'_checkbox') ) {
+				if ( (isset($option[$postType.'_checkbox']) && $option[$postType.'_checkbox'] == 1) || get_option($postType.'_checkbox') == 1 ) {
 				    $tabName = $postType == 'metadata' || $postType == 'site-meta' ? 'Site Meta' : ucfirst($postType);
 				    ?>
 					    <button class="tablinks-activeSch nav-tab" onclick="openSett(event,'tablinks-activeSch', '<?=$postType?>','activeSchemas')"><?=$tabName?></button>

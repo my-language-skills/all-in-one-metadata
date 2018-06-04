@@ -136,7 +136,7 @@ class Pressbooks_Metadata_Engine {
 		//registring locations option
 		register_setting($postLevelPage, 'schema_locations');
 
-		//Creating fields for each section (multisite coming soon)
+		//Creating fields for each section of locations
 		foreach($allPostTypes as $post_type){
 			if($post_type == 'metadata' || $post_type == 'site-meta'){
 				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$siteLevelPage,$siteLevelSection);
@@ -192,6 +192,9 @@ class Pressbooks_Metadata_Engine {
 		//Creating another section with the fields automatically created for the schema types
 		foreach($allPostTypes as $post_type){
 			if((isset($option[$post_type.'_checkbox']) && $option[$post_type.'_checkbox'] == 1) || get_option($post_type.'_checkbox') ){
+				//registering accumulated setting for schema types activated per parent type and per post type
+				register_setting($post_type.'_tab', 'schema_types_'.$post_type.'_level_'.genFunc::get_active_parent());
+				$accumulatedOption = get_option('schema_types_'.$post_type.'_level_'.genFunc::get_active_parent());
 				sections::types(
 					$post_type.'_level',
 					ucfirst($post_type.' Level'),
@@ -201,9 +204,10 @@ class Pressbooks_Metadata_Engine {
 				foreach(structure::$allSchemaTypes as $type){
 					$type_id = genFunc::get_type_id($type);
 					$sectionId = $type_id.'_'.$post_type.'_level';
-					//Here we are proceeding to the next loop itteration if the type is not active
+					register_setting($sectionId.'_properties', 'schema_properties_'.$sectionId);
+					//Here we are proceeding to the next loop iteration if the type is not active
 					//With this we are only registering properties for active types
-					if(!get_option($sectionId)){
+					if(!(isset($accumulatedOption[$type_id.'_'.$post_type.'_level']) ? ($accumulatedOption[$type_id.'_'.$post_type.'_level'] == 1 ? 1 : 0): 0)){
 						continue;
 					}
 					$type_properties = $type::$type_properties;
@@ -275,11 +279,16 @@ class Pressbooks_Metadata_Engine {
 		$instances = array();
 		//Getting the level - post etc.
 		foreach ($schemaPostLevels as $level) {
+			//getting general option for schema types
+			$optionsSchemaTypesOrganization = get_option('schema_types_'.$level.'_'.'schemaTypes\Pressbooks_Metadata_Organization');
+			$optionsSchemaTypesCreative = get_option('schema_types_'.$level.'_'.'schemaTypes\Pressbooks_Metadata_CreativeWork');
+			$optionsSchemaTypes = array_merge($optionsSchemaTypesOrganization, $optionsSchemaTypesCreative);
+
 			//Getting the setting for a type - book etc.
 			foreach (structure::$allSchemaTypes as $type){
 				$typeId = genFunc::get_type_id($type);
 					//Checking the settings for each level and type together and we create instances for the active types on each level
-					if(get_option($typeId.'_'.$level)){
+					if(isset($optionsSchemaTypes[$typeId.'_'.$level]) && $optionsSchemaTypes[$typeId.'_'.$level] == 1){
 						//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
 						$cpt = str_replace("_level","",$level);
 						$instances []= new $type($cpt);

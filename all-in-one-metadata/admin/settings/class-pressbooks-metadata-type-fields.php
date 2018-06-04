@@ -2,6 +2,7 @@
 
 namespace settings;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
 /**
  * This class is an automation for creating fields in the desired sections,
@@ -16,6 +17,19 @@ use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
  */
 
 class Pressbooks_Metadata_Fields {
+
+	/**
+	 * The name of general option where schema types options are stored
+	 *
+	 * @since 0.17
+	 * @access private
+	 */
+	private $optionGeneral;
+
+	/**
+	 * The name of parent type for schema type to choose appropriate type option
+	 */
+	private $parentType;
 
 	/**
 	 * The metadata (schema) type for the field.
@@ -73,6 +87,8 @@ class Pressbooks_Metadata_Fields {
 		$this->sectionId = $sectionIdInput;
 		$this->sectionName = $sectionNameInput;
 		$this->displayPage = $displayPageInput;
+		$this->parentType = genFunc::get_active_parent();
+		$this->optionGeneral = get_option('schema_types_'.$this->sectionId.'_'.$this->parentType) ?: [];
 
 		$this->pmdt_create_field();
 
@@ -85,7 +101,7 @@ class Pressbooks_Metadata_Fields {
 	 */
 	function pmdt_create_field(){
 		add_settings_field(
-			$this->metaType.'_'.$this->sectionId,           // ID used to identify the field throughout the theme
+			'schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']',           // ID used to identify the field throughout the theme
 			$this->metaInfo[0],                                // The label to the left of the option interface element
 			array( $this, 'pmdt_field_draw' ),              // The name of the function responsible for rendering the option interface
 			$this->displayPage,                             // The page on which this option will be displayed
@@ -95,7 +111,9 @@ class Pressbooks_Metadata_Fields {
 		//We are using a combination of the metaType and the sectionId for the field id so
 		// we can rapidly create fields of the same type in more that one sections,
 		// without having to specify different ids for each section's field's
-        register_setting( $this->displayPage, $this->metaType . '_' . $this->sectionId );
+		$this->optionGeneral[$this->metaType . '_' . $this->sectionId ] = isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) ? $this->optionGeneral[$this->metaType . '_' . $this->sectionId ] : '';
+		//Adding field to accumulated option
+		update_option('schema_types_'.$this->sectionId.'_'.$this->parentType, $this->optionGeneral);
 	}
 
 	/**
@@ -124,7 +142,7 @@ class Pressbooks_Metadata_Fields {
 	 * @since  0.8.1
 	 */
 	function pmdt_field_draw(){
-		$html = '<input type="checkbox" id="'.$this->metaType.'_'.$this->sectionId.'" name="'.$this->metaType.'_'.$this->sectionId.'" value="1" ' . checked(1, get_option($this->metaType.'_'.$this->sectionId), false) . '/>';
+		$html = '<input type="checkbox" id="schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']" name="schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']" value="1" ' . checked(1, isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) ? ($this->optionGeneral[$this->metaType . '_' . $this->sectionId ] == 1 ? 1 : 0) : 0, false) . '/>';
 
 		$html .= '<label for="show_header">By checking this you allow the '.$this->metaInfo[0].' to show in the '.$this->sectionName.'</label>';
 
@@ -139,7 +157,7 @@ class Pressbooks_Metadata_Fields {
 		}else{
 			$html .= '<p>No description available - this is a custom type</p>';
 		}
-		if(!isset($this->metaInfo[2]) && get_option($this->metaType.'_'.$this->sectionId)) {
+		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) && $this->optionGeneral[$this->metaType . '_' . $this->sectionId ] == 1) {
 			add_thickbox();
 
 			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
