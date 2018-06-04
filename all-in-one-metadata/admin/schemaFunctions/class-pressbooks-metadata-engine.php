@@ -280,8 +280,8 @@ class Pressbooks_Metadata_Engine {
 		//Getting the level - post etc.
 		foreach ($schemaPostLevels as $level) {
 			//getting general option for schema types
-			$optionsSchemaTypesOrganization = get_option('schema_types_'.$level.'_'.'schemaTypes\Pressbooks_Metadata_Organization');
-			$optionsSchemaTypesCreative = get_option('schema_types_'.$level.'_'.'schemaTypes\Pressbooks_Metadata_CreativeWork');
+			$optionsSchemaTypesOrganization = get_option('schema_types_'.$level.'_'.'schemaTypes\Pressbooks_Metadata_Organization') ?: [];
+			$optionsSchemaTypesCreative = get_option('schema_types_'.$level.'_'.'schemaTypes\Pressbooks_Metadata_CreativeWork') ?: [];
 			$optionsSchemaTypes = array_merge($optionsSchemaTypesOrganization, $optionsSchemaTypesCreative);
 
 			//Getting the setting for a type - book etc.
