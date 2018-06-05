@@ -154,10 +154,23 @@ class Pressbooks_Metadata_Create_Metabox {
                 }
             }
 
+	        //getting accumulated options for overwritten properties
+	        $propertiesOptionNativeOverwrite = get_option('schema_properties_'.$this->groupId. '_overwrite') ?: [];
+	        foreach(structure::$allSchemaTypes as $type) {
+		        if(genFunc::get_type_id($type) == $this->groupId) {
+			        $propertiesOptionsParentOverwrite = [];
+			        foreach ( $type::$type_parents as $parent ) {
+				        $propertiesOptionParentOverwrite  = get_option( $this->groupId . '_overwrite_' .$parent::type_name[1].'_dis' ) ?: [];
+				        $propertiesOptionsParentOverwrite = array_merge( $propertiesOptionsParentOverwrite, $propertiesOptionParentOverwrite );
+			        }
+		        }
+	        }
+	        $propertiesOptionOverwrite = array_merge($propertiesOptionNativeOverwrite, $propertiesOptionsParentOverwrite);
+
             //Checking if the property is being overwritten
             //Giving message
             if($this->metaboxlevel == 'post' || $this->metaboxlevel == 'chapter'){
-                if(get_option($property . '_' .$this->groupId. '_overwrite')){
+                if( isset($propertiesOptionOverwrite[$property]) ? ($propertiesOptionOverwrite[$property] == 1 ? 1 : 0) : 0){
                     $renderFunction = 'overwritten_field';
                 }
             }
@@ -173,7 +186,8 @@ class Pressbooks_Metadata_Create_Metabox {
                     }
                 }
             }
-	        $propertiesOption = array_merge($propertiesOptionNative, $propertiesOptionsParent);
+	        $propertiesOption = array_merge($propertiesOptionsParent, $propertiesOptionNative);
+
             //Checking if we need a dropdown field
             if(!isset($details[3])){
 

@@ -96,7 +96,7 @@ class Pressbooks_Metadata_Property_Fields {
 		if (!strpos($this->displayPage, '_dis')) {
 			$this->pmdt_create_field();
 		} else {
-			$this->generalOptionParent = get_option($this->displayPage);
+			$this->generalOptionParent = get_option($this->displayPage) ?:[];
 			$this->pmdt_create_inherit_field();
 		}
 	}
@@ -197,7 +197,7 @@ class Pressbooks_Metadata_Property_Fields {
 			//If level is not metadata or site-meta we just create the property field without the overwrite
 			$overwriteCallback = function(){
 				$disabled = $this->details[0]==true? 'disabled' : '';
-				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->displayPage.'['.$this->property.']" name="'.$this->displayPage.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionParent[$this->property]) ? ( $this->generalOptionParent[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
 				echo $html;
 			};
 		}

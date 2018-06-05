@@ -129,7 +129,7 @@ class Pressbooks_Metadata_Network_Admin {
             switch_to_blog($site_id);
 
             //Check if the site allows super admin to change data
-            if(!(get_option($postType.'_saoverwr')) && $freezes[str_replace('pb_','',$metaKey).'_freeze'] != 1){
+            if(!(get_option($postType.'_saoverwr')) && !isset($freezes[str_replace('pb_','',$metaKey).'_freeze'])){
                 continue;
             }
 
