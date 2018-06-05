@@ -2,6 +2,8 @@
 
 namespace schemaFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
 /**
  * This class is an automation for creating metaboxes for each type, this file creates
@@ -160,9 +162,18 @@ class Pressbooks_Metadata_Create_Metabox {
                 }
             }
 
-            //getting accumulated option for properties
-	        $propertiesOption = get_option('schema_properties_'.$this->groupId. '_' . $this->metaboxlevel . '_level');
-
+            //getting accumulated options for properties
+	        $propertiesOptionNative = get_option('schema_properties_'.$this->groupId. '_' . $this->metaboxlevel . '_level') ?: [];
+            foreach(structure::$allSchemaTypes as $type) {
+                if(genFunc::get_type_id($type) == $this->groupId) {
+                    $propertiesOptionsParent = [];
+	                foreach ( $type::$type_parents as $parent ) {
+		                $propertiesOptionParent  = get_option( $this->groupId . '_' . $this->metaboxlevel . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
+		                $propertiesOptionsParent = array_merge( $propertiesOptionsParent, $propertiesOptionParent );
+                    }
+                }
+            }
+	        $propertiesOption = array_merge($propertiesOptionNative, $propertiesOptionsParent);
             //Checking if we need a dropdown field
             if(!isset($details[3])){
 

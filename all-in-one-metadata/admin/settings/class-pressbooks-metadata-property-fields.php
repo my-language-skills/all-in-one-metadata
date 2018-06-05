@@ -28,12 +28,20 @@ class Pressbooks_Metadata_Property_Fields {
 	private $property;
 
 	/**
-	 * Accumulated option for properties of given post type and schema type
+	 * Accumulated option for native properties of given post type and schema type
 	 *
 	 *  @since   0.17
 	 *  @access private
 	 */
-	private $generalFunction;
+	private $generalOptionNative;
+
+	/**
+	 * Accumulated option for parent properties of given post type and schema type
+	 *
+	 *  @since   0.17
+	 *  @access private
+	 */
+	private $generalOptionParent;
 
 	/**
 	 * The property details.
@@ -77,14 +85,20 @@ class Pressbooks_Metadata_Property_Fields {
 	 * @since    0.10
 	 */
 	function __construct($propertyInput,$detailsInput,$sectionIdInput,$sectionNameInput,$displayPageInput) {
-		$this->property = $propertyInput;
-		$this->details = $detailsInput;
-		$this->sectionId = $sectionIdInput;
-		$this->sectionName = $sectionNameInput;
-		$this->displayPage = $displayPageInput;
-		$this->generalFunction = get_option('schema_properties_'.$this->sectionId);
+		$this->property            = $propertyInput;
+		$this->details             = $detailsInput;
+		$this->sectionId           = $sectionIdInput;
+		$this->sectionName         = $sectionNameInput;
+		$this->displayPage         = $displayPageInput;
+		$this->generalOptionNative = get_option( 'schema_properties_' . $this->sectionId) ?: [];
 
-		$this->pmdt_create_field();
+		//checking to see if property is native or inherited
+		if (!strpos($this->displayPage, '_dis')) {
+			$this->pmdt_create_field();
+		} else {
+			$this->generalOptionParent = get_option($this->displayPage);
+			$this->pmdt_create_inherit_field();
+		}
 	}
 
 	/**
@@ -96,31 +110,37 @@ class Pressbooks_Metadata_Property_Fields {
 		$postLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 		//Overwrite to, message
 		$overwriteTo = site_cpt::pressbooks_identify() ? ' to Chapter' : ' to Post';
+
 		//Checking to see if we are on metadata post level or site-meta post level
 		if((strpos($this->sectionId, $postLevel) !== false)){
 			//Create the id for the overwrite field
-			$overwriteField = str_replace($postLevel.'_level','overwrite',$this->property.'_'.$this->sectionId);
+			$overwriteField = str_replace($postLevel.'_level','overwrite','schema_properties_'.$this->sectionId.'['.$this->property.']');
+
+			//get accumulated option for overwrites of given schema type
+			$optionOverwrite = get_option(str_replace('['.$this->property.']', '', $overwriteField));
+
 			//Create the callback function for the overwrite field
-			$overwriteCallback = function() use ($overwriteField,$overwriteTo){
+			$overwriteCallback = function() use ($overwriteField,$overwriteTo, $optionOverwrite){
 				$disabled = $this->details[0]==true? 'disabled' : '';
-				$overwriteHide = get_option($overwriteField) ? 'hide' : '';
+				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'hide' : '';
 				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn2">Disable</button>' : '';
-				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalFunction[$this->property]) ? ($this->generalFunction[$this->property] == 1 ? 1 : 0) : 0, false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
-				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, get_option($overwriteField), false) . '/>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
+				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/>';
 				$html .= '<button class="overwrite_prop_clean propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn">Clear</button>';
 				$html .= $disableButton;
 				echo $html;
 			};
 			//Register overwrite setting
-			register_setting( $this->displayPage, $overwriteField);
+			register_setting( $this->displayPage, str_replace('['.$this->property.']', '', $overwriteField));
 		}else{
 			//If level is not metadata or site-meta we just create the property field without the overwrite
 			$overwriteCallback = function(){
 				$disabled = $this->details[0]==true? 'disabled' : '';
-				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalFunction[$this->property]) ? ($this->generalFunction[$this->property] == 1 ? 1 : 0) : 0, false) . ''.$disabled.'/><span class="tooltiptext">'.$this->details[2].'</span></div>';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
 				echo $html;
 			};
 		}
+
 
 		//Adding the property field
 		add_settings_field(
@@ -132,12 +152,74 @@ class Pressbooks_Metadata_Property_Fields {
 		);
 		
 		//Registering the property field
-		$this->generalFunction[$this->property] = isset($this->generalFunction[$this->property]) ? ($this->generalFunction[$this->property] == 1 ? 1 : '') : '';
-		update_option('schema_properties_'.$this->sectionId,$this->generalFunction);
+		$this->generalOptionNative[$this->property] = isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0;
+		update_option('schema_properties_'.$this->sectionId,$this->generalOptionNative);
 		//Setting the required properties to be always enabled
 		if($this->details[0] == true){
-			$this->generalFunction[$this->property] = 1;
-			update_option('schema_properties_'.$this->sectionId,$this->generalFunction);
+			$this->generalOptionNative[$this->property] = 1;
+
+			update_option('schema_properties_'.$this->sectionId,$this->generalOptionNative);
+		}
+	}
+
+	/**
+	 * The main function used to create an inherited field.
+	 *
+	 * @since  0.17
+	 */
+	function pmdt_create_inherit_field(){
+		$postLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+		//Overwrite to, message
+		$overwriteTo = site_cpt::pressbooks_identify() ? ' to Chapter' : ' to Post';
+
+		//Checking to see if we are on metadata post level or site-meta post level
+		if((strpos($this->sectionId, $postLevel) !== false)){
+			//Create the id for the overwrite field
+			$overwriteField = str_replace($postLevel.'_level','overwrite',$this->displayPage.'['.$this->property.']');
+
+			//get accumulated option for overwrites of given schema type
+			$optionOverwrite = get_option(str_replace('['.$this->property.']', '', $overwriteField));
+
+			//Create the callback function for the overwrite field
+			$overwriteCallback = function() use ($overwriteField,$overwriteTo, $optionOverwrite){
+				$disabled = $this->details[0]==true? 'disabled' : '';
+				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'hide' : '';
+				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn2">Disable</button>' : '';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->displayPage.'['.$this->property.']" name="'.$this->displayPage.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionParent[$this->property]) ? ( $this->generalOptionParent[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
+				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/>';
+				$html .= '<button class="overwrite_prop_clean propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn">Clear</button>';
+				$html .= $disableButton;
+				echo $html;
+			};
+			//Register overwrite setting
+			register_setting( $this->displayPage, str_replace('['.$this->property.']', '', $overwriteField));
+		}else{
+			//If level is not metadata or site-meta we just create the property field without the overwrite
+			$overwriteCallback = function(){
+				$disabled = $this->details[0]==true? 'disabled' : '';
+				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
+				echo $html;
+			};
+		}
+
+
+		//Adding the property field
+		add_settings_field(
+			$this->displayPage.'['.$this->property.']',           // ID used to identify the field throughout the theme
+			$this->details[1],                              // The label to the left of the option interface element
+			$overwriteCallback,              				// The name of the function responsible for rendering the option interface
+			$this->displayPage,                             // The page on which this option will be displayed
+			$this->sectionId                                // The name of the section to which this field belongs
+		);
+
+		//Registering the property field
+		$this->generalOptionParent[$this->property] = isset($this->generalOptionParent[$this->property]) ? ( $this->generalOptionParent[$this->property] == 1 ? 1 : 0) : 0;
+		update_option($this->displayPage,$this->generalOptionParent);
+		//Setting the required properties to be always enabled
+		if($this->details[0] == true){
+			$this->generalOptionParent[$this->property] = 1;
+
+			update_option($this->displayPage,$this->generalOptionParent);
 		}
 	}
 }

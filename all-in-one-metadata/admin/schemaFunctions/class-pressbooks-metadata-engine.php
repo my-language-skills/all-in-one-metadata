@@ -222,6 +222,7 @@ class Pressbooks_Metadata_Engine {
 					//Getting parent information and creating the parent properties
 					//For each type on each level
 					foreach($type::$type_parents as $parent){
+						register_setting($sectionId.'_'.$parent::type_name[1].'_dis', $sectionId.'_'.$parent::type_name[1].'_dis');
 						sections::properties(
 							$sectionId,
 							str_replace('Thing','General',$parent::type_name[0]),
