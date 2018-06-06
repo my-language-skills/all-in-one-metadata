@@ -99,9 +99,17 @@ https://moz.com/learn/seo/duplicate-content
 ### Future
 
 
-## Changelog
+### Changelog
 
-## 0.16
+####0.17
+* **ADDITIONS**
+
+* **ENHANCEMENTS**
+    * Improved performance and memory usage
+* **List Of Files Revised**
+    * All, except ```/schemaTypes``` files
+
+#### 0.16
 * **ADDITIONS**
     *  Multisite setting tab
     *  Pre-defined options out-of-the-box (example for users to see how plugin works)
@@ -113,7 +121,7 @@ https://moz.com/learn/seo/duplicate-content
     *  class-pressbooks-metadata-engine.php
     *  pressbooks-metadata-admin-settings-schemaLocations.php
 
-## 0.13
+#### 0.13
 * **ADDITIONS**
     *  Added more types on creative workds and organisation parents
     *  Added 'types' for the educational vocabulary -> Book, Course, Website, Webpage and Article
@@ -144,7 +152,7 @@ https://moz.com/learn/seo/duplicate-content
     *  class-pressbooks-metadata-net-sett-sections.php
     *  class-pressbooks-metadata-network-admin.php
 
-## 0.12
+#### 0.12
 * **ADDITIONS**
     *  Added Organisation Parent and Types
 
@@ -152,7 +160,7 @@ https://moz.com/learn/seo/duplicate-content
     * schemaTypes Folder
     * composer.json
 
-## 0.11
+#### 0.11
 * **ADDITIONS**
     * Enable the cloning of properties from each site (Book Info/Site-Meta) to (Chapter/Post)  #140
 
@@ -161,7 +169,7 @@ https://moz.com/learn/seo/duplicate-content
     * class-pressbooks-metadata-property-overwrite.php
     * class-pressbooks-metadata-property-fields.php
 
-## 0.10
+#### 0.10
 * **ADDITIONS**
     * Show parent activation and info for empty Types #113
     * Add parent sections under each tab level  #123
@@ -180,7 +188,7 @@ https://moz.com/learn/seo/duplicate-content
     * Creation of new settings files for handling the property fields
     * New files for the new vocabularies
 
-### 0.9
+#### 0.9
 * **ADDITIONS**
     * Added Webpage Schema Type
     * Added Course Schema Type
@@ -199,7 +207,7 @@ https://moz.com/learn/seo/duplicate-content
 * **List of Files revised**
     * Code rewriting for optimisation.
 
-### 0.8.1
+#### 0.8.1
 * **ADDITIONS**
 	* To create a settings page #25
 
@@ -208,7 +216,7 @@ https://moz.com/learn/seo/duplicate-content
     * Each group of features as an independen file #56
     * To enable and dissable metadata fields #20
 
-### 0.8
+#### 0.8
 * **ADDITIONS**
 	* Rewriting of the plugin #78
 	* Creation of the fields using a plugin: Custom Metadata Manager for WordPress
@@ -216,7 +224,7 @@ https://moz.com/learn/seo/duplicate-content
 * **BUGFIXES:**
 	* Extend Pressbooks default types, instead of using different ones #91
 
-### 0.7
+#### 0.7
 * **ADDITIONS**
 	* **Google Scholar microtags**
 		* New property: **citation_journal_title**
@@ -238,7 +246,7 @@ https://moz.com/learn/seo/duplicate-content
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata-plugin-metadata.php
 
-### 0.6
+#### 0.6
 * **ADDITIONS**
 	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
 		* New property: **description**
@@ -266,7 +274,7 @@ https://moz.com/learn/seo/duplicate-content
 	* class-pressbooks-metadata-plugin-metadata.php
 	* class-pressbooks-metadata-data-field.php
 
-### 0.5
+#### 0.5
 * **ADDITIONS**
 	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9)
 		* New property: **headline**
@@ -298,7 +306,7 @@ https://moz.com/learn/seo/duplicate-content
 	* Change the Schema type of Chapter to ScholarlyArticle
 	* Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 
-### 0.4
+#### 0.4
 * **ADDITIONS**
 	* New detailed SchemaUsed.md file, with all the information about the Structured Data that is being produced.
 	* Book Type (#7)
@@ -308,7 +316,7 @@ https://moz.com/learn/seo/duplicate-content
 		* New property: **Course Code:** identifier for the Course (e.g. CS101 or 6.001).
 		* New property: **coursePrerequisites**: Course Prerequisites.
 
-### 0.3
+#### 0.3
 * **ADDITIONS**
 	* Course Type
 		* **educationalAlignment** (#12) ISCED field of education: Broad field of education according to ISCED-F 2013.
@@ -323,7 +331,7 @@ https://moz.com/learn/seo/duplicate-content
 	* Bug Fixes: Main page became blank.
 	* Bug Fixes: Pressbooks schema information is being produced twice .(#27)
 
-### 0.2
+#### 0.2
 * **ADDITIONS**
 	* Accessibility: New Educational Information metabox with the fields:
 		* New property: **name**: Subject name.
@@ -347,12 +355,15 @@ https://moz.com/learn/seo/duplicate-content
 * **REMOVED:**
 	* The fields we added in the General Book Information metabox and move them to a new metabox
 
-### 0.1
+#### 0.1
 * **DRAFT VERSION - OLD CODE**
 	* Accessibility: General Book Information: new custom metafields: **Target language:** Level of education according to ISCED-P 2011; **Level:** Level of the course; **Learning Reasource Type:** Course, Examination, Exercise, Descriptor; **Interactivity Type:** Active, Expositive, Mixed; **Age range:** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults; **Class Learning Time:** how long the students will need for the book; **License URL:** custom link to a licence; **Bibliography URL:** custom link to a bibliography
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
 
 ## Upgrade Notice
+
+### 0.17
+Improved database interaction and options storing, which decreases overhead of database entries by tens of times and also improves plugin performance.
 
 ### 0.16
 Plugin now properly uninstalls itself, no remaining data in database is kept after uninstalling. In order for users to see how plugin works without requiring initial setting, we have added some enabled options out-of-the-box in order to see how actually plugin works. The predefined options can be disabled after activation. Schema location options now stays more logical, multisite control setting is also supported from this moment.
