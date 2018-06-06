@@ -131,7 +131,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 			    $propertiesOptionsParent = [];
 			    foreach ( $type::$type_parents as $parent ) {
 				    $propertiesOptionsParent  = get_option( $schemaType . '_' . $postType . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
-				    if (isset($propertiesOptionsParent[$schemaProp]) ? ($propertiesOptionsParent[$schemaProp] == 1 ? 1 : 0) : 0){
+				    if (key_exists($schemaProp,$propertiesOptionsParent)){
 				    	$propertyOptionName = $schemaType . '_' . $postType . '_level_' .$parent::type_name[1].'_dis';
 				    	$propertyOption = $propertiesOptionsParent;
 				    }
@@ -141,11 +141,11 @@ class Pressbooks_Metadata_Property_Overwrite {
 
 	    //Enable Type
 	    $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
-
 	    update_option($schemaOptionName,$optionsSchemaTypes);
 
 	    //Enable Property
 	    $propertyOption[$schemaProp] = 1;
+
 	    update_option($propertyOptionName, $propertyOption);
     }
 
@@ -199,7 +199,9 @@ class Pressbooks_Metadata_Property_Overwrite {
         //filtering options to gather only enabled and constructing keys for return
         foreach ($selectedOptions as $option){
         	$nameData = explode('_', $option['option_name']);
-        	foreach (get_option($option['option_name']) as $key => $value){
+        	$optionValues = get_option($option['option_name']) ?: [];
+
+        	foreach ($optionValues as $key => $value){
         		if ($value){
         			if(stripos($option['option_name'], '_dis')){
 				        $trimmedOptions[] = $key . '_'. $nameData[0] . '_'. $nameData[1];
