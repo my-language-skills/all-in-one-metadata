@@ -106,7 +106,7 @@ https://moz.com/learn/seo/duplicate-content
 
 ### Changelog
 
-####0.17
+#### 0.17
 **[BREAK! IF YOU HAVE BEEN USING THE PLUGIN BEFORE, UNINSTALL THE PREVIOUS VERSION VIA WORDPRESS PLUGINS PAGE]**
 
 * **ENHANCEMENTS**
