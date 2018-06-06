@@ -15,7 +15,7 @@ namespace schemaTypes;
 
 class Pressbooks_Metadata_CreativeWork {
 
-	const type_name = array('Creative Work Properties','creative_work_properties');
+	const type_name = array('Creative Work Properties','creativeWork_properties');
 
 	const type_properties = array(
 		'about' => array(false,'About','The subject matter of the content.'),

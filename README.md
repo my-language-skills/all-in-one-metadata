@@ -8,7 +8,7 @@ Tags: pressbooks, metadata, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
-Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
+Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.3-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/5.3)
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
@@ -32,6 +32,8 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 [General documentation](/docs/documentation-1.md)
 
 [Specifical documentation](/docs/documentation-2.md)
+
+[Technical Documentation](/docs/documantation-3.md)
 
 
 ---
@@ -60,7 +62,7 @@ We use [Explicit Books Versioning](explicit-book-versioning/VERSIONING.md)
 
 Plugin/Template Name works with:
 
- * ![PHP](https://img.shields.io/badge/PHP-5.6.X-blue.svg)
+ * ![PHP](https://img.shields.io/badge/PHP-7.2.X-blue.svg)
  * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
 
  Lower versions are not supported.
@@ -102,12 +104,12 @@ https://moz.com/learn/seo/duplicate-content
 ### Changelog
 
 ####0.17
-* **ADDITIONS**
+**[BREAK! IF YOU HAVE BEEN USING THE PLUGIN BEFORE, UNINSTALL THE PREVIOUS VERSION VIA WORDPRESS PLUGINS PAGE]**
 
 * **ENHANCEMENTS**
-    * Improved performance and memory usage
+    * Improved performance and memory usage with database workflow.
 * **List Of Files Revised**
-    * All, except ```/schemaTypes``` files
+    * All, except ```/schemaTypes/``` files
 
 #### 0.16
 * **ADDITIONS**
@@ -363,7 +365,7 @@ https://moz.com/learn/seo/duplicate-content
 ## Upgrade Notice
 
 ### 0.17
-Improved database interaction and options storing, which decreases overhead of database entries by tens of times and also improves plugin performance.
+Improved database interaction and options storing, which decreases overhead of database entries by tens of times and also improves plugin performance. **Since this moment in order for plugin to work properly**, install this version of a plugin, delete it from plugins page (**IMPORTANT! Not manually via FTP**) so that your database get cleaned from entries of elder versions of a plugin and install it again.
 
 ### 0.16
 Plugin now properly uninstalls itself, no remaining data in database is kept after uninstalling. In order for users to see how plugin works without requiring initial setting, we have added some enabled options out-of-the-box in order to see how actually plugin works. The predefined options can be disabled after activation. Schema location options now stays more logical, multisite control setting is also supported from this moment.
