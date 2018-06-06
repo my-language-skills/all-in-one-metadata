@@ -66,7 +66,7 @@ All in one metadata have the Types XXX and XXX with all the subtipes and propert
 Plugin/Template Name works with:
 
  * ![PHP](https://img.shields.io/badge/PHP-7.2.X-blue.svg)
- * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
+ * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.3-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
 
  Lower versions are not supported.
 
