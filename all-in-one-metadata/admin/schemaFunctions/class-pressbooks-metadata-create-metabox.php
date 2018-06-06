@@ -2,6 +2,8 @@
 
 namespace schemaFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
 /**
  * This class is an automation for creating metaboxes for each type, this file creates
@@ -141,25 +143,56 @@ class Pressbooks_Metadata_Create_Metabox {
             //Render function name, by default is empty
             $renderFunction = '';
 
-            //Checking if the property is frozen from super admin
-            if(is_multisite() && ($this->metaboxlevel == 'site-meta' || $this->metaboxlevel == 'metadata')){
-                $frozzenFieldId = get_blog_option(1,$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze');
-                if($frozzenFieldId){
-                    $renderFunction = 'frozen_field';
-                }
+	        //get general option for freezes on multisite
+            if (is_multisite()) {
+	            $option = get_blog_option( 1, 'property_network_value_freeze' );
+
+	            //Checking if the property is frozen from super admin
+	            if ( is_multisite() && ( $this->metaboxlevel == 'site-meta' || $this->metaboxlevel == 'metadata' ) ) {
+		            $frozzenFieldId = isset( $option[ $property . '_' . $this->groupId . '_' . $this->metaboxlevel . '_freeze' ] ) ?: '';
+		            if ( $frozzenFieldId ) {
+			            $renderFunction = 'frozen_field';
+		            }
+	            }
             }
+
+	        //getting accumulated options for overwritten properties
+	        $propertiesOptionNativeOverwrite = get_option('schema_properties_'.$this->groupId. '_overwrite') ?: [];
+	        foreach(structure::$allSchemaTypes as $type) {
+		        if(genFunc::get_type_id($type) == $this->groupId) {
+			        $propertiesOptionsParentOverwrite = [];
+			        foreach ( $type::$type_parents as $parent ) {
+				        $propertiesOptionParentOverwrite  = get_option( $this->groupId . '_overwrite_' .$parent::type_name[1].'_dis' ) ?: [];
+				        $propertiesOptionsParentOverwrite = array_merge( $propertiesOptionsParentOverwrite, $propertiesOptionParentOverwrite );
+			        }
+		        }
+	        }
+	        $propertiesOptionOverwrite = array_merge($propertiesOptionNativeOverwrite, $propertiesOptionsParentOverwrite);
 
             //Checking if the property is being overwritten
             //Giving message
             if($this->metaboxlevel == 'post' || $this->metaboxlevel == 'chapter'){
-                if(get_option($property . '_' .$this->groupId. '_overwrite')){
+                if( isset($propertiesOptionOverwrite[$property]) ? ($propertiesOptionOverwrite[$property] == 1 ? 1 : 0) : 0){
                     $renderFunction = 'overwritten_field';
                 }
             }
 
+            //getting accumulated options for properties
+	        $propertiesOptionNative = get_option('schema_properties_'.$this->groupId. '_' . $this->metaboxlevel . '_level') ?: [];
+            foreach(structure::$allSchemaTypes as $type) {
+                if(genFunc::get_type_id($type) == $this->groupId) {
+                    $propertiesOptionsParent = [];
+	                foreach ( $type::$type_parents as $parent ) {
+		                $propertiesOptionParent  = get_option( $this->groupId . '_' . $this->metaboxlevel . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
+		                $propertiesOptionsParent = array_merge( $propertiesOptionsParent, $propertiesOptionParent );
+                    }
+                }
+            }
+	        $propertiesOption = array_merge($propertiesOptionsParent, $propertiesOptionNative);
 
             //Checking if we need a dropdown field
             if(!isset($details[3])){
+
                 //Checking if the property is required
                 if ($details[0] == true) {
                     x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
@@ -168,7 +201,7 @@ class Pressbooks_Metadata_Create_Metabox {
                         'description' => $details[2],
                         'display_callback' => array($this,$renderFunction)
                     ) );
-                }else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+                }else if(isset($propertiesOption[$property]) ? ($propertiesOption[$property] == 1 ? 1 : 0) : 0){
                     x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
                         'group'       => $this->groupId,
                         'label'       => $details[1],
@@ -189,7 +222,7 @@ class Pressbooks_Metadata_Create_Metabox {
                             'description' => $details[2],
                             'display_callback' => array($this,$renderFunction)
                         ) );
-                    }else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+                    }else if(isset($propertiesOption[$property]) ? ($propertiesOption[$property] == 1 ? 1 : 0) : 0){
                         x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
                             'group'       => $this->groupId,
                             'field_type'	=> 	'number',
@@ -208,7 +241,7 @@ class Pressbooks_Metadata_Create_Metabox {
                             'description' 	=> 	$details[2],
                             'display_callback' => array($this,$renderFunction)
                         ) );
-                    }else if(get_option($property.'_'.$this->groupId.'_'.$this->metaboxlevel.'_level')){
+                    }else if(isset($propertiesOption[$property]) ? ($propertiesOption[$property] == 1 ? 1 : 0) : 0){
                         x_add_metadata_field( $fieldId, $this->metaboxlevel, array(
                             'group' 		=> 	$this->groupId,
                             'field_type' 	=> 	'select',

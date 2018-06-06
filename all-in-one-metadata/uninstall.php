@@ -76,9 +76,10 @@ foreach( $blogs_ids as $b ){
 	//extract plugin options from all options
 	foreach ( $all_options as $name => $value ) {
 		foreach ($allPostTypes as $postType) {
-			if ( stristr( $name, '_type_' . $postType ) || stristr( $name, '_type_' . $postType . '_level' ) 
+			if ( stristr( $name, '_type_' . $postType ) || stristr( $name, '_types_' . $postType . '_level' )
 				|| stristr( $name, '_type_overwrite' ) || stristr($name, 'saoverwr') || stristr($name, $postType.'_checkbox')
-				|| stristr( $name, 'dublin_checkbox' ) || stristr($name, 'coins_checkbox') || stristr($name, 'educational_checkbox')) {
+				|| stristr( $name, 'dublin_checkbox' ) || stristr($name, 'coins_checkbox') || stristr($name, 'educational_checkbox')
+			    || $name == 'property_network_value' || $name == 'property_network_value_freeze' || $name == 'schema_locations') {
 				$plugin_options[ $name ] = $value;
 
 			}
@@ -95,7 +96,7 @@ foreach( $blogs_ids as $b ){
 
 	// Delete plugin related posts' meta
 	//if blog is root, do not add blog number to table name
-	$blog_id = $b->blog_id == 1 || $b = 1 ? '' : $b->blog_id.'_';
+	$blog_id = $b->blog_id == 1 || $b == 1 ? '' : $b->blog_id.'_';
 	//DELETE query to postmeta database
 	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'pb%type%'");
 	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'pb%vocab%'");

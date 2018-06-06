@@ -1,14 +1,12 @@
 <?php
 
 //Defining all namespaces to be used in the define_admin_hooks function etc
-
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as siteMeta;
 use adminFunctions\Pressbooks_Metadata_Importing as importing;
 use adminFunctions\Pressbooks_Metadata_Options as options;
 use adminFunctions\Pressbooks_Metadata_Ajax as ajax;
 use schemaFunctions\Pressbooks_Metadata_Output as output;
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
-use requiredPlugins\Pressbooks_Metadata_Required_Plugins as required;
 use networkFunctions\Pressbooks_Metadata_Network_Admin as netadmin;
 
 /**
@@ -110,6 +108,8 @@ class Pressbooks_Metadata {
 	 */
 	private function load_dependencies() {
 
+		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
 		/**
 		 * The autoload file for using our namespaces - this comes from composer
 		 */
@@ -120,6 +120,13 @@ class Pressbooks_Metadata {
 		 * core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-pressbooks-metadata-loader.php';
+
+		/**
+		 * The custom-metadata plugin functionality
+		 */
+		if (!siteMeta::pressbooks_identify() && !is_plugin_active('custom-metadata')) {
+			require_once plugin_dir_path( dirname(__FILE__ ) ) . 'symbionts/custom-metadata/custom_metadata.php';
+		}
 
 		/**
 		 * The class responsible for defining internationalization functionality
@@ -174,8 +181,6 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'wp_ajax_overwrite_prop_clean', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::overwrite_prop_clean' );
 		$this->loader->add_action( 'wp_ajax_overwrite_prop_disable', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::overwrite_prop_disable' );
 
-		//Installing required plugins
-		$this->loader->add_action( 'admin_init', new required(), 'requiredPlugins\Pressbooks_Metadata_Required_Plugins::check' );
 
 		//Load styles and scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

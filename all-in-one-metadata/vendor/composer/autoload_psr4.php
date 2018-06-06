@@ -15,5 +15,5 @@ return array(
     'requiredPlugins\\' => array($baseDir . '/admin/requiredPlugins'),
     'networkFunctions\\' => array($baseDir . '/admin/networkFunctions'),
     'adminFunctions\\' => array($baseDir . '/admin/adminFunctions'),
-    'Spatie\\SchemaOrg\\' => array($vendorDir . '/spatie/schema-org/src'),
+    'Spatie\\SchemaOrg\\' => array($vendorDir . '/spatie/schema-org/src', $vendorDir . '/spatie/schema-org/src'),
 );
