@@ -125,7 +125,7 @@ class Pressbooks_Metadata {
 		 * The custom-metadata plugin functionality
 		 */
 		if (!siteMeta::pressbooks_identify() && !is_plugin_active('custom-metadata')) {
-			require_once plugin_dir_path( dirname(__FILE__ ) ) . 'vendor/custom-metadata/custom_metadata.php';
+			require_once plugin_dir_path( dirname(__FILE__ ) ) . 'symbionts/custom-metadata/custom_metadata.php';
 		}
 
 		/**
