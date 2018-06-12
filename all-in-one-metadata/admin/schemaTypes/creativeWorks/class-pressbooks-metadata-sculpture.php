@@ -35,7 +35,7 @@ class Pressbooks_Metadata_Sculpture extends Pressbooks_Metadata_Type {
 	 * @since    0.x
 	 * @access   public
 	 */
-	static $type_setting = array('sculpture_type' => array('Sculpture Type','http://schema.org/Sculpture'));
+	static $type_setting = array('sculpture_type' => array('Sculpture Type','http://schema.org/Sculpture', 'Creative Work'));
 
 	/**
 	 * The variable that holds the parents for the type

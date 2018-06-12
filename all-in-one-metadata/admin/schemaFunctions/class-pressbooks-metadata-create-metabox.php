@@ -143,17 +143,16 @@ class Pressbooks_Metadata_Create_Metabox {
             //Render function name, by default is empty
             $renderFunction = '';
 
-	        //get general option for freezes on multisite
-            if (is_multisite()) {
+	        //get general option for freezes
+            if(is_multisite()) {
 	            $option = get_blog_option( 1, 'property_network_value_freeze' );
-
-	            //Checking if the property is frozen from super admin
-	            if ( is_multisite() && ( $this->metaboxlevel == 'site-meta' || $this->metaboxlevel == 'metadata' ) ) {
-		            $frozzenFieldId = isset( $option[ $property . '_' . $this->groupId . '_' . $this->metaboxlevel . '_freeze' ] ) ?: '';
-		            if ( $frozzenFieldId ) {
-			            $renderFunction = 'frozen_field';
-		            }
-	            }
+            }
+            //Checking if the property is frozen from super admin
+            if(is_multisite() && ($this->metaboxlevel == 'site-meta' || $this->metaboxlevel == 'metadata')){
+                $frozzenFieldId = isset($option[$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze']) ?: '';
+                if($frozzenFieldId){
+                    $renderFunction = 'frozen_field';
+                }
             }
 
 	        //getting accumulated options for overwritten properties

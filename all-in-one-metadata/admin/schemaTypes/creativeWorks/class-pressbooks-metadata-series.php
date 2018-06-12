@@ -35,7 +35,7 @@ class Pressbooks_Metadata_Series extends Pressbooks_Metadata_Type {
 	 * @since    0.x
 	 * @access   public
 	 */
-	static $type_setting = array('series_type' => array('Series Type','http://schema.org/Series'));
+	static $type_setting = array('series_type' => array('Series Type','http://schema.org/Series', 'Creative Work'));
 
 	/**
 	 * The variable that holds the parents for the type

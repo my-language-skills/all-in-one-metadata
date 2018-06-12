@@ -88,7 +88,7 @@ class Pressbooks_Metadata_Fields {
 		$this->sectionName = $sectionNameInput;
 		$this->displayPage = $displayPageInput;
 		$this->parentType = genFunc::get_active_parent();
-		$this->optionGeneral = get_option('schema_types_'.$this->sectionId.'_'.$this->parentType) ?: [];
+		$this->optionGeneral = get_option($this->parentType) ?: [];
 
 		$this->pmdt_create_field();
 
@@ -101,7 +101,7 @@ class Pressbooks_Metadata_Fields {
 	 */
 	function pmdt_create_field(){
 		add_settings_field(
-			'schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']',           // ID used to identify the field throughout the theme
+			$this->parentType.'['.$this->metaType.']',           // ID used to identify the field throughout the theme
 			$this->metaInfo[0],                                // The label to the left of the option interface element
 			array( $this, 'pmdt_field_draw' ),              // The name of the function responsible for rendering the option interface
 			$this->displayPage,                             // The page on which this option will be displayed
@@ -111,9 +111,9 @@ class Pressbooks_Metadata_Fields {
 		//We are using a combination of the metaType and the sectionId for the field id so
 		// we can rapidly create fields of the same type in more that one sections,
 		// without having to specify different ids for each section's field's
-		$this->optionGeneral[$this->metaType . '_' . $this->sectionId ] = isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) ? $this->optionGeneral[$this->metaType . '_' . $this->sectionId ] : '';
+		$this->optionGeneral[$this->metaType] = isset($this->optionGeneral[$this->metaType]) ? $this->optionGeneral[$this->metaType] : '';
 		//Adding field to accumulated option
-		update_option('schema_types_'.$this->sectionId.'_'.$this->parentType, $this->optionGeneral);
+		update_option($this->parentType, $this->optionGeneral);
 	}
 
 	/**
@@ -142,26 +142,42 @@ class Pressbooks_Metadata_Fields {
 	 * @since  0.8.1
 	 */
 	function pmdt_field_draw(){
-		$html = '<input type="checkbox" id="schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']" name="schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']" value="1" ' . checked(1, isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) ? ($this->optionGeneral[$this->metaType . '_' . $this->sectionId ] == 1 ? 1 : 0) : 0, false) . '/>';
 
-		$html .= '<label for="show_header">By checking this you allow the '.$this->metaInfo[0].' to show in the '.$this->sectionName.'</label>';
+	    $optionValue = isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] == 1 ? '1' : '0') : '0';
 
-		//If the type has no properties than we show the user that the parent type will be used insted
-		if(isset($this->metaInfo[2])){
-			$html .= '<p class="noPropType">Type is Empty of properties '.$this->metaInfo[2].' will be used</p>';
-		}
+	    if (isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] != 1 ? 1 : 0) : 1) {
+		    $html = '<button class="button-primary type-button" type="button"  name="' . $this->parentType . '[' . $this->metaType . ']" value="1" />Activate</button>';
+		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "' . $this->parentType . '[' . $this->metaType . ']" name="' . $this->parentType . '[' . $this->metaType . ']">';
+	    } else {
+		    $ID = $this->metaType . '-' . $this->sectionId;
+		    $html = '<button class="button-primary type-button-deact" type="button"  name="' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
+		    $html .='<a href="#TB_inline?width=380&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
+		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "' . $this->parentType . '[' . $this->metaType . ']" name="' . $this->parentType . '[' . $this->metaType . ']">';
+        }
 
-		//Deciding if a support link will appear on the settings or not
-		if($this->metaInfo[1] != ''){
-			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'"target="_blank">here</a></p>';
-		}else{
-			$html .= '<p>No description available - this is a custom type</p>';
-		}
-		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) && $this->optionGeneral[$this->metaType . '_' . $this->sectionId ] == 1) {
+        if(!isset($this->metaInfo[2])) {
+	        $html .= '<p><i>';
+
+	        foreach ( structure::$allSchemaTypes as $schema_type ) {
+		        if ( key_exists( $this->metaType, $schema_type::$type_setting ) ) {
+			        $flag = 0;
+			        foreach ( $schema_type::$type_properties as $property ) {
+				        $html .= $flag == 1 ? ', ' : '';
+				        $html .= $property[1];
+				        $flag = 1;
+			        }
+		        }
+	        }
+	        $html .= '.</i></p>';
+        } else {
+	        //If the type has no properties than we show the user that the parent type will be used instead
+	        $html .= '<p class="noPropType" "><i>Type is Empty of properties. '.$this->metaInfo[2].' properties will be used.</i></p>';
+        }
+
+		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
 			add_thickbox();
 
 			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
-			$ID = $this->metaType . '-' . $this->sectionId;
 
 			ob_start();
 
@@ -170,7 +186,6 @@ class Pressbooks_Metadata_Fields {
 			settings_fields( $sectionFieldId );
 			do_settings_sections( $sectionFieldId );
             ?></form><?php
-
 			/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
 
 			$parentIds = $this->get_type_parents(false);
@@ -216,8 +231,7 @@ class Pressbooks_Metadata_Fields {
             <p class="saving-message" style="display: none">Settings Saved!</p>
 			</form> <!-- This is a fix for the first types properties not saving -->
 					'.$contents.'
-			</div>
-			<a href="#TB_inline?width=380&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
+			</div>';
 		}
 		echo $html;
 	}

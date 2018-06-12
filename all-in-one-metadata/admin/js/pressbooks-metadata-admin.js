@@ -43,6 +43,32 @@ jQuery(document).ready(function() {
         });
     });
 
+    //Activating schema type
+    jQuery('.type-button').on('click',function(){
+        var form = jQuery(this).closest('form');
+        document.getElementById(this.name).value = 1;
+        var data =  form.serialize();
+        jQuery.post( 'options.php', data ).error(
+            function() {
+
+            }).success( function() {
+                location.reload();
+        });
+    });
+
+    //Submitting information for the property settings
+    jQuery('.type-button-deact').on('click',function(){
+        var form = jQuery(this).closest('form');
+        document.getElementById(this.name).value = 0;
+        var data =  form.serialize();
+        jQuery.post( 'options.php', data ).error(
+            function() {
+
+            }).success( function() {
+            location.reload();
+        });
+    });
+
     //Function that handles the display of the parent types properties in the properties section
     jQuery('.selectParent').change(function() {
         var form = jQuery(this).parent();

@@ -11,57 +11,30 @@ use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofaaw
  */
 ?>
 
 <?php
 $allPostTypes = engine::get_all_post_types();
-$activatedLevels = 0;
 
-if ( in_array(1,get_option( 'schema_locations' )) || get_option('site-meta_checkbox') || get_option('metadata_checkbox') ) {
-	$activatedLevels ++;
-}
-if($activatedLevels == 0){
-    echo '<p id="noLocationError">Select a Location to show metadata</p>';
-}else{
-    echo '<p>Select the schema types that you want active on each level</p>';
-    echo '<p>Click On What You Are Trying To Describe With Metadata</p>';
-    ?>
-        <form method="post" action="options.php" id="parent_filter_form">
-            <?php
-                settings_fields('parent_filter_group');
-                $options = get_option('parent_filter_settings');
-                foreach(structure::$allParents as $parent){
-                    $parentDetails = $parent::type_name;
-                    //Not allowing the thing filter to show
-                    if($parentDetails[1] == 'thing_properties'){
-                        continue;
-                    }
-            ?>
-            <input type="radio" class="" name="parent_filter_settings[radio1]" value="<?=$parentDetails[1]?>" <?php checked($parentDetails[1], $options['radio1']); ?> /><?=str_replace(" Properties","",$parentDetails[0])?>
-                <?php } ?>
-        </form>
-    <?php
-}
 
-if($activatedLevels != 0){
+echo '<p>Select schema types that you want to be active</p>';
+echo '<p>Choose What You Are Trying To Describe With Metadata</p>';
 ?>
-	<div class="nav-tab-wrapper">
-		<?php
-		    //get general option for locations
-		    $option = get_option('schema_locations');
-
-			foreach($allPostTypes as $postType) {
-				if ( (isset($option[$postType.'_checkbox']) && $option[$postType.'_checkbox'] == 1) || get_option($postType.'_checkbox') == 1 ) {
-				    $tabName = $postType == 'metadata' || $postType == 'site-meta' ? 'Site Meta' : ucfirst($postType);
-				    ?>
-					    <button class="tablinks-activeSch nav-tab" onclick="openSett(event,'tablinks-activeSch', '<?=$postType?>','activeSchemas')"><?=$tabName?></button>
-                    <?php
-				}
-			}
-        ?>
-    </div>
+<form method="post" action="options.php" id="parent_filter_form">
+    <?php
+    settings_fields('parent_filter_group');
+    $options = get_option('parent_filter_settings');
+    foreach(structure::$allParents as $parent){
+        $parentDetails = $parent::type_name;
+        //Not allowing the thing filter to show
+        if($parentDetails[1] == 'thing_properties'){
+            continue;
+            } ?>
+        <input type="radio" class="" name="parent_filter_settings[radio1]" value="<?=$parentDetails[1]?>" <?php checked($parentDetails[1], $options['radio1']); ?> /><?=str_replace(" Properties","",$parentDetails[0])?>
+    <?php } ?>
+</form>
     
 <?php
         foreach($allPostTypes as $postType) {
@@ -72,12 +45,10 @@ if($activatedLevels != 0){
                         <form method="post" class="active-schemas-forms" action="options.php">
 
                             <?php
-                                submit_button();
                                 $tabName = $postType.'_tab';
 
                                 settings_fields( $tabName );
                                 do_settings_sections( $tabName );
-                                submit_button();
                                 echo '<br><br>';
                             ?>
 
@@ -86,5 +57,4 @@ if($activatedLevels != 0){
                 <?php
             }
         }
-    }
 ?>

@@ -35,7 +35,7 @@ class Pressbooks_Metadata_Painting extends Pressbooks_Metadata_Type {
 	 * @since    0.13
 	 * @access   public
 	 */
-	static $type_setting = array('painting_type' => array('Painting Type','http://schema.org/Painting'));
+	static $type_setting = array('painting_type' => array('Painting Type','http://schema.org/Painting', 'Creative Work'));
 
 	/**
 	 * The variable that holds the parents for the type
