@@ -33,7 +33,7 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 
 [Specifical documentation](/docs/documentation-2.md)
 
-[Technical Documentation](/docs/documantation-3.md)
+[Technical Documentation](/docs/documentation-3.md)
 
 
 ---
