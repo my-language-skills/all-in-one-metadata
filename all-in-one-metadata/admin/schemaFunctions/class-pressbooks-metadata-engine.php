@@ -6,6 +6,7 @@ use settings\Pressbooks_Metadata_Post_Type_Fields as post_type_fields;
 use settings\Pressbooks_Metadata_Sections as sections;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use settings\Pressbooks_Metadata_Location_Fields as location_fields;
 use vocabularyFunctions;
 
 
@@ -111,12 +112,13 @@ class Pressbooks_Metadata_Engine {
 		add_settings_section($generalSettSection, "Metadata Output Type", null, $generalSettPage);
 		new post_type_fields('jsonld_output','Enable Jsonld',$generalSettPage,$generalSettSection);
 
-		//Network Control Section
-		$networkFreezeSection = "networkFreezeSection";
-		$networkFreezePage = "network_freeze";
+		//Post Level
+		$postLevelSection = "locationLevelsSection";
+		$postLevelPage = "location_levels_tab";
+		$siteLevelSection = "siteLevelSection";
 
-		//Creating the sections
-		add_settings_section($networkFreezeSection, "Tick to provide Network Administrator right to rewrite Site-Meta", null, $networkFreezePage);
+		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
+		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $postLevelPage);
 
 
 		//Gathering post types
@@ -125,7 +127,27 @@ class Pressbooks_Metadata_Engine {
 		$post_type = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 
 		if(is_multisite()) {
-			new post_type_fields($post_type . '_saoverwr', 'Allow', $networkFreezePage, $networkFreezeSection);
+			//Network Control Section
+			$networkFreezeSection = "networkFreezeSection";
+
+			//Creating the sections
+			add_settings_section($networkFreezeSection, "Network Administrator right to rewrite Site-Meta", null, $generalSettPage);
+			//Create checkbox for option
+			new post_type_fields($post_type . '_saoverwr', 'Allow', $generalSettPage, $networkFreezeSection);
+		}
+
+		//Gathering post types
+		$allPostTypes = $this->get_all_post_types();
+
+		//Registering locations option
+		register_setting($postLevelPage, 'schema_locations');
+		//Creating fields for each section of locations
+		foreach($allPostTypes as $post_type){
+			if($post_type == 'metadata' || $post_type == 'site-meta'){
+				new post_type_fields($post_type.'_checkbox',ucfirst($post_type),$postLevelPage,$siteLevelSection);
+			}else{
+				new location_fields($post_type,ucfirst($post_type),$postLevelPage,$postLevelSection);
+			}
 		}
 
 		//Coins Level
@@ -164,17 +186,19 @@ class Pressbooks_Metadata_Engine {
 		//Getting type settings
 		$typeSettings = $this->get_type_settings();
 
+		//registering accumulated setting for schema types activated per parent type and per post type
+		register_setting('types_tab', genFunc::get_active_parent());
+		$accumulatedOption = get_option(genFunc::get_active_parent());
+		sections::types(
+			'types',
+			ucfirst('Manage Schema Types'),
+			'types_tab',
+			$typeSettings
+		);
+
 		//Creating another section with the fields automatically created for the schema types
 		foreach($allPostTypes as $post_type){
-				//registering accumulated setting for schema types activated per parent type and per post type
-				register_setting($post_type.'_tab', genFunc::get_active_parent());
-				$accumulatedOption = get_option(genFunc::get_active_parent());
-				sections::types(
-					$post_type.'_level',
-					ucfirst($post_type.' Level'),
-					$post_type.'_tab',
-					$typeSettings
-				);
+
 				foreach(structure::$allSchemaTypes as $type){
 					$type_id = genFunc::get_type_id($type);
 					$sectionId = $type_id.'_'.$post_type.'_level';
@@ -186,7 +210,7 @@ class Pressbooks_Metadata_Engine {
 					}
 					$type_properties = $type::$type_properties;
 					sections::properties(
-						$sectionId.'_properties',
+						$sectionId,
 						'',
 						$sectionId.'_properties',
 						$type_properties,
@@ -199,7 +223,7 @@ class Pressbooks_Metadata_Engine {
 						register_setting($sectionId.'_'.$parent::type_name[1].'_dis', $sectionId.'_'.$parent::type_name[1].'_dis');
 						sections::properties(
 							$sectionId,
-							str_replace('Thing','General',$parent::type_name[0]),
+							'',
 							$sectionId.'_'.$parent::type_name[1].'_dis',
 							$parent::type_properties,
                             $type::$required_parent_props
@@ -227,8 +251,8 @@ class Pressbooks_Metadata_Engine {
 
 		//The loop checks if the setting is enabled and then stores the activated post in the level array
 		foreach($postTypes as $post_type){
-			if((isset($option[$post_type.'_checkbox']) && $option[$post_type.'_checkbox'] == 1) || get_option($post_type.'_checkbox')) {
-				$schemaPostLevels []= $post_type.'_level';
+			if((isset($option[$post_type]) && $option[$post_type] == 1) || get_option($post_type.'_checkbox')) {
+				$schemaPostLevels []= $post_type;
 			}
 		}
 		return $schemaPostLevels;
@@ -264,8 +288,7 @@ class Pressbooks_Metadata_Engine {
 					//Checking the settings for each level and type together and we create instances for the active types on each level
 					if(isset($optionsSchemaTypes[$typeId]) && $optionsSchemaTypes[$typeId] == 1){
 						//We use the name of the post excluding the _level part so we can create instances for each post type and its enabled schema types
-						$cpt = str_replace("_level","",$level);
-						$instances []= new $type($cpt);
+						$instances []= new $type($level);
 					}
 			}
 		}
@@ -275,8 +298,8 @@ class Pressbooks_Metadata_Engine {
 
 		//Then we clear duplicates from the instances, this is older code from a different implementation but we keep it just in case something goes wrong
 		$instances = array_unique($instances);
-
 		return $instances;
+
 	}
 }
 

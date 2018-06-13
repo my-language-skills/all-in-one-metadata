@@ -134,7 +134,7 @@ class Pressbooks_Metadata_Sections {
 	public static function types( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
 		$instance = new self();
 		$instance->sectionId = $sectionInputId;
-		$instance->sectionName = $sectionInputName == 'Site-meta Level' || $sectionInputName == 'Metadata Level' ? 'Site Meta Level' : $sectionInputName;
+		$instance->sectionName = $sectionInputName;
 		$instance->displayPage = $sectionInputDisplayPage;
 		$instance->fieldsData = $fieldsDataInput;
 		$instance->pmdt_load_by_type();
@@ -167,6 +167,6 @@ class Pressbooks_Metadata_Sections {
 	 * @since  0.8.1
 	 */
 	function pmdt_type_section_draw(){
-		echo '<p>Here you can choose what types of Metadata you want to show in the '.$this->sectionName.' </p>';
+
 	}
 }

@@ -114,9 +114,9 @@ class Pressbooks_Metadata_Property_Overwrite {
 	    }
 
 	    if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
-		    $schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+		    $schemaOptionName = 'schemaTypes\Pressbooks_Metadata_Organization';
 	    } else{
-		    $schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+		    $schemaOptionName = 'schemaTypes\Pressbooks_Metadata_CreativeWork';
 	    }
 	    //<
 
@@ -140,7 +140,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	    }
 
 	    //Enable Type
-	    $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+	    $optionsSchemaTypes[$schemaType] = 1;
 	    update_option($schemaOptionName,$optionsSchemaTypes);
 
 	    //Enable Property

@@ -125,7 +125,7 @@ class Pressbooks_Metadata_Property_Fields {
 				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'hide' : '';
 				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn2">Disable</button>' : '';
 				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
-				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/>';
+				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/><br>';
 				$html .= '<button class="overwrite_prop_clean propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn">Clear</button>';
 				$html .= $disableButton;
 				echo $html;
@@ -186,7 +186,7 @@ class Pressbooks_Metadata_Property_Fields {
 				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'hide' : '';
 				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn2">Disable</button>' : '';
 				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->displayPage.'['.$this->property.']" name="'.$this->displayPage.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionParent[$this->property]) ? ( $this->generalOptionParent[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
-				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/>';
+				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/><br>';
 				$html .= '<button class="overwrite_prop_clean propertyButtonStyle '.$overwriteHide.'" id="'.$overwriteField.'_btn">Clear</button>';
 				$html .= $disableButton;
 				echo $html;

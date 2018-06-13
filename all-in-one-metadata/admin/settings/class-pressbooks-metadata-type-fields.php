@@ -3,6 +3,7 @@
 namespace settings;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use schemaFunctions\Pressbooks_Metadata_Engine as engine;
 
 /**
  * This class is an automation for creating fields in the desired sections,
@@ -151,7 +152,7 @@ class Pressbooks_Metadata_Fields {
 	    } else {
 		    $ID = $this->metaType . '-' . $this->sectionId;
 		    $html = '<button class="button-primary type-button-deact" type="button"  name="' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
-		    $html .='<a href="#TB_inline?width=380&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
+		    $html .='<a href="#TB_inline?height=550&width=950&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "' . $this->parentType . '[' . $this->metaType . ']" name="' . $this->parentType . '[' . $this->metaType . ']">';
         }
 
@@ -177,22 +178,47 @@ class Pressbooks_Metadata_Fields {
 		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
 			add_thickbox();
 
-			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
-
 			ob_start();
 
-			//Rendering the default properties of the type
-			?><form class="properties-options-form" method="post" action="options.php"><?php
-			settings_fields( $sectionFieldId );
-			do_settings_sections( $sectionFieldId );
-            ?></form><?php
-			/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
-
+            ?>
+            <table>
+                <tr>
+                    <?php
+                    $flag = 1;
+			            foreach(engine::get_enabled_levels() as $post_type){
+			                if ($flag) {
+				                echo '<td style="width: 230px; font-size: large; text-align: center;"><b>' . ucfirst( $post_type ) . '</b></td>';
+				                $flag = 0;
+			                } else {
+				                echo '<td style="width: 170px; font-size: large; text-align: center;"><b>' . ucfirst( $post_type ) . '</b></td>';
+                            }
+                       }
+                    ?>
+                </tr>
+            </table>
+            <?php
+			$flag = 1;
+            foreach(engine::get_enabled_levels() as $post_type) {
+	            $sectionFieldId = $this->metaType.'_'.$post_type.'_level_properties';
+	            //Rendering the default properties of the type
+	            if ($flag){
+		            echo '<div style="float: left;">';
+                    echo '<form class="properties-options-form first-set" method="post" action="options.php">';
+                    $flag = 0;
+                } else {
+		            echo '<div style="float: left; width: 170px;">';
+                    echo '<form class="properties-options-form" method="post" action="options.php">';
+                }
+	            settings_fields( $sectionFieldId );
+	            do_settings_sections( $sectionFieldId );
+                    ?></form></div><?php
+	            /* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
+            }
 			$parentIds = $this->get_type_parents(false);
 			$parentNames = $this->get_type_parents(true);
 
 			//Creating the select element for selecting parents
-			?><select class="selectParent">
+			?><div style="clear: both;"></div><select class="selectParent">
 			  <option value="parents">Show Basic Properties</option> <?php
 
 			for($i = 0; $i < count($parentIds); $i++){
@@ -203,15 +229,23 @@ class Pressbooks_Metadata_Fields {
 
 			//Creating DIVS with the parents properties inside
 			foreach($parentIds as $parent){
-
+                $flag = 1;
 				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
-
-				$parentField = $this->metaType.'_'.$this->sectionId.'_'.$parent.'_dis';
-				?><form class="properties-options-form" method="post" action="options.php"><?php
-				settings_fields( $parentField );
-				do_settings_sections( $parentField );
-                ?></form><?php
-
+				foreach(engine::get_all_post_types() as $post_type) {
+					$parentField = $this->metaType . '_' . $post_type . '_level_' . $parent . '_dis';
+					?>
+                    <?php if ($flag){
+                    echo '<div style="float: left;">';
+                    echo '<form class="properties-options-form first-set" method="post" action="options.php">';
+                    $flag = 0;
+                } else {
+                    echo '<div style="float: left; width: 170px;">';
+                    echo '<form class="properties-options-form" method="post" action="options.php">';
+                }
+					settings_fields( $parentField );
+					do_settings_sections( $parentField );
+                        ?></form></div><?php
+				}
 				?></div><?php
 			}
 
@@ -229,6 +263,7 @@ class Pressbooks_Metadata_Fields {
             <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'all-in-one-metadata/assets/loading.gif"/>
             </div>
             <p class="saving-message" style="display: none">Settings Saved!</p>
+            <br><br>
 			</form> <!-- This is a fix for the first types properties not saving -->
 					'.$contents.'
 			</div>';

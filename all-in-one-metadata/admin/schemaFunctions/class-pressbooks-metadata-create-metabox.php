@@ -157,9 +157,9 @@ class Pressbooks_Metadata_Create_Metabox {
 
 	        //getting accumulated options for overwritten properties
 	        $propertiesOptionNativeOverwrite = get_option('schema_properties_'.$this->groupId. '_overwrite') ?: [];
+	        $propertiesOptionsParentOverwrite = [];
 	        foreach(structure::$allSchemaTypes as $type) {
 		        if(genFunc::get_type_id($type) == $this->groupId) {
-			        $propertiesOptionsParentOverwrite = [];
 			        foreach ( $type::$type_parents as $parent ) {
 				        $propertiesOptionParentOverwrite  = get_option( $this->groupId . '_overwrite_' .$parent::type_name[1].'_dis' ) ?: [];
 				        $propertiesOptionsParentOverwrite = array_merge( $propertiesOptionsParentOverwrite, $propertiesOptionParentOverwrite );
@@ -178,9 +178,9 @@ class Pressbooks_Metadata_Create_Metabox {
 
             //getting accumulated options for properties
 	        $propertiesOptionNative = get_option('schema_properties_'.$this->groupId. '_' . $this->metaboxlevel . '_level') ?: [];
+	        $propertiesOptionsParent = [];
             foreach(structure::$allSchemaTypes as $type) {
                 if(genFunc::get_type_id($type) == $this->groupId) {
-                    $propertiesOptionsParent = [];
 	                foreach ( $type::$type_parents as $parent ) {
 		                $propertiesOptionParent  = get_option( $this->groupId . '_' . $this->metaboxlevel . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
 		                $propertiesOptionsParent = array_merge( $propertiesOptionsParent, $propertiesOptionParent );

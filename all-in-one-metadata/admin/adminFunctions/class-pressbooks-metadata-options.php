@@ -83,12 +83,8 @@ class Pressbooks_Metadata_Options {
 		wp_enqueue_script('common');
 		wp_enqueue_script('wp-lists');
 		wp_enqueue_script('postbox');
-		if (is_multisite()) {
-			add_meta_box( 'network-freeze', 'Allow Network Control', array(
-				$this,
-				'render_metabox_network_freeze'
-			), $this->pagehook, 'normal', 'core' );
-		}
+
+		add_meta_box('metadata-location', 'Location Of Metadata', array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
 		add_meta_box('activated-schema-types', 'Activated Schema Types', array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
 		add_meta_box('specific-metadata', 'Specific Metadata', array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
 		add_meta_box('general-settings', 'General Settings', array($this, 'render_general_settings'), $this->pagehook, 'normal', 'core');
@@ -99,8 +95,8 @@ class Pressbooks_Metadata_Options {
 	 *
 	 * @since  0.10
 	 */
-	function render_metabox_network_freeze() {
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-networkFreeze.php';
+	function render_metabox_schema_locations() {
+		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-schemaLocations.php';
 	}
 
 	/**
