@@ -3,6 +3,7 @@
 namespace schemaTypes;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 //use Spatie\SchemaOrg\Schema as jsonldGen;
 
 /**
@@ -105,7 +106,21 @@ class Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	public function pmdt_prop_run($metaProperty){
+		//get option for native properties
 		$propertiesOption = get_option('schema_properties_'.$this->typeName. '_' . $this->type_level . '_level');
+
+		//get option for parent properties and if metaProp is there, change checked option
+		foreach(structure::$allSchemaTypes as $type) {
+			if(gen_func::get_type_id($type) == $this->typeName) {
+				$propertiesOptionsParent = [];
+				foreach ( $type::$type_parents as $parent ) {
+					$propertiesOptionsParent  = get_option( $this->typeName . '_' . $this->type_level . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
+					if (key_exists($metaProperty,$propertiesOptionsParent)){
+						$propertiesOption = $propertiesOptionsParent;
+					}
+				}
+			}
+		}
 		if($this->type_fields[$metaProperty][0] == true){
 			return true;
 		}else if(isset($propertiesOption[$metaProperty]) ? ($propertiesOption[$metaProperty] == 1 ? 1 : 0) : 0){
