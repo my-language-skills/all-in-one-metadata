@@ -16,8 +16,9 @@ if (isset($_GET['updated'])): ?>
     <h1>All In One Metadata Network Settings</h1>
     <form method="POST" action="edit.php?action=update_network_options"><?php
 		settings_fields('site_level_admin_display');
-		do_settings_sections('site_level_admin_display');
-		submit_button(); ?>
+	    submit_button();
+	    do_settings_sections('site_level_admin_display');
+		?>
     </form>
     <p></p>
 </div>
