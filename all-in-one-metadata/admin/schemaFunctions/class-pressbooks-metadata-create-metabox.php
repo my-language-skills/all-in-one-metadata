@@ -112,15 +112,18 @@ class Pressbooks_Metadata_Create_Metabox {
     function overwritten_field( $field_slug, $field, $value ) {
         //Getting the origin for overwritten data
         $dataFrom = site_cpt::pressbooks_identify() ? 'Book-Info' : 'Site-Meta';
-        $value = get_post_meta(get_the_ID(),$field_slug);
-	    if(array_key_exists(0, $value)){
-		    $value = $value[0];
-	    }else{
-		    $value = "";
-	    }
+        //creating arguments to get site-meta/metadata post
+        $postType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+        //getting site-meta/metadata post
+        $siteMeta = get_posts(['post_type' => $postType]) ?: [];
+        $siteMeta = empty($siteMeta) ? [] : $siteMeta[0];
+        //creating name for metakey of site-meta/meatdata type
+	    $broken_slug = explode('_',$field_slug);
+	    $property = ucfirst($broken_slug[1]);
+	    $field_slug_site =  $broken_slug[0].'_'.$broken_slug[1].'_'.$broken_slug[2].'_'.$broken_slug[3].'_'.$postType;
+	    //getting value of post meta
+        $value = $siteMeta == [] ? '' : get_post_meta($siteMeta->ID,$field_slug_site, true);
 
-        $broken_slug = explode('_',$field_slug);
-        $property = ucfirst($broken_slug[1]);
         ?>
         <hr />
         <p><strong><?=$property?></strong> is Overwritten by <?=$dataFrom?>. <?php if ($value !== "") echo 'The value is "'.$value.'"'; else echo 'Check the predefined value there.';?></p>

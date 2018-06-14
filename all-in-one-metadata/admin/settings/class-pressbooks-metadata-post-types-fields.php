@@ -57,7 +57,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 
 		//This is a small fix for naming
 		if($this->fieldName == 'Metadata'){
-			$this->fieldName = 'Site-meta';
+			$this->fieldName = 'Book Info';
 		}
 
 		$this->pmdt_create_field();

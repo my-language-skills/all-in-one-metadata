@@ -179,7 +179,6 @@ class Pressbooks_Metadata_Network_Admin {
 
                 $selectedPosts []= array('ID' => $newPostId, 'post_type' => $postType);
             }
-
             //Going through all posts and adding the new post_meta
             foreach($selectedPosts as $post){
                 update_post_meta( $post['ID'],$metaKey,$newValue);
