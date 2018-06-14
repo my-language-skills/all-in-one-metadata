@@ -3,7 +3,7 @@
 namespace schemaTypes;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
-use Spatie\SchemaOrg\Schema as jsonldGen;
+//use Spatie\SchemaOrg\Schema as jsonldGen;
 
 /**
  * The class for the Type including operations, this class is used as a base class for all the types
@@ -226,6 +226,7 @@ class Pressbooks_Metadata_Type {
 	 * @since 0.x
 	 *
 	 */
+	/*
 	private function get_jsonld(){
 
 		//Getting the clear name of the type so we can load a class (type object) from the spatie/schema
@@ -264,3 +265,4 @@ class Pressbooks_Metadata_Type {
 		return $schema->toScript();
 	}
 }
+*/

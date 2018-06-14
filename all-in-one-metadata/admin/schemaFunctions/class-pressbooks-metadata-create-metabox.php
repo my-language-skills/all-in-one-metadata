@@ -150,7 +150,7 @@ class Pressbooks_Metadata_Create_Metabox {
             //Checking if the property is frozen from super admin
             if(is_multisite() && ($this->metaboxlevel == 'site-meta' || $this->metaboxlevel == 'metadata')){
                 $frozzenFieldId = isset($option[$property . '_' .$this->groupId. '_' .$this->metaboxlevel.'_freeze']) ?: '';
-                if($frozzenFieldId){
+                if($frozzenFieldId && get_option($this->metaboxlevel.'_saoverwr')){
                     $renderFunction = 'frozen_field';
                 }
             }

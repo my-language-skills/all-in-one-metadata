@@ -46,9 +46,9 @@ class Pressbooks_Metadata_Activator {
 			}
 			//activate post/chapter level meta for demonstration (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schema_locations', ['chapter_checkbox' => '1'] );
+				update_option( 'schema_locations', ['chapter' => '1'] );
 			} else {
-				update_option( 'schema_locations', ['post_checkbox' => '1'] );
+				update_option( 'schema_locations', ['post' => '1'] );
 			}
 
 			//activate site-level meta for demonstration (these are gonna be created anyway)
@@ -60,17 +60,11 @@ class Pressbooks_Metadata_Activator {
 
 			// set book type schema active for demonstration for posts/chapters (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schema_types_book_level_schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type_chapter_level' => '1'] );
+				update_option( 'schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type' => '1'] );
 			} else {
-				update_option( 'schema_types_post_level_schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type_post_level' => '1'] );
+				update_option( 'schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type' => '1'] );
 			}
 
-			//set book type schema active for demonstration for site-meta or metadata (these are gonna be created anyway)
-			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schema_types_metadata_level_schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type_metadata_level' => '1'] );
-			} else {
-				update_option( 'schema_types_site-meta_level_schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type_site-meta_level' => '1'] );
-			}
 
 		}
 		//if multisite is active, restore the blog which was used before updating options

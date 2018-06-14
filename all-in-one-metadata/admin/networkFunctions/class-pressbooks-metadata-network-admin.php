@@ -45,6 +45,8 @@ class Pressbooks_Metadata_Network_Admin {
         $displayPage = 'site_level_admin_display';
         $sectionId   = 'site_level_section';
 
+        add_meta_box('site_level_admin', 'Manage Options', array($this, 'render_metabox_network'), $displayPage, 'normal', 'core');
+
         //Getting the value of the level
         //In our case is metadata for pressbooks or site-meta for the wordpress default installation
         //This reflects the site level metadata
@@ -83,12 +85,29 @@ class Pressbooks_Metadata_Network_Admin {
     }
 
     /**
-     * Linking the page that the settings will render
+     * Render network settings page
      *
-     * @since  0.10
+     * @since  0.17
      */
     function render_network_settings(){
-        include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
+	    ?>
+	    <div class="wrap">
+		    <div class="metabox-holder">
+			    <?php
+			    do_meta_boxes('site_level_admin_display', 'normal','');
+			    ?>
+		    </div>
+	    </div>
+	    <?php
+    }
+
+	/**
+	 * Linking the page that the settings will render
+	 *
+	 * @since 0.17
+	 */
+    function render_metabox_network(){
+	    include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
     }
 
     /**
@@ -178,9 +197,9 @@ class Pressbooks_Metadata_Network_Admin {
 	        }
 
 			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
-				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+				$schemaOptionName = 'schemaTypes\Pressbooks_Metadata_Organization';
 			} else{
-				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+				$schemaOptionName = 'schemaTypes\Pressbooks_Metadata_CreativeWork';
 			}
 			//<
 
@@ -194,7 +213,7 @@ class Pressbooks_Metadata_Network_Admin {
             update_option($postType.'_checkbox', 1);
 
             //Enable Type
-	        $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+	        $optionsSchemaTypes[$schemaType] = 1;
 
             update_option($schemaOptionName,$optionsSchemaTypes);
 
