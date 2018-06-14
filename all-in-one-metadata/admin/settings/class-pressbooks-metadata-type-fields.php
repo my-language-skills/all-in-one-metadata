@@ -231,7 +231,7 @@ class Pressbooks_Metadata_Fields {
 			foreach($parentIds as $parent){
                 $flag = 1;
 				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
-				foreach(engine::get_all_post_types() as $post_type) {
+				foreach(engine::get_enabled_levels() as $post_type) {
 					$parentField = $this->metaType . '_' . $post_type . '_level_' . $parent . '_dis';
 					?>
                     <?php if ($flag){
