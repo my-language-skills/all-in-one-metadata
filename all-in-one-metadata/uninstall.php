@@ -76,10 +76,11 @@ foreach( $blogs_ids as $b ){
 	//extract plugin options from all options
 	foreach ( $all_options as $name => $value ) {
 		foreach ($allPostTypes as $postType) {
-			if ( stristr( $name, '_type_' . $postType ) || stristr( $name, 'schemaTypes' )
+			if ( stristr( $name, '_properties_dis' ) || stristr( $name, 'schema_properties' ) || stristr( $name, 'schemaTypes' )
 				|| stristr( $name, '_type_overwrite' ) || stristr($name, 'saoverwr') || stristr($name, $postType.'_checkbox')
 				|| stristr( $name, 'dublin_checkbox' ) || stristr($name, 'coins_checkbox') || stristr($name, 'educational_checkbox')
-			    || $name == 'property_network_value' || $name == 'property_network_value_freeze' || $name == 'schema_locations') {
+			    || $name == 'property_network_value' || $name == 'property_network_value_freeze' || $name == 'schema_locations' || $name == 'jsonld_output'
+				|| $name == 'parent_filter_settings') {
 				$plugin_options[ $name ] = $value;
 
 			}
