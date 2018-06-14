@@ -87,7 +87,7 @@ class Pressbooks_Metadata_Network_Admin {
     /**
      * Render network settings page
      *
-     * @since  0.17
+     * @since  0.18
      */
     function render_network_settings(){
 	    ?>
@@ -104,7 +104,7 @@ class Pressbooks_Metadata_Network_Admin {
 	/**
 	 * Linking the page that the settings will render
 	 *
-	 * @since 0.17
+	 * @since 0.18
 	 */
     function render_metabox_network(){
 	    include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';

@@ -136,7 +136,7 @@ class Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	public function pmdt_get_value($propName){
-		$value;
+		$value = [];
 		$array = isset($this->metadata[$propName])? $this->metadata[$propName] : '';
 		if ( !$this->is_site ) { //we are using the get_first function to get the value from the returned array
 			$value = $this->pmdt_get_first( $array );
@@ -264,5 +264,5 @@ class Pressbooks_Metadata_Type {
 		//This uses the $schema object and all the properties we gave it above (illustrator for example) to return jasonld data
 		return $schema->toScript();
 	}
+	*/
 }
-*/

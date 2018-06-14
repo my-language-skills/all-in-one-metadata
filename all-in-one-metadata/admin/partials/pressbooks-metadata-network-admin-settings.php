@@ -1,9 +1,9 @@
 <?php
 /**
- * The file containing the html for the Network Admin Settings
+ * The file containing the html for the Network Admin Settings Metabox
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.10
+ * @since      0.18
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials
