@@ -20,16 +20,16 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * @since      0.16
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     Daniil Zhitnitskii @danzhik
  */
 class Pressbooks_Metadata_Activator {
 
 	/**
-	 * Short Description. (use period)
+	 * Class responsible for activation process
 	 *
-	 * Long Description.
+	 * During activation this class enables some predefined values of plugin options for user demonstration.
 	 *
-	 * @since    0.1
+	 * @since    0.16
 	 */
 	public static function activate() {
 

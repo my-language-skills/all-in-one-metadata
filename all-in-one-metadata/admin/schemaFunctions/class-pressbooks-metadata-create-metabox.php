@@ -14,7 +14,8 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Create_Metabox {
@@ -85,7 +86,7 @@ class Pressbooks_Metadata_Create_Metabox {
     /**
      * The function for rendering frozen fields.
      *
-     * @since    0.x
+     * @since    0.18
      */
     function frozen_field( $field_slug, $field, $value ) {
         $value = get_post_meta(get_the_ID(),$field_slug);
@@ -107,7 +108,7 @@ class Pressbooks_Metadata_Create_Metabox {
     /**
      * The function for rendering overwritten fields.
      *
-     * @since    0.x
+     * @since    0.18
      */
     function overwritten_field( $field_slug, $field, $value ) {
         //Getting the origin for overwritten data

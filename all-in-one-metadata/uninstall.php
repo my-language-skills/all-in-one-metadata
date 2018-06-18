@@ -23,6 +23,7 @@
  * @since      0.16
  *
  * @package    Pressbooks_Metadata
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 // If uninstall not called from WordPress, then exit.

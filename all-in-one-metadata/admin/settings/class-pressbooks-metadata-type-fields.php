@@ -156,8 +156,10 @@ class Pressbooks_Metadata_Fields {
 	 */
 	function pmdt_field_draw(){
 
+	    //check if schema type is active for this post type
 	    $optionValue = isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] == 1 ? '1' : '0') : '0';
 
+	    //draw  activation/deactivation buttons
 	    if (isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] != 1 ? 1 : 0) : 1) {
 		    $html = '<button class="button-primary type-button" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Activate</button>';
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
@@ -168,6 +170,7 @@ class Pressbooks_Metadata_Fields {
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
         }
 
+        //if schema type has properties, display them as hint
         if(!isset($this->metaInfo[2])) {
 	        $html .= '<p><i>';
 
@@ -187,6 +190,7 @@ class Pressbooks_Metadata_Fields {
 	        $html .= '<p class="noPropType" "><i>Type is Empty of properties. '.$this->metaInfo[2].' properties will be used.</i></p>';
         }
 
+        //create a pop-up window for active schema types
 		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
 	        //add pop-up box styles and scripts
 			add_thickbox();

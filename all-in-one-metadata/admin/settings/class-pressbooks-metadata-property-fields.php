@@ -13,7 +13,8 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Property_Fields {

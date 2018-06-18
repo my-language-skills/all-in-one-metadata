@@ -20,7 +20,8 @@ use vocabularyFunctions;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Engine {
@@ -201,6 +202,7 @@ class Pressbooks_Metadata_Engine {
 			);
 
 			foreach(structure::$allSchemaTypes as $type){
+				//register setting for native properties
 				$type_id = genFunc::get_type_id($type);
 				$sectionId = $type_id.'_'.$post_type.'_level';
 				register_setting($sectionId.'_properties', 'schema_properties_'.$sectionId);
@@ -217,6 +219,7 @@ class Pressbooks_Metadata_Engine {
 				//Getting parent information and creating the parent properties
 				//For each type on each level
 				foreach($type::$type_parents as $parent){
+					//register setting for parent properties of a type
 					register_setting($sectionId.'_'.$parent::type_name[1].'_dis', $sectionId.'_'.$parent::type_name[1].'_dis');
 					sections::properties(
 						$sectionId,

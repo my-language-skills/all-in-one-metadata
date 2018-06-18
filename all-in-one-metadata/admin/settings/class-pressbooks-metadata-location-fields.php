@@ -12,7 +12,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
- * @author     Daniil Zhitnitskii <danonchik98@gmail.com>
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Location_Fields {

@@ -3,11 +3,12 @@
  * The file containing the html for the Network Admin Settings Metabox
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
- * @since      0.18
+ * @since      0.10
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 if (isset($_GET['updated'])): ?>
 <div id="message" class="updated notice is-dismissible"><p><?php _e('Options saved.') ?></p></div>

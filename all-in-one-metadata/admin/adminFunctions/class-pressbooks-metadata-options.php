@@ -11,7 +11,8 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/adminFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Options {
@@ -29,6 +30,8 @@ class Pressbooks_Metadata_Options {
 
 		//Creating the options page for the plugin
 		$this->pagehook = add_menu_page('All In One Metadata Settings', "Metadata", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'), 'dashicons-search');
+
+		//small fix to have different menu name of first tab
 		add_submenu_page('pressbooks_metadata_settings','General Settings', 'General Settings', 'manage_options', 'pressbooks_metadata_settings');
 
 		if(!site_cpt::pressbooks_identify()){
@@ -42,6 +45,7 @@ class Pressbooks_Metadata_Options {
 			} else {
 				$site_meta_url = 'post-new.php?post_type=site-meta';
 			}
+			//adding Site-Meta page under main plugin page
 			add_submenu_page('pressbooks_metadata_settings','Site-Meta', 'Site-Meta', 'edit_posts', $site_meta_url);
 		}
 
@@ -83,7 +87,7 @@ class Pressbooks_Metadata_Options {
                 } );
 			}
 		}
-		//Adding the metaboxes on the options page
+		//Adding the metaboxes on main options page
 		add_action('load-'.$this->pagehook, array($this, 'add_metaboxes'));
 	}
 

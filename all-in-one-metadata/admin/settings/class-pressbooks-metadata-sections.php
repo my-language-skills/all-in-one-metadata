@@ -11,12 +11,12 @@ namespace settings;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 
 //Including the field class so fields can be created for the current section
-require_once('class-pressbooks-metadata-type-fields.php' );
-require_once('class-pressbooks-metadata-property-fields.php');
+use settings\Pressbooks_Metadata_Fields;
+use settings\Pressbooks_Metadata_Property_Fields;
 
 class Pressbooks_Metadata_Sections {
 

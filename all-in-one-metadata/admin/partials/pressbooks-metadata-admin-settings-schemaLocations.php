@@ -7,7 +7,7 @@
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 ?>
 

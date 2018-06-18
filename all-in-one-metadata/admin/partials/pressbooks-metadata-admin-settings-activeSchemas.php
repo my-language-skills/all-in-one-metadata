@@ -13,6 +13,7 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/partials
  * @author     Christos Amyrotos @MashRoofaaw
+ * @author     Daniil Zhitnitskii @danzhik
  */
 ?>
 
@@ -23,12 +24,13 @@ $allPostTypes = engine::get_enabled_levels();
 //getting current page slug to retrieve post type
 $name_data = explode('_',get_current_screen()->base);
 $post_type = $name_data[2];
+
 //if we are on a main plugin settings page, set $post_type to 'site-meta' post type
 if($post_type == 'pressbooks'){
 	$post_type = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 }
 
-
+//if site-meta/metadata location is not active, ask user to activate it to be able to manage it (with other post types settings are just not shown in case they are inactive)
 if(($post_type == 'site-meta' && !in_array('site-meta', $allPostTypes)) || ($post_type == 'metadata' && !in_array('metadata', $allPostTypes))){
     echo '<p id="noLocationError">Activate Site-Meta location to manage Schema Types on this level</p>';
 }else{

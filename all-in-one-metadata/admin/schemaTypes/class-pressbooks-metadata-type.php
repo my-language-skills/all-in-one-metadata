@@ -109,7 +109,7 @@ class Pressbooks_Metadata_Type {
 		//get option for native properties
 		$propertiesOption = get_option('schema_properties_'.$this->typeName. '_' . $this->type_level . '_level');
 
-		//get option for parent properties and if metaProp is there, change checked option
+		//get option for parent properties and if metaProp is there, change $propertiesOption to array of parent properties
 		foreach(structure::$allSchemaTypes as $type) {
 			if(gen_func::get_type_id($type) == $this->typeName) {
 				$propertiesOptionsParent = [];

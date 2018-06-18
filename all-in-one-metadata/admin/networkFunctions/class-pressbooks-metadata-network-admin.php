@@ -13,7 +13,8 @@ use networkFunctions\Pressbooks_Metadata_Net_Sett_Sections as net_sections;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/networkFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Network_Admin {
@@ -45,6 +46,7 @@ class Pressbooks_Metadata_Network_Admin {
         $displayPage = 'site_level_admin_display';
         $sectionId   = 'site_level_section';
 
+        //adding metabox for proper output layout
         add_meta_box('site_level_admin', 'Manage Options', array($this, 'render_metabox_network'), $displayPage, 'normal', 'core');
 
         //Getting the value of the level
@@ -225,7 +227,7 @@ class Pressbooks_Metadata_Network_Admin {
     /**
      * Function used for taking an array and generating a cleaned one with the keys you ask
      *
-     * @since  0.x
+     * @since  0.18
      */
     function cleanCollect($arrayInput,$searchWord,$toLower){
         $newArray = array();

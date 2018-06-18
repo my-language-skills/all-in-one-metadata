@@ -19,7 +19,7 @@
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 class Pressbooks_Metadata_Admin {
 

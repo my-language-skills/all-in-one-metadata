@@ -9,7 +9,8 @@ namespace networkFunctions;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/networkFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Net_Sett_Sections {
@@ -139,7 +140,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 				?>
 				<label><input type="checkbox" name="<?=$freezeOptionName.'['.$propertyFreeze.']'?>"
 				              value="1" <?php checked($freeze_values[$propertyFreeze]); ?> /> <?php
-				echo 'Check this box if you want to freeze this property.' ?></label>
+				echo 'Check this box if you want to freeze this property on Site-Meta level over all sites.' ?></label>
 				<?php
 			};
 
