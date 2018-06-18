@@ -60,9 +60,9 @@ class Pressbooks_Metadata_Activator {
 
 			// set book type schema active for demonstration for posts/chapters (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type' => '1'] );
+				update_option( 'metadata_schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type' => '1'] );
 			} else {
-				update_option( 'schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type' => '1'] );
+				update_option( 'site-meta_schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type' => '1'] );
 			}
 
 
