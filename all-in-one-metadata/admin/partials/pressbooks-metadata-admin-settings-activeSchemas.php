@@ -2,6 +2,7 @@
 
 use schemaFunctions\Pressbooks_Metadata_Engine as engine;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
  * The file containing the html for the activeSchemas Metabox in the settings.
@@ -17,12 +18,19 @@ use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 
 <?php
 $allPostTypes = engine::get_enabled_levels();
-$activatedLevels = 0;
-if (!empty($allPostTypes)) {
-	$activatedLevels ++;
+
+
+//getting current page slug to retrieve post type
+$name_data = explode('_',get_current_screen()->base);
+$post_type = $name_data[2];
+//if we are on a main plugin settings page, set $post_type to 'site-meta' post type
+if($post_type == 'pressbooks'){
+	$post_type = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
 }
-if($activatedLevels == 0){
-    echo '<p id="noLocationError">Select a Location to show metadata</p>';
+
+
+if(($post_type == 'site-meta' && !in_array('site-meta', $allPostTypes)) || ($post_type == 'metadata' && !in_array('metadata', $allPostTypes))){
+    echo '<p id="noLocationError">Activate Site-Meta location to manage Schema Types on this level</p>';
 }else{
 
         echo '<p>Select schema types that you want to be active</p>';
@@ -46,7 +54,7 @@ if($activatedLevels == 0){
         <div id="types" class="activeSchemas">
             <form method="post" class="active-schemas-forms" action="options.php">
                 <?php
-                $tabName = 'types_tab';
+                $tabName = $post_type.'_type_tab';
                 settings_fields( $tabName );
                 do_settings_sections( $tabName );
                 echo '<br><br>';

@@ -75,8 +75,10 @@ class Pressbooks_Metadata_Property_Overwrite {
         $toOverwrite = $this->get_overwrite_values();
 
         foreach($toOverwrite as $key){
-            //Enabling the level the type and the property
+
+            //Enabling the level, the type and the property
             $this->enable_type($key,$enablePostType);
+
             //Creating the key to overwrite from settings
             $modifiedKey = strtolower('pb_'.$key.'_'.$dataPostType);
             if(isset($metaData[$modifiedKey])){
@@ -103,7 +105,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	    $optionLocations = get_option('schema_locations');
 
 	    //Enable Post Level
-	    $optionLocations[$postType.'_checkbox'] = 1;
+	    $optionLocations[$postType] = 1;
         update_option('schema_locations',$optionLocations);
 
 	    //> get parent type to select proper schema type option
@@ -114,9 +116,9 @@ class Pressbooks_Metadata_Property_Overwrite {
 	    }
 
 	    if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
-		    $schemaOptionName = 'schemaTypes\Pressbooks_Metadata_Organization';
+		    $schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_Organization';
 	    } else{
-		    $schemaOptionName = 'schemaTypes\Pressbooks_Metadata_CreativeWork';
+		    $schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_CreativeWork';
 	    }
 	    //<
 

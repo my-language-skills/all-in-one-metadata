@@ -27,8 +27,19 @@ class Pressbooks_Metadata_Fields {
 	 */
 	private $optionGeneral;
 
+
+	/**
+	 * Post type to which schema will be applied
+     *
+     * @since 0.18
+	 * @access private
+	 */
+	private $post_type;
+
 	/**
 	 * The name of parent type for schema type to choose appropriate type option
+     * @since 0.18
+     * @access private
 	 */
 	private $parentType;
 
@@ -89,7 +100,8 @@ class Pressbooks_Metadata_Fields {
 		$this->sectionName = $sectionNameInput;
 		$this->displayPage = $displayPageInput;
 		$this->parentType = genFunc::get_active_parent();
-		$this->optionGeneral = get_option($this->parentType) ?: [];
+		$this->post_type = explode('_', $this->displayPage)[0];
+		$this->optionGeneral = get_option($this->post_type.'_'.$this->parentType) ?: [];
 
 		$this->pmdt_create_field();
 
@@ -147,13 +159,13 @@ class Pressbooks_Metadata_Fields {
 	    $optionValue = isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] == 1 ? '1' : '0') : '0';
 
 	    if (isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] != 1 ? 1 : 0) : 1) {
-		    $html = '<button class="button-primary type-button" type="button"  name="' . $this->parentType . '[' . $this->metaType . ']" value="1" />Activate</button>';
-		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "' . $this->parentType . '[' . $this->metaType . ']" name="' . $this->parentType . '[' . $this->metaType . ']">';
+		    $html = '<button class="button-primary type-button" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Activate</button>';
+		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
 	    } else {
 		    $ID = $this->metaType . '-' . $this->sectionId;
-		    $html = '<button class="button-primary type-button-deact" type="button"  name="' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
+		    $html = '<button class="button-primary type-button-deact" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
 		    $html .='<a href="#TB_inline?height=550&width=950&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
-		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "' . $this->parentType . '[' . $this->metaType . ']" name="' . $this->parentType . '[' . $this->metaType . ']">';
+		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
         }
 
         if(!isset($this->metaInfo[2])) {
@@ -176,44 +188,21 @@ class Pressbooks_Metadata_Fields {
         }
 
 		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
+	        //add pop-up box styles and scripts
 			add_thickbox();
 
+
+			$properties_page = $this->metaType.'_'.$this->post_type.'_level';
+
+			/* START BUFFERING*/
 			ob_start();
 
-            ?>
-            <table>
-                <tr>
-                    <?php
-                    $flag = 1;
-			            foreach(engine::get_enabled_levels() as $post_type){
-			                if ($flag) {
-				                echo '<td style="width: 230px; font-size: large; text-align: center;"><b>' . ucfirst( $post_type ) . '</b></td>';
-				                $flag = 0;
-			                } else {
-				                echo '<td style="width: 170px; font-size: large; text-align: center;"><b>' . ucfirst( $post_type ) . '</b></td>';
-                            }
-                       }
-                    ?>
-                </tr>
-            </table>
-            <?php
-			$flag = 1;
-            foreach(engine::get_enabled_levels() as $post_type) {
-	            $sectionFieldId = $this->metaType.'_'.$post_type.'_level_properties';
-	            //Rendering the default properties of the type
-	            if ($flag){
-		            echo '<div style="float: left;">';
-                    echo '<form class="properties-options-form first-set" method="post" action="options.php">';
-                    $flag = 0;
-                } else {
-		            echo '<div style="float: left; width: 170px;">';
-                    echo '<form class="properties-options-form" method="post" action="options.php">';
-                }
-	            settings_fields( $sectionFieldId );
-	            do_settings_sections( $sectionFieldId );
-                    ?></form></div><?php
-	            /* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
-            }
+			echo '<form class="properties-options-form" method="post" action="options.php">';
+			    settings_fields( $properties_page.'_properties' );
+			    do_settings_sections( $properties_page.'_properties' );
+			echo '</form>';
+
+            /* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
 			$parentIds = $this->get_type_parents(false);
 			$parentNames = $this->get_type_parents(true);
 
@@ -229,24 +218,14 @@ class Pressbooks_Metadata_Fields {
 
 			//Creating DIVS with the parents properties inside
 			foreach($parentIds as $parent){
-                $flag = 1;
-				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
-				foreach(engine::get_enabled_levels() as $post_type) {
-					$parentField = $this->metaType . '_' . $post_type . '_level_' . $parent . '_dis';
-					?>
-                    <?php if ($flag){
-                    echo '<div style="float: left;">';
-                    echo '<form class="properties-options-form first-set" method="post" action="options.php">';
-                    $flag = 0;
-                } else {
-                    echo '<div style="float: left; width: 170px;">';
-                    echo '<form class="properties-options-form" method="post" action="options.php">';
-                }
+				?><div class="parents" id="<?= $parent ?>" style="display: none">
+                <?php
+					$parentField = $properties_page.'_'.$parent . '_dis';
+					echo '<form class="properties-options-form" method="post" action="options.php">';
 					settings_fields( $parentField );
 					do_settings_sections( $parentField );
-                        ?></form></div><?php
-				}
-				?></div><?php
+                        ?></form></div>
+                <?php
 			}
 
 			/* END */

@@ -22,19 +22,6 @@ jQuery(document).ready(function() {
         jQuery('.property-settings').remove();
     });
 
-    //> Function that hides properties labels in properties page
-    var settings = document.getElementsByClassName('property-settings');
-
-    for (i = 0; i <= settings.length; i++) {
-        jQuery(settings[i]).find('th').hide();
-        jQuery(settings[i]).find('td').css("height", "57.6");
-        jQuery(settings[i]).find('td').css("text-align", "right");
-    }
-    var settingsLabeled = document.getElementsByClassName('first-set');
-    for (i = 0; i <= settingsLabeled.length; i++) {
-        jQuery(settingsLabeled[i]).find('th').show();
-    }
-    //<
 
     //TODO Here we need to cancel all requests before making a new one, this approach will make the submission faster
     //Submitting information for the property settings

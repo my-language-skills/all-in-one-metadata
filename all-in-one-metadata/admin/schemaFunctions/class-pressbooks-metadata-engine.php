@@ -186,50 +186,47 @@ class Pressbooks_Metadata_Engine {
 		//Getting type settings
 		$typeSettings = $this->get_type_settings();
 
-		//registering accumulated setting for schema types activated per parent type and per post type
-		register_setting('types_tab', genFunc::get_active_parent());
-		$accumulatedOption = get_option(genFunc::get_active_parent());
-		sections::types(
-			'types',
-			ucfirst('Manage Schema Types'),
-			'types_tab',
-			$typeSettings
-		);
 
 		//Creating another section with the fields automatically created for the schema types
-		foreach($allPostTypes as $post_type){
+		foreach($this->get_enabled_levels() as $post_type){
 
-				foreach(structure::$allSchemaTypes as $type){
-					$type_id = genFunc::get_type_id($type);
-					$sectionId = $type_id.'_'.$post_type.'_level';
-					register_setting($sectionId.'_properties', 'schema_properties_'.$sectionId);
-					//Here we are proceeding to the next loop iteration if the type is not active
-					//With this we are only registering properties for active types
-					if(!(isset($accumulatedOption[$type_id]) ? ($accumulatedOption[$type_id] == 1 ? 1 : 0): 0)){
-						continue;
-					}
-					$type_properties = $type::$type_properties;
+			//registering accumulated setting for schema types activated per parent type and per post type
+			register_setting($post_type.'_type_tab', $post_type.'_'.genFunc::get_active_parent());
+			$accumulatedOption = get_option($post_type.'_'.genFunc::get_active_parent());
+			sections::types(
+				'types_settings',
+				ucfirst('Manage Schema Types'),
+				$post_type.'_type_tab',
+				$typeSettings
+			);
+
+			foreach(structure::$allSchemaTypes as $type){
+				$type_id = genFunc::get_type_id($type);
+				$sectionId = $type_id.'_'.$post_type.'_level';
+				register_setting($sectionId.'_properties', 'schema_properties_'.$sectionId);
+				//Here we are proceeding to the next loop iteration if the type is not active
+				//With this we are only registering properties for active types
+				if(!(isset($accumulatedOption[$type_id]) ? ($accumulatedOption[$type_id] == 1 ? 1 : 0): 0)){
+					continue;}$type_properties = $type::$type_properties;
+				sections::properties(
+					$sectionId,
+					'',
+					$sectionId.'_properties',
+					$type_properties,
+					false );
+				//Getting parent information and creating the parent properties
+				//For each type on each level
+				foreach($type::$type_parents as $parent){
+					register_setting($sectionId.'_'.$parent::type_name[1].'_dis', $sectionId.'_'.$parent::type_name[1].'_dis');
 					sections::properties(
 						$sectionId,
 						'',
-						$sectionId.'_properties',
-						$type_properties,
-                        false
-				);
-
-					//Getting parent information and creating the parent properties
-					//For each type on each level
-					foreach($type::$type_parents as $parent){
-						register_setting($sectionId.'_'.$parent::type_name[1].'_dis', $sectionId.'_'.$parent::type_name[1].'_dis');
-						sections::properties(
-							$sectionId,
-							'',
-							$sectionId.'_'.$parent::type_name[1].'_dis',
-							$parent::type_properties,
-                            $type::$required_parent_props
-						);
-					}
+						$sectionId.'_'.$parent::type_name[1].'_dis',
+						$parent::type_properties,
+						$type::$required_parent_props
+					);
 				}
+			}
 		}
 	}
 
@@ -278,8 +275,8 @@ class Pressbooks_Metadata_Engine {
 		//Getting the level - post etc.
 		foreach ($schemaPostLevels as $level) {
 			//getting general option for schema types
-			$optionsSchemaTypesOrganization = get_option( 'schemaTypes\Pressbooks_Metadata_Organization') ?: [];
-			$optionsSchemaTypesCreative = get_option('schemaTypes\Pressbooks_Metadata_CreativeWork') ?: [];
+			$optionsSchemaTypesOrganization = get_option( $level.'_schemaTypes\Pressbooks_Metadata_Organization') ?: [];
+			$optionsSchemaTypesCreative = get_option($level.'_schemaTypes\Pressbooks_Metadata_CreativeWork') ?: [];
 			$optionsSchemaTypes = array_merge($optionsSchemaTypesOrganization, $optionsSchemaTypesCreative);
 
 			//Getting the setting for a type - book etc.

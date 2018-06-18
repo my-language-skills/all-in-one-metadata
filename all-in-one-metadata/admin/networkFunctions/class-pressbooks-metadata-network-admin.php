@@ -196,9 +196,9 @@ class Pressbooks_Metadata_Network_Admin {
 	        }
 
 			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
-				$schemaOptionName = 'schemaTypes\Pressbooks_Metadata_Organization';
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_Organization';
 			} else{
-				$schemaOptionName = 'schemaTypes\Pressbooks_Metadata_CreativeWork';
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_CreativeWork';
 			}
 			//<
 
@@ -208,7 +208,7 @@ class Pressbooks_Metadata_Network_Admin {
 	        //get accumulated option for activated properties
 	        $optionsSchemaProperties = get_option('schema_properties_'.$schemaType.'_'.$postType.'_level');
 
-            //Enable Post Level
+            //Enable Site-Meta Level
             update_option($postType.'_checkbox', 1);
 
             //Enable Type

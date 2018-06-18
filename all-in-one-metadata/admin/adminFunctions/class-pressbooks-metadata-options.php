@@ -26,6 +26,11 @@ class Pressbooks_Metadata_Options {
 	 * @since  0.8.1
 	 */
 	public function add_options_page() {
+
+		//Creating the options page for the plugin
+		$this->pagehook = add_menu_page('All In One Metadata Settings', "Metadata", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'), 'dashicons-search');
+		add_submenu_page('pressbooks_metadata_settings','General Settings', 'General Settings', 'manage_options', 'pressbooks_metadata_settings');
+
 		if(!site_cpt::pressbooks_identify()){
 			//Used to remove the default menu for the cpt we created
 			remove_menu_page( 'edit.php?post_type=site-meta' );
@@ -37,11 +42,47 @@ class Pressbooks_Metadata_Options {
 			} else {
 				$site_meta_url = 'post-new.php?post_type=site-meta';
 			}
-			add_submenu_page('tools.php','Site Metadata', 'Site Metadata', 'edit_posts', $site_meta_url);
+			add_submenu_page('pressbooks_metadata_settings','Site-Meta', 'Site-Meta', 'edit_posts', $site_meta_url);
 		}
 
-		//Creating the options page for the plugin
-		$this->pagehook = add_options_page('All In One Metadata Settings', "All In One Metadata Settings", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'));
+		//getting active locations for metadata
+		$this->locations = get_option('schema_locations') ?: [];
+
+		//Creating subpages for all active post types
+		foreach ($this->locations as $location => $enabled) {
+
+			if ( $enabled && ! ( $location == 'site-meta' || $location == 'metadata' ) ) {
+				add_submenu_page( 'pressbooks_metadata_settings', ucfirst( $location ) . ' Metadata Settings', ucfirst( $location ) . ' Metadata', 'manage_options', $location . '_meta_settings'
+                    , function () use ($location){
+					wp_enqueue_script('common');
+					wp_enqueue_script('wp-lists');
+					wp_enqueue_script('postbox');
+
+					//adding metabox to post options page
+					add_meta_box('activated-schema-types', 'Active Schema Types', array($this, 'render_metabox_active_schemas'), $location.'_meta_settings', 'normal', 'core');
+					?>
+                    <div class="wrap">
+                        <h2><?=ucfirst($location)?> Metadata Settings</h2>
+                        <div class="metabox-holder">
+							<?php
+							    do_meta_boxes($location . '_meta_settings', 'normal','');
+							?>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        jQuery(document).ready( function($) {
+                            // close postboxes that should be closed
+                            $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+                            // postboxes setup
+                            postboxes.add_postbox_toggles('<?php echo $location . '_meta_settings'; ?>');
+                        });
+                        //]]>
+                    </script>
+					<?php
+                } );
+			}
+		}
 		//Adding the metaboxes on the options page
 		add_action('load-'.$this->pagehook, array($this, 'add_metaboxes'));
 	}
@@ -74,6 +115,7 @@ class Pressbooks_Metadata_Options {
 		<?php
 	}
 
+
 	/**
 	 * Add the metaboxes to the options page.
 	 *
@@ -84,8 +126,10 @@ class Pressbooks_Metadata_Options {
 		wp_enqueue_script('wp-lists');
 		wp_enqueue_script('postbox');
 
+		$site_level = site_cpt::pressbooks_identify() ? 'Book Info' : 'Site-Meta';
+
 		add_meta_box('metadata-location', 'Location Of Metadata', array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
-		add_meta_box('activated-schema-types', 'Activated Schema Types', array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
+		add_meta_box('activated-schema-types', $site_level.' Settings', array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
 		add_meta_box('specific-metadata', 'Specific Metadata', array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
 		add_meta_box('general-settings', 'General Settings', array($this, 'render_general_settings'), $this->pagehook, 'normal', 'core');
 	}
