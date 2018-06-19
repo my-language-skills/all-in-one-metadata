@@ -167,6 +167,6 @@ class Pressbooks_Metadata_Sections {
 	 * @since  0.8.1
 	 */
 	function pmdt_type_section_draw(){
-		echo '<p>Here you can choose what types of Metadata you want to show in the '.$this->sectionName.' </>';
+		echo '<p>Here you can choose what types of Metadata you want to show in the '.$this->sectionName.' </p>';
 	}
 }

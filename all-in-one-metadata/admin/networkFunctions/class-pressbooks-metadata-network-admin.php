@@ -105,7 +105,12 @@ class Pressbooks_Metadata_Network_Admin {
         //Wordpress Database variable for database operations
         global $wpdb;
 
-        //Modifying the metakey so it maches the already saved fields created by create metabox class
+
+	    //Extracting data for enabling property
+	    $dataForEnabling = explode('_',$metaKey);
+	    $schemaProp = $dataForEnabling[0];
+
+        //Modifying the metakey so it matches the already saved fields created by create metabox class
         $metaKey = strtolower('pb_'.$metaKey);
 
         //Grabbing all the site IDs
@@ -124,7 +129,7 @@ class Pressbooks_Metadata_Network_Admin {
             switch_to_blog($site_id);
 
             //Check if the site allows super admin to change data
-            if(!(get_option($postType.'_saoverwr')) && $freezes[str_replace('pb_','',$metaKey).'_freeze'] != 1){
+            if(!(get_option($postType.'_saoverwr')) && !isset($freezes[str_replace('pb_','',$metaKey).'_freeze'])){
                 continue;
             }
 
@@ -161,19 +166,41 @@ class Pressbooks_Metadata_Network_Admin {
                 update_post_meta( $post['ID'],$metaKey,$newValue);
             }
 
-            //Extracting data for enabling the post level the schema type and property
+            //Extracting data for enabling the post level and the schema type
             $dataForEnabling = explode('_',$metaKey);
             $schemaType = $dataForEnabling[2].'_'.$dataForEnabling[3];
-            $schemaProp = $dataForEnabling[1];
+
+	        //> get parent type to select proper schema type option
+	        foreach(structure::$allSchemaTypes as $type) {
+	        	if(stripos($type,'metadata_'.$dataForEnabling[2]) || stripos($type,'site-meta_'.$dataForEnabling[2])){
+	        		$schemaTypeParents = $type::$type_parents;
+		        }
+	        }
+
+			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
+				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+			} else{
+				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+			}
+			//<
+
+	        //get accumulated option for schema types activated
+	        $optionsSchemaTypes = get_option($schemaOptionName);
+
+	        //get accumulated option for activated properties
+	        $optionsSchemaProperties = get_option('schema_properties_'.$schemaType.'_'.$postType.'_level');
 
             //Enable Post Level
-            update_option($postType.'_checkbox',1);
+            update_option($postType.'_checkbox', 1);
 
             //Enable Type
-            update_option($schemaType.'_'.$postType.'_level',1);
+	        $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+
+            update_option($schemaOptionName,$optionsSchemaTypes);
 
             //Enable Property
-            update_option($schemaProp.'_'.$schemaType.'_'.$postType.'_level',1);
+	        $optionsSchemaProperties[$schemaProp] = 1;
+            update_option('schema_properties_'.$schemaType.'_'.$postType.'_level', $optionsSchemaProperties);
         }
     }
 
@@ -215,10 +242,11 @@ class Pressbooks_Metadata_Network_Admin {
 
         // This is the list of registered options.
         global $new_whitelist_options;
-        $options = $new_whitelist_options['site_level_admin_display'];
+        $options = array_unique($new_whitelist_options['site_level_admin_display']);
 
         //Collecting freezes from post variable - converting keys to lowercase
         $freezes = $this->cleanCollect($_POST,'_freeze',true);
+        $freezes = $freezes['property_network_value_freeze'];
 
         // Go through the posted data and save only our options.
         foreach ($options as $option) {
@@ -228,19 +256,26 @@ class Pressbooks_Metadata_Network_Admin {
                 // Save our option with the site's options.
                 $readyOption =  $_POST[$option];
                 update_option($option, $readyOption);
-                //Updating the property on all sites
-                $this->update_properties($option,$_POST[$option],$freezes);
+
+				//get all properties from option
+	            $properties = $_POST[$option];
+
+                foreach ($properties as $property => $value) {
+
+	                //Updating the property on all sites
+	                $this->update_properties( $property, $properties[$property], $freezes );
+                }
             } else {
-                //Making sure we are deleting the option from the root site
-                switch_to_blog(self::ROOT_SITE);
-                // If the option is not here then delete it.
-                delete_option($option);
+	            //Making sure we are deleting the option from the root site
+	            switch_to_blog(self::ROOT_SITE);
+	            // If the option is not here then delete it.
+	            delete_option($option);
             }
         }
 
-        // At last we redirect back to our options page.
-        wp_redirect(add_query_arg(array('page' => 'site_level_admin_display',
-            'updated' => 'true'), network_admin_url('settings.php')));
+        // At the end we redirect back to our options page.
+       wp_redirect(add_query_arg(array('page' => 'site_level_admin_display',
+           'updated' => 'true'), network_admin_url('settings.php')));
 
         exit;
     }

@@ -3,6 +3,8 @@
 namespace schemaFunctions;
 
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
 /**
  * The functions of the plugin that overwrite chapter/post schema properties from book-info or site-meta.
@@ -97,14 +99,54 @@ class Pressbooks_Metadata_Property_Overwrite {
         $schemaType = $dataForEnabling[1].'_'.$dataForEnabling[2];
         $schemaProp = $dataForEnabling[0];
 
-        //Enable Post Level
-        update_option($postType.'_checkbox',1);
+        //get locations accumulated options
+	    $optionLocations = get_option('schema_locations');
 
-        //Enable Type
-        update_option($schemaType.'_'.$postType.'_level',1);
+	    //Enable Post Level
+	    $optionLocations[$postType.'_checkbox'] = 1;
+        update_option('schema_locations',$optionLocations);
 
-        //Enable Property
-        update_option($schemaProp.'_'.$schemaType.'_'.$postType.'_level',1);
+	    //> get parent type to select proper schema type option
+	    foreach(structure::$allSchemaTypes as $type) {
+		    if(stripos($type,'metadata_'.$dataForEnabling[1]) || stripos($type,'site-meta_'.$dataForEnabling[1])){
+			    $schemaTypeParents = $type::$type_parents;
+		    }
+	    }
+
+	    if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
+		    $schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+	    } else{
+		    $schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+	    }
+	    //<
+
+	    //get accumulated option for schema types activated
+	    $optionsSchemaTypes = get_option($schemaOptionName);
+
+	    //getting accumulated options for properties
+	    $propertyOption = get_option('schema_properties_'.$schemaType. '_' . $postType . '_level') ?: [];
+	    $propertyOptionName = 'schema_properties_'.$schemaType. '_' . $postType . '_level';
+	    foreach(structure::$allSchemaTypes as $type) {
+		    if(genFunc::get_type_id($type) == $schemaType) {
+			    $propertiesOptionsParent = [];
+			    foreach ( $type::$type_parents as $parent ) {
+				    $propertiesOptionsParent  = get_option( $schemaType . '_' . $postType . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
+				    if (key_exists($schemaProp,$propertiesOptionsParent)){
+				    	$propertyOptionName = $schemaType . '_' . $postType . '_level_' .$parent::type_name[1].'_dis';
+				    	$propertyOption = $propertiesOptionsParent;
+				    }
+			    }
+		    }
+	    }
+
+	    //Enable Type
+	    $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+	    update_option($schemaOptionName,$optionsSchemaTypes);
+
+	    //Enable Property
+	    $propertyOption[$schemaProp] = 1;
+
+	    update_option($propertyOptionName, $propertyOption);
     }
 
     /**
@@ -147,18 +189,29 @@ class Pressbooks_Metadata_Property_Overwrite {
 
         $filterOption = '%%_overwrite%%';
 
-        //Our query that chooses options that are enabled and contain the word overwrite
+        $trimmedOptions = [];
+
+        //Our query that chooses options that contain the word overwrite
         $selectedOptions = $wpdb->get_results($wpdb->prepare(" 
-        SELECT option_name FROM $optionsTable WHERE option_value = 1 AND 
+        SELECT option_name FROM $optionsTable WHERE  
         option_name LIKE %s",$filterOption),ARRAY_A);
 
-        //Final options to output
-        $trimmedOptions = array();
+        //filtering options to gather only enabled and constructing keys for return
+        foreach ($selectedOptions as $option){
+        	$nameData = explode('_', $option['option_name']);
+        	$optionValues = get_option($option['option_name']) ?: [];
 
-        //Removing the _overwrite from each option, like that we have the property and the type
-        foreach($selectedOptions as $option){
-            $trimmedOptions []= str_replace('_overwrite','',$option['option_name']);
+        	foreach ($optionValues as $key => $value){
+        		if ($value){
+        			if(stripos($option['option_name'], '_dis')){
+				        $trimmedOptions[] = $key . '_'. $nameData[0] . '_'. $nameData[1];
+			        }else {
+				        $trimmedOptions[] = $key . '_'. $nameData[2] . '_'. $nameData[3];
+			        }
+		        }
+	        }
         }
+
         return $trimmedOptions;
     }
 

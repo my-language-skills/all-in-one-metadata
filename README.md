@@ -8,7 +8,7 @@ Tags: pressbooks, metadata, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
-Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
+Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.3-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/5.3)
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
@@ -33,10 +33,17 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 
 [Specifical documentation](/docs/documentation-2.md)
 
+[Technical Documentation](/docs/documantation-3.md)
+
+
+---
+https://github.com/pressbooks/pressbooks/issues/950
+
 
 ## Installation
 
-1. Clone (or copy) this repository to the `/wp-content/plugins/` directory
+1. Clone (or copy) this repository folder `all-in-one-metadata` to the `/wp-content/plugins/` directory
+1. Navigate into `/wp-content/plugins/all-in-one-metadata` and run `composer install` and then `composer dump-autoload -o`
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 ## Frequently Asked Questions
@@ -50,13 +57,16 @@ by running [Google structured data testing tool](https://search.google.com/struc
 1. How can I know wich is the version I should give to my book?
 We use [Explicit Books Versioning](explicit-book-versioning/VERSIONING.md)
 
+1. Which metadata can I find?
+All in one metadata have the Types XXX and XXX with all the subtipes and properties till [schema](http://webschemas.org/docs/releases.html) version [3.3](http://webschemas.org/version/3.3/)
+
 
 ## Requirements
 
 Plugin/Template Name works with:
 
- * ![PHP](https://img.shields.io/badge/PHP-5.6.X-blue.svg)
- * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%204.0-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
+ * ![PHP](https://img.shields.io/badge/PHP-7.2.X-blue.svg)
+ * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.3-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
 
  Lower versions are not supported.
 
@@ -84,6 +94,9 @@ You can see all of the screenshots of the plugin [here](https://github.com/Books
 New types
 Use the library from Spatie that auto generates schema [Schema](https://github.com/spatie/schema-org)
 Detection of various other popular SEO tools to prevent duplicated output
+Review: https://yoast.com/hreflang-ultimate-guide/
+Maybe if a book have a version name (once is achive) we can have automatic link to the original one
+https://moz.com/learn/seo/duplicate-content
 
 ### Later
 
@@ -91,9 +104,29 @@ Detection of various other popular SEO tools to prevent duplicated output
 ### Future
 
 
-## Changelog
+### Changelog
 
-## 0.13
+#### 0.17
+**[BREAK! IF YOU HAVE BEEN USING THE PLUGIN BEFORE, UNINSTALL THE PREVIOUS VERSION VIA WORDPRESS PLUGINS PAGE]**
+
+* **ENHANCEMENTS**
+    * Improved performance and memory usage with database workflow.
+* **List Of Files Revised**
+    * All, except ```/schemaTypes/``` files
+
+#### 0.16
+* **ADDITIONS**
+    *  Multisite setting tab
+    *  Pre-defined options out-of-the-box (example for users to see how plugin works)
+* **ENHANCEMENTS**
+    *  Database cleaning after uninstalling
+* **List of Files Revised**
+    *  uninstall.php
+    *  class-pressbooks-metadata-activator.php
+    *  class-pressbooks-metadata-engine.php
+    *  pressbooks-metadata-admin-settings-schemaLocations.php
+
+#### 0.13
 * **ADDITIONS**
     *  Added more types on creative workds and organisation parents
     *  Added 'types' for the educational vocabulary -> Book, Course, Website, Webpage and Article
@@ -117,13 +150,14 @@ Detection of various other popular SEO tools to prevent duplicated output
     *  Fixed the overlap of metaboxes in the settings
 * **List of Files revised**
     *  Schema type files
-    *  Engine file
     *  All files in partials folder
-    *  Admin JavaScript file
     *  All vocabulary files
-    *  Network admin files
+    *  class-pressbooks-metadata-engine.php
+    *  pressbooks-metadata-admin.js
+    *  class-pressbooks-metadata-net-sett-sections.php
+    *  class-pressbooks-metadata-network-admin.php
 
-## 0.12
+#### 0.12
 * **ADDITIONS**
     *  Added Organisation Parent and Types
 
@@ -131,7 +165,7 @@ Detection of various other popular SEO tools to prevent duplicated output
     * schemaTypes Folder
     * composer.json
 
-## 0.11
+#### 0.11
 * **ADDITIONS**
     * Enable the cloning of properties from each site (Book Info/Site-Meta) to (Chapter/Post)  #140
 
@@ -140,7 +174,7 @@ Detection of various other popular SEO tools to prevent duplicated output
     * class-pressbooks-metadata-property-overwrite.php
     * class-pressbooks-metadata-property-fields.php
 
-## 0.10
+#### 0.10
 * **ADDITIONS**
     * Show parent activation and info for empty Types #113
     * Add parent sections under each tab level  #123
@@ -159,7 +193,7 @@ Detection of various other popular SEO tools to prevent duplicated output
     * Creation of new settings files for handling the property fields
     * New files for the new vocabularies
 
-### 0.9
+#### 0.9
 * **ADDITIONS**
     * Added Webpage Schema Type
     * Added Course Schema Type
@@ -178,7 +212,7 @@ Detection of various other popular SEO tools to prevent duplicated output
 * **List of Files revised**
     * Code rewriting for optimisation.
 
-### 0.8.1
+#### 0.8.1
 * **ADDITIONS**
 	* To create a settings page #25
 
@@ -187,7 +221,7 @@ Detection of various other popular SEO tools to prevent duplicated output
     * Each group of features as an independen file #56
     * To enable and dissable metadata fields #20
 
-### 0.8
+#### 0.8
 * **ADDITIONS**
 	* Rewriting of the plugin #78
 	* Creation of the fields using a plugin: Custom Metadata Manager for WordPress
@@ -195,7 +229,7 @@ Detection of various other popular SEO tools to prevent duplicated output
 * **BUGFIXES:**
 	* Extend Pressbooks default types, instead of using different ones #91
 
-### 0.7
+#### 0.7
 * **ADDITIONS**
 	* **Google Scholar microtags**
 		* New property: **citation_journal_title**
@@ -217,7 +251,7 @@ Detection of various other popular SEO tools to prevent duplicated output
  	* class-pressbooks-metadata-admin.php
 	* class-pressbooks-metadata-plugin-metadata.php
 
-### 0.6
+#### 0.6
 * **ADDITIONS**
 	* **[WebSite](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#6)
 		* New property: **description**
@@ -245,7 +279,7 @@ Detection of various other popular SEO tools to prevent duplicated output
 	* class-pressbooks-metadata-plugin-metadata.php
 	* class-pressbooks-metadata-data-field.php
 
-### 0.5
+#### 0.5
 * **ADDITIONS**
 	* **[ScholarlyArticle](https://github.com/Books4Languages/pressbooks-metadata/blob/master/pressbooks-metadata/SchemaUsed.md) type**. (#9)
 		* New property: **headline**
@@ -277,7 +311,7 @@ Detection of various other popular SEO tools to prevent duplicated output
 	* Change the Schema type of Chapter to ScholarlyArticle
 	* Change License URL and Bibliography URL fields from Text Fields to Url Fields (#40)
 
-### 0.4
+#### 0.4
 * **ADDITIONS**
 	* New detailed SchemaUsed.md file, with all the information about the Structured Data that is being produced.
 	* Book Type (#7)
@@ -287,7 +321,7 @@ Detection of various other popular SEO tools to prevent duplicated output
 		* New property: **Course Code:** identifier for the Course (e.g. CS101 or 6.001).
 		* New property: **coursePrerequisites**: Course Prerequisites.
 
-### 0.3
+#### 0.3
 * **ADDITIONS**
 	* Course Type
 		* **educationalAlignment** (#12) ISCED field of education: Broad field of education according to ISCED-F 2013.
@@ -302,7 +336,7 @@ Detection of various other popular SEO tools to prevent duplicated output
 	* Bug Fixes: Main page became blank.
 	* Bug Fixes: Pressbooks schema information is being produced twice .(#27)
 
-### 0.2
+#### 0.2
 * **ADDITIONS**
 	* Accessibility: New Educational Information metabox with the fields:
 		* New property: **name**: Subject name.
@@ -326,12 +360,18 @@ Detection of various other popular SEO tools to prevent duplicated output
 * **REMOVED:**
 	* The fields we added in the General Book Information metabox and move them to a new metabox
 
-### 0.1
+#### 0.1
 * **DRAFT VERSION - OLD CODE**
 	* Accessibility: General Book Information: new custom metafields: **Target language:** Level of education according to ISCED-P 2011; **Level:** Level of the course; **Learning Reasource Type:** Course, Examination, Exercise, Descriptor; **Interactivity Type:** Active, Expositive, Mixed; **Age range:** 3-5, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18 years, Adults; **Class Learning Time:** how long the students will need for the book; **License URL:** custom link to a licence; **Bibliography URL:** custom link to a bibliography
 	* Accessibility: Custom Chapter Metadata: new custom metaboxes for the custom page chapter: **Questions And Answers:** this field allows teachers to insert a custom link; **Class Learning Time (minutes):** how long the students will need for the topic.
 
 ## Upgrade Notice
+
+### 0.17
+Improved database interaction and options storing, which decreases overhead of database entries by tens of times and also improves plugin performance. **Since this moment in order for plugin to work properly**, install this version of a plugin, delete it from plugins page (**IMPORTANT! Not manually via FTP**) so that your database get cleaned from entries of elder versions of a plugin and install it again.
+
+### 0.16
+Plugin now properly uninstalls itself, no remaining data in database is kept after uninstalling. In order for users to see how plugin works without requiring initial setting, we have added some enabled options out-of-the-box in order to see how actually plugin works. The predefined options can be disabled after activation. Schema location options now stays more logical, multisite control setting is also supported from this moment.
 
 ### 0.13
 Plugin now is much more efficient wasting less memory on the server as the engine file had improvements. The plugin had many improvements
@@ -385,6 +425,10 @@ To use an old version as the start point.
 
 
 ## Credits
+
+Here's a link to [Debug Bar](https://wordpress.org/plugins/debug-bar/#description)
+
+Here's a link to [Debug Bar PHP/MySQL console](https://wordpress.org/plugins/debug-bar-console/)
 
 Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
 

@@ -45,13 +45,20 @@ class Pressbooks_Metadata_Ajax {
         //Processing the property
         $dataForClean = explode('_',$ajaxProperty);
 
-        //Collecting exploded strings
-        $schemaType = $dataForClean[1].'_'.$dataForClean[2];
-        $schemaProp = $dataForClean[0];
+	    //Collecting exploded strings
+	    if (stripos($ajaxProperty, '_dis')){
+		    $schemaType = $dataForClean[0].'_'.$dataForClean[1];
+		    $schemaProp = substr_replace(explode('[', $dataForClean[5])[1], '', -1);
+
+	    } else {
+		    $schemaType = $dataForClean[2].'_'.$dataForClean[3];
+		    $schemaProp = substr_replace(explode('[', $dataForClean[4])[1], '', -1);
+	    }
+
 
         //Constructing the postMeta key that has to be cleared
         $metaKey = 'pb_'.$schemaProp.'_'.$schemaType.'_'.$postType;
-
+	    
         //Removing the postMeta from all $selectedPosts
         foreach($selectedPosts as $post){
             delete_post_meta($post['ID'],$metaKey);
@@ -76,12 +83,24 @@ class Pressbooks_Metadata_Ajax {
         //Processing the property
         $dataForClean = explode('_',$ajaxProperty);
 
-        //Collecting exploded strings
-        $schemaType = $dataForClean[1].'_'.$dataForClean[2];
-        $schemaProp = $dataForClean[0];
+	    //Collecting exploded strings to update correct option
+	    if (stripos($ajaxProperty, '_dis')){
+		    $optionName = $dataForClean[0].'_'.$dataForClean[1].'_'.$postType.'_level_'.$dataForClean[3].'_'.$dataForClean[4].'_'.explode('[', $dataForClean[5])[0];
+		    $optinValues = get_option($optionName) ?: [];
+		    $propertyDirty = explode('[', $dataForClean[5])[1];
+		    $property = substr_replace($propertyDirty, '', -1);
+		    $optinValues[$property] = 0;
+
+	    } else {
+		    $optionName = $dataForClean[0].'_'.$dataForClean[1].'_'.$dataForClean[2].'_'.$dataForClean[3].'_'.$postType.'_level';
+		    $optinValues = get_option($optionName) ?: [];
+		    $propertyDirty = explode('[', $dataForClean[4])[1];
+		    $property = substr_replace($propertyDirty, '', -1);
+		    $optinValues[$property] = 0;
+	    }
 
         //Disabling the property
-        update_option($schemaProp.'_'.$schemaType.'_'.$postType.'_level',0);
+        update_option($optionName, $optinValues);
 
         // this is required to terminate immediately and return a proper response
         wp_die();

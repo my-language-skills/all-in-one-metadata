@@ -4,7 +4,7 @@ namespace settings;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 
 /**
- * This class is an automation for creating fields in the section where we show post types,
+ * This class is an automation for creating fields on settings page, to see which fields are created with this class check register_settings method in engine class
  * it is targeted for the pressbooks-metadata plugin
  *
  * @link       https://github.com/Books4Languages/pressbooks-metadata
@@ -96,7 +96,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 				echo '<p>If you enable this you will be able to add metadata to your Site from Site Metadata submenu under Tools</p>';
 			}
 		}else if($this->fieldName == 'Allow Overwrite'){
-            echo '<p>If you enable this you allow the super admin to take full access on your site\'s metadata.</p>';
+            echo '<p>If you enable this you allow the super admin to take full access on your site metadata.</p>';
         }
 	}
 }
