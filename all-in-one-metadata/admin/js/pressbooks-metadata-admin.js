@@ -30,6 +30,7 @@ jQuery(document).ready(function() {
         var loadingImage = jQuery('.properties-loading-image');
         var savingMessage = jQuery('.saving-message');
         loadingImage.show();
+        block_screen();
         savingMessage.hide();
         var data =  form.serialize();
         jQuery.post( 'options.php', data ).error(
@@ -46,6 +47,7 @@ jQuery(document).ready(function() {
 
     //Activating schema type
     jQuery('.type-button').on('click',function(){
+        block_screen();
         var form = jQuery(this).closest('form');
         document.getElementById(this.name).value = 1;
         var data =  form.serialize();
@@ -59,6 +61,7 @@ jQuery(document).ready(function() {
 
     //Submitting information for the property settings
     jQuery('.type-button-deact').on('click',function(){
+        block_screen();
         var form = jQuery(this).closest('form');
         document.getElementById(this.name).value = 0;
         var data =  form.serialize();
@@ -199,18 +202,8 @@ jQuery(document).ajaxStop(function() {
     savingMessage.show();
     savingMessage.css('color','green');
     hideMessage(savingMessage);
+    unblock_screen();
 });
-
-
-//TODO Remember to fix this
-//Function that alerts the user when he is trying to leave the page without all the property settings being saved
-/*jQuery(document).ajaxStart(function() {
- window.onbeforeunload = confirmExit;
- function confirmExit()
- {
- return "Not all properties are saved.  Are you sure you want to exit this page?";
- }
- });*/
 
 //Function for hiding the message after its displayed
 function hideMessage(message){
@@ -234,4 +227,18 @@ function openSett(evt,tablink, settName, tabType) {
     }
     document.getElementById(settName).style.display = "block";
     evt.currentTarget.className += " nav-tab-active";
+}
+
+//Function to create blocking screen while ajax request is processed
+function block_screen() {
+    jQuery('<div class="screenBlock"><span class="loading-message">Processing...</span></div>').appendTo('body');
+    jQuery('.screenBlock').addClass('blockDiv');
+    jQuery('.screenBlock').animate({opacity: 0.7}, 200);
+}
+
+//Function to remove blocking screen after ajax request completed
+function unblock_screen() {
+    jQuery('.screenBlock').animate({opacity: 0}, 200, function() {
+        jQuery('.screenBlock').remove();
+    });
 }

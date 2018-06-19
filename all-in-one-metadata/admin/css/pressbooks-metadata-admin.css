@@ -71,3 +71,23 @@
 .hide{
     visibility: hidden;
 }
+
+/*Blocking screen while ajax*/
+.blockDiv {
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100050;
+    background-color: #ffffff;
+}
+.loading-message {
+    position: relative;
+    top: 50%;
+    left: 40%;
+    font-size: 50px;
+    opacity: 1;
+    transform: translateY(-50%);
+}

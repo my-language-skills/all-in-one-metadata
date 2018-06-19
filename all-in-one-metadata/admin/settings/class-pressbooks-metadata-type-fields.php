@@ -191,7 +191,7 @@ class Pressbooks_Metadata_Fields {
         }
 
         //create a pop-up window for active schema types
-		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
+		if(isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
 	        //add pop-up box styles and scripts
 			add_thickbox();
 
