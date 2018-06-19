@@ -14,7 +14,8 @@ use schemaFunctions\Pressbooks_Metadata_Engine as engine;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Fields {
@@ -200,25 +201,31 @@ class Pressbooks_Metadata_Fields {
 
 			/* START BUFFERING*/
 			ob_start();
-
-			echo '<form class="properties-options-form" method="post" action="options.php">';
-			    settings_fields( $properties_page.'_properties' );
-			    do_settings_sections( $properties_page.'_properties' );
-			echo '</form>';
-
-            /* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
-			$parentIds = $this->get_type_parents(false);
-			$parentNames = $this->get_type_parents(true);
-
 			//Creating the select element for selecting parents
 			?><div style="clear: both;"></div><select class="selectParent">
-			  <option value="parents">Show Basic Properties</option> <?php
+				<?php  if (!isset($this->metaInfo[2])) { ?>
+                    <option value="parents">Basic Properties</option> <?php
+				} else { ?>
+                    <option value="parents">-- Select Parent Type --</option>
+				<?php }
+				/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
+				$parentIds = $this->get_type_parents(false);
+				$parentNames = $this->get_type_parents(true);
+				$addText = isset($this->metaInfo[2]) ? '' : 'Basic Properties and ';
+				for($i = 0; $i < count($parentIds); $i++){
+					?><option value="<?= $parentIds[$i] ?>"><?= $addText.str_replace('Thing','General',$parentNames[$i]) ?></option><?php
+				}
 
-			for($i = 0; $i < count($parentIds); $i++){
-				?><option value="<?= $parentIds[$i] ?>">Show <?= str_replace('Thing','General',$parentNames[$i]) ?></option><?php
-			}
+				?> </select> <?php
 
-			?> </select> <?php
+			if (!isset($this->metaInfo[2])) {
+				echo '<form class="properties-options-form" method="post" action="options.php">';
+				settings_fields( $properties_page . '_properties' );
+				do_settings_sections( $properties_page . '_properties' );
+				echo '</form><hr>';
+			} else {
+			    echo '<p class="noPropType" "><i>Type is Empty of properties. Use parent properties from below selection.</i></p>';
+            }
 
 			//Creating DIVS with the parents properties inside
 			foreach($parentIds as $parent){
@@ -228,7 +235,7 @@ class Pressbooks_Metadata_Fields {
 					echo '<form class="properties-options-form" method="post" action="options.php">';
 					settings_fields( $parentField );
 					do_settings_sections( $parentField );
-                        ?></form></div>
+                        ?></form><hr></div>
                 <?php
 			}
 
