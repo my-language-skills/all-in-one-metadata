@@ -100,6 +100,7 @@ jQuery(document).ready(function() {
         event.preventDefault();
         var propId = jQuery(this).attr('id');
         if(confirm('Note that by continuing you are disabling this property from all relevant posts')){
+            block_screen();
             var data = {
                 'action': 'overwrite_prop_disable',
                 'property': propId
@@ -122,6 +123,7 @@ jQuery(document).ready(function() {
         event.preventDefault();
         var propId = jQuery(this).attr('id');
         if(confirm('Note that by continuing you are deleting this property from all relevant posts')){
+            block_screen();
             var data = {
                 'action': 'overwrite_prop_clean',
                 'property': propId
