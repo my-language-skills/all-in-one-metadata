@@ -166,7 +166,7 @@ class Pressbooks_Metadata_Fields {
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
 	    } else {
 		    $ID = $this->metaType . '-' . $this->sectionId;
-		    $html = '<button class="button-primary type-button-deact" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
+		    $html = '<button style="margin-right: 3px;" class="button-primary type-button-deact" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
 		    $html .='<a href="#TB_inline?height=550&width=500&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
         }
