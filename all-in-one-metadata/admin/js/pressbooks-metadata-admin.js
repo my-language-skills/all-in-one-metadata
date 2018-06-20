@@ -29,12 +29,16 @@ jQuery(document).ready(function() {
 
         if ( jQuery(this).is(':checked') ) {
             console.log(jQuery('#'+btn2));
-            document.getElementById(btn2).style.display = 'none';
+            if (!this.classList.contains('disabledProp')) {
+                document.getElementById(btn2).style.display = 'none';
+            }
             document.getElementById(btn).style.display = 'none';
         }
         else {
             console.log(jQuery('#'+btn2));
-            document.getElementById(btn2).style.display = 'inline-block';
+            if (!this.classList.contains('disabledProp')) {
+                document.getElementById(btn2).style.display = 'inline-block';
+            }
             document.getElementById(btn).style.display = 'inline-block';
         }
     });

@@ -183,11 +183,11 @@ class Pressbooks_Metadata_Property_Fields {
 
 			//Create the callback function for the overwrite field
 			$overwriteCallback = function() use ($overwriteField,$overwriteTo, $optionOverwrite){
-				$disabled = $this->details[0]==true? 'disabled' : '';
+				$disabled = $this->details[0]==true ? 'disabled' : '';
 				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'style="display: none;"' : '';
 				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn2">Disable</button>' : '';
 				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->displayPage.'['.$this->property.']" name="'.$this->displayPage.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionParent[$this->property]) ? ( $this->generalOptionParent[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
-				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/><br>';
+				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite '.$disabled.'Prop" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/><br>';
 				$html .= '<button class="overwrite_prop_clean propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn">Clear</button>';
 				$html .= $disableButton;
 				echo $html;
