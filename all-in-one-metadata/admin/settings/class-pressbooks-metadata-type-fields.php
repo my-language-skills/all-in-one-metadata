@@ -249,9 +249,6 @@ class Pressbooks_Metadata_Fields {
 			<h1>
 				Choose ' . $this->metaInfo[0] . ' Properties:<br>
 			</h1>
-			<div style="display: none;" class="properties-loading-image">
-            <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'all-in-one-metadata/assets/loading.gif"/>
-            </div>
             <p class="saving-message" style="display: none">Settings Saved!</p>
             <br><br>
 			</form> <!-- This is a fix for the first types properties not saving -->

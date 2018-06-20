@@ -54,6 +54,9 @@ if(($post_type == 'site-meta' && !in_array('site-meta', $allPostTypes)) || ($pos
 
 
         <div id="types" class="activeSchemas">
+            <div style="display: none;" class="properties-loading-image">
+                <img style="width: 30px; height: 30px;" src="<?= plugin_dir_url('')?>all-in-one-metadata/assets/loading.gif"/>
+            </div>
             <form method="post" class="active-schemas-forms" action="options.php">
                 <?php
                 $tabName = $post_type.'_type_tab';
