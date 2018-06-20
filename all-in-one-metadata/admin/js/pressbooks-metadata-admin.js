@@ -22,6 +22,22 @@ jQuery(document).ready(function() {
         jQuery('.property-settings').remove();
     });
 
+    //Handling the overwrite_prop_clean button
+    jQuery('.property-overwrite').change(function(){
+        var btn = this.id + '_btn';
+        var btn2 = this.id + '_btn2';
+
+        if ( jQuery(this).is(':checked') ) {
+            console.log(jQuery('#'+btn2));
+            document.getElementById(btn2).style.display = 'none';
+            document.getElementById(btn).style.display = 'none';
+        }
+        else {
+            console.log(jQuery('#'+btn2));
+            document.getElementById(btn2).style.display = 'inline-block';
+            document.getElementById(btn).style.display = 'inline-block';
+        }
+    });
 
     //TODO Here we need to cancel all requests before making a new one, this approach will make the submission faster
     //Submitting information for the property settings
@@ -80,19 +96,6 @@ jQuery(document).ready(function() {
         jQuery(form).find('#' + name).show();
     });
 
-    //Handling the overwrite_prop_clean button
-    jQuery('.property-overwrite').click(function(){
-        var btn = this.id + '_btn';
-        var btn2 = this.id + '_btn2';
-        if ( jQuery(this).is(':checked') ) {
-            jQuery('#'+btn2).hide();
-            jQuery('#'+btn).hide();
-        }
-        else {
-            jQuery('#'+btn2).show();
-            jQuery('#'+btn).show();
-        }
-    });
 
     //Handling the overwrite_prop_disable
     jQuery('.overwrite_prop_disable').click(function(event) {
