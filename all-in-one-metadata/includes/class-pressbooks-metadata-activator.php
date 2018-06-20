@@ -51,6 +51,13 @@ class Pressbooks_Metadata_Activator {
 				update_option( 'schema_locations', ['post' => '1'] );
 			}
 
+			//activate parent radio property
+			if ( site_cpt::pressbooks_identify() ) {
+				update_option( 'parent_filter_settings', ['radio1' => 'creativeWork_properties'] );
+			} else {
+				update_option( 'parent_filter_settings', ['radio1' => 'organization_properties'] );
+			}
+
 			//activate site-level meta for demonstration (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
 				update_option( 'metadata_checkbox', '1' );
