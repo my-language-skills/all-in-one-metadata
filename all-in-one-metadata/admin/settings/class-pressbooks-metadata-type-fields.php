@@ -127,7 +127,7 @@ class Pressbooks_Metadata_Fields {
 		// without having to specify different ids for each section's field's
 		$this->optionGeneral[$this->metaType] = isset($this->optionGeneral[$this->metaType]) ? $this->optionGeneral[$this->metaType] : '';
 		//Adding field to accumulated option
-		update_option($this->parentType, $this->optionGeneral);
+		update_option($this->post_type.'_'.$this->parentType, $this->optionGeneral);
 	}
 
 	/**
