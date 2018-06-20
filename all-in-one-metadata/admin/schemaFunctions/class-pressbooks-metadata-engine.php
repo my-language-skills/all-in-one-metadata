@@ -110,8 +110,8 @@ class Pressbooks_Metadata_Engine {
 		$generalSettPage = "general_settings_page";
 
 		//Registering the general settings for the general settings metabox
-		add_settings_section($generalSettSection, "Metadata Output Type", null, $generalSettPage);
-		new post_type_fields('jsonld_output','Enable Jsonld',$generalSettPage,$generalSettSection);
+		//add_settings_section($generalSettSection, "Metadata Output Type", null, $generalSettPage);
+		//new post_type_fields('jsonld_output','Enable Jsonld',$generalSettPage,$generalSettSection);
 
 		//Post Level
 		$postLevelSection = "locationLevelsSection";
@@ -131,7 +131,7 @@ class Pressbooks_Metadata_Engine {
 			//Network Control Section
 			$networkFreezeSection = "networkFreezeSection";
 
-			//Creating the sections
+			//Creating the section for network freezing option
 			add_settings_section($networkFreezeSection, "Network Administrator right to rewrite Site-Meta", null, $generalSettPage);
 			//Create checkbox for option
 			new post_type_fields($post_type . '_saoverwr', 'Allow', $generalSettPage, $networkFreezeSection);

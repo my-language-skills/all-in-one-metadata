@@ -27,21 +27,20 @@ jQuery(document).ready(function() {
     //Submitting information for the property settings
     jQuery('.property-checkbox').on('click',function(){
         var form = jQuery(this).closest('form');
-        var loadingImage = jQuery('.properties-loading-image');
         var savingMessage = jQuery('.saving-message');
-        loadingImage.show();
         block_screen();
         savingMessage.hide();
         var data =  form.serialize();
         jQuery.post( 'options.php', data ).error(
             function() {
-                savingMessage.text('Error Saving Settings');
+                savingMessage.text('Error Disabling Properties');
                 savingMessage.css('color','red');
                 savingMessage.show();
-                loadingImage.hide();
                 hideMessage(savingMessage);
             }).success( function() {
-
+                savingMessage.show();
+                savingMessage.css('color','green');
+                hideMessage(savingMessage);
         });
     });
 
@@ -86,12 +85,12 @@ jQuery(document).ready(function() {
         var btn = this.id + '_btn';
         var btn2 = this.id + '_btn2';
         if ( jQuery(this).is(':checked') ) {
-            jQuery('#'+btn2).addClass('hide');
-            jQuery('#'+btn).addClass('hide');
+            jQuery('#'+btn2).hide();
+            jQuery('#'+btn).hide();
         }
         else {
-            jQuery('#'+btn2).removeClass('hide');
-            jQuery('#'+btn).removeClass('hide');
+            jQuery('#'+btn2).show();
+            jQuery('#'+btn).show();
         }
     });
 
@@ -107,13 +106,16 @@ jQuery(document).ready(function() {
             };
             jQuery.post( 'admin-ajax.php', data ).error(
                 function() {
+                    let savingMessage = jQuery('.saving-message');
                     savingMessage.text('Error Disabling Properties');
                     savingMessage.css('color','red');
                     savingMessage.show();
-                    loadingImage.hide();
                     hideMessage(savingMessage);
                 }).success( function() {
-
+                    let savingMessage = jQuery('.saving-message');
+                    savingMessage.show();
+                    savingMessage.css('color','green');
+                    hideMessage(savingMessage);
             });
         }
     });
@@ -130,13 +132,16 @@ jQuery(document).ready(function() {
             };
             jQuery.post( 'admin-ajax.php', data ).error(
                 function() {
-                    savingMessage.text('Error Clearing Properties');
+                    let savingMessage = jQuery('.saving-message');
+                    savingMessage.text('Error Disabling Properties');
                     savingMessage.css('color','red');
                     savingMessage.show();
-                    loadingImage.hide();
                     hideMessage(savingMessage);
                 }).success( function() {
-
+                    let savingMessage = jQuery('.saving-message');
+                    savingMessage.show();
+                    savingMessage.css('color','green');
+                    hideMessage(savingMessage);
             });
         }
     });
@@ -197,13 +202,7 @@ jQuery(document).ready(function() {
 
 //Function that alerts when all property settings are saved
 jQuery(document).ajaxStop(function() {
-    var loadingImage = jQuery('.properties-loading-image');
-    var savingMessage = jQuery('.saving-message');
     window.onbeforeunload = null;
-    loadingImage.hide();
-    savingMessage.show();
-    savingMessage.css('color','green');
-    hideMessage(savingMessage);
     unblock_screen();
 });
 
@@ -233,7 +232,8 @@ function openSett(evt,tablink, settName, tabType) {
 
 //Function to create blocking screen while ajax request is processed
 function block_screen() {
-    jQuery('<div class="screenBlock"><span class="loading-message">Processing...</span></div>').appendTo('body');
+    var image = jQuery('.properties-loading-image')[0];
+    jQuery('<div class="screenBlock"><span class="loading-message">Processing'+ image.innerHTML +'</span></div>').appendTo('body');
     jQuery('.screenBlock').addClass('blockDiv');
     jQuery('.screenBlock').animate({opacity: 0.7}, 200);
 }
