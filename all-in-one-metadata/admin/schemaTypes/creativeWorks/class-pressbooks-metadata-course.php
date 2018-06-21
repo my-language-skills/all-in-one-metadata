@@ -26,7 +26,7 @@ class Pressbooks_Metadata_Course extends Pressbooks_Metadata_Type {
      * @access   public
      */
     static $required_parent_props = array(
-
+		'description', 'name'
     );
 
 	/**
