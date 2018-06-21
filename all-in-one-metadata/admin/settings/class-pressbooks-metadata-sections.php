@@ -104,6 +104,8 @@ class Pressbooks_Metadata_Sections {
 		//A loop that goes through the fieldData array and constructs fields corresponding to the arrays size
 		foreach ($this->fieldsData as $property => $details) {
 
+			//TODO Google and Schema.org have different schema types types for publisher property, Google only accepts Organization type for this field. Need to fix it somehow.
+
             if(is_array($this->requiredParentProps)){
                 //Checking if the property being processed is in the requiredParentProps array
                 if(in_array($property,$this->requiredParentProps)){
