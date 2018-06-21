@@ -55,7 +55,7 @@ class Pressbooks_Metadata_MediaObject extends Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	static $type_properties = array(
-		'associatedArticle' => array(false,'Associated Article','A NewsArticle associated with the Media Object.'),
+		//'associatedArticle' => array(false,'Associated Article','A NewsArticle associated with the Media Object.'),
 		'bitrate' => array(false,'Bitrate','The bitrate of the media object.'),
 		'contentSize' => array(false,'Content Size','File size in (mega/kilo) bytes.'),
 		'contentUrl' => array(false,'Content Url','Actual bytes of the media object, for example the image file or video file.'),

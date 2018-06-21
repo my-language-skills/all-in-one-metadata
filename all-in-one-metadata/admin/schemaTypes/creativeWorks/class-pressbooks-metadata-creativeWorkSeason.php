@@ -64,7 +64,7 @@ class Pressbooks_Metadata_CreativeWorkSeason extends Pressbooks_Metadata_Type {
 		'productionCompany' => array(false,'Production Company','The production company or studio responsible for the item e.g. series, video game, episode etc.'),
 		'seasonNumber' => array(false,'Season Number','Position of the season within an ordered group of seasons.'),
 		'startDate' => array(false,'Start Date','The start date and time of the item (in ISO 8601 date format).'),
-		'trailer' => array(false,'Trailer','The trailer of a movie or tv/radio series, season, episode, etc.')
+		//'trailer' => array(false,'Trailer','The trailer of a movie or tv/radio series, season, episode, etc.')
 	);
 
 	public function __construct($type_level_input) {

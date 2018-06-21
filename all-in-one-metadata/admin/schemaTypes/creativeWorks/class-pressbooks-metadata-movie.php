@@ -62,7 +62,7 @@ class Pressbooks_Metadata_Movie extends Pressbooks_Metadata_Type {
 		'musicBy' => array(false,'Music By','The composer of the soundtrack.'),
 		'productionCompany' => array(false,'Production Company','The production company or studio responsible for the item e.g. series, video game, episode etc.'),
 		'subtitleLanguage' => array(false,'Subtitle Language','Languages in which subtitles/captions are available, in IETF BCP 47 standard format.'),
-		'trailer' => array(false,'Trailer','The trailer of a movie or tv/radio series, season, episode, etc.')
+		//'trailer' => array(false,'Trailer','The trailer of a movie or tv/radio series, season, episode, etc.')
 	);
 
 	public function __construct($type_level_input) {

@@ -54,7 +54,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	static $type_properties = array(
-		'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
+		//'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
 	);
 
 	public function __construct($type_level_input) {

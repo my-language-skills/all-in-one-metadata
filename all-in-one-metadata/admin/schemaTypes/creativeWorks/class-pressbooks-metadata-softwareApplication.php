@@ -71,7 +71,7 @@ class Pressbooks_Metadata_SoftwareApplication extends Pressbooks_Metadata_Type {
 		'processorRequirements' => array(false,'Processor Requirements','Processor architecture required to run the application (e.g. IA64).'),
 		'releaseNotes' => array(false,'Release Notes','Description of what changed in this version.'),
 		'screenshot' => array(false,'Screenshot','A link to a screenshot image of the app.'),
-		'softwareAddOn' => array(false,'Software Add On','Additional content for a software application.'),
+		//'softwareAddOn' => array(false,'Software Add On','Additional content for a software application.'),
 		'softwareHelp' => array(false,'Software Help','Software application help.'),
 		'softwareRequirements' => array(false,'Software Requirements','Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.'),
 		'softwareVersion' => array(false,'Software Version','Version of the software instance.'),

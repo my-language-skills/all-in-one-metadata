@@ -64,7 +64,7 @@ class Pressbooks_Metadata_TVSeries extends Pressbooks_Metadata_Type {
 		'numberOfEpisodes' => array(false,'Number Of Episodes','A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this tvSeries.'),
 		'numberOfSeasons' => array(false,'Number Of Seasons','An offering of the tvSeries at a specific time and place or through specific media or mode of study or to a specific section of students.'),
 		'productionCompany' => array(false,'Production Company','An offering of the tvSeries at a specific time and place or through specific media or mode of study or to a specific section of students.'),
-		'trailer' => array(false,'Trailer','An offering of the tvSeries at a specific time and place or through specific media or mode of study or to a specific section of students.')
+		//'trailer' => array(false,'Trailer','An offering of the tvSeries at a specific time and place or through specific media or mode of study or to a specific section of students.')
 	);
 
 	public function __construct($type_level_input) {
