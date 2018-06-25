@@ -20,16 +20,16 @@ use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
  * @since      0.16
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
- * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     Daniil Zhitnitskii @danzhik
  */
 class Pressbooks_Metadata_Activator {
 
 	/**
-	 * Short Description. (use period)
+	 * Class responsible for activation process
 	 *
-	 * Long Description.
+	 * During activation this class enables some predefined values of plugin options for user demonstration.
 	 *
-	 * @since    0.1
+	 * @since    0.16
 	 */
 	public static function activate() {
 
@@ -46,9 +46,16 @@ class Pressbooks_Metadata_Activator {
 			}
 			//activate post/chapter level meta for demonstration (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schema_locations', ['chapter_checkbox' => '1'] );
+				update_option( 'schema_locations', ['chapter' => '1'] );
 			} else {
-				update_option( 'schema_locations', ['post_checkbox' => '1'] );
+				update_option( 'schema_locations', ['post' => '1'] );
+			}
+
+			//activate parent radio property
+			if ( site_cpt::pressbooks_identify() ) {
+				update_option( 'parent_filter_settings', ['radio1' => 'creativeWork_properties'] );
+			} else {
+				update_option( 'parent_filter_settings', ['radio1' => 'organization_properties'] );
 			}
 
 			//activate site-level meta for demonstration (these are gonna be created anyway)
@@ -60,17 +67,11 @@ class Pressbooks_Metadata_Activator {
 
 			// set book type schema active for demonstration for posts/chapters (these are gonna be created anyway)
 			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schema_types_book_level_schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type_chapter_level' => '1'] );
+				update_option( 'metadata_schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type' => '1'] );
 			} else {
-				update_option( 'schema_types_post_level_schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type_post_level' => '1'] );
+				update_option( 'site-meta_schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type' => '1'] );
 			}
 
-			//set book type schema active for demonstration for site-meta or metadata (these are gonna be created anyway)
-			if ( site_cpt::pressbooks_identify() ) {
-				update_option( 'schema_types_metadata_level_schemaTypes\Pressbooks_Metadata_CreativeWork', ['book_type_metadata_level' => '1'] );
-			} else {
-				update_option( 'schema_types_site-meta_level_schemaTypes\Pressbooks_Metadata_Organization', ['corporation_type_site-meta_level' => '1'] );
-			}
 
 		}
 		//if multisite is active, restore the blog which was used before updating options

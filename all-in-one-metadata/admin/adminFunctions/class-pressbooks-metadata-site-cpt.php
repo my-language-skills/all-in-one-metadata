@@ -10,7 +10,7 @@ namespace adminFunctions;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/adminFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 
 class Pressbooks_Metadata_Site_Cpt {

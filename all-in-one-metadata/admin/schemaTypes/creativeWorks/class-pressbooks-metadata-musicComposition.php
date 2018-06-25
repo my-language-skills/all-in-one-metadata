@@ -56,7 +56,7 @@ class Pressbooks_Metadata_MusicComposition extends Pressbooks_Metadata_Type {
 	 */
 	static $type_properties = array(
 		'composer' => array(false,'Composer','The person or organization who wrote a composition, or who is the composer of a work performed at some event.'),
-		'firstPerformance' => array(false,'First Performance','The date and place the work was first performed.'),
+		//'firstPerformance' => array(false,'First Performance','The date and place the work was first performed.'),
 		'includedComposition' => array(false,'Included Composition','Smaller compositions included in this work (e.g. a movement in a symphony).'),
 		'iswcCode' => array(false,'ISWC Code','The International Standard Musical Work Code for the composition.'),
 		'lyricist' => array(false,'Lyricist','The person who wrote the words.'),

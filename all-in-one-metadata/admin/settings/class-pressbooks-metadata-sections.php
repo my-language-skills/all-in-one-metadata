@@ -11,12 +11,12 @@ namespace settings;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 
 //Including the field class so fields can be created for the current section
-require_once('class-pressbooks-metadata-type-fields.php' );
-require_once('class-pressbooks-metadata-property-fields.php');
+use settings\Pressbooks_Metadata_Fields;
+use settings\Pressbooks_Metadata_Property_Fields;
 
 class Pressbooks_Metadata_Sections {
 
@@ -104,6 +104,8 @@ class Pressbooks_Metadata_Sections {
 		//A loop that goes through the fieldData array and constructs fields corresponding to the arrays size
 		foreach ($this->fieldsData as $property => $details) {
 
+			//TODO Google and Schema.org have different schema types types for publisher property, Google only accepts Organization type for this field. Need to fix it somehow.
+
             if(is_array($this->requiredParentProps)){
                 //Checking if the property being processed is in the requiredParentProps array
                 if(in_array($property,$this->requiredParentProps)){
@@ -134,7 +136,7 @@ class Pressbooks_Metadata_Sections {
 	public static function types( $sectionInputId,$sectionInputName,$sectionInputDisplayPage,$fieldsDataInput ) {
 		$instance = new self();
 		$instance->sectionId = $sectionInputId;
-		$instance->sectionName = $sectionInputName == 'Site-meta Level' || $sectionInputName == 'Metadata Level' ? 'Site Meta Level' : $sectionInputName;
+		$instance->sectionName = $sectionInputName;
 		$instance->displayPage = $sectionInputDisplayPage;
 		$instance->fieldsData = $fieldsDataInput;
 		$instance->pmdt_load_by_type();
@@ -167,6 +169,6 @@ class Pressbooks_Metadata_Sections {
 	 * @since  0.8.1
 	 */
 	function pmdt_type_section_draw(){
-		echo '<p>Here you can choose what types of Metadata you want to show in the '.$this->sectionName.' </p>';
+
 	}
 }

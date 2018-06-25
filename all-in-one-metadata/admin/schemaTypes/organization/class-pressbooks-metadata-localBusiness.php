@@ -26,7 +26,7 @@ class Pressbooks_Metadata_LocalBusiness extends Pressbooks_Metadata_Type {
      * @access   public
      */
     static $required_parent_props = array(
-
+		'image', 'name'
     );
 
     /**

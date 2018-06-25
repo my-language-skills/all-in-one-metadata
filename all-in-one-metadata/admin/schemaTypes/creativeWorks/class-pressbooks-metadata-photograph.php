@@ -35,7 +35,7 @@ class Pressbooks_Metadata_Photograph extends Pressbooks_Metadata_Type {
 	 * @since    0.13
 	 * @access   public
 	 */
-	static $type_setting = array('photograph_type' => array('Photograph Type','http://schema.org/Photograph'));
+	static $type_setting = array('photograph_type' => array('Photograph Type','http://schema.org/Photograph', 'Creative Work'));
 
 	/**
 	 * The variable that holds the parents for the type

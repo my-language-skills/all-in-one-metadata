@@ -59,7 +59,7 @@ class Pressbooks_Metadata_SoftwareSourceCode extends Pressbooks_Metadata_Type {
 		'codeSampleType' => array(false,'Code Sample Type','What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template. Supersedes sampleType.'),
 		'programmingLanguage' => array(false,'Programming Language','The computer programming language.'),
 		'runtimePlatform' => array(false,'Runtime Platform','Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0). Supersedes runtime.'),
-		'targetProduct' => array(false,'Target Product','Target Operating System / Product to which the code applies. If applies to several versions, just the product name can be used.')
+		//'targetProduct' => array(false,'Target Product','Target Operating System / Product to which the code applies. If applies to several versions, just the product name can be used.')
 	);
 
 	public function __construct($type_level_input) {

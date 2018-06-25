@@ -13,7 +13,7 @@ use vocabularyFunctions;
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 
 class Pressbooks_Metadata_Output {

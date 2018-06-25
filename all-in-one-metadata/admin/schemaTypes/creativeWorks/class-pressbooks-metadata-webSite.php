@@ -55,7 +55,7 @@ class Pressbooks_Metadata_WebSite extends Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	static $type_properties = array(
-		'webSiteType' => array(false,'WebSite Category Type ','Indicates the kind of WebSite, from the WebSiteCategoryType Enumeration.')
+		'issn' => array(false,'ISSN of WebSite ','Indicates your WebSite ISSN value.')
 	);
 
 	public function __construct($type_level_input) {

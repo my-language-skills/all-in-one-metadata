@@ -3,7 +3,8 @@
 namespace schemaTypes;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as gen_func;
 use schemaFunctions\Pressbooks_Metadata_Create_Metabox as create_metabox;
-use Spatie\SchemaOrg\Schema as jsonldGen;
+use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
+//use Spatie\SchemaOrg\Schema as jsonldGen;
 
 /**
  * The class for the Type including operations, this class is used as a base class for all the types
@@ -13,7 +14,7 @@ use Spatie\SchemaOrg\Schema as jsonldGen;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaTypes
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
  */
 
 class Pressbooks_Metadata_Type {
@@ -105,7 +106,21 @@ class Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	public function pmdt_prop_run($metaProperty){
+		//get option for native properties
 		$propertiesOption = get_option('schema_properties_'.$this->typeName. '_' . $this->type_level . '_level');
+
+		//get option for parent properties and if metaProp is there, change $propertiesOption to array of parent properties
+		foreach(structure::$allSchemaTypes as $type) {
+			if(gen_func::get_type_id($type) == $this->typeName) {
+				$propertiesOptionsParent = [];
+				foreach ( $type::$type_parents as $parent ) {
+					$propertiesOptionsParent  = get_option( $this->typeName . '_' . $this->type_level . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
+					if (key_exists($metaProperty,$propertiesOptionsParent)){
+						$propertiesOption = $propertiesOptionsParent;
+					}
+				}
+			}
+		}
 		if($this->type_fields[$metaProperty][0] == true){
 			return true;
 		}else if(isset($propertiesOption[$metaProperty]) ? ($propertiesOption[$metaProperty] == 1 ? 1 : 0) : 0){
@@ -136,7 +151,7 @@ class Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	public function pmdt_get_value($propName){
-		$value;
+		$value = [];
 		$array = isset($this->metadata[$propName])? $this->metadata[$propName] : '';
 		if ( !$this->is_site ) { //we are using the get_first function to get the value from the returned array
 			$value = $this->pmdt_get_first( $array );
@@ -226,6 +241,7 @@ class Pressbooks_Metadata_Type {
 	 * @since 0.x
 	 *
 	 */
+	/*
 	private function get_jsonld(){
 
 		//Getting the clear name of the type so we can load a class (type object) from the spatie/schema
@@ -263,4 +279,5 @@ class Pressbooks_Metadata_Type {
 		//This uses the $schema object and all the properties we gave it above (illustrator for example) to return jasonld data
 		return $schema->toScript();
 	}
+	*/
 }

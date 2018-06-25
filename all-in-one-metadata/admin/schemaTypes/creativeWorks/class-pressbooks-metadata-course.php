@@ -26,7 +26,7 @@ class Pressbooks_Metadata_Course extends Pressbooks_Metadata_Type {
      * @access   public
      */
     static $required_parent_props = array(
-
+		'description', 'name'
     );
 
 	/**
@@ -58,7 +58,7 @@ class Pressbooks_Metadata_Course extends Pressbooks_Metadata_Type {
 		'courseCode' => array(false,'Course Code','The identifier for the Course used by the course provider (e.g. CS101 or 6.001).'),
 		'coursePrerequisites' => array(false,'Course Prerequisites','Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.'),
 		'educationalCredentialAwarded' => array(false,'Educational Credential Awarded','A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course.'),
-		'hasCourseInstance' => array(false,'Has Course Instance','An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.')
+		//'hasCourseInstance' => array(false,'Has Course Instance','An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.')
 	);
 
 	public function __construct($type_level_input) {

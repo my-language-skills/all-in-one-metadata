@@ -34,7 +34,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	 * @since    0.10
 	 * @access   public
 	 */
-	static $type_setting = array('blog_type' => array('Blog Type','http://schema.org/Blog'));
+	static $type_setting = array('blog_type' => array('Blog Type','http://schema.org/Blog', 'Creative Work'));
 
 	/**
 	 * The variable that holds the parents for the type
@@ -54,7 +54,7 @@ class Pressbooks_Metadata_Blog extends Pressbooks_Metadata_Type {
 	 * @access   public
 	 */
 	static $type_properties = array(
-		'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
+		//'blogPost' => array(true,'Blog Post','A posting that is part of this blog.')
 	);
 
 	public function __construct($type_level_input) {

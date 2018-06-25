@@ -22,24 +22,73 @@ jQuery(document).ready(function() {
         jQuery('.property-settings').remove();
     });
 
+    //Handling the overwrite_prop_clean button
+    jQuery('.property-overwrite').change(function(){
+        var btn = this.id + '_btn';
+        var btn2 = this.id + '_btn2';
+
+        if ( jQuery(this).is(':checked') ) {
+            console.log(jQuery('#'+btn2));
+            if (!this.classList.contains('disabledProp')) {
+                document.getElementById(btn2).style.display = 'none';
+            }
+            document.getElementById(btn).style.display = 'none';
+        }
+        else {
+            console.log(jQuery('#'+btn2));
+            if (!this.classList.contains('disabledProp')) {
+                document.getElementById(btn2).style.display = 'inline-block';
+            }
+            document.getElementById(btn).style.display = 'inline-block';
+        }
+    });
+
     //TODO Here we need to cancel all requests before making a new one, this approach will make the submission faster
     //Submitting information for the property settings
     jQuery('.property-checkbox').on('click',function(){
         var form = jQuery(this).closest('form');
-        var loadingImage = jQuery('.properties-loading-image');
         var savingMessage = jQuery('.saving-message');
-        loadingImage.show();
+        block_screen();
         savingMessage.hide();
         var data =  form.serialize();
         jQuery.post( 'options.php', data ).error(
             function() {
-                savingMessage.text('Error Saving Settings');
+                savingMessage.text('Error Disabling Properties');
                 savingMessage.css('color','red');
                 savingMessage.show();
-                loadingImage.hide();
                 hideMessage(savingMessage);
             }).success( function() {
+                savingMessage.show();
+                savingMessage.css('color','green');
+                hideMessage(savingMessage);
+        });
+    });
 
+    //Activating schema type
+    jQuery('.type-button').on('click',function(){
+        block_screen();
+        var form = jQuery(this).closest('form');
+        document.getElementById(this.name).value = 1;
+        var data =  form.serialize();
+        jQuery.post( 'options.php', data ).error(
+            function() {
+
+            }).success( function() {
+                location.reload();
+        });
+    });
+
+    //Submitting information for the property settings
+    jQuery('.type-button-deact').on('click',function(){
+        block_screen();
+        var form = jQuery(this).closest('form');
+        document.getElementById(this.name).value = 0;
+        var data =  form.serialize();
+        jQuery.post( 'options.php', data ).error(
+            function() {
+
+            }).success( function() {
+            location.reload();
         });
     });
 
@@ -51,38 +100,29 @@ jQuery(document).ready(function() {
         jQuery(form).find('#' + name).show();
     });
 
-    //Handling the overwrite_prop_clean button
-    jQuery('.property-overwrite').click(function(){
-        var btn = this.id + '_btn';
-        var btn2 = this.id + '_btn2';
-        if ( jQuery(this).is(':checked') ) {
-            jQuery('#'+btn2).addClass('hide');
-            jQuery('#'+btn).addClass('hide');
-        }
-        else {
-            jQuery('#'+btn2).removeClass('hide');
-            jQuery('#'+btn).removeClass('hide');
-        }
-    });
 
     //Handling the overwrite_prop_disable
     jQuery('.overwrite_prop_disable').click(function(event) {
         event.preventDefault();
         var propId = jQuery(this).attr('id');
         if(confirm('Note that by continuing you are disabling this property from all relevant posts')){
+            block_screen();
             var data = {
                 'action': 'overwrite_prop_disable',
                 'property': propId
             };
             jQuery.post( 'admin-ajax.php', data ).error(
                 function() {
+                    let savingMessage = jQuery('.saving-message');
                     savingMessage.text('Error Disabling Properties');
                     savingMessage.css('color','red');
                     savingMessage.show();
-                    loadingImage.hide();
                     hideMessage(savingMessage);
                 }).success( function() {
-
+                    let savingMessage = jQuery('.saving-message');
+                    savingMessage.show();
+                    savingMessage.css('color','green');
+                    hideMessage(savingMessage);
             });
         }
     });
@@ -92,19 +132,23 @@ jQuery(document).ready(function() {
         event.preventDefault();
         var propId = jQuery(this).attr('id');
         if(confirm('Note that by continuing you are deleting this property from all relevant posts')){
+            block_screen();
             var data = {
                 'action': 'overwrite_prop_clean',
                 'property': propId
             };
             jQuery.post( 'admin-ajax.php', data ).error(
                 function() {
-                    savingMessage.text('Error Clearing Properties');
+                    let savingMessage = jQuery('.saving-message');
+                    savingMessage.text('Error Disabling Properties');
                     savingMessage.css('color','red');
                     savingMessage.show();
-                    loadingImage.hide();
                     hideMessage(savingMessage);
                 }).success( function() {
-
+                    let savingMessage = jQuery('.saving-message');
+                    savingMessage.show();
+                    savingMessage.css('color','green');
+                    hideMessage(savingMessage);
             });
         }
     });
@@ -165,24 +209,9 @@ jQuery(document).ready(function() {
 
 //Function that alerts when all property settings are saved
 jQuery(document).ajaxStop(function() {
-    var loadingImage = jQuery('.properties-loading-image');
-    var savingMessage = jQuery('.saving-message');
     window.onbeforeunload = null;
-    loadingImage.hide();
-    savingMessage.show();
-    savingMessage.css('color','green');
-    hideMessage(savingMessage);
+    unblock_screen();
 });
-
-//TODO Remember to fix this
-//Function that alerts the user when he is trying to leave the page without all the property settings being saved
-/*jQuery(document).ajaxStart(function() {
- window.onbeforeunload = confirmExit;
- function confirmExit()
- {
- return "Not all properties are saved.  Are you sure you want to exit this page?";
- }
- });*/
 
 //Function for hiding the message after its displayed
 function hideMessage(message){
@@ -206,4 +235,19 @@ function openSett(evt,tablink, settName, tabType) {
     }
     document.getElementById(settName).style.display = "block";
     evt.currentTarget.className += " nav-tab-active";
+}
+
+//Function to create blocking screen while ajax request is processed
+function block_screen() {
+    var image = jQuery('.properties-loading-image')[0];
+    jQuery('<div class="screenBlock"><span class="loading-message">Processing'+ image.innerHTML +'</span></div>').appendTo('body');
+    jQuery('.screenBlock').addClass('blockDiv');
+    jQuery('.screenBlock').animate({opacity: 0.7}, 200);
+}
+
+//Function to remove blocking screen after ajax request completed
+function unblock_screen() {
+    jQuery('.screenBlock').animate({opacity: 0}, 200, function() {
+        jQuery('.screenBlock').remove();
+    });
 }

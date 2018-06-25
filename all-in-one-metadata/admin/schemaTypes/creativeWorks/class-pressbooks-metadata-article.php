@@ -26,7 +26,7 @@ class Pressbooks_Metadata_Article extends Pressbooks_Metadata_Type {
      * @access   public
      */
     static $required_parent_props = array(
-
+		'author', 'datePublished', 'headline', 'image', 'publisher'
     );
 
 	/**

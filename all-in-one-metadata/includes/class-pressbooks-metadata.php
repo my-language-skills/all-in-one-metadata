@@ -35,6 +35,7 @@ use networkFunctions\Pressbooks_Metadata_Network_Admin as netadmin;
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/includes
  * @author     Vasilis Georgoudis <vasilios.georgoudis@gmail.com>
+ * @author     Daniil Zhitnitskii @danzhik
  */
 class Pressbooks_Metadata {
 
@@ -108,6 +109,9 @@ class Pressbooks_Metadata {
 	 */
 	private function load_dependencies() {
 
+		/**
+		 * Fix for case when dependencies loading crushes
+		 */
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 		/**

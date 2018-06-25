@@ -35,7 +35,7 @@ class Pressbooks_Metadata_WebPageElement extends Pressbooks_Metadata_Type {
 	 * @since    0.x
 	 * @access   public
 	 */
-	static $type_setting = array('webPageElement_type' => array('WebPageElement Type','http://schema.org/WebPageElement'));
+	static $type_setting = array('webPageElement_type' => array('WebPageElement Type','http://schema.org/WebPageElement', 'Creative Work'));
 
 	/**
 	 * The variable that holds the parents for the type

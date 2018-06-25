@@ -13,7 +13,8 @@ use networkFunctions\Pressbooks_Metadata_Net_Sett_Sections as net_sections;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/networkFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Network_Admin {
@@ -44,6 +45,9 @@ class Pressbooks_Metadata_Network_Admin {
         //These variables are static now because this is a prototype for the book level types
         $displayPage = 'site_level_admin_display';
         $sectionId   = 'site_level_section';
+
+        //adding metabox for proper output layout
+        add_meta_box('site_level_admin', 'Manage Options', array($this, 'render_metabox_network'), $displayPage, 'normal', 'core');
 
         //Getting the value of the level
         //In our case is metadata for pressbooks or site-meta for the wordpress default installation
@@ -83,12 +87,29 @@ class Pressbooks_Metadata_Network_Admin {
     }
 
     /**
-     * Linking the page that the settings will render
+     * Render network settings page
      *
-     * @since  0.10
+     * @since  0.18
      */
     function render_network_settings(){
-        include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
+	    ?>
+	    <div class="wrap">
+		    <div class="metabox-holder">
+			    <?php
+			    do_meta_boxes('site_level_admin_display', 'normal','');
+			    ?>
+		    </div>
+	    </div>
+	    <?php
+    }
+
+	/**
+	 * Linking the page that the settings will render
+	 *
+	 * @since 0.18
+	 */
+    function render_metabox_network(){
+	    include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
     }
 
     /**
@@ -160,7 +181,6 @@ class Pressbooks_Metadata_Network_Admin {
 
                 $selectedPosts []= array('ID' => $newPostId, 'post_type' => $postType);
             }
-
             //Going through all posts and adding the new post_meta
             foreach($selectedPosts as $post){
                 update_post_meta( $post['ID'],$metaKey,$newValue);
@@ -178,9 +198,9 @@ class Pressbooks_Metadata_Network_Admin {
 	        }
 
 			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
-				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_Organization';
 			} else{
-				$schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_CreativeWork';
 			}
 			//<
 
@@ -190,11 +210,11 @@ class Pressbooks_Metadata_Network_Admin {
 	        //get accumulated option for activated properties
 	        $optionsSchemaProperties = get_option('schema_properties_'.$schemaType.'_'.$postType.'_level');
 
-            //Enable Post Level
+            //Enable Site-Meta Level
             update_option($postType.'_checkbox', 1);
 
             //Enable Type
-	        $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+	        $optionsSchemaTypes[$schemaType] = 1;
 
             update_option($schemaOptionName,$optionsSchemaTypes);
 
@@ -207,7 +227,7 @@ class Pressbooks_Metadata_Network_Admin {
     /**
      * Function used for taking an array and generating a cleaned one with the keys you ask
      *
-     * @since  0.x
+     * @since  0.18
      */
     function cleanCollect($arrayInput,$searchWord,$toLower){
         $newArray = array();

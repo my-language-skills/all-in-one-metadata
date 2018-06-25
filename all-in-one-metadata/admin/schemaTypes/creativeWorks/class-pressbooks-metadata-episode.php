@@ -62,7 +62,7 @@ class Pressbooks_Metadata_Episode extends Pressbooks_Metadata_Type {
 		'partOfSeason' => array(false,'Part Of Season','The season to which this episode belongs.'),
 		'partOfSeries' => array(false,'Part Of Series','The series to which this episode or season belongs. Supersedes partOfTVSeries.'),
 		'productionCompany' => array(false,'Production Company','The production company or studio responsible for the item e.g. series, video game, episode etc.'),
-		'trailer' => array(false,'Trailer','The trailer of a movie or tv/radio series, season, episode, etc.')
+		//'trailer' => array(false,'Trailer','The trailer of a movie or tv/radio series, season, episode, etc.')
 	);
 
 	public function __construct($type_level_input) {

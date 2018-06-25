@@ -14,7 +14,8 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/schemaFunctions
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Property_Overwrite {
@@ -75,8 +76,10 @@ class Pressbooks_Metadata_Property_Overwrite {
         $toOverwrite = $this->get_overwrite_values();
 
         foreach($toOverwrite as $key){
-            //Enabling the level the type and the property
+
+            //Enabling the level, the type and the property
             $this->enable_type($key,$enablePostType);
+
             //Creating the key to overwrite from settings
             $modifiedKey = strtolower('pb_'.$key.'_'.$dataPostType);
             if(isset($metaData[$modifiedKey])){
@@ -92,9 +95,10 @@ class Pressbooks_Metadata_Property_Overwrite {
     /**
      * Function for enabling the level the type and the property of the overwritten value
      *
-     * @since  0.x
+     * @since  0.17
      */
     private function enable_type($key,$postType){
+    	//processing key
         $dataForEnabling = explode('_',$key);
         $schemaType = $dataForEnabling[1].'_'.$dataForEnabling[2];
         $schemaProp = $dataForEnabling[0];
@@ -102,8 +106,8 @@ class Pressbooks_Metadata_Property_Overwrite {
         //get locations accumulated options
 	    $optionLocations = get_option('schema_locations');
 
-	    //Enable Post Level
-	    $optionLocations[$postType.'_checkbox'] = 1;
+	    //Enable Post/Chapter Level
+	    $optionLocations[$postType] = 1;
         update_option('schema_locations',$optionLocations);
 
 	    //> get parent type to select proper schema type option
@@ -114,16 +118,16 @@ class Pressbooks_Metadata_Property_Overwrite {
 	    }
 
 	    if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
-		    $schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_Organization';
+		    $schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_Organization';
 	    } else{
-		    $schemaOptionName = 'schema_types_' . $postType . '_level_schemaTypes\Pressbooks_Metadata_CreativeWork';
+		    $schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_CreativeWork';
 	    }
 	    //<
 
 	    //get accumulated option for schema types activated
 	    $optionsSchemaTypes = get_option($schemaOptionName);
 
-	    //getting accumulated options for properties
+	    //get accumulated options for properties
 	    $propertyOption = get_option('schema_properties_'.$schemaType. '_' . $postType . '_level') ?: [];
 	    $propertyOptionName = 'schema_properties_'.$schemaType. '_' . $postType . '_level';
 	    foreach(structure::$allSchemaTypes as $type) {
@@ -140,7 +144,7 @@ class Pressbooks_Metadata_Property_Overwrite {
 	    }
 
 	    //Enable Type
-	    $optionsSchemaTypes[$schemaType.'_'.$postType.'_level'] = 1;
+	    $optionsSchemaTypes[$schemaType] = 1;
 	    update_option($schemaOptionName,$optionsSchemaTypes);
 
 	    //Enable Property
@@ -178,6 +182,7 @@ class Pressbooks_Metadata_Property_Overwrite {
      * The function that returns all the properties we have to overwrite
      *
      * @since  0.11
+     * @revised 0.16
      */
     function get_overwrite_values(){
 

@@ -3,6 +3,7 @@
 namespace settings;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
+use schemaFunctions\Pressbooks_Metadata_Engine as engine;
 
 /**
  * This class is an automation for creating fields in the desired sections,
@@ -13,7 +14,8 @@ use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
  *
  * @package    Pressbooks_Metadata
  * @subpackage Pressbooks_Metadata/admin/settings
- * @author     Christos Amyrotos <christosv2@hotmail.com>
+ * @author     Christos Amyrotos @MashRoofa
+ * @author     Daniil Zhitnitskii @danzhik
  */
 
 class Pressbooks_Metadata_Fields {
@@ -26,8 +28,19 @@ class Pressbooks_Metadata_Fields {
 	 */
 	private $optionGeneral;
 
+
+	/**
+	 * Post type to which schema will be applied
+     *
+     * @since 0.18
+	 * @access private
+	 */
+	private $post_type;
+
 	/**
 	 * The name of parent type for schema type to choose appropriate type option
+     * @since 0.18
+     * @access private
 	 */
 	private $parentType;
 
@@ -88,7 +101,8 @@ class Pressbooks_Metadata_Fields {
 		$this->sectionName = $sectionNameInput;
 		$this->displayPage = $displayPageInput;
 		$this->parentType = genFunc::get_active_parent();
-		$this->optionGeneral = get_option('schema_types_'.$this->sectionId.'_'.$this->parentType) ?: [];
+		$this->post_type = explode('_', $this->displayPage)[0];
+		$this->optionGeneral = get_option($this->post_type.'_'.$this->parentType) ?: [];
 
 		$this->pmdt_create_field();
 
@@ -101,7 +115,7 @@ class Pressbooks_Metadata_Fields {
 	 */
 	function pmdt_create_field(){
 		add_settings_field(
-			'schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']',           // ID used to identify the field throughout the theme
+			$this->parentType.'['.$this->metaType.']',           // ID used to identify the field throughout the theme
 			$this->metaInfo[0],                                // The label to the left of the option interface element
 			array( $this, 'pmdt_field_draw' ),              // The name of the function responsible for rendering the option interface
 			$this->displayPage,                             // The page on which this option will be displayed
@@ -111,9 +125,9 @@ class Pressbooks_Metadata_Fields {
 		//We are using a combination of the metaType and the sectionId for the field id so
 		// we can rapidly create fields of the same type in more that one sections,
 		// without having to specify different ids for each section's field's
-		$this->optionGeneral[$this->metaType . '_' . $this->sectionId ] = isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) ? $this->optionGeneral[$this->metaType . '_' . $this->sectionId ] : '';
+		$this->optionGeneral[$this->metaType] = isset($this->optionGeneral[$this->metaType]) ? $this->optionGeneral[$this->metaType] : '';
 		//Adding field to accumulated option
-		update_option('schema_types_'.$this->sectionId.'_'.$this->parentType, $this->optionGeneral);
+		update_option($this->post_type.'_'.$this->parentType, $this->optionGeneral);
 	}
 
 	/**
@@ -142,62 +156,87 @@ class Pressbooks_Metadata_Fields {
 	 * @since  0.8.1
 	 */
 	function pmdt_field_draw(){
-		$html = '<input type="checkbox" id="schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']" name="schema_types_'.$this->sectionId.'_'.$this->parentType.'['.$this->metaType.'_'.$this->sectionId.']" value="1" ' . checked(1, isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) ? ($this->optionGeneral[$this->metaType . '_' . $this->sectionId ] == 1 ? 1 : 0) : 0, false) . '/>';
 
-		$html .= '<label for="show_header">By checking this you allow the '.$this->metaInfo[0].' to show in the '.$this->sectionName.'</label>';
+	    //check if schema type is active for this post type
+	    $optionValue = isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] == 1 ? '1' : '0') : '0';
 
-		//If the type has no properties than we show the user that the parent type will be used insted
-		if(isset($this->metaInfo[2])){
-			$html .= '<p class="noPropType">Type is Empty of properties '.$this->metaInfo[2].' will be used</p>';
-		}
+	    //draw  activation/deactivation buttons
+	    if (isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] != 1 ? 1 : 0) : 1) {
+		    $html = '<button class="button-primary type-button" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Activate</button>';
+		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
+	    } else {
+		    $ID = $this->metaType . '-' . $this->sectionId;
+		    $html = '<button style="margin-right: 3px;" class="button-primary type-button-deact" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
+		    $html .='<a href="#TB_inline?height=550&width=500&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
+		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
+        }
 
-		//Deciding if a support link will appear on the settings or not
-		if($this->metaInfo[1] != ''){
-			$html .= '<p>Find more info about this type <a href="'.$this->metaInfo[1].'"target="_blank">here</a></p>';
-		}else{
-			$html .= '<p>No description available - this is a custom type</p>';
-		}
-		if(!isset($this->metaInfo[2]) && isset($this->optionGeneral[$this->metaType . '_' . $this->sectionId ]) && $this->optionGeneral[$this->metaType . '_' . $this->sectionId ] == 1) {
+        //if schema type has properties, display them as hint
+        if(!isset($this->metaInfo[2])) {
+	        $html .= '<p><i>';
+
+	        foreach ( structure::$allSchemaTypes as $schema_type ) {
+		        if ( key_exists( $this->metaType, $schema_type::$type_setting ) ) {
+			        $flag = 0;
+			        foreach ( $schema_type::$type_properties as $property ) {
+				        $html .= $flag == 1 ? ', ' : '';
+				        $html .= $property[1];
+				        $flag = 1;
+			        }
+		        }
+	        }
+	        $html .= '.</i></p>';
+        } else {
+	        //If the type has no properties than we show the user that the parent type will be used instead
+	        $html .= '<p class="noPropType" "><i>Type is Empty of properties. '.$this->metaInfo[2].' properties will be used.</i></p>';
+        }
+
+        //create a pop-up window for active schema types
+		if(isset($this->optionGeneral[$this->metaType]) && $this->optionGeneral[$this->metaType] == 1) {
+	        //add pop-up box styles and scripts
 			add_thickbox();
 
-			$sectionFieldId = $this->metaType.'_'.$this->sectionId.'_properties';
-			$ID = $this->metaType . '-' . $this->sectionId;
 
+			$properties_page = $this->metaType.'_'.$this->post_type.'_level';
+
+			/* START BUFFERING*/
 			ob_start();
-
-			//Rendering the default properties of the type
-			?><form class="properties-options-form" method="post" action="options.php"><?php
-			settings_fields( $sectionFieldId );
-			do_settings_sections( $sectionFieldId );
-            ?></form><?php
-
-			/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
-
-			$parentIds = $this->get_type_parents(false);
-			$parentNames = $this->get_type_parents(true);
-
 			//Creating the select element for selecting parents
-			?><select class="selectParent">
-			  <option value="parents">Show Basic Properties</option> <?php
+			?><div style="clear: both;"></div><select class="selectParent">
+				<?php  if (!isset($this->metaInfo[2])) { ?>
+                    <option value="parents">Basic Properties</option> <?php
+				} else { ?>
+                    <option value="parents">-- Select Parent Type --</option>
+				<?php }
+				/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
+				$parentIds = $this->get_type_parents(false);
+				$parentNames = $this->get_type_parents(true);
+				$addText = isset($this->metaInfo[2]) ? '' : 'Basic Properties and ';
+				for($i = 0; $i < count($parentIds); $i++){
+					?><option value="<?= $parentIds[$i] ?>"><?= $addText.str_replace('Thing','General',$parentNames[$i]) ?></option><?php
+				}
 
-			for($i = 0; $i < count($parentIds); $i++){
-				?><option value="<?= $parentIds[$i] ?>">Show <?= str_replace('Thing','General',$parentNames[$i]) ?></option><?php
-			}
+				?> </select> <?php
 
-			?> </select> <?php
+			if (!isset($this->metaInfo[2])) {
+				echo '<form class="properties-options-form" method="post" action="options.php">';
+				settings_fields( $properties_page . '_properties' );
+				do_settings_sections( $properties_page . '_properties' );
+				echo '</form><hr>';
+			} else {
+			    echo '<p class="noPropType" "><i>Type is Empty of properties. Use parent properties from below selection.</i></p>';
+            }
 
 			//Creating DIVS with the parents properties inside
 			foreach($parentIds as $parent){
-
-				?><div class="parents" id="<?= $parent ?>" style="display: none"><?php
-
-				$parentField = $this->metaType.'_'.$this->sectionId.'_'.$parent.'_dis';
-				?><form class="properties-options-form" method="post" action="options.php"><?php
-				settings_fields( $parentField );
-				do_settings_sections( $parentField );
-                ?></form><?php
-
-				?></div><?php
+				?><div class="parents" id="<?= $parent ?>" style="display: none">
+                <?php
+					$parentField = $properties_page.'_'.$parent . '_dis';
+					echo '<form class="properties-options-form" method="post" action="options.php">';
+					settings_fields( $parentField );
+					do_settings_sections( $parentField );
+                        ?></form><hr></div>
+                <?php
 			}
 
 			/* END */
@@ -210,14 +249,11 @@ class Pressbooks_Metadata_Fields {
 			<h1>
 				Choose ' . $this->metaInfo[0] . ' Properties:<br>
 			</h1>
-			<div style="display: none;" class="properties-loading-image">
-            <img style="width: 30px; height: 30px;" src="' . plugin_dir_url('') . 'all-in-one-metadata/assets/loading.gif"/>
-            </div>
             <p class="saving-message" style="display: none">Settings Saved!</p>
+            <br><br>
 			</form> <!-- This is a fix for the first types properties not saving -->
 					'.$contents.'
-			</div>
-			<a href="#TB_inline?width=380&height=550&inlineId=my-content-id-' . $ID . '" class="thickbox">Edit Type Properties</a>';
+			</div>';
 		}
 		echo $html;
 	}
