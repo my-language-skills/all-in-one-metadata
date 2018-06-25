@@ -47,7 +47,7 @@ For each one of the activated locations, the different Types and Properties can 
 
 By activating a Type and the properties, the activated properties are show in the location (in Posts or in Site Metadata or Book Info).
 
-The full list of Types and Properties can be find [here](http://schema.org/docs/full.html).
+The full list of Types and Properties can be find [here](http://schema.org/doc/full.html).
 
 By selecting the first checkbox and saving, the page will refresh and you will see this under all activated types a new option **Edit Type Properties** where the different Properties of the Type can be selected.
 
@@ -79,7 +79,7 @@ The new checkboxes copy the information for a specific property from the Site le
 
 ![active Type](images/site_book_type_properties_saved_freezed.png)
 
-An example of the metabox with the Properties frozzen are [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/documentation-2.md#frozzen-post-metadata-post-page-or-cpt).
+An example of the metabox with the Properties frozzen are [here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/doc/documentation-2.md#frozzen-post-metadata-post-page-or-cpt).
 
 ###### Edit Type Properties extended
 
