@@ -33,8 +33,11 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 
 [Specifical documentation](/docs/documentation-2.md)
 
-[Technical Documentation](/docs/documantation-3.md)
+[Technical Documentation Single Site](/docs/documentation-3.md)
 
+[Technical Documentation Multisite](/docs/documentation-4.md)
+
+[Installation, Integrations and Compatibilities](/docs/documentation-5.md)
 
 ---
 https://github.com/pressbooks/pressbooks/issues/950
