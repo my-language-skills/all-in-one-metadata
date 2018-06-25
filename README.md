@@ -1,8 +1,6 @@
-
-
 # All In One Metadata
 
-Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa
+Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa and @danzhik
 
 Tags: pressbooks, metadata, lrmi
 

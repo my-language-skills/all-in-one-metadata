@@ -1,48 +1,4 @@
-#abc-xyz
 
-## Installation and Upgrades
-
-* Clone (or copy) this repository to the /wp-content/plugins/ directory
-* Activate the plugin through the 'Plugins' screen in WordPress
-
-For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
-
-## Installing Required Plugins
-
-If we were to try to create our plugin without the use of existing plugin solutions we simply would not exist. There is no sustainable way to develop all the functionality needed for our plugin while still being able to offer a competitive price.
-
-* [Custom Metadata Manager](https://github.com/Automattic/custom-metadata) An easy way to add custom fields to your object types (post, pages, custom post types, users) & to generate option pages. PressBooks users have Custom Metadata Manager integrated in the code.
-
-For non PressBooks users, All In One Metadata plugin will let you know with an error that the additional plugin is required and it will provide you with a link so you can download and install it. By clicking the link in the error box you will be provided with the required plugin, upload the plugin to your Wordpress installation using one of the two ways described above when we were installing All In One Metadata, activate the plugin and the error will go away. Now we can start using our newly installed plugin.
-
-## Integrations
-
-All in one metadata works out of the box with:
-
-* [PressBooks](http://github.com/pressbooks/pressbooks/) is a book content management system which exports in multiple formats: ebooks, webbooks, print-ready PDF, and various XML flavours. Pressbooks is built on top of WordPress Multisite.
-
-We are focus with the metadata, all the other SEO solutions can be find trough other plugins:
-
-* [The SEO Framework](https://wordpress.org/plugins/autodescription/)
-* [All in one SEO](https://wordpress.org/plugins/all-in-one-seo-pack/)
-* [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
-
-Not all the plugins are 100% integrated with All in one metadata, some of them works in the site for an enhancement of the features of the site. From the settings page, you can choose to deactivate some of the JSON-LD schema metadata for some integrated plugins.
-
-* Comming soon
-
-## Integrated Theme
-
-Any theme can work with All in one metadata.
-
-## This plugin supports:
-
-* PHP 5.3 and higher.
-* WordPress 4.8 and higher.
-* Internationalization through WordPress.org.
-* MultiSite.
-* Translation plugins WPML, Polylang and qTranslate X.
-* Custom Post Types.
 
 
 ## Setup the plugin
@@ -329,42 +285,6 @@ google will be able to read the metadata in the Main Page (Test with [Google str
   * Post level will load all the WordPress posts (Page and Post) and all the Custom Post Types (in a PressBooks installation just the Part, Chapter, Frond Page and Back page CPTs)
   * Site level allows to load the metadata for the front page.
   * Multisite (coming soon)
-
-### All In One Metadata Network Settings (Multisite - PressBooks)
-
-In Multisite installations there is a new page in network settings for the creation of network metadata. This page is very long as it's still under development. Changes will occur in a later release because the navigation of this page is not efficient as it has a long scrolling and as not all of the schema.org properties are displayed.
-
-![Settings page multisite](images/settings_page_multisite.png)
-
-The page offer all the available Types with the Properties created from schema.org.
-
-![multisite Properties empty](images/multisite_book_type_properties_empty.png)
-
-Values can be write in the empty fields and be used in all the sub-sites. Administrators of sub-sites can overwrite the data of the field. But if after the modification of the field by an administrator of a sub-site, the SuperAdmin save again the page, the sub-sites would loose the modifications.
-
-If we want allow the Administrators of the sites to modify the values, after save the value of the field, we have to delete the value of the field and to save again.
-![multisite Properties complete](images/multisite_book_type_properties_complete.png)
-
-If we need to use the same value for a Property in all the sites of the installation, we can freeze the information for one field, and all the Homepages of all the sites of the installation, will use the selected Property. Administrators of sub-sites can not change such value.
-
-![Multisite Properties freeze](images/multisite_book_type_properties_freeze.png)
-
-By activating a Property, several changes would aplly in different places:
-
-*	Site-Meta Level is activated - (‘Location Of Metadata’ metabox in plugin settings)
-*	The Book Type is activated for the Site-Meta level (‘Active Locations For Schema Types’ metabox in plugin settings)
-*	The filed in property named ‘Book Format’ is activated for the Book Type Under the Site-Meta Level (‘Edit Type Properties’ link under the Book Type in plugins settings)
-*	The filled in property value distributes its self on the property field for each site.
-
-![Site Properties freeze](images/site_book_type_properties_freezed_values.png)
-
-We can not create in site level more information, but we can transfer to the post level the information ........
-
-- As SuperAdmin you area allow to transfer properties from the SuperAdmin settings page to all of the Sites (site meta/book info).
-
-- As Admin, you can later to clone that properties from your site meta to your post or chapter (not any other type of CPT).
-
-
 
 ---
 [Readme](https://github.com/Books4Languages/pressbooks-metadata/blob/master/README.md)
