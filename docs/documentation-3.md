@@ -1,8 +1,8 @@
-# Technical Documentation For Developers
+#Technical Documentation For Developers
 
 This document provides information for developers if this plugin on how the plugin works, the workflow of code and database interaction.
 
-## Vocabulary for terms used
+##Vocabulary for terms used
 
 * schema - set of types and properties, provided by [Schema.org](schema.org) service
 * schema_type - type of Schema.org schemas. Schema types have properties to describe metadata of site
@@ -19,7 +19,7 @@ This document provides information for developers if this plugin on how the plug
 * native properties - properties, which are present only in given schema type
 * parent properties - properties, which are inherited by schema types from their parent schema types
 
-## Database Interaction
+##Database Interaction
 
 For All In One Metadata workflow, the plugin registers and stores several options. Most of them are stored serialized, so in order to update one of the settings in a desired entry it is needed first to get the option from database(the output will be array), change the value with corresponding key in array and then update the option with that array. All the options, except 'property_network_value', only have value 1 or 0, which correspondingly mean enabled or disabled. The options registered are following:
 

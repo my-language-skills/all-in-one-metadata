@@ -1,8 +1,7 @@
 
-
 # All In One Metadata
 
-Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa, @danzhik
+Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa and @danzhik
 
 Tags: pressbooks, metadata, lrmi
 
@@ -33,8 +32,11 @@ You can see the [schema properties that we use here](https://github.com/Books4La
 
 [Specifical documentation](/docs/documentation-2.md)
 
-[Technical Documentation](/docs/documentation-3.md)
+[Technical Documentation Single Site](/docs/documentation-3.md)
 
+[Technical Documentation Multisite](/docs/documentation-4.md)
+
+[Installation, Integrations and Compatibilities](/docs/documentation-5.md)
 
 ---
 https://github.com/pressbooks/pressbooks/issues/950
@@ -458,4 +460,4 @@ and one to [Markdown's Syntax Documentation][markdown syntax].
 
 
 ---
-[Up](/Readme.md)
+[Up](/README.md)
