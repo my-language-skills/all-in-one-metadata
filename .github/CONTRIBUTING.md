@@ -31,15 +31,15 @@ Before opening a new issue, please:
 ## I have a feature request
 Before opening a new issue, please:
 * search for duplicate issues to prevent opening a duplicate feature request. If there is already an open existing request, please leave a comment there.
-* add as much information as possible. For example: give us a clear explanation of why you think the feature request is something we should consider for the Yoast SEO plugins.
+* add as much information as possible. For example: give us a clear explanation of why you think the feature request is something we should consider for the All in one metadata plugins.
 
 ## I want to create a patch
-Community made patches, localizations, bug reports and contributions are very welcome and help Yoast SEO remain the #1 SEO plugin for WordPress.
+Community made patches, localizations, bug reports and contributions are very welcome and help All in one metadata remain the #1 Metadata plugin for WordPress.
 
 When contributing please ensure you follow the guidelines below so that we can keep on top of things.
 
 #### Submitting an issue you found
-Make sure your problem does not exist as a ticket already by searching through [the existing issues](https://github.com/Yoast/wordpress-seo/issues). If you cannot find anything which resembles your problem, please [create a new issue](https://github.com/Yoast/wordpress-seo/issues/new).
+Make sure your problem does not exist as a ticket already by searching through [the existing issues](https://github.com/my-language-skills/all-in-one-metadata/issues). If you cannot find anything which resembles your problem, please [create a new issue](https://github.com/my-language-skills/all-in-one-metadata/issues/new).
 
 #### Fixing an issue
 
@@ -47,7 +47,7 @@ Make sure your problem does not exist as a ticket already by searching through [
 * Make the changes to your forked repository.
 * Ensure you stick to the [WordPress Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/) and you properly document any new functions, actions and filters following the [documentation standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/).
 * When committing, reference your issue and include a note about the fix.
-* Push the changes to your fork and submit a pull request to the 'trunk' branch of the Yoast SEO repository.
+* Push the changes to your fork and submit a pull request to the 'trunk' branch of the all-in-one-metadata repository.
 
 We will review your pull request and merge when everything is in order. We will help you to make sure the code complies with the standards described above.
 
