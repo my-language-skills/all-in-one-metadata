@@ -8,7 +8,7 @@ about: Create a report to help us improve
 - Please check the boxes after you've created your issue.
 - Please use the latest version of All in one metadata.-->
 
-* [ ] I've read and understood the [contribution guidelines](https://github.com/my-language-skills/all-in-one-metadata/blob/trunk/.github/CONTRIBUTING.md).
+* [ ] I've read and understood the [contribution guidelines](https://github.com/my-language-skills/all-in-one-metadata/blob/master/.github/CONTRIBUTING.md).
 * [ ] I've searched for any related issues and avoided creating a duplicate issue.
 
 ### Please give us a description of what happened.
