@@ -42,6 +42,10 @@ https://github.com/pressbooks/pressbooks/issues/950
 1. Navigate into `/wp-content/plugins/all-in-one-metadata` and run `composer install` and then `composer dump-autoload -o`
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
+## upgrades
+
+For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
+
 ## Frequently Asked Questions
 
 1. If I don't need to use all the fields of the plugin, can I leave them empty?
