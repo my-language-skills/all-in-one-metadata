@@ -6,17 +6,17 @@ Before filing a bug report or a feature request, be sure to read the contributio
 ## How to use GitHub
 We use GitHub exclusively for well-documented bugs, feature requests and code contributions. Communication is always done in English.
 
-To receive free support for All in one metadata we have the following channels:
-* [abc](https://abc.com)
-* [Support forums](https://abc.com) on WordPress.org
-
-If you have purchased one of [our premium plugins](https://abc.com), we will give you personal support via email, please see your purchase email for details.
-
+To receive free support, we have the following channel: [Developers support forums](https://gitter.im/my-language-skills) - _[Community support forum](https://gitter.im/my-language-skills) [coming soon]_
 
 Thanks for your understanding.
 
+## How to name the versions and to create the Changelog
+
+* [Explicit Versioning](https://software-development-guidelines.github.io/Explicit-Versioning/)
+* [Explicit Changelog](https://software-development-guidelines.github.io/Explicit-Changelog/)
+
 ## Security issues
-Please do not report security issues here. Instead, email them to security at *abc dot com* so we can deal with them securely and quickly.
+Please do not report security issues here. Instead, email them to security at [my language skills](mailto:mylanguageskills@hotmaim.com) so we can deal with them securely and quickly.
 
 ## I have found a bug
 Before opening a new issue, please:
@@ -55,6 +55,6 @@ We will review your pull request and merge when everything is in order. We will 
 Some issues are labeled 'patch-welcome'. This means we see the value in the particular enhancement being suggested but have decided for now not to prioritize it. If you however decide to write a patch for it, we'll gladly include it after some code review.
 
 #### Additional Resources
-* [Yoast SEO API](https://yoa.st/1y4)
+* [Schema.org](https://schema.org/)
 * [General GitHub Documentation](https://help.github.com/)
 * [GitHub Pull Request documentation](https://help.github.com/send-pull-requests/)
