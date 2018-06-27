@@ -28,19 +28,13 @@ taking advantage of the LRMI schema markup.
 You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
 
 
-[General documentation](/docs/documentation-1.md)
-
-[Specifical documentation](/docs/documentation-2.md)
-
-[Technical Documentation Single Site](/docs/documentation-3.md)
-
-[Technical Documentation Multisite](/docs/documentation-4.md)
-
-[Installation, Integrations and Compatibilities](/docs/documentation-5.md)
-
+* [General documentation](/doc/documentation-1.md)
+* [Specifical documentation](/doc/documentation-2.md)
+* [Technical Documentation Single Site](/doc/documentation-3.md)
+* [Technical Documentation Multisite](/doc/documentation-4.md)
+* [Installation, Integrations and Compatibilities](/doc/documentation-5.md)
 ---
 https://github.com/pressbooks/pressbooks/issues/950
-
 
 ## Installation
 
