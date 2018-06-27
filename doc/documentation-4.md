@@ -1,6 +1,8 @@
 ### All In One Metadata Network Settings (Multisite - PressBooks)
 
-In Multisite installations there is a new page in network settings for the creation of network metadata. This page is very long as it's still under development. Changes will occur in a later release because the navigation of this page is not efficient as it has a long scrolling and as not all of the schema.org properties are displayed.
+In Multisite installations there is a new page in network settings for the creation of network metadata.
+
+>This page is very long as it's still under development. Changes will occur in a later release because the navigation of this page is not efficient as it has a long scrolling and as not all of the schema.org properties are displayed.
 
 ![Settings page multisite](images/settings_page_multisite.png)
 
