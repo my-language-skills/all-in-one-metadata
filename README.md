@@ -50,8 +50,8 @@ Yes, if one field is empty the SEO information about it will not be generated.
 1. How can I check if the metadata is update?
 by running [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/) in each one of the places (Main page of the Root theme, Main page of the Single Site and post page of a Site)
 
-1. How can I know wich is the version I should give to my book?
-We use [Explicit Books Versioning](explicit-book-versioning/VERSIONING.md)
+1. If I ue PressBooks, how can I know wich is the version I should give to my book?
+We use [Explicit Books Versioning](https://github.com/software-development-guidelines/explicit-book-versioning)
 
 1. Which metadata can I find?
 All in one metadata have the Types XXX and XXX with all the subtipes and properties till [schema](http://webschemas.org/docs/releases.html) version [3.3](http://webschemas.org/version/3.3/)
@@ -68,7 +68,7 @@ Plugin/Template Name works with:
 
 ## Disclaimers
 
-The Pressbooks plugin is supplied "as is" and all use is at your own risk.
+The All in one metadata plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
