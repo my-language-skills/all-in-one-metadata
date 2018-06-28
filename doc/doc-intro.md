@@ -1,6 +1,6 @@
 # All in one metadata
 
-We're convinced that structured data makes the web better, and we've worked hard to expand [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to the [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. All in one metadata is a complete solution for adding metadata to a Wordpress site.
+We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to expand [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to the [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. All in one metadata is a complete solution for adding metadata to a Wordpress site.
 
 * [Webmasters Rich Snippets FAQ](/doc/doc-faq.md)
 * [What a SEO plugin does](/doc/doc-seo.md)
