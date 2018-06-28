@@ -1,13 +1,6 @@
-
-
-
 ## Setup the plugin
-By activating the plugin, a warming appear in the administrator page with the message:
-  Please make sure that the custom-metadata plugin is installed for the full PB Metadata Functionality -- Get it Here
 
-All in one metadata use Custom Metadata Manager (no for PressBooks users) as an easy way to add custom fields to your object types (post, pages, custom post types, users)
-
-All in one metadata will create two new tabs. All In One Metadata settings in Settings and Site metadata in Tools (For PressBooks users, Site metadata is integrated with Book Info).
+All in one metadata will create two new tabs. Network Metadata in Network Admin and Site metadata in Site Admin (For PressBooks users, Site metadata is integrated with Book Info).
 
 All in one metadata metadata is put into Object cache when a caching plugin is available. The descriptions and Schema.org scripts are put into Transients. Please be sure to clear your cache.
 
@@ -287,4 +280,5 @@ google will be able to read the metadata in the Main Page (Test with [Google str
   * Multisite (coming soon)
 
 ---
-[Readme](https://github.com/Books4Languages/pressbooks-metadata/blob/master/README.md)
+
+[Readme](/Readme.md)

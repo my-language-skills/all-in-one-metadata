@@ -3,7 +3,7 @@
 
 Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa and @danzhik
 
-Tags: pressbooks, metadata, lrmi
+Tags: wordpress, multisite, pressbooks, metadata, schema, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
 
@@ -27,12 +27,12 @@ taking advantage of the LRMI schema markup.
 
 You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
 
-
-* [General documentation](/doc/documentation-1.md)
-* [Specifical documentation](/doc/documentation-2.md)
-* [Technical Documentation Single Site](/doc/documentation-3.md)
-* [Technical Documentation Multisite](/doc/documentation-4.md)
-* [Installation, Integrations and Compatibilities](/doc/documentation-5.md)
+* [Introduction](/doc/doc-intro.md)
+* [Installation, Integrations and Compatibilities](/doc/doc-general.md)
+* [Multisite documentation](/doc/doc-settings-mu.md)
+* [Single Site documentation](/doc/doc-settings-site.md)
+* [Page documentation](/doc/doc-settings-post.md)
+* [Developers documentation](/doc/doc-dev.md)
 ---
 https://github.com/pressbooks/pressbooks/issues/950
 
@@ -54,7 +54,7 @@ Yes, if one field is empty the SEO information about it will not be generated.
 1. How can I check if the metadata is update?
 by running [Google structured data testing tool](https://search.google.com/structured-data/testing-tool/u/0/) in each one of the places (Main page of the Root theme, Main page of the Single Site and post page of a Site)
 
-1. If I ue PressBooks, how can I know wich is the version I should give to my book?
+1. If I use PressBooks, how can I know which is the version I should give to my book?
 We use [Explicit Books Versioning](https://github.com/software-development-guidelines/explicit-book-versioning)
 
 1. Which metadata can I find?
@@ -100,9 +100,7 @@ https://moz.com/learn/seo/duplicate-content
 
 ### Later
 
-
 ### Future
-
 
 ### Changelog
 [See changelog](/CHANGELOG.md)
@@ -169,32 +167,16 @@ To use an old version as the start point.
 
 ## Credits
 
-Here's a link to [Debug Bar](https://wordpress.org/plugins/debug-bar/#description)
-
-Here's a link to [Debug Bar PHP/MySQL console](https://wordpress.org/plugins/debug-bar-console/)
-
-Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
-
-Here's a link to [Composer](https://getcomposer.org/)
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")
-
-Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
-
-Here's a link to [Custom Metadata Manager for WordPress](https://wordpress.org/plugins/custom-metadata/ "Framework for custom field creation")
-
-Here's a link to [PHP Sandbox](http://sandbox.onlinephpfunctions.com/) for PHP code testing
-
-Here's a link to [Dillinger](http://dillinger.io/ "Text Editor for markdown")
-
-and one to [Markdown's Syntax Documentation][markdown syntax].
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
+* Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
+* Here's a link to [Composer](https://getcomposer.org/)
+* Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
+* Here's a link to [Custom Metadata Manager for WordPress](https://wordpress.org/plugins/custom-metadata/ "Framework for custom field creation")
 
 
 
-[AllMyChanges](https://allmychanges.com/p/new/) will track release notes for you and will send you a digest with information about new updates.
+
+
+
 
 
 

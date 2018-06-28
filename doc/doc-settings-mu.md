@@ -34,7 +34,6 @@ We can not create in site level more information, but we can transfer to the pos
 
 - As Admin, you can later to clone that properties from your site meta to your post or chapter (not any other type of CPT).
 
-
-
 ---
-[Readme](https://github.com/Books4Languages/pressbooks-metadata/blob/master/README.md)
+
+[Readme](/Readme.md)

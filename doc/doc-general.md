@@ -41,3 +41,7 @@ Any theme can work with All in one metadata.
 * MultiSite.
 * Translation plugins WPML, Polylang and qTranslate X.
 * Custom Post Types.
+
+---
+
+[Readme](/Readme.md)
