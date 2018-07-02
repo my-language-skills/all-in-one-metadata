@@ -112,14 +112,161 @@ class Pressbooks_Metadata_Network_Admin {
 	    include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
     }
 
+	/**
+	 * Function used to distribute shared or frozen properties for a newly created blog
+     *
+     * @since 0.19
+     * @author Daniil Zhitnitskii @danzhik
+	 */
+	function update_properties_new_blog ($blog_id, $user_id){
+
+		//Wordpress Database variable for database operations
+		global $wpdb;
+
+		//getting options for freezing and sharing properties and values of properties
+		$shared_properties = get_blog_option(1, 'property_network_value_share') ?: [];
+		$frozen_properties = get_blog_option(1, 'property_network_value_freeze') ?: [];
+		$values = get_blog_option(1, 'property_network_value') ?: [];
+
+		switch_to_blog($blog_id);
+
+		//Get the post type we want to work with
+		$postType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+
+		//Get the posts table name for the current site
+		$postsTable = $wpdb->prefix . "posts";
+
+		//Our query that chooses posts of type site-meta or metadata for the book info
+		$selectedPosts = $wpdb->get_results($wpdb->prepare(" 
+			SELECT ID,post_type FROM $postsTable WHERE post_type = %s",$postType),ARRAY_A);
+
+		//If no initial site-meta/metadata post found we create one
+		if(empty($selectedPosts)){
+			$args = array(
+				'post_author'		=>	$user_id,
+				'post_date'			=>  the_date(),
+				'post_content'		=>  '',
+				'post_title'		=> 	'Auto Draft',
+				'post_status'		=>	'publish',
+				'comment_status'	=>  'closed',
+				'ping_status' 		=>  'closed',
+				'post_password'		=>  '',
+				'post_name' 		=>  'auto-draft',
+				'menu_order'		=>  0,
+				'post_type'			=>	$postType
+			);
+
+			$newPostId = wp_insert_post($args);
+
+			$selectedPosts []= array('ID' => $newPostId, 'post_type' => $postType);
+		}
+
+		foreach ($shared_properties as $shared_property => $value){
+		    $data = explode('_',$shared_property);
+		    $property = $data[0].'_'.$data[1].'_'.$data[2].'_'.$data[3];
+		    if (isset($frozen_properties[$property.'_freeze'])) { continue;}
+
+			//Going through all posts and adding the new post_meta
+			foreach($selectedPosts as $post){
+		        $val = isset($values[$property]) ? $values[$property] : '';
+		        update_post_meta($post['ID'], 'pb_'.strtolower($property), $val);
+			}
+
+			//> get parent type to select proper schema type option
+			foreach(structure::$allSchemaTypes as $type) {
+				if(stripos($type,'metadata_'.$data[1])){
+					$schemaTypeParents = $type::$type_parents;
+				}
+			}
+
+			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_Organization';
+			} else{
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_CreativeWork';
+			}
+			//<
+
+			//get accumulated option for schema types activated
+			$optionsSchemaTypes = get_option($schemaOptionName);
+
+			//get accumulated option for activated properties
+			$optionsSchemaProperties = get_option('schema_properties_'.$data[1].'_'.$data[2].'_'.$postType.'_level');
+
+			//Enable Site-Meta Level
+			update_option($postType.'_checkbox', 1);
+
+			//Enable Type
+			$optionsSchemaTypes[$data[1].'_'.$data[2]] = 1;
+
+			update_option($schemaOptionName,$optionsSchemaTypes);
+
+			//Enable Property
+			$optionsSchemaProperties[$data[0]] = 1;
+			update_option('schema_properties_'.$data[1].'_'.$data[2].'_'.$postType.'_level', $optionsSchemaProperties);
+
+        }
+
+		foreach ($frozen_properties as $frozen_property => $value){
+			$data = explode('_',$frozen_property);
+			$property = $data[0].'_'.$data[1].'_'.$data[2].'_'.$data[3];
+
+			//Going through all posts and adding the new post_meta
+			foreach($selectedPosts as $post){
+				$val = isset($values[$property]) ? $values[$property] : '';
+				update_post_meta($post['ID'], 'pb_'.strtolower($property), $val);
+			}
+
+			//if property was shared, next iteration in order not to activate schema type and property twice
+			if (isset($shared_properties[$property.'_share'])) { continue;}
+
+			//> get parent type to select proper schema type option
+			foreach(structure::$allSchemaTypes as $type) {
+				if(stripos($type,'metadata_'.$data[1])){
+					$schemaTypeParents = $type::$type_parents;
+				}
+			}
+
+			if (in_array('schemaTypes\Pressbooks_Metadata_Organization',$schemaTypeParents)) {
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_Organization';
+			} else{
+				$schemaOptionName = $postType.'_schemaTypes\Pressbooks_Metadata_CreativeWork';
+			}
+			//<
+
+			//get accumulated option for schema types activated
+			$optionsSchemaTypes = get_option($schemaOptionName);
+
+			//get accumulated option for activated properties
+			$optionsSchemaProperties = get_option('schema_properties_'.$data[1].'_'.$data[2].'_'.$postType.'_level');
+
+			//Enable Site-Meta Level
+			update_option($postType.'_checkbox', 1);
+
+			//Enable Type
+			$optionsSchemaTypes[$data[1].'_'.$data[2]] = 1;
+
+			update_option($schemaOptionName,$optionsSchemaTypes);
+
+			//Enable Property
+			$optionsSchemaProperties[$data[0]] = 1;
+			update_option('schema_properties_'.$data[1].'_'.$data[2].'_'.$postType.'_level', $optionsSchemaProperties);
+
+		}
+
+		//enabling _saoverwr option
+        update_option($postType.'_saoverwr', '1');
+
+        restore_current_blog();
+	}
+
     /**
      * Function used to distribute property data to all our Book-Info/Site-Meta on all our Sites/Books
      *
      * @since  0.10
      */
-    private function update_properties($metaKey,$newValue,$freezes){
+    private function update_properties($metaKey,$newValue,$freezes, $shares){
 
-        if ((strpos($metaKey, '_freeze') !== false) || $newValue=="") {
+        if ((strpos($metaKey, '_freeze') !== false) || (strpos($metaKey, '_share') !== false) || $newValue=="") {
             return;
         }
 
@@ -150,7 +297,7 @@ class Pressbooks_Metadata_Network_Admin {
             switch_to_blog($site_id);
 
             //Check if the site allows super admin to change data
-            if(!(get_option($postType.'_saoverwr')) && !isset($freezes[str_replace('pb_','',$metaKey).'_freeze'])){
+            if(!(get_option($postType.'_saoverwr')) && (!isset($freezes[str_replace('pb_','',$metaKey).'_freeze']) || !isset($shares[str_replace('pb_','',$metaKey).'_share']))){
                 continue;
             }
 
@@ -183,7 +330,12 @@ class Pressbooks_Metadata_Network_Admin {
             }
             //Going through all posts and adding the new post_meta
             foreach($selectedPosts as $post){
-                update_post_meta( $post['ID'],$metaKey,$newValue);
+	            if(!isset($freezes[str_replace('pb_','',$metaKey).'_freeze']) && isset($shares[str_replace('pb_','',$metaKey).'_share']) && empty(get_post_meta( $post['ID'], $metaKey))){
+		            update_post_meta( $post['ID'],$metaKey,$newValue);
+		            continue;
+                } elseif (isset($freezes[str_replace('pb_','',$metaKey).'_freeze'])) {
+		            update_post_meta( $post['ID'], $metaKey, $newValue );
+	            }
             }
 
             //Extracting data for enabling the post level and the schema type
@@ -192,7 +344,7 @@ class Pressbooks_Metadata_Network_Admin {
 
 	        //> get parent type to select proper schema type option
 	        foreach(structure::$allSchemaTypes as $type) {
-	        	if(stripos($type,'metadata_'.$dataForEnabling[2]) || stripos($type,'site-meta_'.$dataForEnabling[2])){
+	        	if(stripos($type,'metadata_'.$dataForEnabling[2])){
 	        		$schemaTypeParents = $type::$type_parents;
 		        }
 	        }
@@ -267,6 +419,8 @@ class Pressbooks_Metadata_Network_Admin {
         //Collecting freezes from post variable - converting keys to lowercase
         $freezes = $this->cleanCollect($_POST,'_freeze',true);
         $freezes = $freezes['property_network_value_freeze'];
+        $shares = $this->cleanCollect($_POST,'_share',true);
+        $shares = $shares['property_network_value_share'];
 
         // Go through the posted data and save only our options.
         foreach ($options as $option) {
@@ -283,7 +437,7 @@ class Pressbooks_Metadata_Network_Admin {
                 foreach ($properties as $property => $value) {
 
 	                //Updating the property on all sites
-	                $this->update_properties( $property, $properties[$property], $freezes );
+	                $this->update_properties( $property, $properties[$property], $freezes, $shares );
                 }
             } else {
 	            //Making sure we are deleting the option from the root site

@@ -108,10 +108,12 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	    //declaring names for accumulated options
 	    $optionName = 'property_network_value';
 		$freezeOptionName = $optionName.'_freeze';
+		$shareOptionName = $optionName.'_share';
 
 		//getting option array, if not, initialize empty array
 		$values = get_option($optionName) ?: [];
-		$freeze_values = get_option($optionName.'_freeze') ?: [];
+		$freeze_values = get_option($freezeOptionName) ?: [];
+		$share_values = get_option($shareOptionName) ?: [];
 
 		//Registering the setting holding the values of options
 		register_setting($this->sectionDisPage,$optionName);
@@ -119,15 +121,20 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 		//Registering the setting for freezing values
 		register_setting($this->sectionDisPage,$freezeOptionName);
 
+		//Registering option fpr option sharing
+		register_setting($this->sectionDisPage,$shareOptionName);
+
 		//Looping through the properties of the type
 		foreach($data as $propertyId => $details){
 			//Creating the name of the options
 		    $propertyOptionName = $propertyId.'_'.$this->typeId.'_'.$this->typeLevel;
 		    $propertyFreeze = $propertyOptionName.'_freeze';
+		    $propertyShare = $propertyOptionName.'_share';
 
 		    //retrieving property option from array, if not, initialize it
 			$values[$propertyOptionName] = isset($values[$propertyOptionName]) ? $values[$propertyOptionName] : '';
 			$freeze_values[$propertyFreeze] = isset($freeze_values[$propertyFreeze]) ? $freeze_values[$propertyFreeze] : '';
+			$share_values[$propertyShare] = isset($share_values[$propertyShare]) ? $share_values[$propertyShare] : '';
 
 			//Callback function for the input field
 			$fieldRenderFunction = function() use ($propertyOptionName, $optionName, $values){
@@ -140,7 +147,16 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 				?>
 				<label><input type="checkbox" name="<?=$freezeOptionName.'['.$propertyFreeze.']'?>"
 				              value="1" <?php checked($freeze_values[$propertyFreeze]); ?> /> <?php
-				echo 'Check this box if you want to freeze this property on Site-Meta level over all sites.' ?></label>
+				echo 'Enable this property on Site-Meta level over all sites and deactivate further modifications.' ?></label>
+				<?php
+			};
+
+			//Callback function for the share checkbox
+			$checkboxRenderFunctionShare = function() use ($propertyShare, $shareOptionName, $share_values){
+				?>
+                <label><input type="checkbox" name="<?=$shareOptionName.'['.$propertyShare.']'?>"
+                              value="1" <?php checked($share_values[$propertyShare]); ?> /> <?php
+					echo 'Enable this property on Site-Meta level over all sites and share the value above.' ?></label>
 				<?php
 			};
 
@@ -148,9 +164,13 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 			add_settings_field($optionName.'['.$propertyOptionName.']',$details[1]
 				,$fieldRenderFunction,$this->sectionDisPage,$this->sectionId);
 
-			//Adding the checkbox field
+			//Adding the checkbox field for freezing
 			add_settings_field($freezeOptionName.'['.$propertyFreeze.']',''
 				,$checkboxRenderFunction,$this->sectionDisPage,$this->sectionId);
+
+			//Adding the checkbox field for sharing
+			add_settings_field($shareOptionName.'['.$propertyShare.']',''
+				,$checkboxRenderFunctionShare,$this->sectionDisPage,$this->sectionId);
 		}
 	}
 }
