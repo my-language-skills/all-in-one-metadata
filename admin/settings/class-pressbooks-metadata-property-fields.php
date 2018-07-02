@@ -124,10 +124,10 @@ class Pressbooks_Metadata_Property_Fields {
 			$overwriteCallback = function() use ($overwriteField,$overwriteTo, $optionOverwrite){
 				$disabled = $this->details[0]==true ? 'disabled' : '';
 				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'style="display: none;"' : '';
-				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn2">Disable</button>' : '';
+				$disableButton = $this->details[0] == false ? '<div class="tooltip"><button class="overwrite_prop_disable propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn2">Disable</button><span class="tooltiptext">Disable property output on post level. Values stored will not be erased.</span></div>' : '';
 				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="schema_properties_'.$this->sectionId.'['.$this->property.']" name="schema_properties_'.$this->sectionId.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionNative[$this->property]) ? ( $this->generalOptionNative[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
 				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite '.$disabled.'Prop" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/><br>';
-				$html .= '<button class="overwrite_prop_clean propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn">Clear</button>';
+				$html .= '<div class="tooltip"><button class="overwrite_prop_clean propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn">Clear</button><span class="tooltiptext">Delete values from database for all posts.</span></div>';
 				$html .= $disableButton;
 				echo $html;
 			};
@@ -185,10 +185,10 @@ class Pressbooks_Metadata_Property_Fields {
 			$overwriteCallback = function() use ($overwriteField,$overwriteTo, $optionOverwrite){
 				$disabled = $this->details[0]==true ? 'disabled' : '';
 				$overwriteHide = isset($optionOverwrite[$this->property]) ? 'style="display: none;"' : '';
-				$disableButton = $this->details[0] == false ? '<button class="overwrite_prop_disable propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn2">Disable</button>' : '';
+				$disableButton = $this->details[0] == false ? '<div class="tooltip"><button class="overwrite_prop_disable propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn2">Disable</button><span class="tooltiptext">Disable property output on post level. Values stored will not be erased.</span></div>' : '';
 				$html = '<div class="tooltip"><input class="property-checkbox" type="checkbox" id="'.$this->displayPage.'['.$this->property.']" name="'.$this->displayPage.'['.$this->property.']" value="1" ' . checked(1, isset($this->generalOptionParent[$this->property]) ? ( $this->generalOptionParent[$this->property] == 1 ? 1 : 0) : 0, false) . '' . $disabled . '/><span class="tooltiptext">' . $this->details[2] . '</span></div>';
 				$html .= $overwriteTo . ' <input class="property-checkbox property-overwrite '.$disabled.'Prop" type="checkbox" id="'.$overwriteField.'" name="'.$overwriteField.'" value="1" ' . checked(1, isset($optionOverwrite[$this->property]) ? ($optionOverwrite[$this->property] == 1 ? 1 : 0)  : 0, false) . '/><br>';
-				$html .= '<button class="overwrite_prop_clean propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn">Clear</button>';
+				$html .= '<div class="tooltip"><button class="overwrite_prop_clean propertyButtonStyle" '.$overwriteHide.' id="'.$overwriteField.'_btn">Clear</button><span class="tooltiptext">Delete values from database for all posts.</span></div>';
 				$html .= $disableButton;
 				echo $html;
 			};
