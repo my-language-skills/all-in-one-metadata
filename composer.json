@@ -9,12 +9,8 @@
       "schemaTypes\\organization\\": "admin/schemaTypes/organization",
       "adminFunctions\\": "admin/adminFunctions",
       "networkFunctions\\": "admin/networkFunctions",
-      "vocabularyFunctions\\": "admin/vocabularyFunctions",
-      "Spatie\\SchemaOrg\\": "vendor/spatie/schema-org/src"
+      "vocabularyFunctions\\": "admin/vocabularyFunctions"
     }
-  },
-  "require": {
-    "spatie/schema-org": "^1.4"
   }
 }
 
