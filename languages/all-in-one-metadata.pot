@@ -1,14 +1,14 @@
-#Translation file template for All-In-One-Metadata plugin.
+# All-In-One-Metadata translation catalog template
 # Copyright (C) 2018 My Language Skills
 # This file is distributed under the same license as the all-in-one-metadata package.
-# Daniil Zhitnitskii danonchik98@gmail.com, 2018.
+# Daniil Zhitnitskii danonchik98@gmail.com.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-02 16:28+0200\n"
+"POT-Creation-Date: 2018-07-02 16:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
