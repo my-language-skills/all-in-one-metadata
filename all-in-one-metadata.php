@@ -21,7 +21,7 @@
  * Author URI:        http://books4languages.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       pressbooks-metadata
+ * Text Domain:       all-in-one-metadata
  * Domain Path:       /languages
  */
 

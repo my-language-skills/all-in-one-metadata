@@ -35,7 +35,7 @@ class Pressbooks_Metadata_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'pressbooks-metadata',
+			'all-in-one-metadata',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
