@@ -92,12 +92,12 @@ class Pressbooks_Metadata_Post_Type_Fields {
 		//Outputting messages for the site level -- book level metadata
 		if($this->fieldName == 'Site-meta'){
 			if(site_cpt::pressbooks_identify()){
-				echo '<p>If you enable this you will be able to add metadata to your Book from Book Info menu.</p>';
+				_e('<p>If you enable this you will be able to add metadata to your Book from Book Info menu.</p>', 'all-in-one-metadata');
 			}else{
-				echo '<p>If you enable this you will be able to add metadata to your Site from Site-Meta submenu</p>';
+				_e('<p>If you enable this you will be able to add metadata to your Site from Site-Meta submenu</p>', 'all-in-one-metadata');
 			}
 		}else if($this->fieldName == 'Allow Overwrite'){
-            echo '<p>If you enable this you allow the super admin to take full access on your site metadata.</p>';
+            _e('<p>If you enable this you allow the super admin to take full access on your site metadata.</p>', 'all-in-one-metadata');
         }
 	}
 }

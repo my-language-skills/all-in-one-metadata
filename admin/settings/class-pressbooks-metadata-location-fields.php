@@ -102,12 +102,12 @@ class Pressbooks_Metadata_Location_Fields {
 		//Outputting messages for the site level -- book level metadata
 		if($this->fieldName == 'Site-meta'){
 			if(site_cpt::pressbooks_identify()){
-				echo '<p>If you enable this you will be able to add metadata to your Book from Book Info menu.</p>';
+				_e('<p>If you enable this you will be able to add metadata to your Book from Book Info menu.</p>', 'all-in-one-metadata');
 			}else{
-				echo '<p>If you enable this you will be able to add metadata to your Site from Site Metadata submenu under Tools</p>';
+				_e('<p>If you enable this you will be able to add metadata to your Site from Site Metadata submenu under Tools</p>', 'all-in-one-metadata');
 			}
-		}else if($this->fieldName == 'Allow Overwrite'){
-			echo '<p>If you enable this you allow the super admin to take full access on your site metadata.</p>';
+		}else if($this->fieldName == __('Allow Overwrite', 'all-in-one-metadata')){
+			_e('<p>If you enable this you allow the super admin to take full access on your site metadata.</p>', 'all-in-one-metadata');
 		}
 	}
 }

@@ -35,18 +35,18 @@ class Pressbooks_Metadata_Site_Cpt {
 	 */
 	private function run_custom_post(){
 		$labels = array(
-			'name' => 'Site Metadata',
-			'singular_name' => 'Site Metadata',
-			'add_new' => 'Add New Site Metadata',
-			'add_new_item' => 'Edit Site Meta Information',
-			'edit_item' => 'Edit Site Meta Information',
-			'new_item' => 'New Site Metadata',
-			'view_item' => 'View Site Metadata',
-			'search_items' => 'Search Site Metadata',
-			'not_found' => 'No site metadata found',
-			'not_found_in_trash' => 'No site metadata found in Trash',
+			'name' => __('Site Metadata', 'all-in-one-metadata'),
+			'singular_name' => __('Site Metadata', 'all-in-one-metadata'),
+			'add_new' => __('Add New Site Metadata', 'all-in-one-metadata'),
+			'add_new_item' => __('Edit Site Meta Information', 'all-in-one-metadata'),
+			'edit_item' => __('Edit Site Meta Information', 'all-in-one-metadata'),
+			'new_item' => __('New Site Metadata', 'all-in-one-metadata'),
+			'view_item' => __('View Site Metadata', 'all-in-one-metadata'),
+			'search_items' => __('Search Site Metadata', 'all-in-one-metadata'),
+			'not_found' => __('No site metadata found', 'all-in-one-metadata'),
+			'not_found_in_trash' => __('No site metadata found in Trash', 'all-in-one-metadata'),
 			'parent_item_colon' => '',
-			'menu_name' => 'Site Metadata',
+			'menu_name' => __('Site Metadata', 'all-in-one-metadata'),
 		);
 		$args = array(
 			'labels' => $labels,
@@ -72,15 +72,15 @@ class Pressbooks_Metadata_Site_Cpt {
 	public function change_custom_post_mess($messages){
 		$messages['site-meta'] = array(
 			0 => '', // Unused. Messages start at index 1.
-			1 => 'Site Metadata updated.',
-			2 => 'Custom field updated.',
-			3 => 'Custom field deleted.',
-			4 => 'Site Metadata updated.',
+			1 => __('Site Metadata updated.', 'all-in-one-metadata'),
+			2 => __('Custom field updated.', 'all-in-one-metadata'),
+			3 => __('Custom field deleted.', 'all-in-one-metadata'),
+			4 => __('Site Metadata updated.', 'all-in-one-metadata'),
 			/* translators: %s: date and time of the revision */
-			5 => isset( $_GET['revision'] ) ? sprintf( 'Site Metadata restored to revision from %s', wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-			6 => 'Site Metadata updated.',
-			7 => 'Site Metadata saved.',
-			8 => 'Site Metadata submitted'
+			5 => isset( $_GET['revision'] ) ? sprintf( __('Site Metadata restored to revision from %s', 'all-in-one-metadata'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			6 => __('Site Metadata updated.', 'all-in-one-metadata'),
+			7 => __('Site Metadata saved.', 'all-in-one-metadata'),
+			8 => __('Site Metadata submitted', 'all-in-one-metadata')
 		);
 		return $messages;
 	}

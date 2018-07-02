@@ -32,11 +32,11 @@ if($post_type == 'pressbooks'){
 
 //if site-meta/metadata location is not active, ask user to activate it to be able to manage it (with other post types settings are just not shown in case they are inactive)
 if(($post_type == 'site-meta' && !in_array('site-meta', $allPostTypes)) || ($post_type == 'metadata' && !in_array('metadata', $allPostTypes))){
-    echo '<p id="noLocationError">Activate Site-Meta location to manage Schema Types on this level</p>';
+    echo '<p id="noLocationError">'.__('Activate Site-Meta location to manage Schema Types on this level', 'all-in-one-metadata').'</p>';
 }else{
 
-        echo '<p>Select schema types that you want to be active</p>';
-        echo '<p>Choose What You Are Trying To Describe With Metadata</p>';
+        _e('<p>Select schema types that you want to be active</p>', 'all-in-one-metadata');
+        _e('<p>Choose What You Are Trying To Describe With Metadata</p>', 'all-in-one-metadata');
         ?>
         <form method="post" action="options.php" id="parent_filter_form">
             <?php

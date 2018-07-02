@@ -29,16 +29,16 @@ class Pressbooks_Metadata_Options {
 	public function add_options_page() {
 
 		//Creating the options page for the plugin
-		$this->pagehook = add_menu_page('All In One Metadata Settings', "Metadata", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'), 'dashicons-search');
+		$this->pagehook = add_menu_page(__('All In One Metadata Settings', 'all-in-one-metadata'), "Metadata", 'manage_options', 'pressbooks_metadata_settings', array($this, 'render_options_page'), 'dashicons-search');
 
 		//small fix to have different menu name of first tab
-		add_submenu_page('pressbooks_metadata_settings','General Settings', 'General Settings', 'manage_options', 'pressbooks_metadata_settings');
+		add_submenu_page('pressbooks_metadata_settings',__('General Settings', 'all-in-one-metadata'), __('General Settings', 'all-in-one-metadata'), 'manage_options', 'pressbooks_metadata_settings');
 
 		if(!site_cpt::pressbooks_identify()){
 			//Used to remove the default menu for the cpt we created
 			remove_menu_page( 'edit.php?post_type=site-meta' );
 			remove_meta_box( 'submitdiv', 'site-meta', 'side' );
-			add_meta_box( 'metadata-save', 'Save Site Metadata Information', array( $this, 'metadata_save_box' ), 'site-meta', 'side', 'high' );
+			add_meta_box( 'metadata-save', __('Save Site Metadata Information', 'all-in-one-metadata'), array( $this, 'metadata_save_box' ), 'site-meta', 'side', 'high' );
 			$meta = site_cpt::get_site_meta_post();
 			if ( ! empty( $meta ) ) {
 				$site_meta_url = 'post.php?post=' . absint( $meta->ID ) . '&action=edit';
@@ -56,14 +56,14 @@ class Pressbooks_Metadata_Options {
 		foreach ($this->locations as $location => $enabled) {
 
 			if ( $enabled && ! ( $location == 'site-meta' || $location == 'metadata' ) ) {
-				add_submenu_page( 'pressbooks_metadata_settings', ucfirst( $location ) . ' Metadata Settings', ucfirst( $location ) . ' Metadata', 'manage_options', $location . '_meta_settings'
+				add_submenu_page( 'pressbooks_metadata_settings', ucfirst( $location ) . __(' Metadata Settings', 'all-in-one-metadata'), ucfirst( $location ) .' Metadata', 'manage_options', $location . '_meta_settings'
                     , function () use ($location){
 					wp_enqueue_script('common');
 					wp_enqueue_script('wp-lists');
 					wp_enqueue_script('postbox');
 
 					//adding metabox to post options page
-					add_meta_box('activated-schema-types', 'Active Schema Types', array($this, 'render_metabox_active_schemas'), $location.'_meta_settings', 'normal', 'core');
+					add_meta_box('activated-schema-types', __('Active Schema Types', 'all-in-one-metadata'), array($this, 'render_metabox_active_schemas'), $location.'_meta_settings', 'normal', 'core');
 					?>
                     <div class="wrap">
                         <h2><?=ucfirst($location)?> Metadata Settings</h2>
@@ -99,7 +99,7 @@ class Pressbooks_Metadata_Options {
 	function render_options_page() {
 		?>
         <div class="wrap">
-            <h2>All In One Metadata Settings</h2>
+            <h2><?=__('All In One Metadata Settings', 'all-in-one-metadata');?></h2>
             <div class="metabox-holder">
 					<?php
 					do_meta_boxes($this->pagehook, 'normal','');
@@ -132,10 +132,10 @@ class Pressbooks_Metadata_Options {
 
 		$site_level = site_cpt::pressbooks_identify() ? 'Book Info' : 'Site-Meta';
 
-		add_meta_box('metadata-location', 'Location Of Metadata', array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
-		add_meta_box('activated-schema-types', $site_level.' Settings', array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
-		add_meta_box('specific-metadata', 'Specific Metadata', array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
-		add_meta_box('general-settings', 'General Settings', array($this, 'render_general_settings'), $this->pagehook, 'normal', 'core');
+		add_meta_box('metadata-location', __('Location Of Metadata', 'all-in-one-metadata'), array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
+		add_meta_box('activated-schema-types', $site_level.__(' Settings', 'all-in-one-metadata'), array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
+		add_meta_box('specific-metadata', __('Specific Metadata', 'all-in-one-metadata'), array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
+		add_meta_box('general-settings', __('General Settings', 'all-in-one-metadata'), array($this, 'render_general_settings'), $this->pagehook, 'normal', 'core');
 	}
 
 	/**
@@ -181,10 +181,10 @@ class Pressbooks_Metadata_Options {
 	function metadata_save_box( $post ) {
 		if ( 'publish' === $post->post_status ) { ?>
             <input name="original_publish" type="hidden" id="original_publish" value="Update"/>
-            <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="Save"/>
+            <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?=__('Save', 'all-in-one-metadata')?>"/>
 		<?php } else { ?>
             <input name="original_publish" type="hidden" id="original_publish" value="Publish"/>
-            <input name="publish" id="publish" type="submit" class="button button-primary button-large" value="Save" tabindex="5" accesskey="p"/>
+            <input name="publish" id="publish" type="submit" class="button button-primary button-large" value="<?=__('Save', 'all-in-one-metadata')?>" tabindex="5" accesskey="p"/>
 			<?php
 		}
 	}

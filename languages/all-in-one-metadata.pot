@@ -1,1 +1,398 @@
+#Translation file template for All-In-One-Metadata plugin.
+# Copyright (C) 2018 My Language Skills
+# This file is distributed under the same license as the all-in-one-metadata package.
+# Daniil Zhitnitskii danonchik98@gmail.com, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-02 16:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
 
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:32
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:102
+msgid "All In One Metadata Settings"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:35
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:138
+msgid "General Settings"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:41
+msgid "Save Site Metadata Information"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:59
+msgid " Metadata Settings"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:66
+msgid "Active Schema Types"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:135
+msgid "Location Of Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:136
+msgid " Settings"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:137
+msgid "Specific Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:184
+#: admin/adminFunctions/class-pressbooks-metadata-options.php:187
+msgid "Save"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:38
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:39
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:49
+msgid "Site Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:40
+msgid "Add New Site Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:41
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:42
+msgid "Edit Site Meta Information"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:43
+msgid "New Site Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:44
+msgid "View Site Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:45
+msgid "Search Site Metadata"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:46
+msgid "No site metadata found"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:47
+msgid "No site metadata found in Trash"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:75
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:78
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:81
+msgid "Site Metadata updated."
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:76
+msgid "Custom field updated."
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:77
+msgid "Custom field deleted."
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:80
+#, php-format
+msgid "Site Metadata restored to revision from %s"
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:82
+msgid "Site Metadata saved."
+msgstr ""
+
+#: admin/adminFunctions/class-pressbooks-metadata-site-cpt.php:83
+msgid "Site Metadata submitted"
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-net-sett-sections.php:87
+msgid "The type is Empty of Properties."
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-net-sett-sections.php:150
+msgid ""
+"Enable this property on Site-Meta level over all sites and deactivate "
+"further modifications."
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-net-sett-sections.php:159
+msgid ""
+"Enable this property on Site-Meta level over all sites and share the value "
+"above."
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-network-admin.php:41
+msgid "All In One Metadata Network Admin Settings"
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-network-admin.php:42
+#: admin/partials/pressbooks-metadata-network-admin-settings.php:17
+msgid "All In One Metadata Network Settings"
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-network-admin.php:50
+msgid "Manage Options"
+msgstr ""
+
+#: admin/networkFunctions/class-pressbooks-metadata-network-admin.php:64
+msgid " On Site Level"
+msgstr ""
+
+#: admin/partials/pressbooks-metadata-admin-settings-activeSchemas.php:35
+msgid "Activate Site-Meta location to manage Schema Types on this level"
+msgstr ""
+
+#: admin/partials/pressbooks-metadata-admin-settings-activeSchemas.php:38
+msgid "<p>Select schema types that you want to be active</p>"
+msgstr ""
+
+#: admin/partials/pressbooks-metadata-admin-settings-activeSchemas.php:39
+msgid "<p>Choose What You Are Trying To Describe With Metadata</p>"
+msgstr ""
+
+#: admin/partials/pressbooks-metadata-admin-settings-specificMeta.php:14
+msgid "Other Types of Metadata Vocabularies"
+msgstr ""
+
+#: admin/partials/pressbooks-metadata-network-admin-settings.php:14
+msgid "Options saved."
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php:115
+msgid "Book-Info"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php:130
+msgid "is Overwritten by"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php:130
+msgid "The value is "
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-create-metabox.php:130
+msgid "Check the predefined value there."
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:121
+msgid "Choose On Which Post Types You Want to Display Schemas"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:122
+msgid "Choose If You Want To Display Schemas On The Site Level"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:135
+msgid "Network Administrator right to rewrite Site-Meta"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:137
+msgid "Allow"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:167
+msgid "Enable Coins Metadata"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:168
+msgid "Enable Dublin Core Metadata"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:169
+msgid "Enable Educational Metadata"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:177
+msgid "Coins Metadata"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:178
+msgid "Dublin Core Metadata"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:179
+msgid "Educational Metadata Site Level"
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:182
+msgid "Educational Metadata "
+msgstr ""
+
+#: admin/schemaFunctions/class-pressbooks-metadata-engine.php:199
+msgid "Manage Schema Types"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-location-fields.php:105
+#: admin/settings/class-pressbooks-metadata-post-types-fields.php:95
+msgid ""
+"<p>If you enable this you will be able to add metadata to your Book from "
+"Book Info menu.</p>"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-location-fields.php:107
+msgid ""
+"<p>If you enable this you will be able to add metadata to your Site from "
+"Site Metadata submenu under Tools</p>"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-location-fields.php:109
+msgid "Allow Overwrite"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-location-fields.php:110
+#: admin/settings/class-pressbooks-metadata-post-types-fields.php:100
+msgid ""
+"<p>If you enable this you allow the super admin to take full access on your "
+"site metadata.</p>"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-post-types-fields.php:97
+msgid ""
+"<p>If you enable this you will be able to add metadata to your Site from "
+"Site-Meta submenu</p>"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-property-fields.php:127
+#: admin/settings/class-pressbooks-metadata-property-fields.php:188
+msgid "Disable"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-property-fields.php:127
+#: admin/settings/class-pressbooks-metadata-property-fields.php:188
+msgid ""
+"Disable property output on post level. Values stored will not be erased."
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-property-fields.php:130
+#: admin/settings/class-pressbooks-metadata-property-fields.php:191
+#: symbionts/custom-metadata/custom_metadata.php:284
+msgid "Clear"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-property-fields.php:130
+#: admin/settings/class-pressbooks-metadata-property-fields.php:191
+msgid "Delete values from database for all posts."
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-property-fields.php:174
+msgid " to Chapter"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-property-fields.php:174
+msgid " to Post"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:165
+msgid "Activate"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:169
+msgid "Deactivate"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:170
+msgid "Edit"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:191
+msgid "Type is Empty of properties. "
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:191
+msgid " properties will be used."
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:207
+msgid "Basic Properties"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:209
+msgid "Select Parent Type"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:214
+msgid "Basic Properties and "
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:216
+msgid "General"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:227
+msgid ""
+"Type is Empty of properties. Use parent properties from below selection."
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:250
+msgid "Choose "
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:250
+msgid " Properties:"
+msgstr ""
+
+#: admin/settings/class-pressbooks-metadata-type-fields.php:252
+msgid "Settings Saved!"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:282
+msgid "Choose a file"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:283
+msgid "Select this file"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:285
+msgid "Select"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:509
+#, php-format
+msgid "<strong>%1$s:</strong> %2$s"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:600
+msgid "Uh oh, something went wrong!"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:1135
+msgid "duplicate this set of fields"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:1138
+msgid "remove this set of fields"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:1170
+msgid "<strong>Note:</strong> this field type cannot be multiplied"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:1280
+#: symbionts/custom-metadata/custom_metadata.php:1295
+#: symbionts/custom-metadata/custom_metadata.php:1338
+#: symbionts/custom-metadata/custom_metadata.php:1351
+#, php-format
+msgid "There are no %s to select from yet."
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:1308
+msgid "Delete"
+msgstr ""
+
+#: symbionts/custom-metadata/custom_metadata.php:1368
+msgid "+ Add New"
+msgstr ""

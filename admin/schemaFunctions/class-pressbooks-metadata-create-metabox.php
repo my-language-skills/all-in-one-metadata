@@ -112,7 +112,7 @@ class Pressbooks_Metadata_Create_Metabox {
      */
     function overwritten_field( $field_slug, $field, $value ) {
         //Getting the origin for overwritten data
-        $dataFrom = site_cpt::pressbooks_identify() ? 'Book-Info' : 'Site-Meta';
+        $dataFrom = site_cpt::pressbooks_identify() ? __('Book-Info', 'all-in-one-metadata') : 'Site-Meta';
         //creating arguments to get site-meta/metadata post
         $postType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
         //getting site-meta/metadata post
@@ -127,7 +127,7 @@ class Pressbooks_Metadata_Create_Metabox {
 
         ?>
         <hr />
-        <p><strong><?=$property?></strong> is Overwritten by <?=$dataFrom?>. <?php if ($value !== "") echo 'The value is "'.$value.'"'; else echo 'Check the predefined value there.';?></p>
+        <p><strong><?=$property?></strong> <?=__('is Overwritten by', 'all-in-one-metadata').' '.$dataFrom?>. <?php if ($value !== "") echo __('The value is ', 'all-in-one-metadata'),'"'.$value.'"'; else _e('Check the predefined value there.', 'all-in-one-metadata');?></p>
         <input type="hidden" name="<?=$field_slug?>" value="<?=$value?>" />
         <hr />
         <?php

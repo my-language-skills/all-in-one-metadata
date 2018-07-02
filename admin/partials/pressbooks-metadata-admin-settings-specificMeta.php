@@ -11,7 +11,7 @@
 */
 ?>
 
-<p>Other Types of Metadata Vocabularies</p>
+<p><?=__('Other Types of Metadata Vocabularies', 'all-in-one-metadata')?></p>
 <div class="nav-tab-wrapper">
 	<button class="tablinks-vocab nav-tab" onclick="openSett(event,'tablinks-vocab', 'coins','vocab')">Coins</button>
 	<button class="tablinks-vocab nav-tab" onclick="openSett(event,'tablinks-vocab', 'dublin','vocab')">Dublin</button>

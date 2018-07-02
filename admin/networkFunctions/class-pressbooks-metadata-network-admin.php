@@ -38,8 +38,8 @@ class Pressbooks_Metadata_Network_Admin {
      */
     function add_settings() {
         // Create our options page.
-        add_submenu_page( 'settings.php', 'All In One Metadata Network Admin Settings',
-            'All In One Metadata Network Settings', 'manage_network_options',
+        add_submenu_page( 'settings.php', __('All In One Metadata Network Admin Settings', 'all-in-one-metadata'),
+            __('All In One Metadata Network Settings', 'all-in-one-metadata'), 'manage_network_options',
             'site_level_admin_display', array( $this, 'render_network_settings' ) );
 
         //These variables are static now because this is a prototype for the book level types
@@ -47,7 +47,7 @@ class Pressbooks_Metadata_Network_Admin {
         $sectionId   = 'site_level_section';
 
         //adding metabox for proper output layout
-        add_meta_box('site_level_admin', 'Manage Options', array($this, 'render_metabox_network'), $displayPage, 'normal', 'core');
+        add_meta_box('site_level_admin', __('Manage Options', 'all-in-one-metadata'), array($this, 'render_metabox_network'), $displayPage, 'normal', 'core');
 
         //Getting the value of the level
         //In our case is metadata for pressbooks or site-meta for the wordpress default installation
@@ -61,7 +61,7 @@ class Pressbooks_Metadata_Network_Admin {
             new net_sections(
                 $sectionId . '_' . $type_details[0],
                 $displayPage,
-                $type_details[1].' On Site Level',
+                $type_details[1].__(' On Site Level', 'all-in-one-metadata'),
                 $type_details[0],
                 $type::$type_properties,
                 $siteLevelIndicator,

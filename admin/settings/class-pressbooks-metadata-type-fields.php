@@ -162,12 +162,12 @@ class Pressbooks_Metadata_Fields {
 
 	    //draw  activation/deactivation buttons
 	    if (isset($this->optionGeneral[$this->metaType]) ? ($this->optionGeneral[$this->metaType] != 1 ? 1 : 0) : 1) {
-		    $html = '<button class="button-primary type-button" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Activate</button>';
+		    $html = '<button class="button-primary type-button" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />'.__('Activate', 'all-in-one-metadata').'</button>';
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
 	    } else {
 		    $ID = $this->metaType . '-' . $this->sectionId;
-		    $html = '<button style="margin-right: 3px;" class="button-primary type-button-deact" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />Deactivate</button>';
-		    $html .='<a href="#TB_inline?height=550&width=500&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">Edit</a>';
+		    $html = '<button style="margin-right: 3px;" class="button-primary type-button-deact" type="button"  name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" value="1" />'.__('Deactivate', 'all-in-one-metadata').'</button>';
+		    $html .='<a href="#TB_inline?height=550&width=500&inlineId=my-content-id-' . $ID . '" class="thickbox button-primary">'.__('Edit', 'all-in-one-metadata').'</a>';
 		    $html .= '<input type="hidden" value="'.$optionValue.'" id = "'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']" name="'. $this->post_type. '_' . $this->parentType . '[' . $this->metaType . ']">';
         }
 
@@ -188,7 +188,7 @@ class Pressbooks_Metadata_Fields {
 	        $html .= '.</i></p>';
         } else {
 	        //If the type has no properties than we show the user that the parent type will be used instead
-	        $html .= '<p class="noPropType" "><i>Type is Empty of properties. '.$this->metaInfo[2].' properties will be used.</i></p>';
+	        $html .= '<p class="noPropType" "><i>'.__('Type is Empty of properties. ', 'all-in-one-metadata').$this->metaInfo[2].__(' properties will be used.', 'all-in-one-metadata').'</i></p>';
         }
 
         //create a pop-up window for active schema types
@@ -204,16 +204,16 @@ class Pressbooks_Metadata_Fields {
 			//Creating the select element for selecting parents
 			?><div style="clear: both;"></div><select class="selectParent">
 				<?php  if (!isset($this->metaInfo[2])) { ?>
-                    <option value="parents">Basic Properties</option> <?php
+                    <option value="parents"><?=__('Basic Properties', 'all-in-one-metadata')?></option> <?php
 				} else { ?>
-                    <option value="parents">-- Select Parent Type --</option>
+                    <option value="parents">-- <?=__('Select Parent Type', 'all-in-one-metadata')?>  --</option>
 				<?php }
 				/* GETTING PARENTS AND SETTING UP THE SELECT ELEMENT */
 				$parentIds = $this->get_type_parents(false);
 				$parentNames = $this->get_type_parents(true);
-				$addText = isset($this->metaInfo[2]) ? '' : 'Basic Properties and ';
+				$addText = isset($this->metaInfo[2]) ? '' : __('Basic Properties and ', 'all-in-one-metadata');
 				for($i = 0; $i < count($parentIds); $i++){
-					?><option value="<?= $parentIds[$i] ?>"><?= $addText.str_replace('Thing','General',$parentNames[$i]) ?></option><?php
+					?><option value="<?= $parentIds[$i] ?>"><?= $addText.str_replace('Thing',__('General', 'all-in-one-metadata'),$parentNames[$i]) ?></option><?php
 				}
 
 				?> </select> <?php
@@ -224,7 +224,7 @@ class Pressbooks_Metadata_Fields {
 				do_settings_sections( $properties_page . '_properties' );
 				echo '</form><hr>';
 			} else {
-			    echo '<p class="noPropType" "><i>Type is Empty of properties. Use parent properties from below selection.</i></p>';
+			    echo '<p class="noPropType" "><i>'.__('Type is Empty of properties. Use parent properties from below selection.', 'all-in-one-metadata').'</i></p>';
             }
 
 			//Creating DIVS with the parents properties inside
@@ -247,9 +247,9 @@ class Pressbooks_Metadata_Fields {
 
 			$html .= '<div class="property-settings" id="my-content-id-' . $ID . '" style="display:none;">
 			<h1>
-				Choose ' . $this->metaInfo[0] . ' Properties:<br>
+				'.__('Choose ', 'all-in-one-metadata') . $this->metaInfo[0] . __(' Properties:', 'all-in-one-metadata').'<br>
 			</h1>
-            <p class="saving-message" style="display: none">Settings Saved!</p>
+            <p class="saving-message" style="display: none">'.__('Settings Saved!', 'all-in-one-metadata').'</p>
             <br><br>
 			</form> <!-- This is a fix for the first types properties not saving -->
 					'.$contents.'

@@ -84,7 +84,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 
 		//Callback function for the section
 		$sectionCallback = !isset($this->isEmpty) ? false : function() {
-			$html =  '<p class="noPropType">The type is Empty of Properties</p><br>';
+			$html =  '<p class="noPropType">'.__('The type is Empty of Properties.', 'all-in-one-metadata').'</p><br>';
 			echo $html;
 		};
 
@@ -147,7 +147,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 				?>
 				<label><input type="checkbox" name="<?=$freezeOptionName.'['.$propertyFreeze.']'?>"
 				              value="1" <?php checked($freeze_values[$propertyFreeze]); ?> /> <?php
-				echo 'Enable this property on Site-Meta level over all sites and deactivate further modifications.' ?></label>
+				_e('Enable this property on Site-Meta level over all sites and deactivate further modifications.', 'all-in-one-metadata') ?></label>
 				<?php
 			};
 
@@ -156,7 +156,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 				?>
                 <label><input type="checkbox" name="<?=$shareOptionName.'['.$propertyShare.']'?>"
                               value="1" <?php checked($share_values[$propertyShare]); ?> /> <?php
-					echo 'Enable this property on Site-Meta level over all sites and share the value above.' ?></label>
+                    _e('Enable this property on Site-Meta level over all sites and share the value above.', 'all-in-one-metadata') ?></label>
 				<?php
 			};
 

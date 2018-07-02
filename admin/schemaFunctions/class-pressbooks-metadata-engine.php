@@ -118,8 +118,8 @@ class Pressbooks_Metadata_Engine {
 		$postLevelPage = "location_levels_tab";
 		$siteLevelSection = "siteLevelSection";
 
-		add_settings_section($postLevelSection, "Choose On Which Post Types You Want to Display Schemas", null, $postLevelPage);
-		add_settings_section($siteLevelSection, "Choose If You Want To Display Schemas On The Site Level", null, $postLevelPage);
+		add_settings_section($postLevelSection, __("Choose On Which Post Types You Want to Display Schemas", 'all-in-one-metadata'), null, $postLevelPage);
+		add_settings_section($siteLevelSection, __("Choose If You Want To Display Schemas On The Site Level", 'all-in-one-metadata'), null, $postLevelPage);
 
 
 		//Gathering post types
@@ -132,9 +132,9 @@ class Pressbooks_Metadata_Engine {
 			$networkFreezeSection = "networkFreezeSection";
 
 			//Creating the section for network freezing option
-			add_settings_section($networkFreezeSection, "Network Administrator right to rewrite Site-Meta", null, $generalSettPage);
+			add_settings_section($networkFreezeSection, __("Network Administrator right to rewrite Site-Meta", 'all-in-one-metadata'), null, $generalSettPage);
 			//Create checkbox for option
-			new post_type_fields($post_type . '_saoverwr', 'Allow', $generalSettPage, $networkFreezeSection);
+			new post_type_fields($post_type . '_saoverwr', __('Allow', 'all-in-one-metadata'), $generalSettPage, $networkFreezeSection);
 		}
 
 		//Gathering post types
@@ -164,9 +164,9 @@ class Pressbooks_Metadata_Engine {
 		$educationalLevelPage = "educational_level_tab";
 
 		//Creating sections for the external vocabularies
-		add_settings_section($coinsLevelSection, "Enable Coins Metadata", null, $coinsLevelPage);
-		add_settings_section($dublinLevelSection, "Enable Dublin Core Metadata", null, $dublinLevelPage);
-		add_settings_section($educationalLevelSection, "Enable Educational Metadata", null, $educationalLevelPage);
+		add_settings_section($coinsLevelSection, __("Enable Coins Metadata", 'all-in-one-metadata'), null, $coinsLevelPage);
+		add_settings_section($dublinLevelSection, __("Enable Dublin Core Metadata", 'all-in-one-metadata'), null, $dublinLevelPage);
+		add_settings_section($educationalLevelSection, __("Enable Educational Metadata", 'all-in-one-metadata'), null, $educationalLevelPage);
 
 		//Creating prefixes for fields for external vocabularies
         $postLevel = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
@@ -174,12 +174,12 @@ class Pressbooks_Metadata_Engine {
 
 
 		//Vocabularies for Book Info and Site Meta
-		new post_type_fields('coins_checkbox','Coins Metadata',$coinsLevelPage,$coinsLevelSection);
-		new post_type_fields('dublin_checkbox','Dublin Core Metadata',$dublinLevelPage,$dublinLevelSection);
-		new post_type_fields('educational_checkbox_'.$siteLevel,'Educational Metadata Site Level',$educationalLevelPage,$educationalLevelSection);
+		new post_type_fields('coins_checkbox',__('Coins Metadata', 'all-in-one-metadata'),$coinsLevelPage,$coinsLevelSection);
+		new post_type_fields('dublin_checkbox',__('Dublin Core Metadata', 'all-in-one-metadata'),$dublinLevelPage,$dublinLevelSection);
+		new post_type_fields('educational_checkbox_'.$siteLevel,__('Educational Metadata Site Level', 'all-in-one-metadata'),$educationalLevelPage,$educationalLevelSection);
 
 		//Educational Vocabulary for Chapters and Posts
-        new post_type_fields('educational_checkbox_'.$postLevel,'Educational Metadata '.ucfirst($postLevel),$educationalLevelPage,$educationalLevelSection);
+        new post_type_fields('educational_checkbox_'.$postLevel,__('Educational Metadata ', 'all-in-one-metadata').ucfirst($postLevel),$educationalLevelPage,$educationalLevelSection);
 
 		//Registering a setting for the parents filtering
 		register_setting('parent_filter_group', 'parent_filter_settings');
@@ -196,7 +196,7 @@ class Pressbooks_Metadata_Engine {
 			$accumulatedOption = get_option($post_type.'_'.genFunc::get_active_parent());
 			sections::types(
 				'types_settings',
-				ucfirst('Manage Schema Types'),
+				__('Manage Schema Types', 'all-in-one-metadata'),
 				$post_type.'_type_tab',
 				$typeSettings
 			);
