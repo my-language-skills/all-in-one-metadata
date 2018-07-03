@@ -127,6 +127,45 @@ jQuery(document).ready(function() {
         }
     });
 
+    //Handling the deact-prop-net
+    jQuery('.deact-prop-net').click(function(event) {
+        event.preventDefault();
+        var propId = jQuery(this).prev('input').attr('id');
+        if(confirm('Note that by continuing you are disabling this property in Site-Meta over all blogs in your network')){
+            block_screen();
+            var data = {
+                'action': 'network_property_deactivate',
+                'property': propId
+            };
+            jQuery.post( 'edit.php?action=update_network_options_deact', data ).error(
+                function() {
+                    alert('Error deactivating property.');
+                }).success( function() {
+                    alert('Property deactivated.');
+            });
+        }
+    });
+
+    //Handling clean-prop-net
+    jQuery('.clean-prop-net').click(function(event) {
+        event.preventDefault();
+        var propId = jQuery(this).prev().prev('input').attr('id');
+        console.log(propId);
+        if(confirm('Note that by continuing you are deleting the values of this property in Site-Meta over all blogs in your network')){
+            block_screen();
+            var data = {
+                'action': 'network_property_clean',
+                'property': propId
+            };
+            jQuery.post( 'edit.php?action=update_network_options_clean', data ).error(
+                function() {
+                    alert('Error cleaning property values.');
+                }).success( function() {
+                    alert('Property values deleted');
+            });
+        }
+    });
+
     //Handling the overwrite_prop_clean
     jQuery('.overwrite_prop_clean').click(function(event) {
         event.preventDefault();

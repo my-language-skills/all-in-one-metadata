@@ -106,5 +106,76 @@ class Pressbooks_Metadata_Ajax {
         // this is required to terminate immediately and return a proper response
         wp_die();
     }
+
+	/**
+	 * Function for deactivating property in Site-Meta level from network settings page
+	 *
+	 * @since 0.19
+	 * @author Daniil Zhitnitskii @danzhik
+	 */
+    function network_property_deactivate(){
+	    //Receiving the property
+	    $ajaxProperty = $_POST['property'];
+
+	    //collecting information to work with
+	    $dataCollect = explode('_', $ajaxProperty);
+
+	    //getting all sites in network
+	    $blogs_ids = get_sites();
+
+	    foreach( $blogs_ids as $b ){
+	    	switch_to_blog($b->blog_id);
+	    	//skipping first blog
+	    	if ($b->blog_id == 1){continue;}
+	    	$optName = 'schema_properties_'.$dataCollect[1].'_'.$dataCollect[2].'_'.$dataCollect[3].'_level';
+
+	    	$propOption = get_option($optName) ?: [];
+
+	    	$propOption[$dataCollect[0]] = 0;
+	    	update_option($optName, $propOption);
+	    }
+
+    }
+
+	/**
+	 * Function for cleaning property values in Site-Meta level from network settings page
+	 *
+	 * @since 0.19
+	 * @author Daniil Zhitnitskii @danzhik
+	 */
+	function network_property_clean(){
+
+		//Wordpress Database variable for database operations
+		global $wpdb;
+
+		//Receiving the property
+		$ajaxProperty = $_POST['property'];
+
+		//collecting information to work with
+		$dataCollect = explode('_', $ajaxProperty);
+
+		//getting all sites in network
+		$blogs_ids = get_sites();
+
+		foreach( $blogs_ids as $b ) {
+			switch_to_blog( $b->blog_id );
+			//skipping first blog
+			if ( $b->blog_id == 1 ) {continue;}
+
+			//Getting all posts that need to be cleared
+			$selectedPosts = $wpdb->get_results($wpdb->prepare(" 
+       		 SELECT ID FROM ".$wpdb->prefix.'posts'."  WHERE post_type = %s",$dataCollect[3]),ARRAY_A);
+
+			//Constructing the postMeta key that has to be cleared
+			$metaKey = 'pb_'.$dataCollect[0].'_'.$dataCollect[1].'_'.$dataCollect[2].'_'.$dataCollect[3];
+
+			//Removing the postMeta from all $selectedPosts
+			foreach($selectedPosts as $post){
+				delete_post_meta($post['ID'],$metaKey);
+			}
+
+		}
+
+	}
 }
 

@@ -39,7 +39,7 @@ class Pressbooks_Metadata_Network_Admin {
     function add_settings() {
         // Create our options page.
         add_submenu_page( 'settings.php', __('All In One Metadata Network Admin Settings', 'all-in-one-metadata'),
-            __('All In One Metadata Network Settings', 'all-in-one-metadata'), 'manage_network_options',
+            'Metadata', 'manage_network_options',
             'site_level_admin_display', array( $this, 'render_network_settings' ) );
 
         //These variables are static now because this is a prototype for the book level types

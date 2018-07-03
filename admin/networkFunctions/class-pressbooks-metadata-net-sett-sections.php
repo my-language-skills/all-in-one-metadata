@@ -138,7 +138,9 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 
 			//Callback function for the input field
 			$fieldRenderFunction = function() use ($propertyOptionName, $optionName, $values){
-				$html =  '<input type="text" class="regular-text" name="'.$optionName.'['.$propertyOptionName.']" value="'.$values[$propertyOptionName].'"><br>';
+				$html =  '<input type="text" class="regular-text" id="'.$propertyOptionName.'" name="'.$optionName.'['.$propertyOptionName.']" value="'.$values[$propertyOptionName].'">
+                         <button class="button-primary deact-prop-net" type="button" name="'.$propertyOptionName.'_deact'.'">Deactivate</button>
+                         <button class="button-primary clean-prop-net" type="button" name="'.$propertyOptionName.'_clean'.'">Clean</button><br>';
 				echo $html;
 			};
 
