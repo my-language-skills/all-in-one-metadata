@@ -187,7 +187,6 @@ class Pressbooks_Metadata_Engine {
 		//Getting type settings
 		$typeSettings = $this->get_type_settings();
 
-
 		//Creating another section with the fields automatically created for the schema types
 		foreach($this->get_enabled_levels() as $post_type){
 

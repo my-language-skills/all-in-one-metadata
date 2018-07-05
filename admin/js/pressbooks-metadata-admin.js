@@ -28,14 +28,12 @@ jQuery(document).ready(function() {
         var btn2 = this.id + '_btn2';
 
         if ( jQuery(this).is(':checked') ) {
-            console.log(jQuery('#'+btn2));
             if (!this.classList.contains('disabledProp')) {
                 document.getElementById(btn2).style.display = 'none';
             }
             document.getElementById(btn).style.display = 'none';
         }
         else {
-            console.log(jQuery('#'+btn2));
             if (!this.classList.contains('disabledProp')) {
                 document.getElementById(btn2).style.display = 'inline-block';
             }
@@ -133,15 +131,46 @@ jQuery(document).ready(function() {
         var propId = jQuery(this).prev('input').attr('id');
         if(confirm('Note that by continuing you are disabling this property in Site-Meta over all blogs in your network')){
             block_screen();
-            var data = {
+            document.getElementsByName('property_network_value_share['+propId+'_share]')[0].value = 0;
+
+            var form = jQuery(this).closest('form');
+            var data = form.serialize();
+            jQuery.post( 'edit.php?action=update_network_options', data ).error(
+                function() {
+                }).success( function() {
+            });
+
+            data = {
                 'action': 'network_property_deactivate',
                 'property': propId
             };
+
             jQuery.post( 'edit.php?action=update_network_options_deact', data ).error(
                 function() {
                     alert('Error deactivating property.');
                 }).success( function() {
                     alert('Property deactivated.');
+                    location.reload();
+            });
+
+        }
+    });
+
+    //Handling the act-prop-net
+    jQuery('.act-prop-net').click(function(event) {
+        event.preventDefault();
+        var propId = jQuery(this).prev('input').attr('id');
+        if(confirm('Note that by continuing you will enable this property in Site-Meta over all blogs in your network')){
+            block_screen();
+            var form = jQuery(this).closest('form');
+            document.getElementsByName('property_network_value_share['+propId+'_share]')[0].value = 1;
+            var data =  form.serialize();
+            jQuery.post( 'edit.php?action=update_network_options', data ).error(
+                function() {
+                    alert('Error activating property.');
+                }).success( function() {
+                alert('Property activated.');
+                location.reload();
             });
         }
     });
@@ -150,7 +179,6 @@ jQuery(document).ready(function() {
     jQuery('.clean-prop-net').click(function(event) {
         event.preventDefault();
         var propId = jQuery(this).prev().prev('input').attr('id');
-        console.log(propId);
         if(confirm('Note that by continuing you are deleting the values of this property in Site-Meta over all blogs in your network')){
             block_screen();
             var data = {
@@ -244,49 +272,66 @@ jQuery(document).ready(function() {
                 location.reload();
         });
     });
-});
 
-//Function that alerts when all property settings are saved
-jQuery(document).ajaxStop(function() {
-    window.onbeforeunload = null;
-    unblock_screen();
-});
-
-//Function for hiding the message after its displayed
-function hideMessage(message){
-    setTimeout( function(){
-        message.hide();
-    }  , 2000 );
-}
-
-//Functions for the settings page
-function openSett(evt,tablink, settName, tabType) {
-    //Saving the last visited tab
-    localStorage.setItem(tablink,evt.currentTarget.textContent);
-    var i, tablinks,tabcontent;
-    tabcontent = document.getElementsByClassName(tabType);
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName(tablink);
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
-    }
-    document.getElementById(settName).style.display = "block";
-    evt.currentTarget.className += " nav-tab-active";
-}
-
-//Function to create blocking screen while ajax request is processed
-function block_screen() {
-    var image = jQuery('.properties-loading-image')[0];
-    jQuery('<div class="screenBlock"><span class="loading-message">Processing'+ image.innerHTML +'</span></div>').appendTo('body');
-    jQuery('.screenBlock').addClass('blockDiv');
-    jQuery('.screenBlock').animate({opacity: 0.7}, 200);
-}
-
-//Function to remove blocking screen after ajax request completed
-function unblock_screen() {
-    jQuery('.screenBlock').animate({opacity: 0}, 200, function() {
-        jQuery('.screenBlock').remove();
+    //Function that alerts when all property settings are saved
+    jQuery(document).ajaxStop(function() {
+        window.onbeforeunload = null;
+        unblock_screen();
     });
-}
+
+    //Function for hiding the message after its displayed
+    function hideMessage(message){
+        setTimeout( function(){
+            message.hide();
+        }  , 2000 );
+    }
+
+    //Functions for the settings page
+    function openSett(evt,tablink, settName, tabType) {
+        //Saving the last visited tab
+        localStorage.setItem(tablink,evt.currentTarget.textContent);
+        var i, tablinks,tabcontent;
+        tabcontent = document.getElementsByClassName(tabType);
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName(tablink);
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
+        }
+        document.getElementById(settName).style.display = "block";
+        evt.currentTarget.className += " nav-tab-active";
+    }
+
+    //Function to create blocking screen while ajax request is processed
+    function block_screen() {
+        var image = jQuery('.properties-loading-image')[0];
+        jQuery('<div class="screenBlock"><span class="loading-message">Processing'+ image.innerHTML +'</span></div>').appendTo('body');
+        jQuery('.screenBlock').addClass('blockDiv');
+        jQuery('.screenBlock').animate({opacity: 0.7}, 200);
+    }
+
+    //Function to remove blocking screen after ajax request completed
+    function unblock_screen() {
+        jQuery('.screenBlock').animate({opacity: 0}, 200, function() {
+            jQuery('.screenBlock').remove();
+        });
+    }
+
+    //Function for switching active type in network settings page
+    jQuery('.change-type').click(function(event){
+        if (confirm('By activating this type, you will not be able to manage the type which was chosen before (if there was one).')) {
+            block_screen();
+            var data = {
+                'action': 'network_property_change_type',
+                'active_schema_type': jQuery(this).attr('id')
+            };
+            jQuery.post('edit.php?action=update_network_options_change_type', data).error(
+                function () {
+                    alert('Error filtering, please refresh')
+                }).success(function () {
+                location.reload();
+            });
+        }
+    });
+});

@@ -138,6 +138,20 @@ class Pressbooks_Metadata_Ajax {
     }
 
 	/**
+	 * Function for changing type to manage in network settings page
+	 *
+	 * @since 0.19
+	 * @author Daniil Zhitnitskii @danzhik
+	 */
+	function network_property_change_type(){
+		//Receiving the property
+		$ajaxProperty = $_POST['active_schema_type'];
+
+		update_option('active_schema_type', $ajaxProperty);
+
+	}
+
+	/**
 	 * Function for cleaning property values in Site-Meta level from network settings page
 	 *
 	 * @since 0.19

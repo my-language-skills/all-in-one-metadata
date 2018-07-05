@@ -198,6 +198,7 @@ class Pressbooks_Metadata {
 		$this->loader->add_action( 'network_admin_edit_update_network_options', new netadmin(), 'networkFunctions\Pressbooks_Metadata_Network_Admin::update_network_options' );
 		$this->loader->add_action( 'network_admin_edit_update_network_options_deact', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::network_property_deactivate' );
 		$this->loader->add_action( 'network_admin_edit_update_network_options_clean', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::network_property_clean' );
+		$this->loader->add_action( 'network_admin_edit_update_network_options_change_type', new ajax(), 'adminFunctions\Pressbooks_Metadata_Ajax::network_property_change_type' );
 
 		//New blog creation
 		$this->loader->add_action( 'wpmu_new_blog', new netadmin(), 'networkFunctions\Pressbooks_Metadata_Network_Admin::update_properties_new_blog', 10, 2 );

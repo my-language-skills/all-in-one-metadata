@@ -64,6 +64,13 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	 */
 	public $isEmpty;
 
+	/**
+     * Flag for subheadings
+     *
+	 * @since 0.19
+	 */
+	private $flag;
+
 	function __construct($inpSectionId,$inpSectionDisPage,$inpSectionTitle,$inpTypeId,$inpTypeProperties,$inpTypeLevel,$inpIsEmpty){
 		$this->sectionId = $inpSectionId;
 		$this->sectionDisPage = $inpSectionDisPage;
@@ -82,9 +89,16 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	 */
 	function createSection(){
 
+		$activeTypesOptionName = 'active_schema_type';
+        //Registering options for active type
+		register_setting($this->sectionDisPage, $activeTypesOptionName);
+
 		//Callback function for the section
-		$sectionCallback = !isset($this->isEmpty) ? false : function() {
-			$html =  '<p class="noPropType">'.__('The type is Empty of Properties.', 'all-in-one-metadata').'</p><br>';
+		$sectionCallback = !isset($this->isEmpty) ? (get_option('active_schema_type') == $this->sectionId ? false : function(){
+		    $html = '<button class="button-primary change-type" type="button"  id="'.$this->sectionId .'">Activate Type</button><hr><br>';
+		    echo $html;
+        }) : function() {
+			$html =  '<p class="noPropType">'.__('The type is Empty of Properties.', 'all-in-one-metadata').'</p><hr><br>';
 			echo $html;
 		};
 
@@ -93,8 +107,12 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 			,$sectionCallback,$this->sectionDisPage);
 
 		//If the type has properties then we populate them
-		if(!isset($this->isEmpty)){
-			$this->createFields($this->typeProperties);
+		if(!isset($this->isEmpty) && get_option('active_schema_type') == $this->sectionId){
+			$this->createFields($this->typeProperties['native']);
+			array_shift($this->typeProperties);
+			foreach ($this->typeProperties as $key=>$properties){
+				$this->createFields($properties, $key);
+            }
         }
 	}
 
@@ -103,7 +121,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 	 *
 	 * @since    0.10
 	 */
-	function createFields($data){
+	function createFields($data, $subsection = null){
 
 	    //declaring names for accumulated options
 	    $optionName = 'property_network_value';
@@ -124,6 +142,9 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 		//Registering option fpr option sharing
 		register_setting($this->sectionDisPage,$shareOptionName);
 
+		$this->flag = 0;
+
+
 		//Looping through the properties of the type
 		foreach($data as $propertyId => $details){
 			//Creating the name of the options
@@ -137,10 +158,18 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 			$share_values[$propertyShare] = isset($share_values[$propertyShare]) ? $share_values[$propertyShare] : '';
 
 			//Callback function for the input field
-			$fieldRenderFunction = function() use ($propertyOptionName, $optionName, $values){
-				$html =  '<input type="text" class="regular-text" id="'.$propertyOptionName.'" name="'.$optionName.'['.$propertyOptionName.']" value="'.$values[$propertyOptionName].'">
-                         <button class="button-primary deact-prop-net" type="button" name="'.$propertyOptionName.'_deact'.'">Deactivate</button>
-                         <button class="button-primary clean-prop-net" type="button" name="'.$propertyOptionName.'_clean'.'">Clean</button><br>';
+			$fieldRenderFunction = function() use ($propertyOptionName, $optionName, $values, $share_values, $propertyShare, $shareOptionName, $subsection){
+			    $html = '';
+				if (isset($share_values[$propertyOptionName.'_share']) ? ($share_values[$propertyOptionName.'_share'] == 1 ? 1 : 0) : 0) {
+					$html .=  '<input type="text" class="regular-text" id="'.$propertyOptionName.'" name="'.$optionName.'['.$propertyOptionName.']" value="'.$values[$propertyOptionName].'">';
+				    $html .= ' <button class="button-primary deact-prop-net" type="button" name="' . $propertyOptionName . '_deact' . '">Deactivate</button>';
+					$html .= ' <button class="button-primary clean-prop-net" type="button" name="'.$propertyOptionName.'_clean'.'">Clean</button><br>';
+					$html .= '<input type="hidden" name="'.$shareOptionName.'['.$propertyShare.']" value="'.$share_values[$propertyShare].'"/>';
+				} else {
+					$html .=  '<input style="display:none;" type="text" class="regular-text" id="'.$propertyOptionName.'" name="'.$optionName.'['.$propertyOptionName.']" value="'.$values[$propertyOptionName].'">';
+					$html .= ' <button class="button-primary act-prop-net" type="button" id="'.$optionName.'_share'.'['.$propertyOptionName.'_share'.']'.'">Activate</button>';
+					$html .= '<input type="hidden" name="'.$shareOptionName.'['.$propertyShare.']" value="'.$share_values[$propertyShare].'"/>';
+				}
 				echo $html;
 			};
 
@@ -153,26 +182,22 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 				<?php
 			};
 
-			//Callback function for the share checkbox
-			$checkboxRenderFunctionShare = function() use ($propertyShare, $shareOptionName, $share_values){
-				?>
-                <label><input type="checkbox" name="<?=$shareOptionName.'['.$propertyShare.']'?>"
-                              value="1" <?php checked($share_values[$propertyShare]); ?> /> <?php
-                    _e('Enable this property on Site-Meta level over all sites and share the value above.', 'all-in-one-metadata') ?></label>
-				<?php
-			};
+			//Adding section headings of parent properties
+            if (!$this->flag && isset($subsection)){
+                add_settings_field($subsection.'_head', '<h3>'.$subsection.' Properties</h3>', function (){}, $this->sectionDisPage, $this->sectionId);
+                $this->flag = 1;
+            }
 
 			//Adding the property field
-			add_settings_field($optionName.'['.$propertyOptionName.']',$details[1]
-				,$fieldRenderFunction,$this->sectionDisPage,$this->sectionId);
+            add_settings_field( $optionName . '[' . $propertyOptionName . ']', $details[1]
+                , $fieldRenderFunction, $this->sectionDisPage, $this->sectionId );
 
-			//Adding the checkbox field for freezing
-			add_settings_field($freezeOptionName.'['.$propertyFreeze.']',''
-				,$checkboxRenderFunction,$this->sectionDisPage,$this->sectionId);
+            //Adding the checkbox field for freezing
+            if ( isset( $share_values[ $propertyOptionName . '_share' ] ) ? ( $share_values[ $propertyOptionName . '_share' ] == 1 ? 1 : 0 ) : 0 ) {
+                add_settings_field( $freezeOptionName . '[' . $propertyFreeze . ']', ''
+                    , $checkboxRenderFunction, $this->sectionDisPage, $this->sectionId );}
 
-			//Adding the checkbox field for sharing
-			add_settings_field($shareOptionName.'['.$propertyShare.']',''
-				,$checkboxRenderFunctionShare,$this->sectionDisPage,$this->sectionId);
+
 		}
 	}
 }

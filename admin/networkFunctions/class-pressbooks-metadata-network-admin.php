@@ -4,6 +4,7 @@ namespace networkFunctions;
 use adminFunctions\Pressbooks_Metadata_Site_Cpt as site_cpt;
 use schemaTypes\Pressbooks_Metadata_Type_Structure as structure;
 use networkFunctions\Pressbooks_Metadata_Net_Sett_Sections as net_sections;
+use schemaFunctions\Pressbooks_Metadata_General_Functions as genFunc;
 
 /**
  * The functions of the plugin that handle the the settings of the network admin and the network admin schema functionality.
@@ -57,13 +58,17 @@ class Pressbooks_Metadata_Network_Admin {
         //Population sections with settings
         //Each section is a schema type containing its properties as fields
         foreach ( structure::$allSchemaTypes as $type ) {
+            $type_properties['native'] = $type::$type_properties;
+            foreach ($type::$type_parents as $parent){
+                $type_properties[ucfirst(explode('_',$parent::type_name[1])[0])] = $parent::type_properties;
+            }
             $type_details = $this->get_type_details( $type );
             new net_sections(
                 $sectionId . '_' . $type_details[0],
                 $displayPage,
                 $type_details[1].__(' On Site Level', 'all-in-one-metadata'),
                 $type_details[0],
-                $type::$type_properties,
+                $type_properties,
                 $siteLevelIndicator,
                 $type_details[2] //If is empty this will be set
             );
@@ -279,7 +284,8 @@ class Pressbooks_Metadata_Network_Admin {
 	    $schemaProp = $dataForEnabling[0];
 
         //Modifying the metakey so it matches the already saved fields created by create metabox class
-        $metaKey = strtolower('pb_'.$metaKey);
+        $metaKey = 'pb_'.$metaKey;
+        $metaKeyLower = strtolower($metaKey);
 
         //Grabbing all the site IDs
         $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -331,10 +337,10 @@ class Pressbooks_Metadata_Network_Admin {
             //Going through all posts and adding the new post_meta
             foreach($selectedPosts as $post){
 	            if(!isset($freezes[str_replace('pb_','',$metaKey).'_freeze']) && isset($shares[str_replace('pb_','',$metaKey).'_share']) && empty(get_post_meta( $post['ID'], $metaKey))){
-		            update_post_meta( $post['ID'],$metaKey,$newValue);
+		            update_post_meta( $post['ID'],$metaKeyLower,$newValue);
 		            continue;
                 } elseif (isset($freezes[str_replace('pb_','',$metaKey).'_freeze'])) {
-		            update_post_meta( $post['ID'], $metaKey, $newValue );
+		            update_post_meta( $post['ID'], $metaKeyLower, $newValue );
 	            }
             }
 
@@ -359,8 +365,22 @@ class Pressbooks_Metadata_Network_Admin {
 	        //get accumulated option for schema types activated
 	        $optionsSchemaTypes = get_option($schemaOptionName);
 
-	        //get accumulated option for activated properties
-	        $optionsSchemaProperties = get_option('schema_properties_'.$schemaType.'_'.$postType.'_level');
+	        //get accumulated options for properties
+	        $propertyOption = get_option('schema_properties_'.$schemaType. '_' . $postType . '_level') ?: [];
+	        $propertyOptionName = 'schema_properties_'.$schemaType. '_' . $postType . '_level';
+	        foreach(structure::$allSchemaTypes as $type) {
+		        if(genFunc::get_type_id($type) == $schemaType) {
+			        $propertiesOptionsParent = [];
+			        foreach ( $type::$type_parents as $parent ) {
+				        $propertiesOptionsParent  = get_option( $schemaType . '_' . $postType . '_level_' .$parent::type_name[1].'_dis' ) ?: [];
+				        if (key_exists($schemaProp,$propertiesOptionsParent)){
+					        $propertyOptionName = $schemaType . '_' . $postType . '_level_' .$parent::type_name[1].'_dis';
+					        $propertyOption = $propertiesOptionsParent;
+				        }
+			        }
+		        }
+	        }
+
 
             //Enable Site-Meta Level
             update_option($postType.'_checkbox', 1);
@@ -370,9 +390,10 @@ class Pressbooks_Metadata_Network_Admin {
 
             update_option($schemaOptionName,$optionsSchemaTypes);
 
-            //Enable Property
-	        $optionsSchemaProperties[$schemaProp] = 1;
-            update_option('schema_properties_'.$schemaType.'_'.$postType.'_level', $optionsSchemaProperties);
+	        //Enable Property
+	        $propertyOption[$schemaProp] = 1;
+
+	        update_option($propertyOptionName, $propertyOption);
         }
     }
 
@@ -443,7 +464,9 @@ class Pressbooks_Metadata_Network_Admin {
 	            //Making sure we are deleting the option from the root site
 	            switch_to_blog(self::ROOT_SITE);
 	            // If the option is not here then delete it.
-	            delete_option($option);
+                if ($option != 'active_schema_type') {
+	                delete_option( $option );
+                }
             }
         }
 
