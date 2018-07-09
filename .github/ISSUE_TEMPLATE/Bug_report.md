@@ -34,8 +34,7 @@ about: Create a report to help us improve
 <!-- Add any other context about the problem here. -->
 
 ### Technical info
-* WordPress version:
-* All in one metadata version:
-* Relevant plugins in case of a bug:
-<!-- Please make sure you can reproduce this bug with a default theme such as Twenty Seventeen. Sometimes issues may occur due to theme conflicts. -->
-* Tested with theme:
+* WordPress version: [  ] <!-- Enter WordPress version here -->
+* All in one metadata version: [  ] <!-- Enter AIOM version here -->
+* Relevant plugins in case of a bug:  <!-- Please make sure you can reproduce this bug with no plugins activated. Sometimes issues may occur due to plugin conflicts. -->
+* Tested with theme: [  ] <!-- Please make sure you can reproduce this bug with a default theme such as Twenty Seventeen. Sometimes issues may occur due to theme conflicts. -->
