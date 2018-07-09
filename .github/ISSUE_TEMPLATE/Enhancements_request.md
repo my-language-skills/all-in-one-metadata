@@ -26,10 +26,10 @@ about: Notes and sugestions to help us to improve
 
 
 ### Screenshots
-If applicable, add screenshots to help explain your problem.
+<!-- If applicable, add screenshots to help explain your problem. -->
 
 ### Additional context
-Add any other context about the problem here.
+<!-- Add any other context about the problem here. -->
 
 ### Technical info
 * WordPress version:
