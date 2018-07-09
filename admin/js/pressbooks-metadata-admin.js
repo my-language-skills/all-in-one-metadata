@@ -286,22 +286,6 @@ jQuery(document).ready(function() {
         }  , 2000 );
     }
 
-    //Functions for the settings page
-    function openSett(evt,tablink, settName, tabType) {
-        //Saving the last visited tab
-        localStorage.setItem(tablink,evt.currentTarget.textContent);
-        var i, tablinks,tabcontent;
-        tabcontent = document.getElementsByClassName(tabType);
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName(tablink);
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
-        }
-        document.getElementById(settName).style.display = "block";
-        evt.currentTarget.className += " nav-tab-active";
-    }
 
     //Function to create blocking screen while ajax request is processed
     function block_screen() {
@@ -335,3 +319,20 @@ jQuery(document).ready(function() {
         }
     });
 });
+
+//Functions for the settings page
+function openSett(evt,tablink, settName, tabType) {
+    //Saving the last visited tab
+    localStorage.setItem(tablink,evt.currentTarget.textContent);
+    var i, tablinks,tabcontent;
+    tabcontent = document.getElementsByClassName(tabType);
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName(tablink);
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
+    }
+    document.getElementById(settName).style.display = "block";
+    evt.currentTarget.className += " nav-tab-active";
+}

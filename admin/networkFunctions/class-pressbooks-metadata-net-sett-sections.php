@@ -94,7 +94,7 @@ class Pressbooks_Metadata_Net_Sett_Sections {
 		register_setting($this->sectionDisPage, $activeTypesOptionName);
 
 		//Callback function for the section
-		$sectionCallback = !isset($this->isEmpty) ? (get_option('active_schema_type') == $this->sectionId ? false : function(){
+		$sectionCallback = !isset($this->isEmpty) ? (get_option('active_schema_type') == $this->sectionId ? null : function(){
 		    $html = '<button class="button-primary change-type" type="button"  id="'.$this->sectionId .'">Activate Type</button><hr><br>';
 		    echo $html;
         }) : function() {

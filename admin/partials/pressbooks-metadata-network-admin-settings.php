@@ -10,10 +10,7 @@
  * @author     Christos Amyrotos @MashRoofa
  * @author     Daniil Zhitnitskii @danzhik
  */
-if (isset($_GET['updated'])): ?>
-<div id="message" class="updated notice is-dismissible"><p><?php _e('Options saved.', 'all-in-one-metadata') ?></p></div>
-<?php endif; ?>
-<div class="network_setts">
+?><div class="network_setts">
     <h1><?=__('All In One Metadata Network Settings', 'all-in-one-metadata')?></h1>
     <div style="display: none;" class="properties-loading-image">
         <img style="width: 30px; height: 30px;" src="<?= plugin_dir_url('')?>all-in-one-metadata/assets/loading.gif"/>

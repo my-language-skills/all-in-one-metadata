@@ -88,7 +88,13 @@ class Pressbooks_Metadata_Post_Type_Fields {
 	 * @since  0.9
 	 */
 	function pmdt_field_draw(){
-		echo '<input type="checkbox" id="'.$this->fieldIdentifier.'" name="'.$this->fieldIdentifier.'" value="1" ' . checked(1, get_option($this->fieldIdentifier), false) . '/>';
+		if($this->fieldName == __('Allow', 'all-in-one-metadata')) {
+			$readOnly = get_blog_option(1, 'force_overwr') == 1 ? 'disabled' : '';
+			echo '<input type="checkbox" id="' . $this->fieldIdentifier . '" name="' . $this->fieldIdentifier . '" value="1" ' . checked( 1, get_option( $this->fieldIdentifier ), false) .' '.$readOnly.'/>';
+			echo '<input type="hidden" name="' . $this->fieldIdentifier . '" value="1">';
+		} else {
+			echo '<input type="checkbox" id="' . $this->fieldIdentifier . '" name="' . $this->fieldIdentifier . '" value="1" ' . checked( 1, get_option( $this->fieldIdentifier ), false ) . '/>';
+		}
 		//Outputting messages for the site level -- book level metadata
 		if($this->fieldName == 'Site-meta'){
 			if(site_cpt::pressbooks_identify()){
@@ -96,7 +102,7 @@ class Pressbooks_Metadata_Post_Type_Fields {
 			}else{
 				_e('<p>If you enable this you will be able to add metadata to your Site from Site-Meta submenu</p>', 'all-in-one-metadata');
 			}
-		}else if($this->fieldName == 'Allow Overwrite'){
+		}else if($this->fieldName == __('Allow', 'all-in-one-metadata')){
             _e('<p>If you enable this you allow the super admin to take full access on your site metadata.</p>', 'all-in-one-metadata');
         }
 	}

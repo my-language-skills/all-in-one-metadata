@@ -47,8 +47,18 @@ class Pressbooks_Metadata_Network_Admin {
         $displayPage = 'site_level_admin_display';
         $sectionId   = 'site_level_section';
 
-        //adding metabox for proper output layout
+        //adding metabox for forcing network control
+	    add_meta_box('site_level_admin_force', __('Network Control', 'all-in-one-metadata'), array($this, 'render_metabox_network_force'), $displayPage, 'normal', 'core');
+
+        //adding metabox for properties management
         add_meta_box('site_level_admin', __('Manage Options', 'all-in-one-metadata'), array($this, 'render_metabox_network'), $displayPage, 'normal', 'core');
+        add_settings_section('force_overwr_sec', __('Apply changes over all sites', 'all-in-one-metadata'), null, $displayPage.'_force');
+        register_setting($displayPage.'_force', 'force_overwr');
+        add_settings_field('force_overwr', __('Allow', 'all-in-one-metadata'), function (){
+            ?>
+	        <input type="checkbox" id="force_overwr" name="force_overwr"
+				              value="1" <?php checked(1, get_option('force_overwr')); ?> /> <?php
+        }, $displayPage.'_force', 'force_overwr_sec');
 
         //Getting the value of the level
         //In our case is metadata for pressbooks or site-meta for the wordpress default installation
@@ -100,6 +110,9 @@ class Pressbooks_Metadata_Network_Admin {
 	    ?>
 	    <div class="wrap">
 		    <div class="metabox-holder">
+                <?php if (isset($_GET['updated'])): ?>
+                <div id="message" class="updated notice is-dismissible"><p><?php _e('Options saved.', 'all-in-one-metadata') ?></p></div>
+                <?php endif; ?>
 			    <?php
 			    do_meta_boxes('site_level_admin_display', 'normal','');
 			    ?>
@@ -115,6 +128,62 @@ class Pressbooks_Metadata_Network_Admin {
 	 */
     function render_metabox_network(){
 	    include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-network-admin-settings.php';
+    }
+
+	/**
+	 * Callback for metabox with network control forcing
+	 *
+	 * @since 0.19
+	 */
+	function render_metabox_network_force(){
+	    ?>
+	    <form method="POST" action="edit.php?action=update_network_options_force"><?php
+	    settings_fields('site_level_admin_display_force');
+	    submit_button();
+	    do_settings_sections('site_level_admin_display_force');
+	    ?></form>
+    <p></p><?php
+	}
+
+	/**
+	 * Function used for saving the settings of 'Network Control' metabox
+	 *
+	 * @since  0.19
+	 */
+	function update_network_options_force() {
+	    global $wpdb;
+
+	    //checking if request was done by authorized user
+		check_admin_referer('site_level_admin_display_force-options');
+
+		$option = $_POST['force_overwr'] ?: 0;
+
+		update_option('force_overwr', $option);
+
+		if ($option){
+			//Grabbing all the site IDs
+			$siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+
+			//Going through the sites
+			foreach ($siteids as $site_id) {
+
+				//Skipping the RootSite
+				if($site_id == self::ROOT_SITE) {continue;}
+
+				//Get the post type we want to work with
+				$postType = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
+
+				//Switching site
+				switch_to_blog($site_id);
+
+				update_option($postType.'_saoverwr', 1);
+            }
+        }
+
+		wp_redirect(add_query_arg(array('page' => 'site_level_admin_display',
+		                                'updated' => 'true'), network_admin_url('settings.php')));
+
+		exit;
     }
 
 	/**
