@@ -91,7 +91,9 @@ class Pressbooks_Metadata_Post_Type_Fields {
 		if($this->fieldName == __('Allow', 'all-in-one-metadata')) {
 			$readOnly = get_blog_option(1, 'force_overwr') == 1 ? 'disabled' : '';
 			echo '<input type="checkbox" id="' . $this->fieldIdentifier . '" name="' . $this->fieldIdentifier . '" value="1" ' . checked( 1, get_option( $this->fieldIdentifier ), false) .' '.$readOnly.'/>';
-			echo '<input type="hidden" name="' . $this->fieldIdentifier . '" value="1">';
+			if ($readOnly == 'disabled') {
+				echo '<input type="hidden" name="' . $this->fieldIdentifier . '" value="1">';
+			}
 		} else {
 			echo '<input type="checkbox" id="' . $this->fieldIdentifier . '" name="' . $this->fieldIdentifier . '" value="1" ' . checked( 1, get_option( $this->fieldIdentifier ), false ) . '/>';
 		}
