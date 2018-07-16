@@ -26,14 +26,13 @@ about: Notes and sugestions to help us to improve
 
 
 ### Screenshots
-If applicable, add screenshots to help explain your problem.
+<!-- If applicable, add screenshots to help explain your problem. -->
 
 ### Additional context
-Add any other context about the problem here.
+<!-- Add any other context about the problem here. -->
 
 ### Technical info
-* WordPress version:
-* All in one metadata version:
-* Relevant plugins in case of a bug:
-<!-- Please make sure you can reproduce this bug with a default theme such as Twenty Seventeen. Sometimes issues may occur due to theme conflicts. -->
-* Tested with theme:
+* All in one metadata version: [  ] <!-- Enter AIOM version here -->
+* WordPress version: [  ] <!-- Enter WordPress version here -->
+* Relevant plugins in case of a bug:      <!-- Please make sure you can reproduce this bug with no plugins activated. Sometimes issues may occur due to plugin conflicts. -->
+* Tested with theme:      <!-- Please make sure you can reproduce this bug with a default theme such as Twenty Seventeen. Sometimes issues may occur due to theme conflicts. -->
