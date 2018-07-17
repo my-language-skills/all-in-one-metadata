@@ -111,58 +111,7 @@ https://moz.com/learn/seo/duplicate-content
 ### 0.17
 Improved database interaction and options storing, which decreases overhead of database entries by tens of times and also improves plugin performance. **Since this moment in order for plugin to work properly**, install this version of a plugin, delete it from plugins page (**IMPORTANT! Not manually via FTP**) so that your database get cleaned from entries of elder versions of a plugin and install it again.
 
-### 0.16
-Plugin now properly uninstalls itself, no remaining data in database is kept after uninstalling. In order for users to see how plugin works without requiring initial setting, we have added some enabled options out-of-the-box in order to see how actually plugin works. The predefined options can be disabled after activation. Schema location options now stays more logical, multisite control setting is also supported from this moment.
 
-### 0.13
-Plugin now is much more efficient wasting less memory on the server as the engine file had improvements. The plugin had many improvements
-on both the visual interface and the engine. The user experience has improved as we are saving the tabs that were used before reloading the settings page.
-Many new types were added along with improvements on how the type requires parent properties. Now the external vocabularies along with the
-educational vocabulary are fully implemented. The admin and the super admin can simply clone properties without having to enable types manually on site/posts/chapters.
-Another handy feature is the clear and disable feature on overwritten properties. For the educational vocabulary the plugin now is accepting data from a secondary addon plugin named Isced Fields.
-
-### 0.12
-Added Organization Parent and Types
-
-### 0.11
-Administrator can overwrite Chapter and Post property values from Book-Info and Site-Meta.The administrator can populate type property values in all chapters
-or posts. This is done by selecting the toPost or toChapter option on a property of any type from the Site-Meta tab of the settings
-
-### 0.10
-Code rewriting for optimisation. All the types inherit as classes from a base class called type. The creation of new types is way simpler and faster.
-Each property for each level and each type can be enabled and disabled. Dublin core and Coins vocabularies were added, also the schema types now can be
-filtered by parent.
-
-### 0.9
-Code rewriting for optimisation. Introduced new types and new file system. Plugin works independently of pressbooks.
-Importing and exporting for pressbooks is fixed.
-
-### 0.8.1
-To use google scholar. To extend metadata for an integration of the content.
-
-### 0.8
-Rewriting of the plugin and integration with Custom Metadata Manager for WordPress.
-
-### 0.7
-To use google scholar. To extend metadata for an integration of the content.
-
-### 0.6
-Reviw the Site/root metadata and Documentation
-
-### 0.5
-Review the custom post metadata.
-
-### 0.4
-Review the Site metadata.
-
-### 0.3
-To adapt the plugin to PressBooks.
-
-### 0.2
-To make the current old plugin work.
-
-### 0.1
-To use an old version as the start point.
 
 ## Credits
 
