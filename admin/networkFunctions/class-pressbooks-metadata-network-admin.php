@@ -107,6 +107,9 @@ class Pressbooks_Metadata_Network_Admin {
      * @since  0.18
      */
     function render_network_settings(){
+    	wp_enqueue_script('common');
+		wp_enqueue_script('wp-lists');
+		wp_enqueue_script('postbox');
 	    ?>
 	    <div class="wrap">
 		    <div class="metabox-holder">
@@ -118,7 +121,17 @@ class Pressbooks_Metadata_Network_Admin {
 			    ?>
 		    </div>
 	    </div>
-	    <?php
+	    <script type="text/javascript">
+            //<![CDATA[
+            jQuery(document).ready( function($) {
+                // close postboxes that should be closed
+                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+                // postboxes setup
+                postboxes.add_postbox_toggles('<?php echo 'site_level_admin_display'; ?>');
+            });
+            //]]>
+		</script>
+		<?php
     }
 
 	/**
