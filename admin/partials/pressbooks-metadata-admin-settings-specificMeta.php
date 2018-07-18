@@ -11,7 +11,7 @@
 */
 ?>
 
-<p><?=__('Other Types of Metadata Vocabularies', 'all-in-one-metadata')?></p>
+<p>Other Types of Metadata Vocabularies</p>
 <div class="nav-tab-wrapper">
 	<button class="tablinks-vocab nav-tab" onclick="openSett(event,'tablinks-vocab', 'coins','vocab')">Coins</button>
 	<button class="tablinks-vocab nav-tab" onclick="openSett(event,'tablinks-vocab', 'dublin','vocab')">Dublin</button>
@@ -40,13 +40,3 @@
     </form>
 </div>
 
-<div id="educational" class="vocab">
-    <form method="post" action="options.php">
-		<?php
-		settings_fields( 'educational_level_tab' );
-		do_settings_sections( 'educational_level_tab' );
-		submit_button();
-		echo '<br><br>';
-		?>
-    </form>
-</div>

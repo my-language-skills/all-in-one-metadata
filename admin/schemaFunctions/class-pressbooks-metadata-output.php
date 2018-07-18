@@ -47,11 +47,10 @@ class Pressbooks_Metadata_Output {
 		//Checking if we are executing Book Info or Site-Meta data for the front page - Site Level - Book Level
 		if(!site_cpt::pressbooks_identify()){
 			$front_schema = 'site-meta';
-			$post_schema = 'post';
 		}else{
 			$front_schema = 'metadata';
-			$post_schema = 'chapter';
 		}
+		$post_schema = get_post_type();
 		if ( is_front_page() ) {
 			//Here we get all the instances of metadata that have to be executed on the Book level - Site level
 			foreach ( $instances as $class_instance ) {
@@ -73,11 +72,12 @@ class Pressbooks_Metadata_Output {
 				}
 			}
 
-			//Outputting metadata for the Educational Vocabulary on Site Level
-			if(get_option('educational_checkbox_'.$front_schema)){
-                $vocabToUse = new vocabularyFunctions\Pressbooks_Metadata_Educational($front_schema);
-                echo $vocabToUse->pmdt_get_metatags();
-            }
+			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php') && get_option( 'metadata_edu_op') ) {
+				//Outputting metadata for the Educational Vocabulary on Site Level
+					require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
+					$vocabToUse = new \educa\Pressbooks_Metadata_Educational( $front_schema );
+					echo $vocabToUse->pmdt_get_metatags();
+			}
 
 		} elseif ( ! is_home() ) {
 			//Here we get all the instances of metadata that have to be executed on the post levels - Chapter Level
@@ -87,11 +87,12 @@ class Pressbooks_Metadata_Output {
 				}
 			}
 
-            //Outputting metadata for the Educational Vocabulary on Post Level
-            if(get_option('educational_checkbox_'.$post_schema)){
-                $vocabToUse = new vocabularyFunctions\Pressbooks_Metadata_Educational($post_schema);
-                echo $vocabToUse->pmdt_get_metatags();
-            }
+			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php') && get_option( $post_schema . '_edu_op') ) {
+				//Outputting metadata for the Educational Vocabulary on Post Level
+					require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
+					$vocabToUse = new Pressbooks_Metadata_Educational( $post_schema );
+					echo $vocabToUse->pmdt_get_metatags();
+			}
 		}
 	}
 }
