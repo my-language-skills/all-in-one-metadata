@@ -90,7 +90,7 @@ class Pressbooks_Metadata_Output {
 			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php') && get_option( $post_schema . '_edu_op') ) {
 				//Outputting metadata for the Educational Vocabulary on Post Level
 					require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
-					$vocabToUse = new Pressbooks_Metadata_Educational( $post_schema );
+					$vocabToUse = new \educa\Pressbooks_Metadata_Educational( $post_schema );
 					echo $vocabToUse->pmdt_get_metatags();
 			}
 		}
