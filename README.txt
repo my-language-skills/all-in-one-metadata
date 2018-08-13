@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== All in one metadata ===
 Contributors: @colomet
 Donate link: https://opencollective.com/mylanguageskills
 Tags: comments, spam
