@@ -11,7 +11,7 @@ Requires:  [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.3-red.sv
 
 Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Languages/pressbooks-metadata.svg)](https://github.com/Books4Languages/pressbooks-metadata/releases/latest/)
 
-License:  [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Books4Languages/pressbooks-metadata/blob/master/license.txt)
+License:  [![License](https://img.shields.io/badge/license-GPL--3.0-red.svg)](https://github.com/my-language-skills/all-in-one-metadata/blob/master/LICENSE.txt)
 
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
