@@ -134,7 +134,6 @@ class Pressbooks_Metadata_Options {
 
 		add_meta_box('metadata-location', __('Location Of Metadata', 'all-in-one-metadata'), array($this, 'render_metabox_schema_locations'), $this->pagehook, 'normal', 'core');
 		add_meta_box('activated-schema-types', $site_level.__(' Settings', 'all-in-one-metadata'), array($this, 'render_metabox_active_schemas'), $this->pagehook, 'normal', 'core');
-		add_meta_box('specific-metadata', __('Specific Metadata', 'all-in-one-metadata'), array($this, 'render_metabox_specific_metadata'), $this->pagehook, 'normal', 'core');
 		add_meta_box('general-settings', __('General Settings', 'all-in-one-metadata'), array($this, 'render_general_settings'), $this->pagehook, 'normal', 'core');
 	}
 
@@ -147,14 +146,7 @@ class Pressbooks_Metadata_Options {
 		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-schemaLocations.php';
 	}
 
-	/**
-	 * Render data for the specific_metadata metabox.
-	 *
-	 * @since  0.10
-	 */
-	function render_metabox_specific_metadata(){
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/pressbooks-metadata-admin-settings-specificMeta.php';
-	}
+
 
 	/**
 	 * Render data for the active_schemas metabox.

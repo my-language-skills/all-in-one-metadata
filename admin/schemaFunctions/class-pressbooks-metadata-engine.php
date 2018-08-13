@@ -55,10 +55,6 @@ class Pressbooks_Metadata_Engine {
 		//This is for the schema types
 		$this->engine_run();
 
-        //Creating prefixes for fields for external vocabularies options
-        $postLevel = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
-        $siteLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
-
         //Here we generate metaboxes for the other vocabularies
 		$vocabularySettings = array(
 			'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
@@ -70,15 +66,6 @@ class Pressbooks_Metadata_Engine {
 				new $class;
 			}
 		}
-
-		//Enabling Educational Vocabulary on each level
-		if(get_option('educational_checkbox_'.$siteLevel)){
-		    new vocabularyFunctions\Pressbooks_Metadata_Educational($siteLevel);
-        }
-
-        if(get_option('educational_checkbox_'.$postLevel)){
-            new vocabularyFunctions\Pressbooks_Metadata_Educational($postLevel);
-        }
 
 	}
 
@@ -151,35 +138,7 @@ class Pressbooks_Metadata_Engine {
 			}
 		}
 
-		//Coins Level
-		$coinsLevelSection = "coinsLevelSection";
-		$coinsLevelPage = "coins_level_tab";
-
-		//Dublin Level
-		$dublinLevelSection = "dublinLevelSection";
-		$dublinLevelPage = "dublin_level_tab";
-
-		//Educational Level
-		$educationalLevelSection = "educationalLevelSection";
-		$educationalLevelPage = "educational_level_tab";
-
-		//Creating sections for the external vocabularies
-		add_settings_section($coinsLevelSection, __("Enable Coins Metadata", 'all-in-one-metadata'), null, $coinsLevelPage);
-		add_settings_section($dublinLevelSection, __("Enable Dublin Core Metadata", 'all-in-one-metadata'), null, $dublinLevelPage);
-		add_settings_section($educationalLevelSection, __("Enable Educational Metadata", 'all-in-one-metadata'), null, $educationalLevelPage);
-
-		//Creating prefixes for fields for external vocabularies
-        $postLevel = site_cpt::pressbooks_identify() ? 'chapter' : 'post';
-        $siteLevel = site_cpt::pressbooks_identify() ? 'metadata' : 'site-meta';
-
-
-		//Vocabularies for Book Info and Site Meta
-		new post_type_fields('coins_checkbox',__('Coins Metadata', 'all-in-one-metadata'),$coinsLevelPage,$coinsLevelSection);
-		new post_type_fields('dublin_checkbox',__('Dublin Core Metadata', 'all-in-one-metadata'),$dublinLevelPage,$dublinLevelSection);
-		new post_type_fields('educational_checkbox_'.$siteLevel,__('Educational Metadata Site Level', 'all-in-one-metadata'),$educationalLevelPage,$educationalLevelSection);
-
-		//Educational Vocabulary for Chapters and Posts
-        new post_type_fields('educational_checkbox_'.$postLevel,__('Educational Metadata ', 'all-in-one-metadata').ucfirst($postLevel),$educationalLevelPage,$educationalLevelSection);
+		
 
 		//Registering a setting for the parents filtering
 		register_setting('parent_filter_group', 'parent_filter_settings');

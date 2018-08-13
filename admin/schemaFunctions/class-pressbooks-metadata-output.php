@@ -59,24 +59,27 @@ class Pressbooks_Metadata_Output {
 				}
 			}
 
-			//Outputting the metadata for the Vocabularies
-			$vocabularySettings = array(
-				'coins_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Coins',
-				'dublin_checkbox' => 'vocabularyFunctions\Pressbooks_Metadata_Dublin'
-			);
-
-			foreach($vocabularySettings as $setting => $class){
-				if(get_option($setting)){
-					$vocabToUse = new $class;
-					echo $vocabToUse->pmdt_get_metatags();
-				}
-			}
-
-			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php') && get_option( 'metadata_edu_op') ) {
+			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php')) {
 				//Outputting metadata for the Educational Vocabulary on Site Level
-					require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
+				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
+				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-dublin.php';
+				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-coins.php';
+
+				if (get_option( $front_schema.'_edu_op')){
 					$vocabToUse = new \educa\Pressbooks_Metadata_Educational( $front_schema );
 					echo $vocabToUse->pmdt_get_metatags();
+				}
+
+				if (get_option( $front_schema.'_edu_dublin_op')){
+					$vocabToUse = new \educa\Pressbooks_Metadata_Dublin( $front_schema );
+					echo $vocabToUse->pmdt_get_metatags();
+				}
+
+				if (get_option( $front_schema.'_edu_coins_op')){
+					$vocabToUse = new \educa\Pressbooks_Metadata_Coins( $front_schema );
+					echo $vocabToUse->pmdt_get_metatags();
+				}
+
 			}
 
 		} elseif ( ! is_home() ) {
@@ -87,11 +90,26 @@ class Pressbooks_Metadata_Output {
 				}
 			}
 
-			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php') && get_option( $post_schema . '_edu_op') ) {
+			if (is_plugin_active('aiom-educational-related-content/aiom-educational-related-content.php')) {
 				//Outputting metadata for the Educational Vocabulary on Post Level
-					require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
+				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-educational.php';
+				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-dublin.php';
+				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-coins.php';
+
+				if (get_option( $front_schema.'_edu_op')){
 					$vocabToUse = new \educa\Pressbooks_Metadata_Educational( $post_schema );
 					echo $vocabToUse->pmdt_get_metatags();
+				}
+
+				if (get_option( $front_schema.'_edu_dublin_op')){
+					$vocabToUse = new \educa\Pressbooks_Metadata_Dublin( $post_schema );
+					echo $vocabToUse->pmdt_get_metatags();
+				}
+
+				if (get_option( $front_schema.'_edu_coins_op')){
+					$vocabToUse = new \educa\Pressbooks_Metadata_Coins( $post_schema );
+					echo $vocabToUse->pmdt_get_metatags();
+				}
 			}
 		}
 	}
