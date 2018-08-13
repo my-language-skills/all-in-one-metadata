@@ -13,7 +13,7 @@ Stable tag: [![Current Release](https://img.shields.io/github/release/Books4Lang
 
 License:  [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Books4Languages/pressbooks-metadata/blob/master/license.txt)
 
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 Educational Metadata for Pressbooks
 
