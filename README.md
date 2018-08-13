@@ -3,6 +3,8 @@
 
 Contributors: @colomet, @julienCXX, @masaka222, @MashRoofa and @danzhik
 
+Donate link: https://opencollective.com/mylanguageskills
+
 Tags: wordpress, multisite, pressbooks, metadata, schema, lrmi
 
 Tested up to: [![WordPress](https://img.shields.io/wordpress/v/akismet.svg)](https://wordpress.org/download/)
@@ -15,15 +17,13 @@ License:  [![License](https://img.shields.io/badge/license-GPL--3.0-red.svg)](ht
 
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-Educational Metadata for Pressbooks
+Extended Metadata for Wordpress and Pressbooks
 
 ## Description
 
-Pressbooks gives you the ability to add metadata to your books thus helping Google and other search engines to recognize it.
-The problem comes if your book is for educational purposes.
+Wordpress gives you the ability to add metadata to your sites thus helping Google and other search engines to recognise it. The problem comes if you want to expand.
 
-Pressbooks-metadata, extends the functionality of Pressbooks and gives you the flexibility to add more metadata in your books,
-taking advantage of the LRMI schema markup.
+All in one metadata, extends the functionality of Wordpress and gives you the flexibility to add more metadata in your sites, taking advantage of the schema markup.
 
 You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
 
