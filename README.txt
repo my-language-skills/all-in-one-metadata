@@ -1,12 +1,12 @@
 === All in one metadata ===
-Contributors: @colomet
+Contributors: @colomet @danzhik
 Donate link: https://opencollective.com/mylanguageskills
-Tags: comments, spam
+Tags: schema, schema.org, metadata, rich snippets, structured data
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 4.9.8
+Stable tag: 1.0
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Extended Metadata for Wordpress and PressBooks.
 
