@@ -1,6 +1,19 @@
 
 # Changelog
 
+## 0.18
+
+* **ENHANCEMENTS**
+    * Improved design
+    * Reorganized database interaction
+    * Separate settings pages for every post type
+    * Improved network administrators' functionality control
+    * Automatized seeding of info to newly created sites with network control
+    * Support of obligotary parent properties
+    * Improved quality of metadata for SEOs
+* **List Of Files Revised**    
+    * All
+
 ## 0.17
 **[BREAK! IF YOU HAVE BEEN USING THE PLUGIN BEFORE, UNINSTALL THE PREVIOUS VERSION VIA WORDPRESS PLUGINS PAGE]**
 
