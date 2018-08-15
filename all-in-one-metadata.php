@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://github.com/Books4Languages/pressbooks-metadata
+ * @link              https://github.com/my-language-skills/all-in-one-metadata
  * @since             0.1
  * @package           all-in-one-metadata
  *
