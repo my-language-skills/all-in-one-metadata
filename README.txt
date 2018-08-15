@@ -1,5 +1,5 @@
 === All in one metadata ===
-Contributors: colomet, danzhik, mashroofa, masaka222
+Contributors: colomet, danzhik, amyrotos, masaka222
 Donate link: https://opencollective.com/mylanguageskills
 Tags: schema, schema.org, metadata, rich snippets, structured data
 Requires at least: 3.0.1
