@@ -1,5 +1,5 @@
 === All in one metadata ===
-Contributors: @colomet @danzhik
+Contributors: colomet, danzhik, mashroofa, masaka222
 Donate link: https://opencollective.com/mylanguageskills
 Tags: schema, schema.org, metadata, rich snippets, structured data
 Requires at least: 3.0.1
@@ -15,6 +15,8 @@ Extended Metadata for Wordpress and PressBooks.
 Wordpress gives you the ability to add metadata to your sites thus helping Google and other search engines to recognise it. The problem comes if you want to expand.
 
 All in one metadata, extends the functionality of Wordpress and gives you the flexibility to add more metadata in your sites, taking advantage of the schema markup.
+
+https://github.com/my-language-skills/all-in-one-metadata
 
 == Installation ==
 
@@ -57,3 +59,6 @@ First release
 == Disclaimers ==
 
 The All in one metadata plugin is supplied "as is" and all use is at your own risk.
+
+All in one metadata is under development. Version 1.0 is stable but is an start. Soon much more possibilities.
+
