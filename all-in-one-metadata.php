@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://github.com/Books4Languages/pressbooks-metadata
+ * @link              https://github.com/my-language-skills/all-in-one-metadata
  * @since             0.1
- * @package           Pressbooks_Metadata
+ * @package           all-in-one-metadata
  *
  * @wordpress-plugin
  * Plugin Name:       All In One Metadata
- * Plugin URI:        https://github.com/Books4Languages/pressbooks-metadata
+ * Plugin URI:        https://github.com/my-language-skills/all-in-one-metadata
  * Description:       This plugin adds metadata to wordpress and also has support for the pressbooks plugin
  * Version:           1.0.0
- * Author:            My Language Skills
- * Author URI:        http://books4languages.com
+ * Author:            My Language Skills team
+ * Author URI:        https://github.com/my-language-skills/
  * License:           GPL 3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       all-in-one-metadata
@@ -73,4 +73,3 @@ function run_pressbooks_metadata() {
 
 }
 run_pressbooks_metadata();
-
