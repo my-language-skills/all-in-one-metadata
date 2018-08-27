@@ -6,6 +6,9 @@ Requires at least: 3.0.1
 Tested up to: 4.9.8
 <<<<<<< HEAD
 Requires PHP: 7.2.0
+=======
+Requires PHP: 5.4.0
+>>>>>>> 068720aa6081fbb3310e9f5f73fc258ce348bdac
 Stable tag: 1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
