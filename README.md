@@ -41,7 +41,7 @@ https://github.com/pressbooks/pressbooks/issues/950
 1. Clone (or copy) this repository folder `all-in-one-metadata` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
-## upgrades
+## Upgrades
 
 For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
 
@@ -62,10 +62,10 @@ All in one metadata have the Types XXX and XXX with all the subtipes and propert
 
 ## Requirements
 
-Plugin/Template Name works with:
+All In One Metadata works with:
 
  * ![PHP](https://img.shields.io/badge/PHP-7.2.X-blue.svg)
- * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.3-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/4.0)
+ * [![Pressbooks](https://img.shields.io/badge/Pressbooks-V%205.4.7-red.svg)](https://github.com/pressbooks/pressbooks/releases/tag/5.4.7)
 
  Lower versions are not supported.
 
