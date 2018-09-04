@@ -9,7 +9,7 @@
     * Separate settings pages for every post type
     * Improved network administrators' functionality control
     * Automatized seeding of info to newly created sites with network control
-    * Support of obligotary parent properties
+    * Support of obligatory parent properties
     * Improved quality of metadata for SEOs
 * **List Of Files Revised**    
     * All

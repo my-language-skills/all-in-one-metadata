@@ -1,5 +1,5 @@
 # What a SEO plugin does
-We recomend to use All in one metadadata with one of the following [SEO](https://moz.com/learn/seo/what-is-seo) plugins:
+We recomend to use All in one metadata with one of the following [SEO](https://moz.com/learn/seo/what-is-seo) plugins:
 * [The SEO Framework](https://wordpress.org/plugins/autodescription/)
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
 * [All in one SEO](https://wordpress.org/plugins/all-in-one-seo-pack/)

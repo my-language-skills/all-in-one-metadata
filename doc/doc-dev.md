@@ -50,11 +50,15 @@ For All In One Metadata workflow, the plugin registers and stores several option
 * ```$typeId_overwrite_$parentType_dis```(serialized) - select which parent properties will be overwritten from site-meta/metadata to post/chapter level
     * *Example*:
         * ```corporation_type_overwrite_organzation_properties_dis[address => 1]``` - sets the address property (which is natively property of Organization parent type) of corporation schema type, which is daughter type of Organization schema-type, on every post equal to site-meta address property defined
+* ```jsonld_output``` - activate output of metadata in JSON-LD notation
+
+---
+
+
 * ```dublin_checkbox``` - activate Dublin metadata for site-meta level
 * ```coins_checkbox``` - activate CoIns metadata on site-meta level
 * ```educational_checkbox_site-meta``` - activate Educational metadata on site-meta level
 * ```educational_checkbox_post``` - activate Educational metadata on post level
-* ```jsonld_output``` - activate output of metadata in JSON-LD notation
 
 ---
 

@@ -25,7 +25,7 @@ Wordpress gives you the ability to add metadata to your sites thus helping Googl
 
 All in one metadata, extends the functionality of Wordpress and gives you the flexibility to add more metadata in your sites, taking advantage of the schema markup.
 
-You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
+You can see the [schema properties that we use here](https://github.com/my-language-skills/all-in-one-metadata/blob/master/docs/SchemaUsed.md)
 
 * [Introduction](/doc/doc-intro.md)
 * [Installation, Integrations and Compatibilities](/doc/doc-general.md)

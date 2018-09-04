@@ -123,12 +123,6 @@ class Pressbooks_Metadata_[schema-type-name] extends Pressbooks_Metadata_Type {
 	}
 }
 ```
-Once you finished making changes on the new type remember to go in the file schemaTypes/class-pressbooks-metadata-type-structure.php
-and add the new type under the allSchemaTypes array, you have to use the types namespace in order to add it.
-Finally run this command on composer.
-
-*Composer Command:*
-```composer dump-autoload -o```
 
 ## Extending: Schema Parents
 ### STEPS:
@@ -139,7 +133,11 @@ Finally run this command on composer.
 5.  Replace all the fields having this indications [parent-type-name], [property-name], [property-name-title] and [property-description] -- see instructions in file.
 6.  For every property populate the type_properties array as indicated in the file.
 7.  Add a new folder under admin/schemaTypes using the parents name, in this folder will go all the child types that inherit from this parent.
-8.  Finally go in the composer.json file and add the new namespace indicating the new directory. 
+8.  From root directory of plugin run ```composer dump-autoload -o``` in cmd.
+
+Once you finished making changes on the new type remember to go in the file schemaTypes/class-pressbooks-metadata-type-structure.php
+and add the new type under the allSchemaTypes array, you have to use the types namespace in order to add it.
+
 For example this was appended in the json file for the creative works parent:
 ```
 "schemaTypes\\cw\\": "admin/schemaTypes/creativeWorks",
