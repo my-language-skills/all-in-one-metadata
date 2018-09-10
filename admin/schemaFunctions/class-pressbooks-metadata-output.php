@@ -96,17 +96,17 @@ class Pressbooks_Metadata_Output {
 				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-dublin.php';
 				require_once ABSPATH . '/wp-content/plugins/aiom-educational-related-content/admin/class-pressbooks-metadata-coins.php';
 
-				if (get_option( $front_schema.'_edu_op')){
+				if (get_option( $post_schema.'_edu_op')){
 					$vocabToUse = new \educa\Pressbooks_Metadata_Educational( $post_schema );
 					echo $vocabToUse->pmdt_get_metatags();
 				}
 
-				if (get_option( $front_schema.'_edu_dublin_op')){
+				if (get_option( $post_schema.'_edu_dublin_op')){
 					$vocabToUse = new \educa\Pressbooks_Metadata_Dublin( $post_schema );
 					echo $vocabToUse->pmdt_get_metatags();
 				}
 
-				if (get_option( $front_schema.'_edu_coins_op')){
+				if (get_option( $post_schema.'_edu_coins_op')){
 					$vocabToUse = new \educa\Pressbooks_Metadata_Coins( $post_schema );
 					echo $vocabToUse->pmdt_get_metatags();
 				}
