@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The plugin bootstrap file
+ * All in one metadata
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
